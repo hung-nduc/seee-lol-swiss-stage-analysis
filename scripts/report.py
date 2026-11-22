@@ -2,7 +2,7 @@
 
 Called by build.py. Every chart is inline SVG; every table is sortable by clicking its header.
 """
-import html, statistics as st
+import html, re, statistics as st
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -53,6 +53,7 @@ details>summary{cursor:pointer;font-weight:600;margin:6px 0}
 .radars{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}.radar-card h4{margin:0 0 4px}
 footer{margin-top:60px;color:var(--muted);font-size:12px}
 a{color:var(--accent)}
+.ci{width:20px;height:20px;border-radius:4px;vertical-align:-5px;margin-right:6px}.cl{display:inline-block;margin:1px 8px 1px 0;white-space:nowrap}.cl .ci{width:18px;height:18px}
 """
 
 JS = """
@@ -135,11 +136,41 @@ def tw(s, px=6.6):
     return len(str(s)) * px
 
 
+
+# ------------------------------------------------------------------ champion icons (Riot Data Dragon)
+DD_VER = '16.23.1'   # Data Dragon build of patch 26.23
+DD_EXC = {"Bel'Veth": 'Belveth', "Cho'Gath": 'Chogath', "Kai'Sa": 'Kaisa', "Kha'Zix": 'Khazix', 'LeBlanc': 'Leblanc', 'Wukong': 'MonkeyKing',
+          'Nunu & Willump': 'Nunu', 'Renata Glasc': 'Renata', "Vel'Koz": 'Velkoz'}
+
+
+def icon_url(name):
+    cid = DD_EXC.get(name) or re.sub(r'[^A-Za-z]', '', name)
+    return f'https://ddragon.leagueoflegends.com/cdn/{DD_VER}/img/champion/{cid}.png'
+
+
+def ci(name, size=20):
+    """Champion icon + name (icon hides itself when offline)."""
+    return (f'<img class="ci" src="{icon_url(name)}" alt="" width="{size}" height="{size}" loading="lazy" onerror="this.remove()">'
+            f'{E(name)}')
+
+
+def ci_list(text):
+    """'Ornn x3, Jhin' -> icons with counts."""
+    if not text or text == '—':
+        return '—'
+    out = []
+    for part in [x.strip() for x in str(text).split(',') if x.strip()]:
+        m = re.match(r'^(.*?)(?: x(\d+))?$', part)
+        name, n = m.group(1), m.group(2)
+        out.append('<span class="cl">' + ci(name, 18) + (f' <span class="muted">×{n}</span>' if n else '') + '</span>')
+    return ' '.join(out)
+
 # ------------------------------------------------------------------ charts
 def hbar(rows, keys, colors=None, label_w=None, W=760, row_h=22, val_fmt=lambda v: fmt(v), xmax=None, ref=None, total=True, aria=''):
     """rows: list of dict(label, values=[...], tip, strong=bool)."""
     colors = colors or C
-    lw = label_w or max(60, max(tw(r['label']) for r in rows) + 12)
+    has_icon = any(r.get('icon') for r in rows)
+    lw = label_w or max(60, max(tw(r['label']) for r in rows) + 12) + (24 if has_icon else 0)
     H = len(rows) * row_h + 8
     mx = xmax or max(sum(v for v in r['values'] if v) for r in rows) or 1
     x = lambda v: lw + (W - lw - 50) * v / mx
@@ -149,7 +180,11 @@ def hbar(rows, keys, colors=None, label_w=None, W=760, row_h=22, val_fmt=lambda 
     for i, r in enumerate(rows):
         y = 4 + i * row_h
         s.append(f'<g><title>{E(r.get("tip", ""))}</title>')
-        s.append(f'<text x="{lw - 8}" y="{y + row_h / 2}" dy=".35em" text-anchor="end" class="{"strong" if r.get("strong") else ""}">{E(r["label"])}</text>')
+        tx = lw - 8 - (24 if has_icon else 0)
+        s.append(f'<text x="{tx}" y="{y + row_h / 2}" dy=".35em" text-anchor="end" class="{"strong" if r.get("strong") else ""}">{E(r["label"])}</text>')
+        if r.get('icon'):
+            sz = row_h - 4
+            s.append(f'<image href="{r["icon"]}" x="{lw - 6 - sz}" y="{y + 2}" width="{sz}" height="{sz}" preserveAspectRatio="xMidYMid slice"/>')
         x0 = lw
         for j, v in enumerate(r['values']):
             if not v:
@@ -361,7 +396,8 @@ def page(fname, title, lede, body, toc=()):
 <nav class="top"><div class="wrap"><span class="brand">SEEE LoL 2026 · Swiss Stage</span>{nav}</div></nav>
 <div class="wrap"><h1>{E(title)}</h1><p class="muted">{lede}</p>{tocs}{body}
 <footer>Built by <code>scripts/build.py</code> from the match records, the post-game scoreboards and an op.gg (VN) snapshot taken 22 Nov 2026.
-Raw and processed data: <code>data/</code>. Hover any bar or dot for its value; click a table header to sort.</footer></div>
+Raw and processed data: <code>data/</code>. Hover any bar or dot for its value; click a table header to sort.<br>
+Champion icons from Riot Games' Data Dragon. This project isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</footer></div>
 <script>{JS}</script></body></html>"""
 
 
@@ -430,7 +466,7 @@ def page_a(d):
                 return (E(p[f'{qn}_label']) + (f' · {p[f"{qn}_games"]} g' if p[f'{qn}_games'] else ''), -1)
             return (f"{E(p[f'{qn}_label'])} · {p[f'{qn}_games']} g · {p[f'{qn}_winrate']}%", p[f'{qn}_score'])
         rows = [dict(role=d['role_name'].get(p['swiss_role'], '—'), riot=p['riot_id'], g=p['swiss_games'], solo=qcell(p, 'solo'), flex=qcell(p, 'flex'), r5=qcell(p, 'r5'),
-                     champs=p['swiss_champions']) for p in ps]
+                     champs=(ci_list(p['swiss_champions']), p['swiss_champions'])) for p in ps]
         cols = [('role', 'Role', ''), ('riot', 'Riot ID', ''), ('g', 'Swiss games', 'n'), ('solo', 'Solo/Duo', ''), ('flex', 'Flex', ''), ('r5', 'Ranked 5s', ''), ('champs', 'Champions in Swiss', 'wrap')]
         qual = pill('Quarter-finalist', 'ok') if s['qualified'] else pill('Eliminated', '')
         body.append(f'<div class="card teamcard" id="team-{E(s["team"])}"><h3>{E(s["team"])} <span class="muted">· Swiss {E(s["swiss_record"])} · rank #{s["rank_seed"]} of 16</span> {qual}</h3>'
@@ -520,7 +556,7 @@ def meta_section(d):
     for c, k in pc.most_common(20):
         xs = [x for x in mp if x['champion'] == c]
         mw = [x['matchup_win_rate'] for x in xs if x['matchup_win_rate'] != '']
-        rows.append(dict(c=c, k=k, wr=(f'{wr(xs)}%', wr(xs)), t22='; '.join(sorted(tiers_of[c].get('26.22', []))) or '—', t23='; '.join(sorted(tiers_of[c].get('26.23', []))) or '—',
+        rows.append(dict(c=(ci(c), c), k=k, wr=(f'{wr(xs)}%', wr(xs)), t22='; '.join(sorted(tiers_of[c].get('26.22', []))) or '—', t23='; '.join(sorted(tiers_of[c].get('26.23', []))) or '—',
                          mw=(f'{st.mean(mw):.1f}%', st.mean(mw)) if mw else ('—', 0)))
     body.append('<h3 id="meta-champs">Most-picked champions and their meta tier</h3>' +
                 table([('c', 'Champion', ''), ('k', 'Picks', 'n'), ('wr', 'Tournament WR', 'n'), ('t22', 'Patch 26.22 (round 1)', 'wrap'), ('t23', 'Patch 26.23 (rounds 2–5)', 'wrap'),
@@ -534,13 +570,13 @@ def meta_section(d):
             t1 = [t for t in tlist if t['patch'] == patch and t['position'] == role_name and t['tier'] == 1]
             used = [t['champion'] for t in t1 if any(x['champion'] == t['champion'] and x['role'] == role_name for x in mp if x['patch'] == patch)]
             unused = [t['champion'] for t in t1 if t['champion'] not in used]
-            rows.append(dict(r=role_name, p=patch, n=len(t1), used=', '.join(used) or '—', unused=', '.join(unused) or '—'))
+            rows.append(dict(r=role_name, p=patch, n=len(t1), used=(ci_list(', '.join(used)) if used else '—', ''), unused=(ci_list(', '.join(unused)) if unused else '—', '')))
     body.append('<h3 id="meta-gaps">Tier-1 champions: picked or ignored?</h3><p class="sub">op.gg tier-1 champions in each position, and whether anyone played them in that position on that patch. '
                 'Bans are not counted here (see Ban & pick above).</p>' +
                 table([('r', 'Position', ''), ('p', 'Patch', ''), ('n', 'Tier-1 champions', 'n'), ('used', 'Picked', 'wrap'), ('unused', 'Never picked', 'wrap')], rows, sortable=False))
 
     # off-meta / off-role list
-    rows = [dict(code=x['code'], team=x['team'], role=x['role'], c=x['champion'], o=x['lane_opponent'], cls=x['meta_class'].split(' (')[0],
+    rows = [dict(code=x['code'], team=x['team'], role=x['role'], c=(ci(x['champion']), x['champion']), o=(ci(x['lane_opponent']), x['lane_opponent']), cls=x['meta_class'].split(' (')[0],
                  t=x['tier'] if x['tier'] != '' else '—', res=(pill('Win', 'ok') if x['won'] else pill('Loss', 'bad'), x['won']))
             for x in mp if x['meta_class'] in classes[2:]]
     body.append('<h3 id="meta-off">Off-meta and off-role picks</h3><p class="sub">Pocket picks and flex picks; who played them and how they went.</p>'
@@ -548,7 +584,7 @@ def meta_section(d):
                 table([('code', 'Match', ''), ('team', 'Team', ''), ('role', 'Position', ''), ('c', 'Champion', ''), ('o', 'Lane opponent', ''), ('cls', 'Class', ''), ('t', 'Tier', 'n'), ('res', 'Result', '')], rows) + '</details>')
 
     # counter-picks
-    rows = [dict(code=x['code'], team=x['team'], role=x['role'], c=x['champion'], o=x['lane_opponent'], slot=f"{x['opponent_slot']} → {x['draft_slot']}",
+    rows = [dict(code=x['code'], team=x['team'], role=x['role'], c=(ci(x['champion']), x['champion']), o=(ci(x['lane_opponent']), x['lane_opponent']), slot=f"{x['opponent_slot']} → {x['draft_slot']}",
                  mwr=(f"{x['matchup_win_rate']:.1f}%" + ('' if x['matchup_reliable'] else ' *'), x['matchup_win_rate']), g=x['matchup_games'],
                  m=(pill(x['matchup'], 'ok' if x['matchup'] == 'favourable' else 'bad' if x['matchup'] == 'unfavourable' else ''), x['matchup']),
                  res=(pill('Win', 'ok') if x['won'] else pill('Loss', 'bad'), x['won'])) for x in sorted(cps, key=lambda x: -x['matchup_win_rate'])]
@@ -663,16 +699,16 @@ def page_b(d):
         (len([c for c in picked if not c['bans']]), 'picked but never banned'), (G, 'games with picks'), (len({x['code'] for x in drafts if x['kind'] == 'ban'}), 'games with bans recorded')]) + '</div>')
     body.append('<p class="sub">Picks and positions come from the scoreboards; bans from the match records (LS33 has no bans recorded, LS15 only 3, LS32 one missing). Presence = picks + bans over the 28 games.</p>')
     body.append('<div class="card"><h4>Most contested champions</h4>' + legend([('Picked', C[0]), ('Banned', C[1])]) +
-                hbar([dict(label=c['champion'], values=[c['picks'], c['bans']], tip=f"{c['champion']}: picked {c['picks']} (won {c['wins']}), banned {c['bans']} — {c['presence_pct']}% presence") for c in champs[:20]],
+                hbar([dict(label=c['champion'], icon=icon_url(c['champion']), values=[c['picks'], c['bans']], tip=f"{c['champion']}: picked {c['picks']} (won {c['wins']}), banned {c['bans']} — {c['presence_pct']}% presence") for c in champs[:20]],
                      [0, 1], aria='Top 20 champions by presence') + '</div>')
 
     body.append('<h3 id="by-position">Picks by position</h3><p class="sub">Each position\'s most-picked champions with their win rate in this stage.</p><div class="grid">')
     for code, name in d['role_name'].items():
         cnt = Counter(x['champion'] for x in pg if x['role'] == code)
         wins = Counter(x['champion'] for x in pg if x['role'] == code and x['won'])
-        rows = [dict(c=c, n=n, w=wins[c], wr=(f'{round(100 * wins[c] / n)}%', 100 * wins[c] / n)) for c, n in cnt.most_common()]
+        rows = [dict(c=(ci(c), c), n=n, w=wins[c], wr=(f'{round(100 * wins[c] / n)}%', 100 * wins[c] / n), cn=c) for c, n in cnt.most_common()]
         body.append(f'<div class="card"><h4>{E(name)} — {len(cnt)} different champions</h4>' +
-                    hbar([dict(label=r['c'], values=[r['n']], tip=f"{r['c']}: {r['n']} picks, {r['w']} wins") for r in rows[:10]], [0], W=420, row_h=20) +
+                    hbar([dict(label=r['cn'], icon=icon_url(r['cn']), values=[r['n']], tip=f"{r['cn']}: {r['n']} picks, {r['w']} wins") for r in rows[:10]], [0], W=420, row_h=20) +
                     f'<details><summary>All {len(rows)} champions</summary>' + table([('c', 'Champion', ''), ('n', 'Picks', 'n'), ('w', 'Wins', 'n'), ('wr', 'Win rate', 'n')], rows) + '</details></div>')
     body.append('</div>')
 
@@ -684,15 +720,16 @@ def page_b(d):
             tb[x['team']][x['champion']] += 1
     for x in pg:
         tp[x['team']][x['champion']] += 1
-    rows = [dict(team=t, bans=sum(tb[t].values()), top=', '.join(f'{c} x{n}' if n > 1 else c for c, n in tb[t].most_common(6)),
-                 picks=', '.join(f'{c} x{n}' if n > 1 else c for c, n in tp[t].most_common(6))) for t in sorted(tp)]
+    rows = [dict(team=t, bans=sum(tb[t].values()), top=(ci_list(', '.join(f'{c} x{n}' if n > 1 else c for c, n in tb[t].most_common(6))), ''),
+                 picks=(ci_list(', '.join(f'{c} x{n}' if n > 1 else c for c, n in tp[t].most_common(6))), '')) for t in sorted(tp)]
     body.append(table([('team', 'Team', ''), ('bans', 'Bans recorded', 'n'), ('top', 'Most banned', 'wrap'), ('picks', 'Most picked', 'wrap')], rows))
 
     body.append('<h3 id="champ-table">Every champion</h3>')
     cols = [('champion', 'Champion', ''), ('picks', 'Picks', 'n'), ('bans', 'Bans', 'n'), ('presence_pct', 'Presence %', 'n'), ('wins', 'Wins', 'n'), ('winrate', 'Win rate %', 'n'),
             ('main_role', 'Main position', ''), ('picks_TOP', 'Top', 'n'), ('picks_JG', 'Jg', 'n'), ('picks_MID', 'Mid', 'n'), ('picks_AD', 'Bot', 'n'), ('picks_SP', 'Sup', 'n'),
             ('kda', 'KDA', 'n'), ('avg_damage_share', 'Dmg share %', 'n'), ('picked_by', 'Picked by', 'wrap')]
-    body.append('<details class="card"><summary>Show all %d champions</summary>' % len(champs) + table(cols, champs) + '</details>')
+    body.append('<details class="card"><summary>Show all %d champions</summary>' % len(champs) +
+                table(cols, [dict(c, champion=(ci(c['champion']), c['champion']), picked_by=c['picked_by']) for c in champs]) + '</details>')
 
     body.append(meta_section(d))
 
@@ -875,7 +912,7 @@ def page_c(d):
     body.append('</div>')
     cols = [('team', 'Team', ''), ('role', 'Pos.', ''), ('riot_id', 'Player', ''), ('solo_rank', 'Solo/Duo', ''), ('games', 'G', 'n'), ('wins', 'W', 'n'), ('kills', 'K', 'n'), ('deaths', 'D', 'n'),
             ('assists', 'A', 'n'), ('kda', 'KDA', 'n'), ('avg_kill_participation', 'KP %', 'n'), ('damage_per_min', 'Dmg/min', 'n'), ('damage_share', 'Dmg %', 'n'), ('gold_per_min', 'Gold/min', 'n'), ('champions', 'Champions', 'wrap')]
-    body.append('<details class="card"><summary>All %d players</summary>' % len(PS) + table(cols, PS) + '</details>')
+    body.append('<details class="card"><summary>All %d players</summary>' % len(PS) + table(cols, [dict(p, champions=(ci_list(p['champions']), p['champions'])) for p in PS]) + '</details>')
 
     # per-team logs
     body.append('<h2 id="logs">Team by team: every game</h2>')
@@ -884,7 +921,7 @@ def page_c(d):
         rows = [dict(g, res=(pill('Win', 'ok') if g['won'] else pill('Loss', 'bad'), g['won']), gd=(f"{g['gold_diff']:+,}", g['gold_diff']), kda_s=f"{g['kills']}/{g['deaths']}/{g['assists']}") for g in gs]
         cols = [('code', 'Match', ''), ('round', 'Rd', 'n'), ('opponent', 'Opponent', ''), ('side', 'Side', ''), ('res', 'Result', ''), ('game_time', 'Time', ''), ('gold', 'Gold', 'n'),
                 ('gold_per_min', 'Gold/min', 'n'), ('gd', 'Gold diff', 'n'), ('kda_s', 'K/D/A', ''), ('kda', 'KDA', 'n'), ('kill_participation', 'KP %', 'n')]
-        ps = [p for p in PS if p['team'] == t['team']]
+        ps = [dict(p, champions=(ci_list(p['champions']), p['champions'])) for p in PS if p['team'] == t['team']]
         pcols = [('role', 'Pos.', ''), ('riot_id', 'Player', ''), ('games', 'G', 'n'), ('kda', 'KDA', 'n'), ('avg_kill_participation', 'KP %', 'n'), ('damage_per_min', 'Dmg/min', 'n'), ('damage_share', 'Dmg %', 'n'),
                  ('gold_per_min', 'Gold/min', 'n'), ('champions', 'Champions', 'wrap')]
         body.append(f'<div class="card teamcard" id="team-{E(t["team"])}"><h3>{E(t["team"])} <span class="muted">· {t["wins"]}-{t["losses"]} in played games · KDA {t["kda"]} · KP {t["kill_participation"]}% · {t["avg_gold_per_min"]:,} gold/min</span></h3>'
@@ -956,7 +993,7 @@ def page_d(d):
                 f'<div class="sub">{r["games"]} games ({r["wins"]}W) · Solo/Duo {E(rank.get(r["riot_id"], "—"))}</div>' + svg +
                 f'<div class="kv" style="font-size:12px"><span>K/D/A <b>{r["kills"]}/{r["deaths"]}/{r["assists"]}</b></span><span>KDA <b>{r["kda"]}</b></span><span>KP <b>{r["kill_participation"]}%</b></span>'
                 f'<span>Dmg/min <b>{fmt(r["damage_per_min"])}</b></span><span>Dmg <b>{fmt(r["damage_share"])}%</b></span><span>Gold/min <b>{r["gold_per_min"]}</b></span><span>Deaths/g <b>{r["deaths_per_game"]}</b></span></div>'
-                f'<p class="sub" style="margin:2px 0">{E(note) or "Around the middle of the position"}</p><p class="sub" style="margin:0">Champions: {E(r["champions"])}</p></div>')
+                f'<p class="sub" style="margin:2px 0">{E(note) or "Around the middle of the position"}</p><div class="sub" style="margin:0">{ci_list(r["champions"])}</div></div>')
 
     def team_block(team, col):
         t = tstat[team]

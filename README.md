@@ -67,6 +67,10 @@ python scripts/parse_records.py   # optional: needs the private record PDFs; rec
 python scripts/build.py           # writes data/processed/*.csv and docs/*.html
 ```
 
+## Champion icons
+
+Champion icons are loaded from Riot's Data Dragon CDN (`ddragon.leagueoflegends.com`, build 16.23.1 = patch 26.23), so they need an internet connection; offline, the reports show names only. This project isn't endorsed by Riot Games. Riot Games and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
+
 ## Method in short
 
 - **Results** come from the match records. The Excel schedule decides teams and sides.
