@@ -57,6 +57,7 @@ details>summary{cursor:pointer;font-weight:600;margin:6px 0}
 .radars{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}.radar-card h4{margin:0 0 4px}
 footer{margin-top:60px;color:var(--muted);font-size:12px}
 a{color:var(--accent)}
+.rk{font-weight:600;white-space:nowrap}.rk i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:1px}
 .ci{width:20px;height:20px;border-radius:4px;vertical-align:-5px;margin-right:6px}.cl{display:inline-block;margin:1px 8px 1px 0;white-space:nowrap}.cl .ci{width:18px;height:18px}
 """
 
@@ -169,6 +170,27 @@ def ci_list(text):
         name, n = m.group(1), m.group(2)
         out.append('<span class="cl">' + ci(name, 18) + (f' <span class="muted">×{n}</span>' if n else '') + '</span>')
     return ' '.join(out)
+
+
+# ------------------------------------------------------------------ rank colours
+TIER_COL = {'Iron': '#7d726c', 'Bronze': '#a8653d', 'Silver': '#8d9ba6', 'Gold': '#c9971f', 'Platinum': '#2f9e98', 'Plat': '#2f9e98',
+            'Emerald': '#1e9e5e', 'Diamond': '#5b7ee6', 'Master': '#a157c2', 'Grandmaster': '#d0443a', 'Challenger': '#e2a900'}
+TIER_ORDER = {t: i for i, t in enumerate(['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Emerald', 'Diamond', 'Master', 'Grandmaster', 'Challenger'])}
+
+
+def rk(label):
+    """Rank label coloured by tier: 'Gold 1' -> gold dot + gold text. Unranked/unknown stay plain."""
+    label = str(label)
+    tier = label.split()[0].title() if label else ''
+    col = TIER_COL.get(tier)
+    if not col:
+        return f'<span class="muted">{E(label)}</span>'
+    return f'<span class="rk" style="color:{col}"><i style="background:{col}"></i>{E(label)}</span>'
+
+
+def rk_cell(label, extra='', sortval=None):
+    """Table cell tuple: coloured rank + optional plain suffix (games, win rate)."""
+    return (rk(label) + (f' <span class="muted">{E(extra)}</span>' if extra else ''), sortval if sortval is not None else -1)
 
 # ------------------------------------------------------------------ charts
 def hbar(rows, keys, colors=None, label_w=None, W=760, row_h=22, val_fmt=lambda v: fmt(v), xmax=None, ref=None, total=True, aria=''):
@@ -321,8 +343,9 @@ def rank_chart(teams, W=760, row_h=26, rank_label=None):
             s.append(f'<rect x="{X(lo):.1f}" y="{y + 5}" width="{X(t["solo_score"]) - X(lo):.1f}" height="{row_h - 10}" rx="2" fill="{C[0]}"/>')
             right = max(X(v) for v in (t['solo_score'], t['flex_score'], t['r5_score']) if v != '') + 9
             lab = E(t['solo_avg'])
+            tcol = TIER_COL.get(t['solo_avg'].split()[0].title(), MUTED)
             if right + tw(lab, 5.8) < W:
-                s.append(f'<text x="{right:.1f}" y="{y + row_h / 2}" dy=".35em" style="font-size:10px">{lab}</text>')
+                s.append(f'<text x="{right:.1f}" y="{y + row_h / 2}" dy=".35em" style="font-size:10px;font-weight:600;fill:{tcol}">{lab}</text>')
             else:
                 s.append(f'<text x="{X(lo) + 6:.1f}" y="{y + row_h / 2}" dy=".35em" style="font-size:10px;fill:#fff">{lab}</text>')
         if t['flex_score'] != '':
@@ -424,7 +447,7 @@ def page_a(d):
     spread = sorted([s for s in sc if s['rank_spread'] != ''], key=lambda s: -s['rank_spread'])
     unr = [s for s in sc if s['solo_unranked']]
     finds = [
-        f"<b>{E(sc[0]['team'])}</b> fields the strongest Solo/Duo lineup ({E(sc[0]['solo_avg'])}), followed by "
+        f"<b>{E(sc[0]['team'])}</b> fields the strongest Solo/Duo lineup ({rk(sc[0]['solo_avg'])}), followed by "
         + ', '.join(f"<b>{E(s['team'])}</b> ({E(s['solo_avg'])})" for s in sc[1:3]) + f". The gap from #3 to #4 ({E(sc[3]['team'])}, {E(sc[3]['solo_avg'])}) is about {sc[2]['solo_score'] - sc[3]['solo_score']:.0f} divisions.",
         f"{both} of the 8 quarter-finalists were also among the 8 highest-ranked lineups.",
         f"Ranked 5s (tournament mode) is barely used: only {len(r5p)} of {len(players)} players have a 5s rank (" + ', '.join(f"{E(p['riot_id'])} – {E(p['team'])}" for p in r5p) + ").",
@@ -441,7 +464,7 @@ def page_a(d):
     cols = [('rank_seed', '#', 'n'), ('team', 'Team', ''), ('team_name', 'Name', ''), ('swiss_record', 'Swiss', ''), ('solo', 'Solo/Duo avg', ''), ('flex', 'Flex avg', ''),
             ('r5', 'Ranked 5s avg', ''), ('r5_ranked_players', '5s-ranked players', 'n'), ('players_used', 'Players used', 'n'),
             ('solo_unranked', 'Solo unranked', 'n'), ('best_player', 'Highest ranked', ''), ('weakest_player', 'Lowest ranked', ''), ('rank_spread', 'Spread (div.)', 'n')]
-    rows = [dict(s, solo=(E(s['solo_avg']), s['solo_score']), flex=(E(s['flex_avg']), s['flex_score']), r5=(E(s['r5_avg']), s['r5_score'] if s['r5_score'] != '' else -1),
+    rows = [dict(s, solo=(rk(s['solo_avg']), s['solo_score']), flex=(rk(s['flex_avg']), s['flex_score']), r5=(rk(s['r5_avg']), s['r5_score'] if s['r5_score'] != '' else -1),
                  team=(('✓ ' if s['qualified'] else '') + E(s['team']), s['team'])) for s in sc]
     body.append('<h3>Scouting table</h3>' + table(cols, rows))
 
@@ -474,14 +497,14 @@ def page_a(d):
 
         def qcell(p, qn):
             if p[f'{qn}_score'] is None:
-                return (E(p[f'{qn}_label']) + (f' · {p[f"{qn}_games"]} g' if p[f'{qn}_games'] else ''), -1)
-            return (f"{E(p[f'{qn}_label'])} · {p[f'{qn}_games']} g · {p[f'{qn}_winrate']}%", p[f'{qn}_score'])
+                return rk_cell(p[f'{qn}_label'], f'· {p[f"{qn}_games"]} g' if p[f'{qn}_games'] else '', -1)
+            return rk_cell(p[f'{qn}_label'], f"· {p[f'{qn}_games']} g · {p[f'{qn}_winrate']}%", p[f'{qn}_score'])
         rows = [dict(role=d['role_name'].get(p['swiss_role'], '—'), riot=p['riot_id'], g=p['swiss_games'], solo=qcell(p, 'solo'), flex=qcell(p, 'flex'), r5=qcell(p, 'r5'),
                      champs=(ci_list(p['swiss_champions']), p['swiss_champions'])) for p in ps]
         cols = [('role', 'Role', ''), ('riot', 'Riot ID', ''), ('g', 'Swiss games', 'n'), ('solo', 'Solo/Duo', ''), ('flex', 'Flex', ''), ('r5', 'Ranked 5s', ''), ('champs', 'Champions in Swiss', 'wrap')]
         qual = pill('Quarter-finalist', 'ok') if s['qualified'] else pill('Eliminated', '')
         body.append(f'<div class="card teamcard" id="team-{E(s["team"])}"><h3>{E(tn(s["team"]))} <span class="muted">· Swiss {E(s["swiss_record"])} · rank #{s["rank_seed"]} of 16</span> {qual}</h3>'
-                    f'<div class="kv"><span>Solo/Duo <b>{E(s["solo_avg"])}</b></span><span>Flex <b>{E(s["flex_avg"])}</b></span><span>Ranked 5s <b>{E(s["r5_avg"])}</b></span>'
+                    f'<div class="kv"><span>Solo/Duo {rk(s["solo_avg"])}</span><span>Flex {rk(s["flex_avg"])}</span><span>Ranked 5s {rk(s["r5_avg"])}</span>'
                     f'<span>Flex share <b>{s["flex_share"]}%</b> ({E(s["flex_verdict"])})</span><span>Spread <b>{s["rank_spread"]} div.</b></span><span>Players used <b>{s["players_used"]}</b></span></div>'
                     + table(cols, rows) + '</div>')
     toc = [('findings', 'Key findings'), ('ranks', 'Average rank'), ('activity', 'Ranked activity'), ('flex', 'Flex practice'), ('distribution', 'Rank distribution'), ('teams', 'Team by team')]
@@ -682,7 +705,7 @@ def page_b(d):
     fast = min(played, key=lambda m: m['game_minutes']); slow = max(played, key=lambda m: m['game_minutes'])
     finds = [
         f"The higher-ranked lineup won <b>{len(played) - len(ups)} of {len(played)}</b> played games; only {len(ups)} went against rank. 5 matches were decided without a game (4 no-shows, 1 ruling).",
-        f"<b>Most surprising result: {E(ups[1]['code'])}</b> – the 2-2 elimination decider: {E(ups[1]['winner'])} ({E(ups[1]['winner_rank'])}) beat {E(ups[1]['loser'])} ({E(ups[1]['loser_rank'])}) in {E(ups[1]['game_time'])} "
+        f"<b>Most surprising result: {E(ups[1]['code'])}</b> – the 2-2 elimination decider: {E(ups[1]['winner'])} ({rk(ups[1]['winner_rank'])}) beat {E(ups[1]['loser'])} ({rk(ups[1]['loser_rank'])}) in {E(ups[1]['game_time'])} "
         f"and knocked out the {'%d' % [s for s in S if s['team'] == ups[1]['loser']][0]['rank_seed']}th-ranked team. "
         f"The largest rank gap overcome was {E(ups[0]['code'])} ({E(ups[0]['winner'])} over {E(ups[0]['loser'])}, {abs(ups[0]['rank_gap']):.1f} divisions), but {E(ups[0]['winner'])}'s average rests on only 3 ranked players.",
         f"Seeding by rank vs. result: " + ', '.join(f"{E(s['team'])} (rank #{s['rank_seed']}) missed the quarter-finals" for s in elim_hi) + '; ' +
@@ -712,7 +735,7 @@ def page_b(d):
     body.append('<h2 id="standings">Final standings</h2><p class="sub">Ordered by record, then Buchholz (sum of opponents\' wins), then rank seed. "Seed vs finish" = rank seed minus finishing place (positive = did better than rank suggests).</p>')
     cols = [('finish', '#', 'n'), ('team', 'Team', ''), ('team_name', 'Name', ''), ('record', 'Record', ''), ('buchholz', 'Buchholz', 'n'), ('forfeit_wins', 'Wins by forfeit/ruling', 'n'),
             ('forfeit_losses', 'Losses by forfeit/ruling', 'n'), ('rank_seed', 'Rank seed', 'n'), ('solo_avg', 'Solo/Duo avg', ''), ('svf', 'Seed vs finish', 'n'), ('q', 'Result', '')]
-    body.append(table(cols, [dict(s, svf=(f"{s['seed_vs_finish']:+d}", s['seed_vs_finish']), q=(pill('Quarter-finals', 'ok') if s['qualified'] else pill('Eliminated'), s['qualified'])) for s in S],
+    body.append(table(cols, [dict(s, solo_avg=(rk(s['solo_avg']), -s['rank_seed']), svf=(f"{s['seed_vs_finish']:+d}", s['seed_vs_finish']), q=(pill('Quarter-finals', 'ok') if s['qualified'] else pill('Eliminated'), s['qualified'])) for s in S],
                       hl=lambda r: r['qualified']))
     body.append('<div class="card"><h4>Seed vs finish</h4>' + diverging([dict(label=s['team'], value=s['seed_vs_finish'], strong=s['qualified'],
                                                                                 tip=f"{s['team']}: rank seed #{s['rank_seed']}, finished #{s['finish']}") for s in sorted(S, key=lambda s: -s['seed_vs_finish'])],
@@ -734,7 +757,7 @@ def page_b(d):
     body.append('<h2 id="results">All results with rank gap</h2><p class="sub">Rank gap = winner\'s average Solo/Duo rank minus loser\'s, in divisions, for the five players who played (team average for matches without a game). Negative = the lower-ranked side won.</p>')
     cols = [('code', 'Match', ''), ('round', 'Rd', 'n'), ('pool', 'Pool', ''), ('blue', 'Blue', ''), ('red', 'Red', ''), ('winner', 'Winner', ''), ('winner_rank', 'Winner rank', ''),
             ('loser_rank', 'Loser rank', ''), ('gap', 'Rank gap', 'n'), ('game_time', 'Time', ''), ('type', 'Note', ''), ('notes', 'Record notes', 'wrap')]
-    body.append(table(cols, [dict(m, gap=(f"{m['rank_gap']:+.1f}", m['rank_gap']), type=(pill('upset', 'warn') if m['upset'] else pill(m['result_type']) if m['result_type'] != 'played' else pill('as expected', 'ok'), m['upset']))
+    body.append(table(cols, [dict(m, winner_rank=(rk(m['winner_rank']), 0), loser_rank=(rk(m['loser_rank']), 0), gap=(f"{m['rank_gap']:+.1f}", m['rank_gap']), type=(pill('upset', 'warn') if m['upset'] else pill(m['result_type']) if m['result_type'] != 'played' else pill('as expected', 'ok'), m['upset']))
                              for m in M], hl=lambda r: r['upset']))
 
     body.append('<h2 id="surprise">The most surprising results</h2>')
@@ -747,7 +770,7 @@ def page_b(d):
             star = max(xs, key=lambda x: (x['kills'] + x['assists']) / max(x['deaths'], 1))
             lines.append(f"<b>{E(team)}</b>: {k} kills, {dd} deaths, {g:,} gold — best KDA {E(star['riot_id'])} on {E(star['champion'])} ({star['kills']}/{star['deaths']}/{star['assists']})")
         body.append(f'<div class="card"><h3>{E(m["code"])} · Round {m["round"]} (pool {E(m["pool"])}) · {E(tn(m["winner"]))} beat {E(tn(m["loser"]))} in {E(m["game_time"])}</h3>'
-                    f'<p>{E(m["winner"])} lineup: {E(m["winner_rank"])} · {E(m["loser"])} lineup: {E(m["loser_rank"])} · gap {m["rank_gap"]:+.1f} divisions.</p><ul class="find">' + ''.join(f'<li>{l}</li>' for l in lines) + '</ul></div>')
+                    f'<p>{E(m["winner"])} lineup: {rk(m["winner_rank"])} · {E(m["loser"])} lineup: {rk(m["loser_rank"])} · gap {m["rank_gap"]:+.1f} divisions.</p><ul class="find">' + ''.join(f'<li>{l}</li>' for l in lines) + '</ul></div>')
 
     # side & length
     body.append('<h2 id="sides">Sides and game length</h2><div class="grid">')
@@ -957,7 +980,7 @@ def page_c(d):
                         xfmt=lambda v: (f'Master {round((v - 28) * 100)} LP' if v >= 28 else f"{['Iron', 'Bronze', 'Silver', 'Gold', 'Plat', 'Emerald', 'Diamond'][int(v) // 4]} {4 - int(v) % 4}") if v >= 0 else '',
                         yfmt=lambda v: f'{v:.0f}' if v >= 0 else '', aria='Rank versus performance') + '</div>')
     cols = [('p', 'Player', ''), ('team', 'Team', ''), ('role', 'Pos.', ''), ('g', 'G', 'n'), ('rank', 'Solo/Duo', ''), ('perf', 'Performance', 'n'), ('res', 'vs rank', 'n')]
-    mk = lambda p: dict(p=p['id'], team=p['team'], role=p['role'], g=p['games'], rank=(E(lab[p['id']]), p['x']), perf=(f"{p['y']:.0f}", p['y']), res=(f"{p['res']:+.0f}", p['res']))
+    mk = lambda p: dict(p=p['id'], team=p['team'], role=p['role'], g=p['games'], rank=(rk(lab[p['id']]), p['x']), perf=(f"{p['y']:.0f}", p['y']), res=(f"{p['res']:+.0f}", p['res']))
     body.append('<div class="grid wide"><div class="card"><h4>Out-performed their rank</h4>' + table(cols, [mk(p) for p in over], sortable=False) + '</div>'
                 '<div class="card"><h4>Under-performed their rank</h4>' + table(cols, [mk(p) for p in under], sortable=False) + '</div></div>')
 
@@ -970,8 +993,8 @@ def page_c(d):
             mainp[r['riot_id']] = r
     def q_(p, qn):
         if p[f'{qn}_score'] is None:
-            return ('Unranked' + (f" · {p[f'{qn}_games']} g" if p[f'{qn}_games'] else ''), -1)
-        return (f"{E(p[f'{qn}_label'])} · {p[f'{qn}_games']} g · {p[f'{qn}_winrate']}%", p[f'{qn}_score'])
+            return rk_cell('Unranked', f"· {p[f'{qn}_games']} g" if p[f'{qn}_games'] else '', -1)
+        return rk_cell(p[f'{qn}_label'], f"· {p[f'{qn}_games']} g · {p[f'{qn}_winrate']}%", p[f'{qn}_score'])
     def pc(r, k):
         v = r[f'pct_{k}']
         return ('—', -1) if v == '' else (f'{v}', v)
@@ -1113,12 +1136,12 @@ def page_c(d):
         body.append(f'<div class="card"><h4>{E(name)}</h4>' + table([('p', 'Player', ''), ('t', 'Team', ''), ('m', 'Match', ''), ('c', 'Champion', ''), ('kda', 'K/D/A', ''),
                                                                      ('tk', 'Team kills', 'n'), ('kp', 'KP', 'n')], rows, sortable=False) + '</div>')
     body.append('</div>')
-    rk = defaultdict(list)
+    rkp = defaultdict(list)
     for r in d['team_role_kp']:
         if r['kill_participation'] != '':
-            rk[r['role']].append(r['kill_participation'])
+            rkp[r['role']].append(r['kill_participation'])
     body.append('<div class="card"><h4>Average KP by position (all teams)</h4>' +
-                hbar([dict(label=r, values=[round(st.mean(v), 1)], tip=f'{r}: {round(st.mean(v), 1)}% across 16 teams') for r, v in rk.items()],
+                hbar([dict(label=r, values=[round(st.mean(v), 1)], tip=f'{r}: {round(st.mean(v), 1)}% across 16 teams') for r, v in rkp.items()],
                      [0], colors=[C[4]], xmax=100, val_fmt=lambda v: f'{v}%', aria='Average KP by position') + '</div>')
 
     # leaderboards
@@ -1132,7 +1155,7 @@ def page_c(d):
     body.append('</div>')
     cols = [('team', 'Team', ''), ('role', 'Pos.', ''), ('riot_id', 'Player', ''), ('solo_rank', 'Solo/Duo', ''), ('games', 'G', 'n'), ('wins', 'W', 'n'), ('kills', 'K', 'n'), ('deaths', 'D', 'n'),
             ('assists', 'A', 'n'), ('kda', 'KDA', 'n'), ('avg_kill_participation', 'KP %', 'n'), ('damage_per_min', 'Dmg/min', 'n'), ('damage_share', 'Dmg %', 'n'), ('gold_per_min', 'Gold/min', 'n'), ('champions', 'Champions', 'wrap')]
-    body.append('<details class="card"><summary>All %d players</summary>' % len(PS) + table(cols, [dict(p, champions=(ci_list(p['champions']), p['champions'])) for p in PS]) + '</details>')
+    body.append('<details class="card"><summary>All %d players</summary>' % len(PS) + table(cols, [dict(p, champions=(ci_list(p['champions']), p['champions']), solo_rank=(rk(p['solo_rank']), 0)) for p in PS]) + '</details>')
 
     # per-team logs
     body.append('<h2 id="logs">Team by team: every game</h2>')
@@ -1210,7 +1233,7 @@ def page_d(d):
         svg = radar_svg(pa, [(mid, MUTED, 0, True), (vals, col, 0.25, False)], size=250, aria=f"{r['riot_id']} profile")
         svg = svg.replace('<svg ', '<svg ', 1).replace('>', f'><title>{E(tip)}</title>', 1)
         return (f'<div class="card radar-card"><h4>{E(r["role"])} · {E(r["riot_id"])}{flag}</h4>'
-                f'<div class="sub">{r["games"]} games ({r["wins"]}W) · Solo/Duo {E(rank.get(r["riot_id"], "—"))}</div>' + svg +
+                f'<div class="sub">{r["games"]} games ({r["wins"]}W) · Solo/Duo {rk(rank.get(r["riot_id"], "—"))}</div>' + svg +
                 f'<div class="kv" style="font-size:12px"><span>K/D/A <b>{r["kills"]}/{r["deaths"]}/{r["assists"]}</b></span><span>KDA <b>{r["kda"]}</b></span><span>KP <b>{r["kill_participation"]}%</b></span>'
                 f'<span>Dmg/min <b>{fmt(r["damage_per_min"])}</b></span><span>Dmg <b>{fmt(r["damage_share"])}%</b></span><span>Gold/min <b>{r["gold_per_min"]}</b></span><span>Deaths/g <b>{r["deaths_per_game"]}</b></span></div>'
                 f'<p class="sub" style="margin:2px 0">{E(note) or "Around the middle of the position"}</p><div class="sub" style="margin:0">{ci_list(r["champions"])}</div></div>')
