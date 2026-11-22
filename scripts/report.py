@@ -9,6 +9,9 @@ from pathlib import Path
 E = html.escape
 C = ['#3b6fd8', '#e08a2c', '#2fa37a', '#c0504d', '#8064a2', '#7f8c8d']   # series colours
 MUTED = '#9aa3ad'
+REPO_URL = 'https://github.com/hung-nduc/seee-lol-swiss-stage-analysis'
+GH_MARK = ('<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" style="display:inline;width:16px;height:16px;vertical-align:-3px;margin-right:6px">'
+           '<path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>')
 PAGES = [('index.html', 'Overview'), ('a-team-scouting.html', 'A. Team scouting'),
          ('b-swiss-evaluation.html', 'B. Swiss Stage evaluation'), ('c-team-evaluation.html', 'C. Team evaluation'), ('d-quarterfinalists.html', 'D. Quarterfinalists')]
 
@@ -21,6 +24,7 @@ nav.top{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px 
 nav.top .wrap{padding:10px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
 nav.top a{color:var(--muted);text-decoration:none;font-size:14px}nav.top a.on{color:var(--fg);font-weight:600}
 nav.top .brand{font-weight:700;color:var(--fg);margin-right:auto}
+.ghbtn{display:inline-flex;align-items:center;padding:4px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg)!important;text-decoration:none;font-size:13px;font-weight:600;background:var(--panel)}.ghbtn:hover{border-color:var(--accent)}
 h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:34px;margin:8px 0 6px}
 h2{font-size:22px;margin:44px 0 6px;padding-top:8px;border-top:1px solid var(--line)}
 h3{font-size:16px;margin:26px 0 6px}h4{font-size:14px;margin:14px 0 6px}
@@ -240,7 +244,7 @@ def vgroup(cats, series, colors=None, W=760, H=260, ymax=None, suffix='', aria='
     return ''.join(s)
 
 
-def scatter(pts, xlab, ylab, W=760, H=400, xfmt=lambda v: f'{v:g}', yfmt=lambda v: f'{v:,.0f}', aria=''):
+def scatter(pts, xlab, ylab, W=760, H=400, xfmt=lambda v: f'{v:g}', yfmt=lambda v: f'{v:,.0f}', aria='', fit=None, r=6):
     """pts: dict(x, y, label, color, tip)."""
     m = dict(t=16, r=60, b=44, l=60)
     xs = [p['x'] for p in pts]; ys = [p['y'] for p in pts]
@@ -275,8 +279,13 @@ def scatter(pts, xlab, ylab, W=760, H=400, xfmt=lambda v: f'{v:g}', yfmt=lambda 
         return any(b[0] < q[2] and b[2] > q[0] and b[1] < q[3] and b[3] > q[1] for q in placed) or \
                any(b[0] - 5 < px < b[2] + 5 and b[1] - 5 < py < b[3] + 5 for px, py, _ in P)
     for px, py, p in sorted(P, key=lambda t: t[1]):
-        s.append(f'<g><title>{E(p.get("tip", ""))}</title><circle cx="{px:.1f}" cy="{py:.1f}" r="6" fill="{p.get("color", C[0])}"/></g>')
+        s.append(f'<g><title>{E(p.get("tip", ""))}</title><circle cx="{px:.1f}" cy="{py:.1f}" r="{r}" fill="{p.get("color", C[0])}" fill-opacity=".85"/></g>')
+    if fit:
+        a, b_ = fit
+        s.append(f'<line x1="{X(x0):.1f}" y1="{Y(a + b_ * x0):.1f}" x2="{X(x1):.1f}" y2="{Y(a + b_ * x1):.1f}" stroke="{MUTED}" stroke-dasharray="5 4"/>')
     for px, py, p in sorted(P, key=lambda t: t[1]):
+        if not p['label']:
+            continue
         w = tw(p['label'], 7) + 2
         for dx, dy in [(9, 0), (-9 - w, 0), (9, -13), (9, 13), (-9 - w, -13), (-9 - w, 13), (9, -26), (9, 26), (-9 - w, 26), (-9 - w, -26)]:
             b = (px + dx, py + dy - 6, px + dx + w, py + dy + 6)
@@ -394,9 +403,9 @@ def page(fname, title, lede, body, toc=()):
     tocs = ('<div class="toc">' + ''.join(f'<a href="#{a}">{E(t)}</a>' for a, t in toc) + '</div>') if toc else ''
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(title)} — SEEE LoL Swiss Stage 2026</title><style>{CSS}</style></head><body>
-<nav class="top"><div class="wrap"><span class="brand">SEEE LoL 2026 · Swiss Stage</span>{nav}</div></nav>
+<nav class="top"><div class="wrap"><span class="brand">SEEE LoL 2026 · Swiss Stage</span>{nav}<a class="ghbtn" href="{REPO_URL}" target="_blank" rel="noopener">{GH_MARK}GitHub</a></div></nav>
 <div class="wrap"><h1>{E(title)}</h1><p class="muted">{lede}</p>{tocs}{body}
-<footer>Built by <code>scripts/build.py</code> from the match records, the post-game scoreboards and an op.gg (VN) snapshot taken 22 Nov 2026.
+<footer>Source code and data: <a href="{REPO_URL}">{REPO_URL.replace('https://', '')}</a>. Built by <code>scripts/build.py</code> from the match records, the post-game scoreboards and an op.gg (VN) snapshot taken 22 Nov 2026.
 Raw and processed data: <code>data/</code>. Hover any bar or dot for its value; click a table header to sort.<br>
 Champion icons from Riot Games' Data Dragon. This project isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</footer></div>
 <script>{JS}</script></body></html>"""
@@ -602,6 +611,59 @@ def meta_section(d):
     return ''.join(body)
 
 
+
+def draft_section(d):
+    mp, drafts = d['meta_picks'], d['drafts']
+    roles = list(d['role_name'].values())
+    known = [x for x in mp if x['draft_slot'] != '']
+    games = len({x['code'] for x in known})
+    body = ['<h2 id="draft">Draft priorities</h2><p>Which positions and champions teams secured first. This uses the same assumption as the meta analysis: '
+            'each record lists a team\'s picks in lock-in order, in the standard draft <b>B1 · R1 R2 · B2 B3 · R3</b> (phase 1) and <b>R4 · B4 B5 · R5</b> (phase 2). '
+            f'Bans are split the same way: a team\'s first three listed bans are phase 1, the last two phase 2. {games} games have a usable draft (LS33 has none).</p>']
+    # slot x role heat table
+    slot_names = {1: 'B1', 2: 'R1', 3: 'R2', 4: 'B2', 5: 'B3', 6: 'R3', 7: 'R4', 8: 'B4', 9: 'B5', 10: 'R5'}
+    cnt = Counter((x['draft_slot'], x['role']) for x in known)
+    def heat(v, tot):
+        a = v / tot if tot else 0
+        return (f'<span style="display:inline-block;min-width:40px;padding:1px 6px;border-radius:4px;background:rgba(59,111,216,{0.08 + 0.7 * a:.2f})">{v}</span>', v)
+    rows = []
+    for sl in range(1, 11):
+        tot = sum(cnt[(sl, r)] for r in roles)
+        top = Counter(x['champion'] for x in known if x['draft_slot'] == sl).most_common(3)
+        row = dict(slot=(f'<b>{slot_names[sl]}</b> <span class="muted">#{sl}</span>', sl), tot=tot,
+                   ch=(' '.join(f'<span class="cl">{ci(c, 18)}{" <span class=muted>×%d</span>" % n if n > 1 else ""}</span>' for c, n in top), ''))
+        for r in roles:
+            row[r] = heat(cnt[(sl, r)], tot)
+        rows.append(row)
+    body.append('<h3 id="draft-slots">Which position is picked in each slot</h3><p class="sub">Count of picks per draft slot and position over the usable games; darker = more common. '
+                'Positions picked early were treated as priority; positions picked last were usually saved for counter-picks.</p>' +
+                table([('slot', 'Slot', ''), ('tot', 'Picks', 'n')] + [(r, r, 'n') for r in roles] + [('ch', 'Most picked champions', 'wrap')], rows, sortable=False))
+    # average slot per role
+    avg = {r: st.mean(x['draft_slot'] for x in known if x['role'] == r) for r in roles}
+    body.append('<div class="grid"><div class="card"><h4>Average pick slot per position (1 = first pick, 10 = last)</h4>' +
+                hbar([dict(label=r, values=[round(avg[r], 2)], tip=f'{r}: average slot {avg[r]:.2f}') for r in sorted(roles, key=lambda r: avg[r])],
+                     [0], colors=[C[4]], W=460, xmax=10, val_fmt=lambda v: f'{v:.1f}', aria='Average pick slot per position') + '</div>')
+    # first picks
+    b1 = Counter(x['champion'] for x in known if x['draft_slot'] == 1)
+    r12 = Counter(x['champion'] for x in known if x['draft_slot'] in (2, 3))
+    fp_w = [x for x in known if x['draft_slot'] == 1]
+    body.append('<div class="card"><h4>First picks</h4><p class="sub">Blue side\'s first pick (B1) and red side\'s answer (R1 + R2).</p>'
+                f'<p><b>B1</b> ({len(fp_w)} games, blue won {sum(x["won"] for x in fp_w)}): ' + ci_list(', '.join(f'{c} x{n}' if n > 1 else c for c, n in b1.most_common())) + '</p>'
+                '<p><b>R1–R2</b>: ' + ci_list(', '.join(f'{c} x{n}' if n > 1 else c for c, n in r12.most_common(12))) + '</p></div></div>')
+    # bans by phase and side
+    bans = [x for x in drafts if x['kind'] == 'ban' and x['order'] not in ('', None)]
+    rows = []
+    for side in ('blue', 'red'):
+        for ph, rng in (('Phase 1 (bans 1–3)', (1, 2, 3)), ('Phase 2 (bans 4–5)', (4, 5))):
+            c = Counter(x['champion'] for x in bans if x['side'] == side and int(x['order']) in rng)
+            rows.append(dict(side=side.title(), ph=ph, n=sum(c.values()), top=(ci_list(', '.join(f'{k} x{v}' if v > 1 else k for k, v in c.most_common(8))), '')))
+    first = Counter(x['champion'] for x in bans if int(x['order']) == 1)
+    body.append('<h3 id="draft-bans">Ban priorities</h3><div class="card"><p class="sub">Most frequent bans by side and phase. Phase 1 bans remove the strongest or most-feared picks; '
+                'phase 2 bans target the opponent\'s remaining positions.</p>' +
+                table([('side', 'Side', ''), ('ph', 'Phase', ''), ('n', 'Bans', 'n'), ('top', 'Most banned', 'wrap')], rows, sortable=False) +
+                '<p><b>Very first ban</b> of each team: ' + ci_list(', '.join(f'{k} x{v}' if v > 1 else k for k, v in first.most_common(10))) + '</p></div>')
+    return ''.join(body)
+
 # ------------------------------------------------------------------ B. Swiss evaluation
 def page_b(d):
     M, S, champs, roles, pg, drafts = d['matches'], d['standings'], d['champions'], d['role_stats'], d['player_games'], d['drafts']
@@ -744,6 +806,7 @@ def page_b(d):
                 table(cols, [dict(c, champion=(ci(c['champion']), c['champion']), picked_by=c['picked_by']) for c in champs]) + '</details>')
 
     body.append(meta_section(d))
+    body.append(draft_section(d))
 
     # damage
     body.append('<h2 id="damage">Which position carries the damage?</h2><p class="sub">Damage to champions from the scoreboards; 26 of the 28 games have a damage column (LS13 and LS33 do not), and one LS18 value was hidden by a tooltip.</p>')
@@ -768,7 +831,7 @@ def page_b(d):
     body.append('</div>')
 
     toc = [('findings', 'Key findings'), ('standings', 'Standings'), ('rounds', 'Round by round'), ('results', 'All results'), ('surprise', 'Surprises'), ('sides', 'Sides & length'),
-           ('champions', 'Ban & pick'), ('by-position', 'Picks by position'), ('team-bans', 'Team bans'), ('champ-table', 'Every champion'), ('meta', 'Meta analysis'), ('meta-counters', 'Counter-picks'), ('damage', 'Damage by position')]
+           ('champions', 'Ban & pick'), ('by-position', 'Picks by position'), ('team-bans', 'Team bans'), ('champ-table', 'Every champion'), ('meta', 'Meta analysis'), ('meta-counters', 'Counter-picks'), ('draft', 'Draft priorities'), ('damage', 'Damage by position')]
     return page('b-swiss-evaluation.html', 'B. Swiss Stage evaluation',
                 '33 matches over 5 rounds (16–22 Nov 2026): 28 played, 4 forfeits, 1 ruling. Results against rank, surprises, ban & pick, meta and counter-picks on patches 26.22/26.23, and which position carries the damage.',
                 ''.join(body), toc)
@@ -856,6 +919,95 @@ def page_c(d):
                     f'<p class="sub" style="margin:2px 0 0">{E(note) or "Around the middle on every axis"}</p></div>')
     body.append('</div>')
 
+
+    # ---------------- rank vs performance
+    prof = d['profile']
+    solo = {p['riot_id']: p['solo_score'] for p in d['players']}
+    lab = {p['riot_id']: p['solo_label'] for p in d['players']}
+    keys = ['kda', 'kill_participation', 'damage_per_min', 'damage_share', 'gold_per_min', 'deaths_per_game']
+    perf = {}
+    for r in prof:
+        if r['games'] < 2:
+            continue
+        vals = [r[f'pct_{k}'] for k in keys if r[f'pct_{k}'] != '']
+        if not vals:
+            continue
+        cur = perf.get(r['riot_id'])
+        if cur is None or r['games'] > cur['games']:
+            perf[r['riot_id']] = dict(r, perf=st.mean(vals))
+    pts = [dict(id=k, team=v['team'], role=v['role'], x=solo[k], y=v['perf'], games=v['games']) for k, v in perf.items() if solo.get(k) is not None]
+    n_ = len(pts); mx = st.mean(p['x'] for p in pts); my = st.mean(p['y'] for p in pts)
+    b1 = sum((p['x'] - mx) * (p['y'] - my) for p in pts) / sum((p['x'] - mx) ** 2 for p in pts); a1 = my - b1 * mx
+    sx = st.pstdev(p['x'] for p in pts); sy = st.pstdev(p['y'] for p in pts)
+    corr = b1 * sx / sy
+    for p in pts:
+        p['res'] = p['y'] - (a1 + b1 * p['x'])
+    over = sorted(pts, key=lambda p: -p['res'])[:8]; under = sorted(pts, key=lambda p: p['res'])[:8]
+    named = {p['id'] for p in over[:5] + under[:5]}
+    body.append('<h2 id="rank-perf">Rank vs tournament performance</h2><p>Each dot is a player with at least 2 games in one position. '
+                '<b>x</b> = Solo/Duo rank (season 2026, from Part A). <b>y</b> = performance index: the average of the six percentiles from the player radars '
+                '(KDA, KP, damage/min, damage share, gold/min, survival), each ranked within the player\'s position. The dashed line is what rank alone predicts; '
+                f'dots above it out-performed their rank. Correlation between rank and performance: <b>r = {corr:.2f}</b> ({n_} players).</p>')
+    ticks = {0: 'Iron 4', 4: 'Bronze 4', 8: 'Silver 4', 12: 'Gold 4', 16: 'Plat 4', 20: 'Emerald 4', 24: 'Diamond 4', 28: 'Master'}
+    body.append('<div class="card">' + legend([('Quarter-finalist', C[0]), ('Eliminated', MUTED)]) +
+                scatter([dict(x=p['x'], y=p['y'], label=(p['id'].split('#')[0] if p['id'] in named else ''), color=C[0] if p['team'] in q else MUTED,
+                              tip=f"{p['id']} ({p['team']}, {p['role']}): {lab[p['id']]}, performance {p['y']:.0f}/100, {'+' if p['res'] >= 0 else ''}{p['res']:.0f} vs rank") for p in pts],
+                        'Solo/Duo rank', 'Performance index (0–100)', H=440, r=5, fit=(a1, b1),
+                        xfmt=lambda v: (f'Master {round((v - 28) * 100)} LP' if v >= 28 else f"{['Iron', 'Bronze', 'Silver', 'Gold', 'Plat', 'Emerald', 'Diamond'][int(v) // 4]} {4 - int(v) % 4}") if v >= 0 else '',
+                        yfmt=lambda v: f'{v:.0f}' if v >= 0 else '', aria='Rank versus performance') + '</div>')
+    cols = [('p', 'Player', ''), ('team', 'Team', ''), ('role', 'Pos.', ''), ('g', 'G', 'n'), ('rank', 'Solo/Duo', ''), ('perf', 'Performance', 'n'), ('res', 'vs rank', 'n')]
+    mk = lambda p: dict(p=p['id'], team=p['team'], role=p['role'], g=p['games'], rank=(E(lab[p['id']]), p['x']), perf=(f"{p['y']:.0f}", p['y']), res=(f"{p['res']:+.0f}", p['res']))
+    body.append('<div class="grid wide"><div class="card"><h4>Out-performed their rank</h4>' + table(cols, [mk(p) for p in over], sortable=False) + '</div>'
+                '<div class="card"><h4>Under-performed their rank</h4>' + table(cols, [mk(p) for p in under], sortable=False) + '</div></div>')
+
+    # ---------------- game flow & stomps
+    games = defaultdict(list)
+    for g in TG:
+        games[g['code']].append(g)
+    flow = []
+    for code, gs in sorted(games.items()):
+        w = [g for g in gs if g['won']][0]; l = [g for g in gs if not g['won']][0]
+        flow.append(dict(code=code, winner=w['team'], loser=l['team'], mins=w['game_minutes'], time=w['game_time'], lead=w['gold_diff'],
+                         kd=w['kills'] - l['kills'], w=w, l=l))
+    cls = lambda f: 'Stomp' if f['lead'] >= 10000 else 'Clear' if f['lead'] >= 5000 else 'Close' if f['lead'] >= 0 else 'Comeback'
+    cc = Counter(cls(f) for f in flow)
+    body.append('<h2 id="flow">Game flow: stomps and close games</h2><p>The scoreboard only shows the end of each game, so a game is judged by the <b>winner\'s gold lead at the end</b>: '
+                '<b>stomp</b> ≥ 10,000, <b>clear</b> 5,000–9,999, <b>close</b> under 5,000, and <b>comeback</b> if the winner finished behind on gold.</p>')
+    body.append('<div class="tiles">' + ''.join(f'<div class="tile"><div class="v">{cc.get(k, 0)}</div><div class="l">{k.lower()} games</div></div>' for k in ('Stomp', 'Clear', 'Close', 'Comeback')) +
+                f'<div class="tile"><div class="v">{st.median(f["lead"] for f in flow):,.0f}</div><div class="l">median winning gold lead</div></div></div>')
+    bins = [(-10000, 0), (0, 2500), (2500, 5000), (5000, 7500), (7500, 10000), (10000, 15000), (15000, 20000), (20000, 30000)]
+    body.append('<div class="grid"><div class="card"><h4>Winner\'s gold lead at the end</h4>' +
+                histogram([f['lead'] for f in flow], bins, W=460, label=lambda a, b: f'{a // 1000:+d}k–{b // 1000}k' if a < 0 else f'{a // 1000}–{b // 1000}k', aria='Winner gold lead histogram') + '</div>')
+    body.append('<div class="card"><h4>Game length vs winning gold lead</h4>' +
+                scatter([dict(x=f['mins'], y=f['lead'], label='', color={'Stomp': C[2], 'Clear': C[0], 'Close': C[1], 'Comeback': C[3]}[cls(f)],
+                              tip=f"{f['code']}: {f['winner']} beat {f['loser']} in {f['time']} with {f['lead']:+,} gold") for f in flow],
+                        'Game length (min)', 'Winner gold lead', W=460, H=300, r=5, xfmt=lambda v: f'{v:.0f}', aria='Game length vs gold lead') +
+                legend([('Stomp', C[2]), ('Clear', C[0]), ('Close', C[1]), ('Comeback', C[3])]) + '</div></div>')
+    rows = [dict(code=f['code'], w=f['winner'], l=f['loser'], t=f['time'], lead=(f"{f['lead']:+,}", f['lead']), k=f"{f['w']['kills']}–{f['l']['kills']}",
+                 c=(pill(cls(f), 'ok' if cls(f) == 'Stomp' else 'warn' if cls(f) in ('Close', 'Comeback') else ''), f['lead'])) for f in sorted(flow, key=lambda f: f['lead'])]
+    body.append('<details class="card"><summary>All 28 games by winning gold lead (closest first)</summary>' +
+                table([('code', 'Match', ''), ('w', 'Winner', ''), ('l', 'Loser', ''), ('t', 'Time', ''), ('lead', 'Gold lead', 'n'), ('k', 'Kills', ''), ('c', 'Type', '')], rows) + '</details>')
+    # win rate by game length (team level) and what separates winners
+    lb = [(0, 25), (25, 30), (30, 35), (35, 99)]
+    lrows = []
+    for a, b in lb:
+        fs = [f for f in flow if a <= f['mins'] < b]
+        lrows.append(dict(b=f'{a}–{b} min' if b < 99 else f'{a}+ min', n=len(fs), lead=(f"{st.median(f['lead'] for f in fs):,.0f}" if fs else '—', 0),
+                          k=(f"{st.mean(f['w']['kills'] + f['l']['kills'] for f in fs):.1f}" if fs else '—', 0)))
+    sep = []
+    for key, labl in [('kills', 'Kills'), ('deaths', 'Deaths (fewer)'), ('gold', 'Gold'), ('damage', 'Damage to champions'), ('kill_participation', 'Team KP'), ('assists', 'Assists')]:
+        pairs = [(f['w'][key], f['l'][key]) for f in flow if f['w'][key] != '' and f['l'][key] != '']
+        better = sum(1 for wv, lv in pairs if (wv < lv if key == 'deaths' else wv > lv))
+        sep.append(dict(s=labl, n=len(pairs), p=(f'{round(100 * better / len(pairs))}%', better / len(pairs)),
+                        w=(f'{st.mean(p[0] for p in pairs):,.0f}' if key in ('gold', 'damage') else f'{st.mean(p[0] for p in pairs):,.1f}', 0),
+                        l=(f'{st.mean(p[1] for p in pairs):,.0f}' if key in ('gold', 'damage') else f'{st.mean(p[1] for p in pairs):,.1f}', 0)))
+    body.append('<div class="grid"><div class="card"><h4>By game length</h4>' +
+                table([('b', 'Length', ''), ('n', 'Games', 'n'), ('lead', 'Median winning gold lead', 'n'), ('k', 'Total kills per game', 'n')], lrows, sortable=False) +
+                '<p class="sub">Shorter games are usually stomps; long games are closer on gold.</p></div>'
+                '<div class="card"><h4>What separates winners from losers</h4>' +
+                table([('s', 'Stat', ''), ('p', 'Winner was ahead', 'n'), ('w', 'Winner avg', 'n'), ('l', 'Loser avg', 'n'), ('n', 'Games', 'n')], sep, sortable=False) +
+                '<p class="sub">Share of games in which the winning team had more of each stat (fewer deaths). Damage uses the 25 games where both teams have a damage total.</p></div></div>')
+
     # kill participation
     body.append('<h2 id="kp">Kill participation (KP)</h2><p>KP is the share of a team\'s kills that a player took part in (kills + assists ÷ team kills). '
                 '<b>Team KP</b> is the average of its five players\' KP in a game, averaged over the team\'s games. A high value means fights are played together, '
@@ -938,7 +1090,7 @@ def page_c(d):
                  ('gold_per_min', 'Gold/min', 'n'), ('champions', 'Champions', 'wrap')]
         body.append(f'<div class="card teamcard" id="team-{E(t["team"])}"><h3>{E(t["team"])} <span class="muted">· {t["wins"]}-{t["losses"]} in played games · KDA {t["kda"]} · KP {t["kill_participation"]}% · {t["avg_gold_per_min"]:,} gold/min</span></h3>'
                     + table(cols, rows) + '<h4>Players</h4>' + table(pcols, ps) + '</div>')
-    toc = [('findings', 'Key findings'), ('table', 'Comparison'), ('time-gold', 'Time & gold'), ('kda', 'KDA & gold diff'), ('radar', 'Radar profiles'), ('kp', 'Kill participation'), ('kp-top', 'Top KP by position'), ('kp-best-game', 'Best KP game'), ('players', 'Player leaderboards'), ('logs', 'Every game')]
+    toc = [('findings', 'Key findings'), ('table', 'Comparison'), ('time-gold', 'Time & gold'), ('kda', 'KDA & gold diff'), ('radar', 'Radar profiles'), ('rank-perf', 'Rank vs performance'), ('flow', 'Game flow & stomps'), ('kp', 'Kill participation'), ('kp-top', 'Top KP by position'), ('kp-best-game', 'Best KP game'), ('players', 'Player leaderboards'), ('logs', 'Every game')]
     return page('c-team-evaluation.html', 'C. Team evaluation',
                 'How each team played: game time, total gold, gold per minute, gold difference, KDA and kill participation per game, plus player leaderboards and a log of every game.',
                 ''.join(body), toc)
@@ -1056,6 +1208,45 @@ def page_d(d):
                 body.append(f'<div class="card radar-card"><h4>{E(role)}</h4><div class="sub">{E(ra["riot_id"])} vs {E(rb["riot_id"])} · ahead on {edge_a} vs {edge_b} axes</div>{svg}'
                             f'<table><thead><tr><th>Stat</th><th class="n">{E(a)}</th><th class="n">{E(b)}</th></tr></thead><tbody>{rows}</tbody></table></div>')
         body.append('</div></div>')
+
+    # ---------------- champion pools
+    pg = d['player_games']
+    body.append('<h2 id="pools">Champion pools</h2><p>How deep each quarter-finalist\'s champion pool was in the Swiss Stage. <b>Pool</b> = different champions played; '
+                '<b>Main share</b> = how often the player\'s most-played champion came out. A one-trick (main share 75%+ over 3+ games) is easy to ban out; '
+                'a deep pool is harder to draft against. Bans that targeted the player\'s champions show how opponents read him.</p>')
+    trows = []
+    for k in ko:
+        for t in (k['advantage'], k['disadvantage']):
+            xs = [x for x in pg if x['team'] == t]
+            c = Counter(x['champion'] for x in xs)
+            banned_vs = Counter(x['champion'] for x in d['drafts'] if x['kind'] == 'ban' and x['team'] != t and x['code'] in {y['code'] for y in xs})
+            trows.append(dict(team=t, qf=k['code'], g=len({x['code'] for x in xs}), picks=len(xs), uniq=len(c), ratio=(f'{len(c) / len(xs):.0%}', len(c) / len(xs)),
+                              top=(ci_list(', '.join(f'{a} x{b}' if b > 1 else a for a, b in c.most_common(5))), ''),
+                              bv=(ci_list(', '.join(f'{a} x{b}' if b > 1 else a for a, b in banned_vs.most_common(5))), '')))
+    body.append('<div class="card"><h4>Team pools</h4>' +
+                table([('team', 'Team', ''), ('qf', 'QF', ''), ('g', 'Games', 'n'), ('picks', 'Picks', 'n'), ('uniq', 'Different champions', 'n'), ('ratio', 'Variety', 'n'),
+                       ('top', 'Most played', 'wrap'), ('bv', 'Banned against them', 'wrap')], trows) +
+                '<p class="sub">Variety = different champions ÷ picks; 100% means no champion was repeated.</p></div>')
+    prow = []
+    for k in ko:
+        for t in (k['advantage'], k['disadvantage']):
+            for r in sorted([r for r in prof if r['team'] == t], key=lambda r: (order_roles.index(r['role']), -r['games'])):
+                xs = [x for x in pg if x['riot_id'] == r['riot_id'] and x['team'] == t]
+                c = Counter(x['champion'] for x in xs)
+                main_c, main_n = c.most_common(1)[0]
+                share = main_n / len(xs)
+                roles_played = sorted({x['role'] for x in xs})
+                tag = 'one-trick' if share >= 0.75 and len(xs) >= 3 else ('flex' if len(roles_played) > 1 else ('deep' if len(c) == len(xs) and len(xs) >= 3 else ''))
+                prow.append(dict(team=t, role=r['role'], p=r['riot_id'], g=len(xs), uniq=len(c), share=(f'{share:.0%}', share),
+                                 champs=(ci_list(', '.join(f'{a} x{b}' if b > 1 else a for a, b in c.most_common())), ''),
+                                 pos=', '.join(d['role_name'][x] for x in roles_played),
+                                 tag=(pill(tag, 'warn' if tag == 'one-trick' else 'ok' if tag in ('deep', 'flex') else '') if tag else '', tag)))
+                if r['riot_id'] in [y['p'] for y in prow[:-1]] and prow[-1]['team'] == t:
+                    prow.pop()
+    body.append('<details class="card" open><summary>Player pools (quarter-finalists)</summary>' +
+                table([('team', 'Team', ''), ('role', 'Pos.', ''), ('p', 'Player', ''), ('g', 'Games', 'n'), ('uniq', 'Pool', 'n'), ('share', 'Main share', 'n'),
+                       ('champs', 'Champions', 'wrap'), ('pos', 'Positions played', ''), ('tag', '', '')], prow) + '</details>')
+    toc.append(('pools', 'Champion pools'))
     return page('d-quarterfinalists.html', 'D. Quarterfinalists',
                 'The 8 teams in the quarter-finals (23–27 Nov 2026): each team\'s Swiss path and profile, a six-stat radar for every player, and head-to-head lane matchups for each quarter-final.',
                 ''.join(body), toc)
@@ -1081,7 +1272,8 @@ def page_index(d):
              ('player_stats.csv', 'Per-player totals and averages'),
              ('side_stats.csv', 'Blue vs red wins'),
              ('data_issues.csv', 'Every gap found in the data and how it was handled')]
-    body = [f'<div class="tiles">' + ''.join(f'<div class="tile"><div class="v">{v}</div><div class="l">{l}</div></div>' for v, l in [
+    body = [f'<p><a class="ghbtn" href="{REPO_URL}" target="_blank" rel="noopener">{GH_MARK}View the code &amp; data on GitHub</a></p>']
+    body += [f'<div class="tiles">' + ''.join(f'<div class="tile"><div class="v">{v}</div><div class="l">{l}</div></div>' for v, l in [
         (16, 'teams'), (33, 'matches'), (len(played), 'games played'), (len(M) - len(played), 'forfeits / rulings'), (len(ups), 'upsets vs rank'), (90, 'players looked up on op.gg')]) + '</div>']
     body.append('<div class="grid">' + ''.join(f'<a class="card" style="text-decoration:none;color:inherit" href="{f}"><h3>{E(t)}</h3><p class="muted">{E(x)}</p></a>' for f, t, x in [
         ('a-team-scouting.html', 'A. Team scouting', 'Average Solo/Duo, Flex and Ranked 5s rank per team, ranked games in 2026, Flex practice, rank spread, and every roster in detail.'),
