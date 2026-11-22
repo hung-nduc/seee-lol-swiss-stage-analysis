@@ -10,7 +10,7 @@ E = html.escape
 C = ['#3b6fd8', '#e08a2c', '#2fa37a', '#c0504d', '#8064a2', '#7f8c8d']   # series colours
 MUTED = '#9aa3ad'
 PAGES = [('index.html', 'Overview'), ('a-team-scouting.html', 'A. Team scouting'),
-         ('b-swiss-evaluation.html', 'B. Swiss Stage evaluation'), ('c-team-evaluation.html', 'C. Team evaluation')]
+         ('b-swiss-evaluation.html', 'B. Swiss Stage evaluation'), ('c-team-evaluation.html', 'C. Team evaluation'), ('d-quarterfinalists.html', 'D. Quarterfinalists')]
 
 CSS = """
 :root{--bg:#fff;--fg:#1d2330;--muted:#5d6675;--line:#e3e6eb;--panel:#f7f8fa;--ok:#1f8a5b;--warn:#b7701c;--bad:#c0392b;--accent:#3b6fd8}
@@ -50,6 +50,7 @@ svg .grid line{stroke:var(--line)}svg .axis{stroke:var(--line)}
 .m .w{font-weight:700}.m .pool{color:var(--muted);font-size:11px}
 details>summary{cursor:pointer;font-weight:600;margin:6px 0}
 .teamcard h3{margin-top:4px}.kv{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;margin:4px 0 8px}.kv b{font-weight:600}
+.radars{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}.radar-card h4{margin:0 0 4px}
 footer{margin-top:60px;color:var(--muted);font-size:12px}
 a{color:var(--accent)}
 """
@@ -63,6 +64,28 @@ document.querySelectorAll('table.sortable').forEach(t=>{
     rows.sort((a,b)=>{const x=v(a),y=v(b);return (x>y?1:x<y?-1:0)*(asc?1:-1)});rows.forEach(r=>tb.append(r));
   }));
 });
+(function(){
+  const R=window.RADAR; if(!R) return;
+  const A=document.getElementById('ra'),B=document.getElementById('rb'),box=document.getElementById('radar-big'),tb=document.querySelector('#radar-tbl tbody');
+  const teams=Object.keys(R.data).sort((x,y)=>R.data[y].p.reduce((a,b)=>a+b)-R.data[x].p.reduce((a,b)=>a+b));
+  A.value=teams[0]; B.value=teams[1];
+  const fmt=(i,v)=>{const k=R.axes[i]; if(k==='Gold/min'||k==='Gold diff'||k==='Dmg/min') return (k==='Gold diff'&&v>0?'+':'')+Math.round(v).toLocaleString(); if(k==='KP') return v+'%'; if(k==='Speed') return v.toFixed(1)+' min'; return v;};
+  function draw(){
+    const n=R.axes.length,S=420,c=S/2,r=c-70,NS='http://www.w3.org/2000/svg';
+    const pt=(i,v)=>[c+r*v*Math.sin(2*Math.PI*i/n),c-r*v*Math.cos(2*Math.PI*i/n)];
+    const svg=document.createElementNS(NS,'svg'); svg.setAttribute('viewBox',`0 0 ${S} ${S}`); svg.setAttribute('role','img'); svg.setAttribute('aria-label','Radar comparison of '+A.value+' and '+B.value);
+    const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);svg.append(e);return e;};
+    [0.25,0.5,0.75,1].forEach(g=>el('polygon',{points:R.axes.map((_,i)=>pt(i,g).join(',')).join(' '),fill:'none',stroke:'var(--line)'}));
+    R.axes.forEach((a,i)=>{const [x,y]=pt(i,1);el('line',{x1:c,y1:c,x2:x,y2:y,stroke:'var(--line)'});const [lx,ly]=pt(i,1.17);const t=el('text',{x:lx,y:ly,dy:'.35em','text-anchor':Math.abs(lx-c)<8?'middle':(lx>c?'start':'end')});t.textContent=a;});
+    el('polygon',{points:R.axes.map((_,i)=>pt(i,0.5).join(',')).join(' '),fill:'none',stroke:'#9aa3ad','stroke-dasharray':'4 3'});
+    [[A.value,R.colors[0]],[B.value,R.colors[1]]].forEach(([tm,col])=>{const p=R.data[tm].p;const g=el('polygon',{points:p.map((v,i)=>pt(i,Math.max(v,0.04)).join(',')).join(' '),fill:col,'fill-opacity':0.2,stroke:col,'stroke-width':2});
+      p.forEach((v,i)=>{const [x,y]=pt(i,Math.max(v,0.04));const d=el('circle',{cx:x,cy:y,r:3.5,fill:col});const tt=document.createElementNS(NS,'title');tt.textContent=`${tm} — ${R.axes[i]}: ${fmt(i,R.data[tm].r[i])} (${Math.round(v*100)}th percentile)`;d.append(tt);});});
+    box.replaceChildren(svg);
+    document.getElementById('rha').textContent=A.value; document.getElementById('rhb').textContent=B.value;
+    tb.replaceChildren(...R.axes.map((a,i)=>{const tr=document.createElement('tr');[a,fmt(i,R.data[A.value].r[i]),fmt(i,R.data[B.value].r[i]),fmt(i,R.med[i])].forEach((v,j)=>{const td=document.createElement('td');td.textContent=v;if(j)td.className='n';tr.append(td);});return tr;}));
+  }
+  A.onchange=draw;B.onchange=draw;draw();
+})();
 """
 
 
@@ -277,6 +300,54 @@ def histogram(values, bins, W=760, H=200, label=lambda a, b: f'{a}–{b}', aria=
         s.append(f'<g><title>{label(a, b)}: {c}</title><rect x="{x + 3:.1f}" y="{H - 30 - h:.1f}" width="{bw - 6:.1f}" height="{h:.1f}" rx="2" fill="{C[0]}"/>'
                  f'<text x="{x + bw / 2:.1f}" y="{H - 34 - h:.1f}" text-anchor="middle">{c}</text>'
                  f'<text x="{x + bw / 2:.1f}" y="{H - 12}" text-anchor="middle">{E(label(a, b))}</text></g>')
+    s.append('</svg>')
+    return ''.join(s)
+
+
+
+# ------------------------------------------------------------------ radar
+# tournament stats only (no pre-tournament rank)
+RADAR_AXES = [('kda', 'KDA', 1), ('avg_gold_per_min', 'Gold/min', 1), ('avg_gold_diff', 'Gold diff', 1), ('kill_participation', 'KP', 1),
+              ('avg_damage_per_min', 'Dmg/min', 1), ('avg_game_minutes', 'Speed', -1)]
+
+
+def radar_values(T, scouting):
+    """Percentile of each team on each axis among the 16 teams (0 = lowest, 1 = highest). 'Speed' is reversed game time."""
+    rows = {t['team']: dict(t) for t in T}
+    out = {t: [] for t in rows}
+    raw = {t: [] for t in rows}
+    for key, _, sign in RADAR_AXES:
+        vals = sorted(rows[t][key] * sign for t in rows)
+        n = len(vals)
+        for t in rows:
+            v = rows[t][key] * sign
+            below = sum(1 for x in vals if x < v); eq = sum(1 for x in vals if x == v)
+            out[t].append(round((below + (eq - 1) / 2) / (n - 1), 3))
+            raw[t].append(rows[t][key])
+    return out, raw
+
+
+def radar_svg(axes, series, size=260, labels=True, aria=''):
+    """series: list of (values 0..1, colour, fill_opacity, dashed)."""
+    import math
+    pad = 52 if labels else 10
+    c = size / 2; r = c - pad
+    n = len(axes)
+    pt = lambda i, v: (c + r * v * math.sin(2 * math.pi * i / n), c - r * v * math.cos(2 * math.pi * i / n))
+    s = [f'<svg viewBox="0 0 {size} {size}" role="img" aria-label="{E(aria)}">']
+    for ring in (0.25, 0.5, 0.75, 1):
+        s.append('<polygon points="%s" fill="none" stroke="var(--line)"/>' % ' '.join('%.1f,%.1f' % pt(i, ring) for i in range(n)))
+    for i, a in enumerate(axes):
+        x, y = pt(i, 1)
+        s.append(f'<line x1="{c}" y1="{c}" x2="{x:.1f}" y2="{y:.1f}" stroke="var(--line)"/>')
+        if labels:
+            lx, ly = pt(i, 1.18)
+            anchor = 'middle' if abs(lx - c) < 8 else ('start' if lx > c else 'end')
+            s.append(f'<text x="{lx:.1f}" y="{ly:.1f}" dy=".35em" text-anchor="{anchor}" style="font-size:10px">{E(a)}</text>')
+    for vals, col, op, dashed in series:
+        pts = ' '.join('%.1f,%.1f' % pt(i, max(v, 0.04)) for i, v in enumerate(vals))
+        dash = 'stroke-dasharray="4 3"' if dashed else ''
+        s.append(f'<polygon points="{pts}" fill="{col}" fill-opacity="{op}" stroke="{col}" stroke-width="{1.2 if dashed else 2}" {dash}/>')
     s.append('</svg>')
     return ''.join(s)
 
@@ -544,7 +615,7 @@ def page_c(d):
     body.append('<p class="sub">Played games only (forfeits and the LS21 ruling have no game). KDA = (kills + assists) ÷ deaths over all of a team\'s games. Gold diff = team gold minus opponent gold at the end.</p>')
     cols = [('team', 'Team', ''), ('games', 'Games', 'n'), ('wins', 'W', 'n'), ('losses', 'L', 'n'), ('avg_game_minutes', 'Avg time (min)', 'n'), ('avg_win_minutes', 'Avg win time', 'n'),
             ('avg_loss_minutes', 'Avg loss time', 'n'), ('avg_gold', 'Avg total gold', 'n'), ('avg_gold_per_min', 'Gold / min', 'n'), ('avg_gold_diff', 'Avg gold diff', 'n'),
-            ('avg_kills', 'Kills / g', 'n'), ('avg_deaths', 'Deaths / g', 'n'), ('avg_assists', 'Assists / g', 'n'), ('kda', 'KDA', 'n'), ('kill_participation', 'KP %', 'n'), ('kills_per_min', 'Kills / min', 'n'), ('best_kda_player', 'Best KDA player', '')]
+            ('avg_kills', 'Kills / g', 'n'), ('avg_deaths', 'Deaths / g', 'n'), ('avg_assists', 'Assists / g', 'n'), ('kda', 'KDA', 'n'), ('kill_participation', 'KP %', 'n'), ('kills_per_min', 'Kills / min', 'n'), ('avg_damage_per_min', 'Dmg / min', 'n'), ('best_kda_player', 'Best KDA player', '')]
     body.append('<h2 id="table">Team comparison</h2>' + table(cols, [dict(t, team=(('✓ ' if t['qualified'] else '') + E(t['team']), t['team'])) for t in T], hl=lambda r: r['qualified']))
 
     body.append('<h2 id="time-gold">Game time and gold</h2><div class="card">' + legend([('Quarter-finalist', C[0]), ('Eliminated', MUTED)]) +
@@ -564,6 +635,42 @@ def page_c(d):
     body.append('<div class="card"><h4>Kills, deaths and assists per game</h4>' + legend([('Kills', C[0]), ('Deaths', C[3]), ('Assists', C[1])]) +
                 vgroup([t['team'] for t in byk], [('Kills', [t['avg_kills'] for t in byk]), ('Deaths', [t['avg_deaths'] for t in byk]), ('Assists', [t['avg_assists'] for t in byk])],
                        colors=[C[0], C[3], C[1]], H=280, W=900, aria='Kills deaths assists per game', labels=False) + '</div>')
+
+    # radars
+    pv, raw = radar_values(T, d['scouting'])
+    axes = [a[1] for a in RADAR_AXES]
+    avg = [0.5] * len(axes)
+    body.append('<h2 id="radar">Team profiles (radar)</h2><p>Each axis is the team\'s <b>percentile among the 16 teams</b>: the edge is the best team on that stat, the centre the worst, and the dashed outline is the middle of the field (50th percentile). '
+                'Only tournament stats are used: KDA, gold per minute, end-of-game gold difference, kill participation (KP), team damage to champions per minute (games with a damage column only) and <b>Speed</b> (average game time reversed: shorter games score higher). '
+                'Percentiles keep one extreme team from squashing everyone else; see the tables above for the actual values.</p>')
+    # interactive compare
+    import json as _json
+    data = {t: dict(p=pv[t], r=raw[t]) for t in pv}
+    teams_sorted = sorted(pv)
+    opts = ''.join(f'<option value="{E(t)}">{E(t)}</option>' for t in teams_sorted)
+    body.append('<div class="card"><h4>Compare two teams</h4><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:4px 0 6px">'
+                f'<label><i style="display:inline-block;width:10px;height:10px;background:{C[0]};border-radius:2px"></i> <select id="ra">{opts}</select></label>'
+                f'<label><i style="display:inline-block;width:10px;height:10px;background:{C[1]};border-radius:2px"></i> <select id="rb">{opts}</select></label></div>'
+                '<div class="grid"><div id="radar-big" style="max-width:460px"></div><div class="tw"><table id="radar-tbl"><thead><tr><th>Stat</th><th class="n" id="rha"></th><th class="n" id="rhb"></th><th class="n">Field median</th></tr></thead><tbody></tbody></table></div></div></div>')
+    med = []
+    for i in range(len(axes)):
+        vals = sorted(raw[t][i] for t in raw); m = len(vals)
+        med.append(round((vals[m // 2] + vals[(m - 1) // 2]) / 2, 2))
+    body.append('<script>window.RADAR=' + _json.dumps(dict(axes=axes, data=data, med=med, colors=[C[0], C[1]], qual=sorted(q)), ensure_ascii=False) + ';</script>')
+    # small multiples
+    body.append('<h3>All 16 teams</h3><p class="sub">In final standings order. Blue = quarter-finalist, grey = eliminated; dashed = field median (50th percentile). Percentiles use played games only.</p><div class="radars">')
+    fin = {s['team']: s['finish'] for s in d['standings']}
+    order_t = sorted(T, key=lambda t: fin[t['team']])
+    rec = {s['team']: s['swiss_record'] for s in d['scouting']}
+    for t in order_t:
+        col = C[0] if t['team'] in q else C[5]
+        best = [axes[i] for i, v in enumerate(pv[t['team']]) if v >= 0.8]
+        worst = [axes[i] for i, v in enumerate(pv[t['team']]) if v <= 0.2]
+        note = ('Strong: ' + ', '.join(best) if best else '') + (' · ' if best and worst else '') + ('Weak: ' + ', '.join(worst) if worst else '')
+        body.append(f'<div class="card radar-card"><h4>{E(t["team"])} <span class="muted">· Swiss {E(rec[t["team"]])}</span></h4>' +
+                    radar_svg(axes, [(avg, MUTED, 0, True), (pv[t['team']], col, 0.25, False)], size=260, aria=f'{t["team"]} profile') +
+                    f'<p class="sub" style="margin:2px 0 0">{E(note) or "Around the middle on every axis"}</p></div>')
+    body.append('</div>')
 
     # kill participation
     body.append('<h2 id="kp">Kill participation (KP)</h2><p>KP is the share of a team\'s kills that a player took part in (kills + assists ÷ team kills). '
@@ -647,9 +754,126 @@ def page_c(d):
                  ('gold_per_min', 'Gold/min', 'n'), ('champions', 'Champions', 'wrap')]
         body.append(f'<div class="card teamcard" id="team-{E(t["team"])}"><h3>{E(t["team"])} <span class="muted">· {t["wins"]}-{t["losses"]} in played games · KDA {t["kda"]} · KP {t["kill_participation"]}% · {t["avg_gold_per_min"]:,} gold/min</span></h3>'
                     + table(cols, rows) + '<h4>Players</h4>' + table(pcols, ps) + '</div>')
-    toc = [('findings', 'Key findings'), ('table', 'Comparison'), ('time-gold', 'Time & gold'), ('kda', 'KDA & gold diff'), ('kp', 'Kill participation'), ('kp-top', 'Top KP by position'), ('kp-best-game', 'Best KP game'), ('players', 'Player leaderboards'), ('logs', 'Every game')]
+    toc = [('findings', 'Key findings'), ('table', 'Comparison'), ('time-gold', 'Time & gold'), ('kda', 'KDA & gold diff'), ('radar', 'Radar profiles'), ('kp', 'Kill participation'), ('kp-top', 'Top KP by position'), ('kp-best-game', 'Best KP game'), ('players', 'Player leaderboards'), ('logs', 'Every game')]
     return page('c-team-evaluation.html', 'C. Team evaluation',
                 'How each team played: game time, total gold, gold per minute, gold difference, KDA and kill participation per game, plus player leaderboards and a log of every game.',
+                ''.join(body), toc)
+
+
+
+# ------------------------------------------------------------------ D. quarterfinalists
+P_AXES = [('kda', 'KDA'), ('kill_participation', 'KP'), ('damage_per_min', 'Dmg/min'), ('damage_share', 'Dmg %'), ('gold_per_min', 'Gold/min'), ('deaths_per_game', 'Survival')]
+DAYS = {'T2': 'Mon', 'T3': 'Tue', 'T4': 'Wed', 'T5': 'Thu', 'T6': 'Fri', 'T7': 'Sat', 'CN': 'Sun'}
+
+
+def when(sched):
+    parts = [x.strip() for x in str(sched).split(',')]
+    if len(parts) == 3:
+        return f"{DAYS.get(parts[1], parts[1])} {parts[2]}/2026, {parts[0].replace('h', ':')}"
+    return str(sched)
+
+
+def page_d(d):
+    prof, ko, T, M, S = d['profile'], d['knockout'], d['team_stats'], d['matches'], d['standings']
+    rank = {p['riot_id']: p['solo_label'] for p in d['players']}
+    tstat = {t['team']: t for t in T}
+    st_ = {s['team']: s for s in S}
+    pv, raw = radar_values(T, d['scouting'])
+    t_axes = [a[1] for a in RADAR_AXES]
+    order_roles = list(d['role_name'].values())
+    pa = [a[1] for a in P_AXES]
+    mid = [0.5] * len(pa)
+
+    def pvals(r):
+        return [(r[f'pct_{k}'] / 100 if r[f'pct_{k}'] != '' else 0) for k, _ in P_AXES]
+
+    def main_players(team):
+        out = {}
+        for role in order_roles:
+            xs = [r for r in prof if r['team'] == team and r['role'] == role]
+            if xs:
+                out[role] = max(xs, key=lambda r: (r['games'], r['riot_id']))
+        return out
+
+    body = []
+    # bracket
+    rows = [dict(code=k['code'], a=k['advantage'], b=k['disadvantage'], when=when(k['scheduled']), semi=k['semi'] + (' (balanced pairing)' if k['balanced'] else ''),
+                 ra=f"{st_[k['advantage']]['record']} · #{st_[k['advantage']]['finish']}", rb=f"{st_[k['disadvantage']]['record']} · #{st_[k['disadvantage']]['finish']}") for k in ko]
+    body.append('<h2 id="bracket">Quarter-final bracket</h2><p class="sub">From the Excel KNOCKOUT sheet. The advantage side is the higher Swiss finisher. '
+                'Semi-final 1 = winners of LKQ1 and LKQ2 (Sat 28/11, 09:00); semi-final 2 = winners of LKQ3 and LKQ4 (Sat 28/11, 13:00).</p>' +
+                table([('code', 'Match', ''), ('a', 'Advantage', ''), ('ra', 'Swiss', ''), ('b', 'Disadvantage', ''), ('rb', 'Swiss', ''), ('when', 'When', ''), ('semi', 'Then', '')], rows, sortable=False))
+    body.append('<h2 id="read">How to read the player radars</h2><p>Six tournament stats per player: <b>KDA</b>, <b>KP</b> (kill participation), <b>Dmg/min</b> (damage to champions per minute), '
+                '<b>Dmg %</b> (share of team damage), <b>Gold/min</b> and <b>Survival</b> (deaths per game, reversed: fewer deaths = further out). '
+                'Each axis is a <b>percentile among all players of the same position</b> in the Swiss Stage (players with at least 2 games there), so a support is compared with supports. '
+                'Outer edge = best in that position, dashed ring = position median. Damage uses only games with a damage column (not LS13, LS33). '
+                'A player with 1 game is marked <i>small sample</i>. Hover a radar for the actual values.</p>')
+
+    def player_card(r, col):
+        vals = pvals(r)
+        tip = ' · '.join(f"{lab} {r[k]}{'%' if k in ('kill_participation', 'damage_share') else ''} ({r[f'pct_{k}']}th)" for k, lab in P_AXES if r[k] != '')
+        flag = ' <span class="pill warn">small sample</span>' if r['games'] < 2 else ''
+        strong = [lab for (k, lab), v in zip(P_AXES, vals) if r[f'pct_{k}'] != '' and v >= 0.8]
+        weak = [lab for (k, lab), v in zip(P_AXES, vals) if r[f'pct_{k}'] != '' and v <= 0.2]
+        note = ('Strong: ' + ', '.join(strong) if strong else '') + (' · ' if strong and weak else '') + ('Weak: ' + ', '.join(weak) if weak else '')
+        svg = radar_svg(pa, [(mid, MUTED, 0, True), (vals, col, 0.25, False)], size=250, aria=f"{r['riot_id']} profile")
+        svg = svg.replace('<svg ', '<svg ', 1).replace('>', f'><title>{E(tip)}</title>', 1)
+        return (f'<div class="card radar-card"><h4>{E(r["role"])} · {E(r["riot_id"])}{flag}</h4>'
+                f'<div class="sub">{r["games"]} games ({r["wins"]}W) · Solo/Duo {E(rank.get(r["riot_id"], "—"))}</div>' + svg +
+                f'<div class="kv" style="font-size:12px"><span>K/D/A <b>{r["kills"]}/{r["deaths"]}/{r["assists"]}</b></span><span>KDA <b>{r["kda"]}</b></span><span>KP <b>{r["kill_participation"]}%</b></span>'
+                f'<span>Dmg/min <b>{fmt(r["damage_per_min"])}</b></span><span>Dmg <b>{fmt(r["damage_share"])}%</b></span><span>Gold/min <b>{r["gold_per_min"]}</b></span><span>Deaths/g <b>{r["deaths_per_game"]}</b></span></div>'
+                f'<p class="sub" style="margin:2px 0">{E(note) or "Around the middle of the position"}</p><p class="sub" style="margin:0">Champions: {E(r["champions"])}</p></div>')
+
+    def team_block(team, col):
+        t = tstat[team]
+        path = [m for m in M if team in (m['blue'], m['red'])]
+        steps = ' → '.join(f"{'W' if m['winner'] == team else 'L'} vs {m['red'] if m['blue'] == team else m['blue']}" + (' (ff)' if m['result_type'] != 'played' else '') for m in path)
+        ps = sorted([r for r in prof if r['team'] == team], key=lambda r: (order_roles.index(r['role']), -r['games']))
+        h = [f'<div class="card"><h3 id="team-{E(team)}">{E(team)} <span class="muted">· Swiss {E(st_[team]["record"])} · finished #{st_[team]["finish"]}</span></h3>'
+             f'<div class="kv"><span>Path: <b>{E(steps)}</b></span></div>'
+             f'<div class="kv"><span>KDA <b>{t["kda"]}</b></span><span>Gold/min <b>{t["avg_gold_per_min"]:,}</b></span><span>Gold diff <b>{t["avg_gold_diff"]:+,}</b></span>'
+             f'<span>KP <b>{t["kill_participation"]}%</b></span><span>Dmg/min <b>{fmt(t["avg_damage_per_min"])}</b></span><span>Avg time <b>{t["avg_game_minutes"]:.1f} min</b></span></div>'
+             '<div class="radars">'
+             f'<div class="card radar-card"><h4>Team profile</h4><div class="sub">Percentile among the 16 teams (as in Part C)</div>' +
+             radar_svg(t_axes, [([0.5] * len(t_axes), MUTED, 0, True), (pv[team], col, 0.25, False)], size=250, aria=f'{team} team profile') + '</div>']
+        h += [player_card(r, col) for r in ps]
+        h.append('</div></div>')
+        return ''.join(h)
+
+    toc = [('bracket', 'Bracket'), ('read', 'How to read')]
+    for k in ko:
+        a, b = k['advantage'], k['disadvantage']
+        anchor = k['code'].lower()
+        toc.append((anchor, f"{k['code']} {a} vs {b}"))
+        body.append(f'<h2 id="{anchor}">{E(k["code"])} · {E(a)} vs {E(b)} <span class="muted" style="font-size:15px;font-weight:400">· {E(when(k["scheduled"]))}</span></h2>')
+        sa, sb = tstat[a], tstat[b]
+        lines = []
+        for key, lab, f in [('kda', 'KDA', lambda v: f'{v}'), ('avg_gold_per_min', 'gold/min', lambda v: f'{v:,}'), ('kill_participation', 'KP', lambda v: f'{v}%'),
+                            ('avg_damage_per_min', 'damage/min', lambda v: f'{v:,}'), ('avg_game_minutes', 'avg game', lambda v: f'{v:.1f} min')]:
+            lines.append(f'{lab}: {E(a)} {f(sa[key])} vs {E(b)} {f(sb[key])}')
+        body.append('<p class="sub">' + ' · '.join(lines) + '</p>')
+        body.append(team_block(a, C[0]))
+        body.append(team_block(b, C[1]))
+        # lane matchups
+        ma, mb = main_players(a), main_players(b)
+        body.append(f'<div class="card"><h3>Lane matchups</h3><p class="sub">Each team\'s main player in each position (most games there). {legend([(a, C[0]), (b, C[1])])}</p><div class="radars">')
+        for role in order_roles:
+            if role in ma and role in mb:
+                ra, rb = ma[role], mb[role]
+                svg = radar_svg(pa, [(mid, MUTED, 0, True), (pvals(ra), C[0], 0.18, False), (pvals(rb), C[1], 0.18, False)], size=250, aria=f'{role}: {ra["riot_id"]} vs {rb["riot_id"]}')
+                edge_a = sum(1 for k, _ in P_AXES if ra[f'pct_{k}'] != '' and rb[f'pct_{k}'] != '' and ra[f'pct_{k}'] > rb[f'pct_{k}'])
+                edge_b = sum(1 for k, _ in P_AXES if ra[f'pct_{k}'] != '' and rb[f'pct_{k}'] != '' and rb[f'pct_{k}'] > ra[f'pct_{k}'])
+                def fv(k, v):
+                    if v == '':
+                        return '—'
+                    return {'kda': f'{v:.2f}', 'kill_participation': f'{v}%', 'damage_share': f'{v}%', 'deaths_per_game': f'{v:.2f}',
+                            'damage_per_min': f'{v:,}', 'gold_per_min': f'{v:,}'}[k]
+                labs = {'deaths_per_game': 'Deaths / game'}
+                rows = ''.join(f'<tr><td>{labs.get(k, lab)}</td><td class="n">{fv(k, ra[k])}</td><td class="n">{fv(k, rb[k])}</td></tr>' for k, lab in P_AXES)
+                body.append(f'<div class="card radar-card"><h4>{E(role)}</h4><div class="sub">{E(ra["riot_id"])} vs {E(rb["riot_id"])} · ahead on {edge_a} vs {edge_b} axes</div>{svg}'
+                            f'<table><thead><tr><th>Stat</th><th class="n">{E(a)}</th><th class="n">{E(b)}</th></tr></thead><tbody>{rows}</tbody></table></div>')
+        body.append('</div></div>')
+    return page('d-quarterfinalists.html', 'D. Quarterfinalists',
+                'The 8 teams in the quarter-finals (23–27 Nov 2026): each team\'s Swiss path and profile, a six-stat radar for every player, and head-to-head lane matchups for each quarter-final.',
                 ''.join(body), toc)
 
 
@@ -669,6 +893,7 @@ def page_index(d):
              ('role_stats.csv', 'Damage and gold share per position'),
              ('team_stats.csv', 'Per-team averages over played games, incl. team kill participation (KP) and KP by position'),
              ('team_role_kp.csv', 'Kill participation per team and position'),
+             ('player_position_profile.csv', 'Per player and position: six radar stats and their percentile within the position'),
              ('player_stats.csv', 'Per-player totals and averages'),
              ('side_stats.csv', 'Blue vs red wins'),
              ('data_issues.csv', 'Every gap found in the data and how it was handled')]
@@ -677,7 +902,8 @@ def page_index(d):
     body.append('<div class="grid">' + ''.join(f'<a class="card" style="text-decoration:none;color:inherit" href="{f}"><h3>{E(t)}</h3><p class="muted">{E(x)}</p></a>' for f, t, x in [
         ('a-team-scouting.html', 'A. Team scouting', 'Average Solo/Duo, Flex and Ranked 5s rank per team, ranked games in 2026, Flex practice, rank spread, and every roster in detail.'),
         ('b-swiss-evaluation.html', 'B. Swiss Stage evaluation', 'Standings, round by round, results against rank, the most surprising result, ban & pick by position, and which position carries the damage.'),
-        ('c-team-evaluation.html', 'C. Team evaluation', 'Game time, total gold, gold per minute, gold difference, KDA and kill participation per game for every team, player leaderboards and full game logs.')]) + '</div>')
+        ('c-team-evaluation.html', 'C. Team evaluation', 'Game time, total gold, gold per minute, gold difference, KDA and kill participation per game for every team, player leaderboards and full game logs.'),
+        ('d-quarterfinalists.html', 'D. Quarterfinalists', 'The 8 quarter-finalists: Swiss path, team profile, a six-stat radar for every player and head-to-head lane matchups for each quarter-final.')]) + '</div>')
     body.append('<h2 id="standings">Final standings</h2>' + table([('finish', '#', 'n'), ('team', 'Team', ''), ('record', 'Record', ''), ('buchholz', 'Buchholz', 'n'), ('rank_seed', 'Rank seed', 'n'),
                                                                    ('q', 'Result', '')], [dict(s, q=(pill('Quarter-finals', 'ok') if s['qualified'] else pill('Eliminated'), s['qualified'])) for s in S], hl=lambda r: r['qualified']))
     body.append('<h2 id="data">Data</h2><p>All tables are in <code>data/processed/</code> as CSV (UTF-8). Raw sources are in <code>data/raw/</code>; scoreboard transcriptions in <code>data/interim/scoreboards/</code>.</p>')
@@ -696,6 +922,6 @@ def page_index(d):
 
 def build(out: Path, d):
     out.mkdir(parents=True, exist_ok=True)
-    for name, fn in [('index.html', page_index), ('a-team-scouting.html', page_a), ('b-swiss-evaluation.html', page_b), ('c-team-evaluation.html', page_c)]:
+    for name, fn in [('index.html', page_index), ('a-team-scouting.html', page_a), ('b-swiss-evaluation.html', page_b), ('c-team-evaluation.html', page_c), ('d-quarterfinalists.html', page_d)]:
         (out / name).write_text(fn(d), encoding='utf-8')
         print(f'  docs/{name}')

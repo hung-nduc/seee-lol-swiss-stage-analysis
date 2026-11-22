@@ -9,7 +9,8 @@ This repo analyses the Swiss Stage of the student League of Legends tournament (
 | [`docs/index.html`](docs/index.html) | Overview, final standings, data files, method, data gaps |
 | [`docs/a-team-scouting.html`](docs/a-team-scouting.html) | **A. Team scouting**: each team's average Solo/Duo, Flex and Ranked 5s rank; ranked games in 2026; whether the team practises in Flex; rank spread; every roster |
 | [`docs/b-swiss-evaluation.html`](docs/b-swiss-evaluation.html) | **B. Swiss Stage evaluation**: standings, round by round, results against rank, the most surprising result, sides, game length, ban & pick by position, which position carries the damage |
-| [`docs/c-team-evaluation.html`](docs/c-team-evaluation.html) | **C. Team evaluation**: game time, total gold, gold per minute, gold difference, KDA and kill participation (KP) per game; player leaderboards; every game per team |
+| [`docs/c-team-evaluation.html`](docs/c-team-evaluation.html) | **C. Team evaluation**: game time, total gold, gold per minute, gold difference, KDA and kill participation (KP) per game; radar profile of every team (KDA, gold/min, gold diff, KP, damage/min, speed) with a two-team compare; player leaderboards; every game per team |
+| [`docs/d-quarterfinalists.html`](docs/d-quarterfinalists.html) | **D. Quarterfinalists**: the 8 quarter-finalists by match: Swiss path, team profile, a six-stat radar for every player (KDA, KP, damage/min, damage share, gold/min, survival; percentile within the position), and lane-by-lane matchups |
 
 ## Repository layout
 
@@ -24,6 +25,7 @@ data/
     remarks.txt                  organiser remarks
   interim/
     records.json                 parsed records (scripts/parse_records.py)
+    knockout.json                quarter-final bracket from the Excel KNOCKOUT sheet
     scoreboards/LSxx.json        scoreboard transcriptions, one per played game
   processed/                   analysis tables (CSV, UTF-8) — see below
 docs/                          HTML reports (generated)
@@ -49,6 +51,7 @@ scripts/
 | `role_stats.csv` | position: damage and gold share, damage per minute, top-damage count |
 | `team_stats.csv` | team: averages over played games, incl. **team kill participation (KP)**, KP in wins/losses and KP by position |
 | `team_role_kp.csv` | team × position: kill participation |
+| `player_position_profile.csv` | player × position: the six radar stats and their percentile within the position |
 | `player_stats.csv`, `side_stats.csv` | aggregates |
 | `data_issues.csv` | every gap found in the data and how it was handled |
 

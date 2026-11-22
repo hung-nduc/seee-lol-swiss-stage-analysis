@@ -1,7 +1,7 @@
 """Step 1 - parse the 33 match records (PDF) and the Excel schedule.
 
 Reads  data/raw/records/LS*.pdf, data/raw/schedule/swiss_schedule.xlsx
-Writes data/interim/records.json
+Writes data/interim/records.json, data/interim/knockout.json
 
 The Excel schedule is the final authority for teams and sides (blue/red).
 Known gaps in the records are corrected here, each with a note; see
@@ -24,6 +24,18 @@ def schedule():
         for i in range(0, 30, 6):
             if i < len(row) and row[i]:
                 out[row[i].strip()] = dict(blue=row[i + 1], red=row[i + 3], slot=row[i + 2])
+    return out
+
+
+def knockout():
+    """Quarter-final pairings from the KNOCKOUT sheet ('Lợi thế' = advantage side, 'Bất lợi' = disadvantage)."""
+    wb = openpyxl.load_workbook(RAW / 'schedule' / 'swiss_schedule.xlsx', data_only=True)
+    out = []
+    for row in wb['KNOCKOUT'].iter_rows(min_row=3, values_only=True):
+        if row[0] and str(row[0]).startswith('LKQ'):
+            code = str(row[0]).split()[0]
+            out.append(dict(code=code, advantage=row[1], disadvantage=row[3], scheduled=row[2], balanced='Cân bằng' in str(row[0]),
+                            semi='LKS1' if code in ('LKQ1', 'LKQ2') else 'LKS2'))
     return out
 
 
@@ -130,6 +142,9 @@ def main():
         out.append(m)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding='utf-8')
+    ko = knockout()
+    (OUT.parent / 'knockout.json').write_text(json.dumps(ko, ensure_ascii=False, indent=1), encoding='utf-8')
+    print(f'{len(ko)} quarter-finals -> data/interim/knockout.json')
     print(f'{len(out)} records -> {OUT.relative_to(ROOT)}')
 
 

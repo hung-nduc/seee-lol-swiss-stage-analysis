@@ -385,6 +385,8 @@ def main():
             avg_gold_diff=round(st.mean(g['gold_diff'] for g in gs)),
             avg_kills=round(K / len(gs), 1), avg_deaths=round(D / len(gs), 1), avg_assists=round(A / len(gs), 1),
             kda=round((K + A) / max(D, 1), 2), kills_per_min=round(st.mean(g['kills_per_min'] for g in gs), 2),
+            avg_damage_per_min=round(st.mean(g['damage'] / g['game_minutes'] for g in gs if g['damage'] != '')) if any(g['damage'] != '' for g in gs) else '',
+            damage_games=sum(1 for g in gs if g['damage'] != ''),
             blue_games=sum(1 for g in gs if g['side'] == 'blue'), red_games=sum(1 for g in gs if g['side'] == 'red'),
             best_kda_player=mvp, **team_kp(t)))
     team_stats.sort(key=lambda r: -r['avg_gold_per_min'])
@@ -406,6 +408,40 @@ def main():
             champions=', '.join(f'{c} x{n}' if n > 1 else c for c, n in Counter(x['champion'] for x in pgs).most_common()),
             solo_rank=p['solo_label']))
     player_stats.sort(key=lambda r: (r['team'], ROLES.index([k for k, v in ROLE_NAME.items() if v == r['role']][0]), -r['games'], r['riot_id']))
+
+    # ------------------------------------------------ player x position profile (for radars)
+    # Six tournament stats per player in one position, then the percentile of each stat
+    # among all players of that position with >= 2 games in it (the player is always included).
+    PROFILE = [('kda', 1), ('kill_participation', 1), ('damage_per_min', 1), ('damage_share', 1), ('gold_per_min', 1), ('deaths_per_game', -1)]
+    tk = {(g['code'], g['team']): g['kills'] for g in team_games}
+    prof = []
+    for (pid, team, role) in sorted({(x['riot_id'], x['team'], x['role']) for x in player_games}):
+        xs = [x for x in player_games if x['riot_id'] == pid and x['team'] == team and x['role'] == role]
+        dm = [x for x in xs if x['damage_share'] != '']
+        K, D, A = (sum(x[f] for x in xs) for f in ('kills', 'deaths', 'assists'))
+        TKs = sum(tk[(x['code'], x['team'])] for x in xs)
+        prof.append(dict(riot_id=pid, team=team, role=ROLE_NAME[role], games=len(xs), wins=sum(x['won'] for x in xs),
+                         kills=K, deaths=D, assists=A, kda=round((K + A) / max(D, 1), 2),
+                         kill_participation=round(100 * (K + A) / TKs, 1) if TKs else 0.0,
+                         damage_per_min=round(st.mean(x['damage_per_min'] for x in dm)) if dm else '',
+                         damage_share=round(st.mean(x['damage_share'] for x in dm), 1) if dm else '',
+                         gold_per_min=round(st.mean(x['gold_per_min'] for x in xs)),
+                         deaths_per_game=round(D / len(xs), 2),
+                         champions=', '.join(f'{c} x{n}' if n > 1 else c for c, n in Counter(x['champion'] for x in xs).most_common()),
+                         qualified=int(team in QUALIFIED)))
+    for r in prof:
+        pool = [q for q in prof if q['role'] == r['role'] and (q['games'] >= 2 or q is r)]
+        for key, sign in PROFILE:
+            vals = [q[key] * sign for q in pool if q[key] != '']
+            if r[key] == '' or len(vals) < 2:
+                r[f'pct_{key}'] = ''
+                continue
+            v = r[key] * sign
+            below = sum(1 for x in vals if x < v); eq = sum(1 for x in vals if x == v)
+            r[f'pct_{key}'] = round(100 * (below + (eq - 1) / 2) / (len(vals) - 1))
+        r['position_pool'] = len(pool)
+    prof.sort(key=lambda r: (r['team'], ROLES.index([k for k, v in ROLE_NAME.items() if v == r['role']][0]), -r['games'], r['riot_id']))
+    knockout = json.loads((DATA / 'interim' / 'knockout.json').read_text(encoding='utf-8'))
 
     # side stats
     played = [m for m in matches if m['result_type'] == 'played']
@@ -430,6 +466,7 @@ def main():
     write_csv('role_stats', role_stats)
     write_csv('team_stats', team_stats)
     write_csv('team_role_kp', team_role_kp)
+    write_csv('player_position_profile', prof)
     write_csv('player_stats', player_stats)
     write_csv('side_stats', side_stats)
     issues = json.loads((Path(__file__).with_name('data_issues.json')).read_text(encoding='utf-8'))
@@ -440,7 +477,7 @@ def main():
     report.build(ROOT / 'docs', dict(matches=matches, standings=standings, team_games=team_games, player_games=player_games,
                                      drafts=drafts, players=pr, scouting=sorted(scouting, key=lambda s: s['rank_seed']),
                                      champions=champions, role_stats=role_stats, team_stats=team_stats, player_stats=player_stats,
-                                     side_stats=side_stats, issues=issues, team_role_kp=team_role_kp, rank_label=rank_label, qualified=QUALIFIED,
+                                     side_stats=side_stats, issues=issues, team_role_kp=team_role_kp, profile=prof, knockout=knockout, rank_label=rank_label, qualified=QUALIFIED,
                                      role_name=ROLE_NAME, n_games=G))
 
 

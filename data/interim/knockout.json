@@ -1,0 +1,34 @@
+[
+ {
+  "code": "LKQ1",
+  "advantage": "TT",
+  "disadvantage": "LN",
+  "scheduled": "18h15, T2, 23/11",
+  "balanced": false,
+  "semi": "LKS1"
+ },
+ {
+  "code": "LKQ2",
+  "advantage": "KGC",
+  "disadvantage": "LHP",
+  "scheduled": "18h15, T4, 25/11",
+  "balanced": false,
+  "semi": "LKS1"
+ },
+ {
+  "code": "LKQ3",
+  "advantage": "LXM",
+  "disadvantage": "GOS",
+  "scheduled": "18h15, T5, 26/11",
+  "balanced": false,
+  "semi": "LKS2"
+ },
+ {
+  "code": "LKQ4",
+  "advantage": "DMX",
+  "disadvantage": "GLT",
+  "scheduled": "18h15, T6, 27/11",
+  "balanced": true,
+  "semi": "LKS2"
+ }
+]
