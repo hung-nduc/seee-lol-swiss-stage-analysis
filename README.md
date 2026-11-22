@@ -55,6 +55,7 @@ scripts/
 | `team_role_kp.csv` | team × position: kill participation |
 | `meta_tierlist.csv` | patch × position × champion: op.gg tier, rank, win rate, pick rate |
 | `meta_picks.csv` | pick: patch, op.gg tier, meta class, draft slot, blind/counter-pick, matchup win rate vs lane opponent |
+| `rank_vs_performance.csv` | player: Solo/Duo rank, performance expected from rank vs actual (radar percentiles), gap, verdict |
 | `player_position_profile.csv` | player × position: the six radar stats and their percentile within the position |
 | `player_stats.csv`, `side_stats.csv` | aggregates |
 | `data_issues.csv` | every gap found in the data and how it was handled |

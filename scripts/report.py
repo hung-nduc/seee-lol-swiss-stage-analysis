@@ -960,6 +960,61 @@ def page_c(d):
     body.append('<div class="grid wide"><div class="card"><h4>Out-performed their rank</h4>' + table(cols, [mk(p) for p in over], sortable=False) + '</div>'
                 '<div class="card"><h4>Under-performed their rank</h4>' + table(cols, [mk(p) for p in under], sortable=False) + '</div></div>')
 
+    # full table: every player, main position (most games)
+    pl = {p['riot_id']: p for p in d['players']}
+    mainp = {}
+    for r in prof:
+        cur = mainp.get(r['riot_id'])
+        if cur is None or r['games'] > cur['games']:
+            mainp[r['riot_id']] = r
+    def q_(p, qn):
+        if p[f'{qn}_score'] is None:
+            return ('Unranked' + (f" · {p[f'{qn}_games']} g" if p[f'{qn}_games'] else ''), -1)
+        return (f"{E(p[f'{qn}_label'])} · {p[f'{qn}_games']} g · {p[f'{qn}_winrate']}%", p[f'{qn}_score'])
+    def pc(r, k):
+        v = r[f'pct_{k}']
+        return ('—', -1) if v == '' else (f'{v}', v)
+    full = []
+    for pid, r in mainp.items():
+        p = pl.get(pid)
+        vals = [r[f'pct_{k}'] for k in keys if r[f'pct_{k}'] != '']
+        perf_v = st.mean(vals) if vals else None
+        sc = p['solo_score'] if p else None
+        exp = a1 + b1 * sc if sc is not None else None
+        diff = perf_v - exp if (perf_v is not None and exp is not None) else None
+        small = r['games'] < 2
+        if diff is None:
+            verdict = ('No Solo/Duo rank', '')
+        elif diff >= 10:
+            verdict = ('Over-performed', 'ok')
+        elif diff <= -10:
+            verdict = ('Under-performed', 'bad')
+        else:
+            verdict = ('As expected', '')
+        vtxt = pill(verdict[0], verdict[1]) + (' <span class="pill warn">1 game</span>' if small else '')
+        full.append(dict(p=pid, team=(('✓ ' if r['team'] in q else '') + E(r['team']), r['team']), role=r['role'], g=r['games'],
+                         solo=q_(p, 'solo') if p else ('—', -1), flex=q_(p, 'flex') if p else ('—', -1),
+                         exp=(f'{exp:.0f}' if exp is not None else '—', exp if exp is not None else -999),
+                         perf=(f'{perf_v:.0f}' if perf_v is not None else '—', perf_v if perf_v is not None else -999),
+                         diff=(f'{diff:+.0f}' if diff is not None else '—', diff if diff is not None else -999),
+                         v=(vtxt, diff if diff is not None else -999),
+                         kda=pc(r, 'kda'), kp=pc(r, 'kill_participation'), dpm=pc(r, 'damage_per_min'), dsh=pc(r, 'damage_share'), gpm=pc(r, 'gold_per_min'), surv=pc(r, 'deaths_per_game')))
+    full.sort(key=lambda x: -x['diff'][1])
+    vc = Counter(x['v'][0].split('</span>')[0].split('>')[-1] for x in full)
+    body.append('<h3 id="rank-perf-table">Every player: rank vs tournament performance</h3>'
+                '<p class="sub"><b>Expected</b> = the performance index the player\'s Solo/Duo rank predicts (the dashed line above). <b>Actual</b> = his performance index in his main position. '
+                '<b>Gap</b> = actual − expected; ±10 or more counts as over- or under-performing. The six columns on the right are his percentiles within the position '
+                '(Survival = fewer deaths). Players with one game are flagged: their numbers are a single game. Sorted by gap; click any header to re-sort.</p>'
+                f'<p class="sub">{vc.get("Over-performed", 0)} over-performed, {vc.get("As expected", 0)} as expected, {vc.get("Under-performed", 0)} under-performed, '
+                f'{vc.get("No Solo/Duo rank", 0)} without a Solo/Duo rank.</p>' +
+                '<details class="card" open><summary>All %d players</summary>' % len(full) +
+                table([('p', 'Player', ''), ('team', 'Team', ''), ('role', 'Pos.', ''), ('g', 'G', 'n'), ('solo', 'Solo/Duo (2026)', ''), ('flex', 'Flex (2026)', ''),
+                       ('exp', 'Expected', 'n'), ('perf', 'Actual', 'n'), ('diff', 'Gap', 'n'), ('v', 'Verdict', ''),
+                       ('kda', 'KDA', 'n'), ('kp', 'KP', 'n'), ('dpm', 'Dmg/min', 'n'), ('dsh', 'Dmg %', 'n'), ('gpm', 'Gold/min', 'n'), ('surv', 'Survival', 'n')], full) + '</details>')
+    # export
+    d['_rank_perf_rows'] = [dict(riot_id=x['p'], team=x['team'][1], role=x['role'], games=x['g'], solo=x['solo'][0], expected=x['exp'][0], actual=x['perf'][0],
+                                 gap=x['diff'][0], verdict=re.sub(r'\s+', ' ', re.sub('<[^>]+>', ' ', x['v'][0])).strip()) for x in full]
+
     # ---------------- game flow & stomps
     games = defaultdict(list)
     for g in TG:
@@ -1090,7 +1145,7 @@ def page_c(d):
                  ('gold_per_min', 'Gold/min', 'n'), ('champions', 'Champions', 'wrap')]
         body.append(f'<div class="card teamcard" id="team-{E(t["team"])}"><h3>{E(t["team"])} <span class="muted">· {t["wins"]}-{t["losses"]} in played games · KDA {t["kda"]} · KP {t["kill_participation"]}% · {t["avg_gold_per_min"]:,} gold/min</span></h3>'
                     + table(cols, rows) + '<h4>Players</h4>' + table(pcols, ps) + '</div>')
-    toc = [('findings', 'Key findings'), ('table', 'Comparison'), ('time-gold', 'Time & gold'), ('kda', 'KDA & gold diff'), ('radar', 'Radar profiles'), ('rank-perf', 'Rank vs performance'), ('flow', 'Game flow & stomps'), ('kp', 'Kill participation'), ('kp-top', 'Top KP by position'), ('kp-best-game', 'Best KP game'), ('players', 'Player leaderboards'), ('logs', 'Every game')]
+    toc = [('findings', 'Key findings'), ('table', 'Comparison'), ('time-gold', 'Time & gold'), ('kda', 'KDA & gold diff'), ('radar', 'Radar profiles'), ('rank-perf', 'Rank vs performance'), ('rank-perf-table', 'Rank vs performance table'), ('flow', 'Game flow & stomps'), ('kp', 'Kill participation'), ('kp-top', 'Top KP by position'), ('kp-best-game', 'Best KP game'), ('players', 'Player leaderboards'), ('logs', 'Every game')]
     return page('c-team-evaluation.html', 'C. Team evaluation',
                 'How each team played: game time, total gold, gold per minute, gold difference, KDA and kill participation per game, plus player leaderboards and a log of every game.',
                 ''.join(body), toc)
@@ -1269,6 +1324,7 @@ def page_index(d):
              ('team_stats.csv', 'Per-team averages over played games, incl. team kill participation (KP) and KP by position'),
              ('team_role_kp.csv', 'Kill participation per team and position'),
              ('player_position_profile.csv', 'Per player and position: six radar stats and their percentile within the position'),
+             ('rank_vs_performance.csv', 'Per player: Solo/Duo rank, expected vs actual tournament performance, gap and verdict'),
              ('player_stats.csv', 'Per-player totals and averages'),
              ('side_stats.csv', 'Blue vs red wins'),
              ('data_issues.csv', 'Every gap found in the data and how it was handled')]
@@ -1301,3 +1357,10 @@ def build(out: Path, d):
     for name, fn in [('index.html', page_index), ('a-team-scouting.html', page_a), ('b-swiss-evaluation.html', page_b), ('c-team-evaluation.html', page_c), ('d-quarterfinalists.html', page_d)]:
         (out / name).write_text(fn(d), encoding='utf-8')
         print(f'  docs/{name}')
+    if d.get('_rank_perf_rows'):
+        import csv
+        rows = d['_rank_perf_rows']
+        with open(out.parent / 'data' / 'processed' / 'rank_vs_performance.csv', 'w', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, fieldnames=list(rows[0]))
+            w.writeheader(); w.writerows(rows)
+        print(f'  data/processed/rank_vs_performance.csv  {len(rows)} rows')
