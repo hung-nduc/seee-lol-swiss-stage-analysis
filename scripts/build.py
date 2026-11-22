@@ -88,6 +88,8 @@ def main():
         boards[d['code']] = d
     with open(DATA / 'raw' / 'opgg_ranks_2026-11-22.csv', encoding='utf-8') as f:
         ranks_raw = list(csv.DictReader(f))
+    with open(DATA / 'raw' / 'teams.csv', encoding='utf-8') as f:
+        TEAM_NAME = {r['code']: r['name'] for r in csv.DictReader(f)}
 
     # ------------------------------------------------ players & ranks
     players = {}
@@ -517,6 +519,10 @@ def main():
     print('data/processed:')
     write_csv('matches', matches, ['code', 'round', 'pool', 'date', 'scheduled', 'blue', 'red', 'winner', 'loser', 'winner_side', 'result_type',
                                    'game_time', 'game_minutes', 'record_time', 'winner_rank', 'loser_rank', 'rank_gap', 'rank_basis', 'upset', 'screenshot', 'notes'])
+    for rows_ in (standings, scouting, team_stats):
+        for r in rows_:
+            r['team_name'] = TEAM_NAME[r['team']]
+    write_csv('teams', [dict(code=c, name=n, swiss_record='{}-{}'.format(*rec[c]), qualified=int(c in QUALIFIED)) for c, n in TEAM_NAME.items()])
     write_csv('standings', standings)
     write_csv('team_games', team_games)
     write_csv('player_games', player_games)
@@ -544,7 +550,7 @@ def main():
     report.build(ROOT / 'docs', dict(matches=matches, standings=standings, team_games=team_games, player_games=player_games,
                                      drafts=drafts, players=pr, scouting=sorted(scouting, key=lambda s: s['rank_seed']),
                                      champions=champions, role_stats=role_stats, team_stats=team_stats, player_stats=player_stats,
-                                     side_stats=side_stats, issues=issues, team_role_kp=team_role_kp, profile=prof, knockout=knockout, meta_picks=meta_picks, tierlist=tierlist, rank_label=rank_label, qualified=QUALIFIED,
+                                     side_stats=side_stats, issues=issues, team_role_kp=team_role_kp, profile=prof, knockout=knockout, meta_picks=meta_picks, tierlist=tierlist, team_names=TEAM_NAME, rank_label=rank_label, qualified=QUALIFIED,
                                      role_name=ROLE_NAME, n_games=G))
 
 

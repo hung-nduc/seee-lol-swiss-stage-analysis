@@ -25,6 +25,7 @@ data/
     opgg_tierlist_raw.txt        op.gg tier lists per position, patches 26.22 and 26.23 (op.gg calls them 16.22/16.23)
     opgg_matchups_2026-11-22.csv op.gg lane matchup win rates for the 140 Swiss lanes
     remarks.txt                  organiser remarks
+    teams.csv                    team codes and full names
   interim/
     records.json                 parsed records (scripts/parse_records.py)
     knockout.json                quarter-final bracket from the Excel KNOCKOUT sheet
@@ -42,6 +43,7 @@ scripts/
 
 | File | One row per |
 |---|---|
+| `teams.csv` | team: code, full name, Swiss record, quarter-finalist |
 | `matches.csv` | match: round, pool, sides, winner, result type (played / forfeit / ruling), game time, rank gap, upset flag |
 | `standings.csv` | team: record, Buchholz, rank seed, finish |
 | `team_games.csv` | team × played game: K/D/A, gold, gold per minute, gold difference |

@@ -120,6 +120,7 @@ def table(cols, rows, sortable=True, hl=None, cls=''):
             v = r.get(k, '')
             if isinstance(v, tuple):
                 disp, sv = v
+                sv = round(sv, 6) if isinstance(sv, float) else sv
                 h.append(f'<td class="{kc}" data-v="{E(str(sv))}">{disp}</td>')
             else:
                 h.append(f'<td class="{kc}">{E(fmt(v, 2 if isinstance(v, float) else 0))}</td>')
@@ -437,7 +438,7 @@ def page_a(d):
     body.append('<h2 id="ranks">Average rank by team</h2><p class="sub">Average over the players who actually played in the Swiss Stage, weighted by games played. Players with no 2026 rank in a queue are left out of that queue. ✓ = reached the quarter-finals.</p>')
     body.append('<div class="card">' + legend([('Solo/Duo (bar)', C[0]), ('Flex (dot)', C[1]), ('Ranked 5s (diamond)', C[2])]) + rank_chart(sc) + '</div>')
 
-    cols = [('rank_seed', '#', 'n'), ('team', 'Team', ''), ('swiss_record', 'Swiss', ''), ('solo', 'Solo/Duo avg', ''), ('flex', 'Flex avg', ''),
+    cols = [('rank_seed', '#', 'n'), ('team', 'Team', ''), ('team_name', 'Name', ''), ('swiss_record', 'Swiss', ''), ('solo', 'Solo/Duo avg', ''), ('flex', 'Flex avg', ''),
             ('r5', 'Ranked 5s avg', ''), ('r5_ranked_players', '5s-ranked players', 'n'), ('players_used', 'Players used', 'n'),
             ('solo_unranked', 'Solo unranked', 'n'), ('best_player', 'Highest ranked', ''), ('weakest_player', 'Lowest ranked', ''), ('rank_spread', 'Spread (div.)', 'n')]
     rows = [dict(s, solo=(E(s['solo_avg']), s['solo_score']), flex=(E(s['flex_avg']), s['flex_score']), r5=(E(s['r5_avg']), s['r5_score'] if s['r5_score'] != '' else -1),
@@ -479,7 +480,7 @@ def page_a(d):
                      champs=(ci_list(p['swiss_champions']), p['swiss_champions'])) for p in ps]
         cols = [('role', 'Role', ''), ('riot', 'Riot ID', ''), ('g', 'Swiss games', 'n'), ('solo', 'Solo/Duo', ''), ('flex', 'Flex', ''), ('r5', 'Ranked 5s', ''), ('champs', 'Champions in Swiss', 'wrap')]
         qual = pill('Quarter-finalist', 'ok') if s['qualified'] else pill('Eliminated', '')
-        body.append(f'<div class="card teamcard" id="team-{E(s["team"])}"><h3>{E(s["team"])} <span class="muted">· Swiss {E(s["swiss_record"])} · rank #{s["rank_seed"]} of 16</span> {qual}</h3>'
+        body.append(f'<div class="card teamcard" id="team-{E(s["team"])}"><h3>{E(tn(s["team"]))} <span class="muted">· Swiss {E(s["swiss_record"])} · rank #{s["rank_seed"]} of 16</span> {qual}</h3>'
                     f'<div class="kv"><span>Solo/Duo <b>{E(s["solo_avg"])}</b></span><span>Flex <b>{E(s["flex_avg"])}</b></span><span>Ranked 5s <b>{E(s["r5_avg"])}</b></span>'
                     f'<span>Flex share <b>{s["flex_share"]}%</b> ({E(s["flex_verdict"])})</span><span>Spread <b>{s["rank_spread"]} div.</b></span><span>Players used <b>{s["players_used"]}</b></span></div>'
                     + table(cols, rows) + '</div>')
@@ -709,7 +710,7 @@ def page_b(d):
 
     # standings
     body.append('<h2 id="standings">Final standings</h2><p class="sub">Ordered by record, then Buchholz (sum of opponents\' wins), then rank seed. "Seed vs finish" = rank seed minus finishing place (positive = did better than rank suggests).</p>')
-    cols = [('finish', '#', 'n'), ('team', 'Team', ''), ('record', 'Record', ''), ('buchholz', 'Buchholz', 'n'), ('forfeit_wins', 'Wins by forfeit/ruling', 'n'),
+    cols = [('finish', '#', 'n'), ('team', 'Team', ''), ('team_name', 'Name', ''), ('record', 'Record', ''), ('buchholz', 'Buchholz', 'n'), ('forfeit_wins', 'Wins by forfeit/ruling', 'n'),
             ('forfeit_losses', 'Losses by forfeit/ruling', 'n'), ('rank_seed', 'Rank seed', 'n'), ('solo_avg', 'Solo/Duo avg', ''), ('svf', 'Seed vs finish', 'n'), ('q', 'Result', '')]
     body.append(table(cols, [dict(s, svf=(f"{s['seed_vs_finish']:+d}", s['seed_vs_finish']), q=(pill('Quarter-finals', 'ok') if s['qualified'] else pill('Eliminated'), s['qualified'])) for s in S],
                       hl=lambda r: r['qualified']))
@@ -745,7 +746,7 @@ def page_b(d):
             k = sum(x['kills'] for x in xs); dd = sum(x['deaths'] for x in xs); g = sum(x['gold'] for x in xs)
             star = max(xs, key=lambda x: (x['kills'] + x['assists']) / max(x['deaths'], 1))
             lines.append(f"<b>{E(team)}</b>: {k} kills, {dd} deaths, {g:,} gold — best KDA {E(star['riot_id'])} on {E(star['champion'])} ({star['kills']}/{star['deaths']}/{star['assists']})")
-        body.append(f'<div class="card"><h3>{E(m["code"])} · Round {m["round"]} (pool {E(m["pool"])}) · {E(m["winner"])} beat {E(m["loser"])} in {E(m["game_time"])}</h3>'
+        body.append(f'<div class="card"><h3>{E(m["code"])} · Round {m["round"]} (pool {E(m["pool"])}) · {E(tn(m["winner"]))} beat {E(tn(m["loser"]))} in {E(m["game_time"])}</h3>'
                     f'<p>{E(m["winner"])} lineup: {E(m["winner_rank"])} · {E(m["loser"])} lineup: {E(m["loser_rank"])} · gap {m["rank_gap"]:+.1f} divisions.</p><ul class="find">' + ''.join(f'<li>{l}</li>' for l in lines) + '</ul></div>')
 
     # side & length
@@ -860,7 +861,7 @@ def page_c(d):
     ]
     body = ['<h2 id="findings">Key findings</h2><ul class="find">' + ''.join(f'<li>{f}</li>' for f in finds) + '</ul>']
     body.append('<p class="sub">Played games only (forfeits and the LS21 ruling have no game). KDA = (kills + assists) ÷ deaths over all of a team\'s games. Gold diff = team gold minus opponent gold at the end.</p>')
-    cols = [('team', 'Team', ''), ('games', 'Games', 'n'), ('wins', 'W', 'n'), ('losses', 'L', 'n'), ('avg_game_minutes', 'Avg time (min)', 'n'), ('avg_win_minutes', 'Avg win time', 'n'),
+    cols = [('team', 'Team', ''), ('team_name', 'Name', ''), ('games', 'Games', 'n'), ('wins', 'W', 'n'), ('losses', 'L', 'n'), ('avg_game_minutes', 'Avg time (min)', 'n'), ('avg_win_minutes', 'Avg win time', 'n'),
             ('avg_loss_minutes', 'Avg loss time', 'n'), ('avg_gold', 'Avg total gold', 'n'), ('avg_gold_per_min', 'Gold / min', 'n'), ('avg_gold_diff', 'Avg gold diff', 'n'),
             ('avg_kills', 'Kills / g', 'n'), ('avg_deaths', 'Deaths / g', 'n'), ('avg_assists', 'Assists / g', 'n'), ('kda', 'KDA', 'n'), ('kill_participation', 'KP %', 'n'), ('kills_per_min', 'Kills / min', 'n'), ('avg_damage_per_min', 'Dmg / min', 'n'), ('best_kda_player', 'Best KDA player', '')]
     body.append('<h2 id="table">Team comparison</h2>' + table(cols, [dict(t, team=(('✓ ' if t['qualified'] else '') + E(t['team']), t['team'])) for t in T], hl=lambda r: r['qualified']))
@@ -894,7 +895,7 @@ def page_c(d):
     import json as _json
     data = {t: dict(p=pv[t], r=raw[t]) for t in pv}
     teams_sorted = sorted(pv)
-    opts = ''.join(f'<option value="{E(t)}">{E(t)}</option>' for t in teams_sorted)
+    opts = ''.join(f'<option value="{E(t)}">{E(tn(t))}</option>' for t in teams_sorted)
     body.append('<div class="card"><h4>Compare two teams</h4><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:4px 0 6px">'
                 f'<label><i style="display:inline-block;width:10px;height:10px;background:{C[0]};border-radius:2px"></i> <select id="ra">{opts}</select></label>'
                 f'<label><i style="display:inline-block;width:10px;height:10px;background:{C[1]};border-radius:2px"></i> <select id="rb">{opts}</select></label></div>'
@@ -914,7 +915,7 @@ def page_c(d):
         best = [axes[i] for i, v in enumerate(pv[t['team']]) if v >= 0.8]
         worst = [axes[i] for i, v in enumerate(pv[t['team']]) if v <= 0.2]
         note = ('Strong: ' + ', '.join(best) if best else '') + (' · ' if best and worst else '') + ('Weak: ' + ', '.join(worst) if worst else '')
-        body.append(f'<div class="card radar-card"><h4>{E(t["team"])} <span class="muted">· Swiss {E(rec[t["team"]])}</span></h4>' +
+        body.append(f'<div class="card radar-card"><h4>{E(t["team"])} <span class="muted">· Swiss {E(rec[t["team"]])}</span></h4><div class="sub">{E(TEAM_NAME.get(t["team"], ""))}</div>' +
                     radar_svg(axes, [(avg, MUTED, 0, True), (pv[t['team']], col, 0.25, False)], size=260, aria=f'{t["team"]} profile') +
                     f'<p class="sub" style="margin:2px 0 0">{E(note) or "Around the middle on every axis"}</p></div>')
     body.append('</div>')
@@ -1143,7 +1144,7 @@ def page_c(d):
         ps = [dict(p, champions=(ci_list(p['champions']), p['champions'])) for p in PS if p['team'] == t['team']]
         pcols = [('role', 'Pos.', ''), ('riot_id', 'Player', ''), ('games', 'G', 'n'), ('kda', 'KDA', 'n'), ('avg_kill_participation', 'KP %', 'n'), ('damage_per_min', 'Dmg/min', 'n'), ('damage_share', 'Dmg %', 'n'),
                  ('gold_per_min', 'Gold/min', 'n'), ('champions', 'Champions', 'wrap')]
-        body.append(f'<div class="card teamcard" id="team-{E(t["team"])}"><h3>{E(t["team"])} <span class="muted">· {t["wins"]}-{t["losses"]} in played games · KDA {t["kda"]} · KP {t["kill_participation"]}% · {t["avg_gold_per_min"]:,} gold/min</span></h3>'
+        body.append(f'<div class="card teamcard" id="team-{E(t["team"])}"><h3>{E(tn(t["team"]))} <span class="muted">· {t["wins"]}-{t["losses"]} in played games · KDA {t["kda"]} · KP {t["kill_participation"]}% · {t["avg_gold_per_min"]:,} gold/min</span></h3>'
                     + table(cols, rows) + '<h4>Players</h4>' + table(pcols, ps) + '</div>')
     toc = [('findings', 'Key findings'), ('table', 'Comparison'), ('time-gold', 'Time & gold'), ('kda', 'KDA & gold diff'), ('radar', 'Radar profiles'), ('rank-perf', 'Rank vs performance'), ('rank-perf-table', 'Rank vs performance table'), ('flow', 'Game flow & stomps'), ('kp', 'Kill participation'), ('kp-top', 'Top KP by position'), ('kp-best-game', 'Best KP game'), ('players', 'Player leaderboards'), ('logs', 'Every game')]
     return page('c-team-evaluation.html', 'C. Team evaluation',
@@ -1188,7 +1189,7 @@ def page_d(d):
 
     body = []
     # bracket
-    rows = [dict(code=k['code'], a=k['advantage'], b=k['disadvantage'], when=when(k['scheduled']), semi=k['semi'] + (' (balanced pairing)' if k['balanced'] else ''),
+    rows = [dict(code=k['code'], a=tn(k['advantage']), b=tn(k['disadvantage']), when=when(k['scheduled']), semi=k['semi'] + (' (balanced pairing)' if k['balanced'] else ''),
                  ra=f"{st_[k['advantage']]['record']} · #{st_[k['advantage']]['finish']}", rb=f"{st_[k['disadvantage']]['record']} · #{st_[k['disadvantage']]['finish']}") for k in ko]
     body.append('<h2 id="bracket">Quarter-final bracket</h2><p class="sub">From the Excel KNOCKOUT sheet. The advantage side is the higher Swiss finisher. '
                 'Semi-final 1 = winners of LKQ1 and LKQ2 (Sat 28/11, 09:00); semi-final 2 = winners of LKQ3 and LKQ4 (Sat 28/11, 13:00).</p>' +
@@ -1219,7 +1220,7 @@ def page_d(d):
         path = [m for m in M if team in (m['blue'], m['red'])]
         steps = ' → '.join(f"{'W' if m['winner'] == team else 'L'} vs {m['red'] if m['blue'] == team else m['blue']}" + (' (ff)' if m['result_type'] != 'played' else '') for m in path)
         ps = sorted([r for r in prof if r['team'] == team], key=lambda r: (order_roles.index(r['role']), -r['games']))
-        h = [f'<div class="card"><h3 id="team-{E(team)}">{E(team)} <span class="muted">· Swiss {E(st_[team]["record"])} · finished #{st_[team]["finish"]}</span></h3>'
+        h = [f'<div class="card"><h3 id="team-{E(team)}">{E(tn(team))} <span class="muted">· Swiss {E(st_[team]["record"])} · finished #{st_[team]["finish"]}</span></h3>'
              f'<div class="kv"><span>Path: <b>{E(steps)}</b></span></div>'
              f'<div class="kv"><span>KDA <b>{t["kda"]}</b></span><span>Gold/min <b>{t["avg_gold_per_min"]:,}</b></span><span>Gold diff <b>{t["avg_gold_diff"]:+,}</b></span>'
              f'<span>KP <b>{t["kill_participation"]}%</b></span><span>Dmg/min <b>{fmt(t["avg_damage_per_min"])}</b></span><span>Avg time <b>{t["avg_game_minutes"]:.1f} min</b></span></div>'
@@ -1235,7 +1236,8 @@ def page_d(d):
         a, b = k['advantage'], k['disadvantage']
         anchor = k['code'].lower()
         toc.append((anchor, f"{k['code']} {a} vs {b}"))
-        body.append(f'<h2 id="{anchor}">{E(k["code"])} · {E(a)} vs {E(b)} <span class="muted" style="font-size:15px;font-weight:400">· {E(when(k["scheduled"]))}</span></h2>')
+        body.append(f'<h2 id="{anchor}">{E(k["code"])} · {E(a)} vs {E(b)} <span class="muted" style="font-size:15px;font-weight:400">· {E(when(k["scheduled"]))}</span></h2>'
+                    f'<p class="muted" style="margin-top:-2px">{E(tn(a))} ⚔️ {E(tn(b))}</p>')
         sa, sb = tstat[a], tstat[b]
         lines = []
         for key, lab, f in [('kda', 'KDA', lambda v: f'{v}'), ('avg_gold_per_min', 'gold/min', lambda v: f'{v:,}'), ('kill_participation', 'KP', lambda v: f'{v}%'),
@@ -1275,7 +1277,7 @@ def page_d(d):
             xs = [x for x in pg if x['team'] == t]
             c = Counter(x['champion'] for x in xs)
             banned_vs = Counter(x['champion'] for x in d['drafts'] if x['kind'] == 'ban' and x['team'] != t and x['code'] in {y['code'] for y in xs})
-            trows.append(dict(team=t, qf=k['code'], g=len({x['code'] for x in xs}), picks=len(xs), uniq=len(c), ratio=(f'{len(c) / len(xs):.0%}', len(c) / len(xs)),
+            trows.append(dict(team=(E(tn(t)), t), qf=k['code'], g=len({x['code'] for x in xs}), picks=len(xs), uniq=len(c), ratio=(f'{len(c) / len(xs):.0%}', len(c) / len(xs)),
                               top=(ci_list(', '.join(f'{a} x{b}' if b > 1 else a for a, b in c.most_common(5))), ''),
                               bv=(ci_list(', '.join(f'{a} x{b}' if b > 1 else a for a, b in banned_vs.most_common(5))), '')))
     body.append('<div class="card"><h4>Team pools</h4>' +
@@ -1313,6 +1315,7 @@ def page_index(d):
     played = [m for m in M if m['result_type'] == 'played']
     ups = [m for m in played if m['upset']]
     files = [('matches.csv', 'One row per match: teams, sides, winner, result type, time, rank gap, upset flag'),
+             ('teams.csv', 'Team code, full name, Swiss record and whether it reached the quarter-finals'),
              ('standings.csv', 'Final Swiss standings with Buchholz and rank seed'),
              ('team_games.csv', 'One row per team per played game: K/D/A, gold, gold diff, time'),
              ('player_games.csv', 'One row per player per played game: champion, position, K/D/A, damage, gold, shares'),
@@ -1336,8 +1339,10 @@ def page_index(d):
         ('b-swiss-evaluation.html', 'B. Swiss Stage evaluation', 'Standings, round by round, results against rank, the most surprising result, ban & pick by position, and which position carries the damage.'),
         ('c-team-evaluation.html', 'C. Team evaluation', 'Game time, total gold, gold per minute, gold difference, KDA and kill participation per game for every team, player leaderboards and full game logs.'),
         ('d-quarterfinalists.html', 'D. Quarterfinalists', 'The 8 quarter-finalists: Swiss path, team profile, a six-stat radar for every player and head-to-head lane matchups for each quarter-final.')]) + '</div>')
-    body.append('<h2 id="standings">Final standings</h2>' + table([('finish', '#', 'n'), ('team', 'Team', ''), ('record', 'Record', ''), ('buchholz', 'Buchholz', 'n'), ('rank_seed', 'Rank seed', 'n'),
+    body.append('<h2 id="standings">Final standings</h2>' + table([('finish', '#', 'n'), ('team', 'Team', ''), ('team_name', 'Name', ''), ('record', 'Record', ''), ('buchholz', 'Buchholz', 'n'), ('rank_seed', 'Rank seed', 'n'),
                                                                    ('q', 'Result', '')], [dict(s, q=(pill('Quarter-finals', 'ok') if s['qualified'] else pill('Eliminated'), s['qualified'])) for s in S], hl=lambda r: r['qualified']))
+    body.append('<h2 id="teams">Teams and round-1 pairings</h2><div class="card"><ul class="find" style="columns:2;column-gap:32px">' +
+                ''.join(f'<li><b>{E(tn(m["blue"]))}</b> ⚔️ <b>{E(tn(m["red"]))}</b> <span class="muted">({E(m["code"])})</span></li>' for m in M if m['round'] == 1) + '</ul></div>')
     body.append('<h2 id="data">Data</h2><p>All tables are in <code>data/processed/</code> as CSV (UTF-8). Raw sources are in <code>data/raw/</code>; scoreboard transcriptions in <code>data/interim/scoreboards/</code>.</p>')
     body.append(table([('f', 'File', ''), ('x', 'Contents', 'wrap')], [dict(f=(f'<a href="../data/processed/{f}">{f}</a>', f), x=x) for f, x in files], sortable=False))
     body.append('<h2 id="method">Method</h2><ul class="find">'
@@ -1349,10 +1354,20 @@ def page_index(d):
     body.append('<h2 id="gaps">Data gaps and how they were handled</h2>' + table([('area', 'Area', ''), ('matches', 'Matches', 'wrap'), ('issue', 'Issue', 'wrap'), ('handling', 'Handling', 'wrap')], d['issues'], sortable=False))
     return page('index.html', 'SEEE LoL Championship 2026 — Swiss Stage review',
                 'Scouting, Swiss Stage evaluation and team evaluation for the 16-team student Swiss Stage (16–22 Nov 2026).', ''.join(body),
-                [('standings', 'Standings'), ('data', 'Data files'), ('method', 'Method'), ('gaps', 'Data gaps')])
+                [('standings', 'Standings'), ('teams', 'Teams'), ('data', 'Data files'), ('method', 'Method'), ('gaps', 'Data gaps')])
+
+
+TEAM_NAME = {}
+
+
+def tn(code):
+    """'Full Name (CODE)'."""
+    n = TEAM_NAME.get(code)
+    return f'{n} ({code})' if n and n != code else str(code)
 
 
 def build(out: Path, d):
+    TEAM_NAME.update(d.get('team_names', {}))
     out.mkdir(parents=True, exist_ok=True)
     for name, fn in [('index.html', page_index), ('a-team-scouting.html', page_a), ('b-swiss-evaluation.html', page_b), ('c-team-evaluation.html', page_c), ('d-quarterfinalists.html', page_d)]:
         (out / name).write_text(fn(d), encoding='utf-8')
