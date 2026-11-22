@@ -82,5 +82,17 @@
   "matches": "all",
   "issue": "Record draft rows are pick/ban order, not positions.",
   "handling": "Positions come from the scoreboard rows and the record rosters."
+ },
+ {
+  "area": "Draft order",
+  "matches": "all",
+  "issue": "Records list each team's 5 picks but do not state the order explicitly; LS33 has no draft.",
+  "handling": "Assumed the list is the lock-in order and used the standard draft (B1 R1 R2 B2 B3 R3 R4 B4 B5 R5) to tell blind picks from counter-picks; LS33 lanes are \"unknown\"."
+ },
+ {
+  "area": "Meta source",
+  "matches": "all",
+  "issue": "Meta tiers and matchup win rates are op.gg solo-queue data (all servers), read 22 Nov 2026 for patches 26.22/26.23 (op.gg: 16.22/16.23). Zed top and Fizz bot have no matchup data.",
+  "handling": "Used as a guide; matchups under 100 games are flagged."
  }
 ]

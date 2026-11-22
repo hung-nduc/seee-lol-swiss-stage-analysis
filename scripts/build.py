@@ -443,6 +443,66 @@ def main():
     prof.sort(key=lambda r: (r['team'], ROLES.index([k for k, v in ROLE_NAME.items() if v == r['role']][0]), -r['games'], r['riot_id']))
     knockout = json.loads((DATA / 'interim' / 'knockout.json').read_text(encoding='utf-8'))
 
+    # ------------------------------------------------ meta analysis (op.gg patch data)
+    # Official Riot patch names are 26.xx; op.gg labels the same patches 16.xx.
+    PATCH_OF_ROUND = lambda rd: '26.22' if rd == 1 else '26.23'
+    OPGG = {'26.22': '16.22', '26.23': '16.23'}
+    POS = {'top': 'TOP', 'jungle': 'JG', 'mid': 'MID', 'adc': 'AD', 'support': 'SP'}
+    tierlist = []
+    for line in (DATA / 'raw' / 'opgg_tierlist_raw.txt').read_text(encoding='utf-8').splitlines():
+        v, pos, rk, ch, tier, wr, pr = line.split(',')
+        patch = {x: k for k, x in OPGG.items()}[v]
+        tierlist.append(dict(patch=patch, opgg_version=v, position=ROLE_NAME[POS[pos]], role=POS[pos], rank_in_position=int(rk), champion=ch,
+                             tier=int(tier), win_rate=float(wr), pick_rate=float(pr)))
+    tl = {(t['patch'], t['role'], t['champion']): t for t in tierlist}
+    with open(DATA / 'raw' / 'opgg_matchups_2026-11-22.csv', encoding='utf-8') as f:
+        mu = {(r['patch'], r['role'], r['champion'], r['opponent']): r for r in csv.DictReader(f)}
+    # draft slot of each pick: record rows are each team's pick order (assumed); standard draft
+    # B1 R1 R2 B2 B3 | R4 B4 B5 R5  ->  blue picks at global slots 1,4,5,8,9 and red at 2,3,6,7,10
+    SLOT = {'blue': [1, 4, 5, 8, 9], 'red': [2, 3, 6, 7, 10]}
+    slot_of = {}
+    for code in sorted(records):
+        m = records[code]
+        if m['result_type'] != 'played':
+            continue
+        for side in ('blue', 'red'):
+            order = [champ(r[f'{side}_pick']) for r in m['draft'] if champ(r[f'{side}_pick'])]
+            for i, c in enumerate(order[:5]):
+                slot_of[(code, c)] = SLOT[side][i]
+    meta_picks = []
+    lanes = defaultdict(list)
+    for x in player_games:
+        lanes[(x['code'], x['role'])].append(x)
+    for (code, role), xs in sorted(lanes.items()):
+        for x in xs:
+            o = [y for y in xs if y is not x][0]
+            patch = PATCH_OF_ROUND(x['round'])
+            t = tl.get((patch, role, x['champion']))
+            sx, so = slot_of.get((code, x['champion'])), slot_of.get((code, o['champion']))
+            if sx is None or so is None:
+                timing = 'unknown'
+            else:
+                timing = 'counter-pick' if sx > so else 'blind'
+            k = (patch, role, x['champion'], o['champion'])
+            k2 = (patch, role, o['champion'], x['champion'])
+            if k in mu and mu[k]['win_rate']:
+                mwr, mg = float(mu[k]['win_rate']), int(mu[k]['games'])
+            elif k2 in mu and mu[k2]['win_rate']:
+                mwr, mg = round(100 - float(mu[k2]['win_rate']), 2), int(mu[k2]['games'])
+            else:
+                mwr, mg = None, None
+            meta_picks.append(dict(
+                code=code, round=x['round'], patch=patch, team=x['team'], opponent=x['opponent'], side=x['side'], won=x['won'],
+                role=ROLE_NAME[role], riot_id=x['riot_id'], champion=x['champion'], lane_opponent=o['champion'],
+                tier=t['tier'] if t else '', rank_in_position=t['rank_in_position'] if t else '', opgg_pick_rate=t['pick_rate'] if t else '',
+                opgg_win_rate=t['win_rate'] if t else '',
+                meta_class=('Meta (tier 1-2)' if t and t['tier'] <= 2 else 'Viable (tier 3)' if t and t['tier'] == 3 else
+                            'Off-meta (tier 4-5)' if t else 'Off-role (not in op.gg list)'),
+                draft_slot=sx or '', opponent_slot=so or '', pick_timing=timing,
+                matchup_win_rate=mwr if mwr is not None else '', matchup_games=mg if mg is not None else '',
+                matchup=('' if mwr is None else 'favourable' if mwr >= 52 else 'unfavourable' if mwr <= 48 else 'even'),
+                matchup_reliable=int(bool(mg and mg >= 100))))
+
     # side stats
     played = [m for m in matches if m['result_type'] == 'played']
     side_stats = [dict(side=s, games=len(played), wins=sum(1 for m in played if m['winner_side'] == s),
@@ -467,6 +527,8 @@ def main():
     write_csv('team_stats', team_stats)
     write_csv('team_role_kp', team_role_kp)
     write_csv('player_position_profile', prof)
+    write_csv('meta_tierlist', tierlist)
+    write_csv('meta_picks', meta_picks)
     write_csv('player_stats', player_stats)
     write_csv('side_stats', side_stats)
     issues = json.loads((Path(__file__).with_name('data_issues.json')).read_text(encoding='utf-8'))
@@ -477,7 +539,7 @@ def main():
     report.build(ROOT / 'docs', dict(matches=matches, standings=standings, team_games=team_games, player_games=player_games,
                                      drafts=drafts, players=pr, scouting=sorted(scouting, key=lambda s: s['rank_seed']),
                                      champions=champions, role_stats=role_stats, team_stats=team_stats, player_stats=player_stats,
-                                     side_stats=side_stats, issues=issues, team_role_kp=team_role_kp, profile=prof, knockout=knockout, rank_label=rank_label, qualified=QUALIFIED,
+                                     side_stats=side_stats, issues=issues, team_role_kp=team_role_kp, profile=prof, knockout=knockout, meta_picks=meta_picks, tierlist=tierlist, rank_label=rank_label, qualified=QUALIFIED,
                                      role_name=ROLE_NAME, n_games=G))
 
 

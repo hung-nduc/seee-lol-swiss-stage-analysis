@@ -443,6 +443,128 @@ def page_a(d):
                 ''.join(body), toc)
 
 
+
+def meta_section(d):
+    mp, tlist = d['meta_picks'], d['tierlist']
+    q = set(d['qualified'])
+    classes = ['Meta (tier 1-2)', 'Viable (tier 3)', 'Off-meta (tier 4-5)', 'Off-role (not in op.gg list)']
+    ccol = [C[2], C[0], C[1], C[3]]
+    n = len(mp)
+    cnt = Counter(x['meta_class'] for x in mp)
+    wr = lambda xs: round(100 * sum(x['won'] for x in xs) / len(xs)) if xs else None
+    cps = [x for x in mp if x['pick_timing'] == 'counter-pick' and x['matchup']]
+    fav = [x for x in cps if x['matchup'] == 'favourable']
+    unf = [x for x in cps if x['matchup'] == 'unfavourable']
+    body = ['<h2 id="meta">Meta analysis (patch 26.22 / 26.23)</h2>'
+            '<p>Round 1 was played on <b>patch 26.22</b> and rounds 2–5 on <b>26.23</b>. Every pick is compared with op.gg\'s solo-queue statistics for the same patch and position '
+            '(all servers; op.gg labels these patches 16.22 and 16.23). <b>Meta</b> = op.gg tier 1–2 in that position, <b>Viable</b> = tier 3, <b>Off-meta</b> = tier 4–5, '
+            '<b>Off-role</b> = not in op.gg\'s list for that position at all (a flex or pocket pick, like Ziggs bot or Zed top).</p>'
+            '<p><b>Counter-picks</b>: from the record\'s pick order and the standard draft (B1 · R1 R2 · B2 B3 · R3 · R4 · B4 B5 · R5), the player who locked in after his lane opponent counter-picked. '
+            'The <b>matchup win rate</b> is op.gg\'s win rate of that champion against the lane opponent in that position and patch: ≥52% favourable, ≤48% unfavourable, otherwise even. '
+            'Solo-queue matchups are a guide, not a law: under 100 games the figure is noisy and is marked. '
+            '<i>Assumption:</i> the five picks in each record are listed in the order the team locked them in. The records don\'t say so explicitly.</p>']
+    body.append('<div class="tiles">' + ''.join(f'<div class="tile"><div class="v">{v}</div><div class="l">{l}</div></div>' for v, l in [
+        (f"{round(100 * cnt[classes[0]] / n)}%", f'of {n} picks were meta (tier 1–2)'),
+        (f"{round(100 * (cnt[classes[2]] + cnt[classes[3]]) / n)}%", 'off-meta or off-role'),
+        (f"{wr([x for x in mp if x['meta_class'] == classes[0]])}%", 'win rate of meta picks'),
+        (f"{wr([x for x in mp if x['meta_class'] in classes[2:]])}%", 'win rate of off-meta / off-role picks'),
+        (f"{len(fav)}/{len(cps)}", 'counter-picks with a favourable matchup'),
+        (f"{wr(fav)}%", 'win rate when the counter-pick was favourable')]) + '</div>')
+
+    # per team meta-forward index
+    teams = sorted({x['team'] for x in mp})
+    rows, bars = [], []
+    for t in teams:
+        xs = [x for x in mp if x['team'] == t]
+        c = Counter(x['meta_class'] for x in xs)
+        tiers = [x['tier'] for x in xs if x['tier'] != '']
+        cp = [x for x in xs if x['pick_timing'] == 'counter-pick' and x['matchup']]
+        mw = [x['matchup_win_rate'] for x in xs if x['matchup_win_rate'] != '']
+        rows.append(dict(team=(('✓ ' if t in q else '') + E(t), t), picks=len(xs), meta=(f"{round(100 * c[classes[0]] / len(xs))}%", c[classes[0]] / len(xs)),
+                         avg_tier=round(st.mean(tiers), 2) if tiers else '', offmeta=c[classes[2]], offrole=c[classes[3]],
+                         pop=round(st.mean(x['opgg_pick_rate'] for x in xs if x['opgg_pick_rate'] != ''), 1),
+                         cp=len(cp), cpfav=(f"{sum(1 for x in cp if x['matchup'] == 'favourable')}/{len(cp)}", sum(1 for x in cp if x['matchup'] == 'favourable') / max(len(cp), 1)),
+                         mwr=(f"{st.mean(mw):.1f}%", st.mean(mw)) if mw else ('—', 0)))
+        bars.append(dict(label=t, strong=t in q, values=[c[k] / len(xs) * 100 for k in classes],
+                         tip=f"{t}: " + ', '.join(f"{k.split(' (')[0]} {c[k]}" for k in classes)))
+    bars.sort(key=lambda b: -b['values'][0])
+    body.append('<h3 id="meta-teams">How meta-forward was each team?</h3><p class="sub">Share of each team\'s picks in each class. Sorted by the meta share — the "meta-forward index".</p>'
+                '<div class="card">' + legend(list(zip(['Meta (tier 1–2)', 'Viable (tier 3)', 'Off-meta (tier 4–5)', 'Off-role'], ccol))) +
+                hbar(bars, [0, 1, 2, 3], colors=ccol, xmax=100, total=False, aria='Pick classes per team') + '</div>')
+    body.append(table([('team', 'Team', ''), ('picks', 'Picks', 'n'), ('meta', 'Meta share', 'n'), ('avg_tier', 'Avg op.gg tier', 'n'), ('offmeta', 'Off-meta picks', 'n'),
+                       ('offrole', 'Off-role picks', 'n'), ('pop', 'Avg op.gg pick rate %', 'n'), ('cp', 'Counter-picks', 'n'), ('cpfav', 'Favourable counter-picks', 'n'),
+                       ('mwr', 'Avg matchup win rate', 'n')], sorted(rows, key=lambda r: -r['meta'][1])))
+
+    # did it matter?
+    rows = []
+    for k in classes:
+        xs = [x for x in mp if x['meta_class'] == k]
+        rows.append(dict(c=k, n=len(xs), w=sum(x['won'] for x in xs), wr=(f'{wr(xs)}%' if xs else '—', wr(xs) or 0)))
+    rows2 = []
+    for k in ('favourable', 'even', 'unfavourable'):
+        for timing in ('counter-pick', 'blind'):
+            xs = [x for x in mp if x['matchup'] == k and x['pick_timing'] == timing]
+            rows2.append(dict(c=f'{k} · {timing}', n=len(xs), w=sum(x['won'] for x in xs), wr=(f'{wr(xs)}%' if xs else '—', wr(xs) or 0)))
+    body.append('<h3 id="meta-result">Did meta and matchups decide games?</h3><div class="grid"><div class="card"><h4>Tournament win rate by pick class</h4>' +
+                table([('c', 'Class', ''), ('n', 'Picks', 'n'), ('w', 'Won', 'n'), ('wr', 'Win rate', 'n')], rows, sortable=False) +
+                '</div><div class="card"><h4>Tournament win rate by lane matchup</h4>' +
+                table([('c', 'Matchup · timing', ''), ('n', 'Picks', 'n'), ('w', 'Won', 'n'), ('wr', 'Win rate', 'n')], rows2, sortable=False) +
+                '<p class="sub">Each lane appears twice (once per side), so favourable and unfavourable mirror each other.</p></div></div>')
+
+    # most picked with tiers
+    pc = Counter(x['champion'] for x in mp)
+    tiers_of = defaultdict(dict)
+    for x in mp:
+        tiers_of[x['champion']].setdefault(x['patch'], set()).add(f"{x['role']} T{x['tier']}" if x['tier'] != '' else f"{x['role']} off-role")
+    rows = []
+    for c, k in pc.most_common(20):
+        xs = [x for x in mp if x['champion'] == c]
+        mw = [x['matchup_win_rate'] for x in xs if x['matchup_win_rate'] != '']
+        rows.append(dict(c=c, k=k, wr=(f'{wr(xs)}%', wr(xs)), t22='; '.join(sorted(tiers_of[c].get('26.22', []))) or '—', t23='; '.join(sorted(tiers_of[c].get('26.23', []))) or '—',
+                         mw=(f'{st.mean(mw):.1f}%', st.mean(mw)) if mw else ('—', 0)))
+    body.append('<h3 id="meta-champs">Most-picked champions and their meta tier</h3>' +
+                table([('c', 'Champion', ''), ('k', 'Picks', 'n'), ('wr', 'Tournament WR', 'n'), ('t22', 'Patch 26.22 (round 1)', 'wrap'), ('t23', 'Patch 26.23 (rounds 2–5)', 'wrap'),
+                       ('mw', 'Avg matchup WR', 'n')], rows))
+
+    # meta gaps: tier-1 champions never picked
+    picked = {(x['patch'], x['role'], x['champion']) for x in mp}
+    rows = []
+    for role_name in d['role_name'].values():
+        for patch in ('26.22', '26.23'):
+            t1 = [t for t in tlist if t['patch'] == patch and t['position'] == role_name and t['tier'] == 1]
+            used = [t['champion'] for t in t1 if any(x['champion'] == t['champion'] and x['role'] == role_name for x in mp if x['patch'] == patch)]
+            unused = [t['champion'] for t in t1 if t['champion'] not in used]
+            rows.append(dict(r=role_name, p=patch, n=len(t1), used=', '.join(used) or '—', unused=', '.join(unused) or '—'))
+    body.append('<h3 id="meta-gaps">Tier-1 champions: picked or ignored?</h3><p class="sub">op.gg tier-1 champions in each position, and whether anyone played them in that position on that patch. '
+                'Bans are not counted here (see Ban & pick above).</p>' +
+                table([('r', 'Position', ''), ('p', 'Patch', ''), ('n', 'Tier-1 champions', 'n'), ('used', 'Picked', 'wrap'), ('unused', 'Never picked', 'wrap')], rows, sortable=False))
+
+    # off-meta / off-role list
+    rows = [dict(code=x['code'], team=x['team'], role=x['role'], c=x['champion'], o=x['lane_opponent'], cls=x['meta_class'].split(' (')[0],
+                 t=x['tier'] if x['tier'] != '' else '—', res=(pill('Win', 'ok') if x['won'] else pill('Loss', 'bad'), x['won']))
+            for x in mp if x['meta_class'] in classes[2:]]
+    body.append('<h3 id="meta-off">Off-meta and off-role picks</h3><p class="sub">Pocket picks and flex picks; who played them and how they went.</p>'
+                '<details class="card"><summary>Show all %d off-meta / off-role picks</summary>' % len(rows) +
+                table([('code', 'Match', ''), ('team', 'Team', ''), ('role', 'Position', ''), ('c', 'Champion', ''), ('o', 'Lane opponent', ''), ('cls', 'Class', ''), ('t', 'Tier', 'n'), ('res', 'Result', '')], rows) + '</details>')
+
+    # counter-picks
+    rows = [dict(code=x['code'], team=x['team'], role=x['role'], c=x['champion'], o=x['lane_opponent'], slot=f"{x['opponent_slot']} → {x['draft_slot']}",
+                 mwr=(f"{x['matchup_win_rate']:.1f}%" + ('' if x['matchup_reliable'] else ' *'), x['matchup_win_rate']), g=x['matchup_games'],
+                 m=(pill(x['matchup'], 'ok' if x['matchup'] == 'favourable' else 'bad' if x['matchup'] == 'unfavourable' else ''), x['matchup']),
+                 res=(pill('Win', 'ok') if x['won'] else pill('Loss', 'bad'), x['won'])) for x in sorted(cps, key=lambda x: -x['matchup_win_rate'])]
+    body.append('<h3 id="meta-counters">Counter-picks</h3><p class="sub">Every lane where one side picked after the other. Slot = draft order of the opponent\'s pick → the counter-pick (1–10). '
+                '* = fewer than 100 games in op.gg\'s matchup sample.</p><div class="card">' +
+                hbar([dict(label=t, values=[sum(1 for x in cps if x['team'] == t and x['matchup'] == 'favourable'),
+                                            sum(1 for x in cps if x['team'] == t and x['matchup'] == 'even'),
+                                            sum(1 for x in cps if x['team'] == t and x['matchup'] == 'unfavourable')], strong=t in q,
+                           tip=f"{t}: favourable / even / unfavourable counter-picks") for t in teams], [0, 1, 2], colors=[C[2], MUTED, C[3]], aria='Counter-pick quality by team') +
+                legend([('Favourable', C[2]), ('Even', MUTED), ('Unfavourable', C[3])]) + '</div>'
+                '<details class="card"><summary>All %d counter-picks</summary>' % len(rows) +
+                table([('code', 'Match', ''), ('team', 'Team', ''), ('role', 'Position', ''), ('c', 'Counter-pick', ''), ('o', 'Into', ''), ('slot', 'Slots', ''),
+                       ('mwr', 'Matchup WR', 'n'), ('g', 'Games', 'n'), ('m', 'Matchup', ''), ('res', 'Result', '')], rows) + '</details>')
+    return ''.join(body)
+
+
 # ------------------------------------------------------------------ B. Swiss evaluation
 def page_b(d):
     M, S, champs, roles, pg, drafts = d['matches'], d['standings'], d['champions'], d['role_stats'], d['player_games'], d['drafts']
@@ -473,6 +595,17 @@ def page_b(d):
         f"Top laners were the team's #1 damage dealer {[r for r in roles if r['role'] == 'Top'][0]['top_damage_count']} times, Mid {[r for r in roles if r['role'] == 'Mid'][0]['top_damage_count']} times. "
         f"The ADC takes the most gold ({[r for r in roles if r['role'].startswith('Bot')][0]['gold_share']}%) but deals {[r for r in roles if r['role'].startswith('Bot')][0]['damage_share']}% of damage.",
     ]
+    mp = d['meta_picks']
+    _m = [x for x in mp if x['meta_class'].startswith('Meta')]
+    _cf = [x for x in mp if x['pick_timing'] == 'counter-pick' and x['matchup'] == 'favourable']
+    _tm = Counter(); _tn = Counter()
+    for x in mp:
+        _tn[x['team']] += 1; _tm[x['team']] += x['meta_class'].startswith('Meta')
+    _mf = sorted(_tn, key=lambda t: -_tm[t] / _tn[t])
+    finds.append(f"<b>Meta:</b> {round(100 * len(_m) / len(mp))}% of picks were op.gg tier 1–2 for their patch (26.22 in round 1, 26.23 after). "
+                 f"Most meta-forward: {E(_mf[0])} ({round(100 * _tm[_mf[0]] / _tn[_mf[0]])}%); least: {E(_mf[-1])} ({round(100 * _tm[_mf[-1]] / _tn[_mf[-1]])}%). "
+                 f"Meta picks won {round(100 * sum(x['won'] for x in _m) / len(_m))}% and counter-picks into a favourable solo-queue matchup won only "
+                 f"{round(100 * sum(x['won'] for x in _cf) / len(_cf))}% ({sum(x['won'] for x in _cf)}/{len(_cf)}): at this level the player gap mattered more than the draft.")
     body = ['<h2 id="findings">Key findings</h2><ul class="find">' + ''.join(f'<li>{f}</li>' for f in finds) + '</ul>']
 
     # standings
@@ -561,6 +694,8 @@ def page_b(d):
             ('kda', 'KDA', 'n'), ('avg_damage_share', 'Dmg share %', 'n'), ('picked_by', 'Picked by', 'wrap')]
     body.append('<details class="card"><summary>Show all %d champions</summary>' % len(champs) + table(cols, champs) + '</details>')
 
+    body.append(meta_section(d))
+
     # damage
     body.append('<h2 id="damage">Which position carries the damage?</h2><p class="sub">Damage to champions from the scoreboards; 26 of the 28 games have a damage column (LS13 and LS33 do not), and one LS18 value was hidden by a tooltip.</p>')
     order = [r['role'] for r in roles]
@@ -584,9 +719,9 @@ def page_b(d):
     body.append('</div>')
 
     toc = [('findings', 'Key findings'), ('standings', 'Standings'), ('rounds', 'Round by round'), ('results', 'All results'), ('surprise', 'Surprises'), ('sides', 'Sides & length'),
-           ('champions', 'Ban & pick'), ('by-position', 'Picks by position'), ('team-bans', 'Team bans'), ('champ-table', 'Every champion'), ('damage', 'Damage by position')]
+           ('champions', 'Ban & pick'), ('by-position', 'Picks by position'), ('team-bans', 'Team bans'), ('champ-table', 'Every champion'), ('meta', 'Meta analysis'), ('meta-counters', 'Counter-picks'), ('damage', 'Damage by position')]
     return page('b-swiss-evaluation.html', 'B. Swiss Stage evaluation',
-                '33 matches over 5 rounds (16–22 Nov 2026): 28 played, 4 forfeits, 1 ruling. Results against rank, surprises, ban & pick, and which position carries the damage.',
+                '33 matches over 5 rounds (16–22 Nov 2026): 28 played, 4 forfeits, 1 ruling. Results against rank, surprises, ban & pick, meta and counter-picks on patches 26.22/26.23, and which position carries the damage.',
                 ''.join(body), toc)
 
 

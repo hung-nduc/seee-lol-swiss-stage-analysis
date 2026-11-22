@@ -1,0 +1,141 @@
+patch,opgg_version,role,champion,opponent,win_rate,games,looked_up_from
+26.22,16.22,AD,Kai'Sa,Samira,47.36,8801,champion page
+26.22,16.22,JG,Jarvan IV,Skarner,46.79,966,champion page
+26.22,16.22,MID,Ahri,Galio,55.6,5020,champion page
+26.22,16.22,SP,Alistar,Neeko,53.36,1398,champion page
+26.22,16.22,TOP,K'Sante,Camille,45.6,2033,champion page
+26.22,16.22,AD,Ashe,Jhin,49.51,14257,champion page
+26.22,16.22,JG,Cho'Gath,Lillia,47.75,3118,champion page
+26.22,16.22,MID,Xerath,Viktor,54.72,5353,champion page
+26.22,16.22,SP,Leona,Seraphine,49.52,5137,champion page
+26.22,16.22,TOP,Jayce,Malphite,44.04,8636,champion page
+26.22,16.22,AD,Tristana,Jhin,50.66,13085,champion page
+26.22,16.22,JG,Cho'Gath,Naafiri,51.28,2188,champion page
+26.22,16.22,MID,LeBlanc,Taliyah,53.89,1312,champion page
+26.22,16.22,SP,Thresh,Pyke,50.93,8570,champion page
+26.22,16.22,TOP,Zed,Mordekaiser,,,no op.gg data
+26.22,16.22,AD,Lucian,Kai'Sa,49.51,24516,champion page
+26.22,16.22,JG,Viego,Sejuani,45.92,1849,champion page
+26.22,16.22,MID,Locke,Orianna,53.67,3447,champion page
+26.22,16.22,SP,Milio,Leona,49.04,5298,champion page
+26.22,16.22,TOP,Mordekaiser,Malphite,53.12,4098,champion page
+26.22,16.22,AD,Caitlyn,Miss Fortune,48.2,9547,champion page
+26.22,16.22,JG,Xin Zhao,Nocturne,52.35,1171,champion page
+26.22,16.22,MID,Anivia,Orianna,53.25,1324,champion page
+26.22,16.22,SP,Lux,Leona,47.48,4229,champion page
+26.22,16.22,TOP,Gwen,Akali,45.8,1035,champion page
+26.22,16.22,AD,Caitlyn,Jhin,46.9,30710,champion page
+26.22,16.22,JG,Shyvana,Pantheon,50.25,404,champion page
+26.22,16.22,MID,Ahri,Taliyah,50.49,3941,champion page
+26.22,16.22,SP,Rell,Nautilus,55.33,6967,champion page
+26.22,16.22,TOP,Sion,Aatrox,48.81,2553,champion page
+26.22,16.22,AD,Yunara,Jhin,49.02,24029,champion page
+26.22,16.22,JG,Pantheon,Nocturne,48.94,517,champion page
+26.22,16.22,MID,Syndra,Fizz,44.02,6263,champion page
+26.22,16.22,SP,Lulu,Neeko,51.34,2834,champion page
+26.22,16.22,TOP,Renekton,Ornn,43.69,2884,champion page
+26.22,16.22,AD,Yunara,Kai'Sa,51.38,34225,champion page
+26.22,16.22,JG,Nocturne,Zed,54.34,1117,champion page
+26.22,16.22,MID,Akali,Ahri,46.01,9558,champion page
+26.22,16.22,SP,Lulu,Nautilus,50.18,15519,champion page
+26.22,16.22,TOP,Pantheon,Mordekaiser,51.33,1650,champion page
+26.23,16.23,AD,Viktor,Tristana,48.84,172,champion page
+26.23,16.23,JG,Naafiri,Nidalee,51.08,462,champion page
+26.23,16.23,MID,Akali,Locke,54.78,1539,champion page
+26.23,16.23,SP,Leona,Rell,49.01,961,champion page
+26.23,16.23,TOP,Jax,Ambessa,50.28,891,champion page
+26.23,16.23,AD,Aphelios,Jhin,49.91,3424,champion page
+26.23,16.23,JG,Pantheon,Lillia,54.62,119,champion page
+26.23,16.23,MID,Hwei,Akshan,47.56,225,champion page
+26.23,16.23,SP,Nami,Alistar,48.82,1606,champion page
+26.23,16.23,TOP,Ornn,Aatrox,47.86,608,champion page
+26.23,16.23,AD,Caitlyn,Ziggs,44.24,825,champion page
+26.23,16.23,JG,Kayn,Sejuani,50.25,400,champion page
+26.23,16.23,MID,Syndra,Akshan,46.67,540,champion page
+26.23,16.23,SP,Leona,Nautilus,53.38,2992,champion page
+26.23,16.23,TOP,Yone,Gwen,48.61,467,champion page
+26.23,16.23,AD,Corki,Aphelios,51.02,884,champion page
+26.23,16.23,JG,Lee Sin,Jarvan IV,48,3727,champion page
+26.23,16.23,MID,Galio,Ekko,48.28,785,champion page
+26.23,16.23,SP,Braum,Seraphine,48.45,743,champion page
+26.23,16.23,TOP,Ornn,Malphite,52.09,647,champion page
+26.23,16.23,AD,Ezreal,Varus,49.66,1748,champion page
+26.23,16.23,JG,Xin Zhao,Jarvan IV,49.03,722,champion page
+26.23,16.23,MID,Viktor,Syndra,49.88,2608,champion page
+26.23,16.23,SP,Poppy,Alistar,52.9,811,champion page
+26.23,16.23,TOP,Gnar,Renekton,54.43,1027,champion page
+26.23,16.23,AD,Corki,Kalista,51.93,751,champion page
+26.23,16.23,JG,Jarvan IV,Jayce,54.67,1123,champion page
+26.23,16.23,MID,Sylas,Galio,47.11,1057,champion page
+26.23,16.23,SP,Maokai,Taric,34.88,43,champion page
+26.23,16.23,TOP,Olaf,Malphite,52.99,451,champion page
+26.23,16.23,AD,Ezreal,Ziggs,47,1432,champion page
+26.23,16.23,JG,Kayn,Jarvan IV,48.15,1242,champion page
+26.23,16.23,MID,Lissandra,Orianna,51.92,728,champion page
+26.23,16.23,SP,Thresh,Camille,53.51,385,champion page
+26.23,16.23,TOP,Gwen,Sion,52.95,644,champion page
+26.23,16.23,AD,Jhin,Fizz,,,no op.gg data
+26.23,16.23,JG,Hecarim,Viego,51.9,1237,champion page
+26.23,16.23,MID,Tristana,Xerath,45.76,59,champion page
+26.23,16.23,SP,Pyke,Nautilus,46.93,1854,champion page
+26.23,16.23,TOP,Sylas,K'Sante,51.16,86,champion page
+26.23,16.23,AD,Kai'Sa,Yunara,48.05,7738,champion page
+26.23,16.23,JG,Jarvan IV,Lee Sin,52,3727,champion page
+26.23,16.23,MID,Anivia,Annie,53.18,173,champion page
+26.23,16.23,SP,Rell,Rakan,50.24,629,champion page
+26.23,16.23,TOP,Nasus,Gnar,53.35,388,champion page
+26.23,16.23,AD,Varus,Ezreal,50.34,1748,champion page
+26.23,16.23,JG,Jarvan IV,Kayn,51.85,1242,champion page
+26.23,16.23,MID,Aurelion Sol,Yone,39.38,353,champion page
+26.23,16.23,SP,Leona,Soraka,48.84,907,champion page
+26.23,16.23,TOP,Renekton,Rumble,51.35,296,champion page
+26.23,16.23,AD,Jinx,Kai'Sa,52.42,5881,champion page
+26.23,16.23,JG,Viego,Cho'Gath,50.09,1096,champion page
+26.23,16.23,MID,Sylas,Yasuo,47.71,1199,champion page
+26.23,16.23,SP,Poppy,Pyke,54.44,417,champion page
+26.23,16.23,TOP,Malphite,Gangplank,53.73,791,champion page
+26.23,16.23,AD,Kai'Sa,Yunara,48.05,7738,champion page
+26.23,16.23,JG,Naafiri,Diana,50,404,champion page
+26.23,16.23,MID,Akali,Yasuo,48.14,1859,champion page
+26.23,16.23,SP,Nautilus,Braum,46.11,2930,champion page
+26.23,16.23,TOP,Ambessa,Ornn,50.8,439,champion page
+26.23,16.23,AD,Tristana,Jhin,50.52,3201,champion page
+26.23,16.23,JG,Rammus,Kayn,55.02,229,champion page
+26.23,16.23,MID,Vex,Anivia,50,136,champion page
+26.23,16.23,SP,Nautilus,Taric,40.53,454,champion page
+26.23,16.23,TOP,Ornn,Fiora,48.68,567,champion page
+26.23,16.23,AD,Corki,Ziggs,50.75,333,champion page
+26.23,16.23,JG,Qiyana,Jarvan IV,48.91,1464,champion page
+26.23,16.23,MID,Locke,Viktor,50.94,1384,champion page
+26.23,16.23,SP,Alistar,Nautilus,54.56,2960,champion page
+26.23,16.23,TOP,Aatrox,Yone,49.31,1728,champion page
+26.23,16.23,AD,Xerath,Kai'Sa,51.75,315,champion page
+26.23,16.23,JG,Kayn,Amumu,55.85,342,champion page
+26.23,16.23,MID,Qiyana,Zed,51.36,627,champion page
+26.23,16.23,SP,Alistar,Nautilus,54.56,2960,champion page
+26.23,16.23,TOP,Garen,Ambessa,53.71,674,champion page
+26.23,16.23,AD,Tristana,Zeri,50.62,721,champion page
+26.23,16.23,JG,Rammus,Pantheon,36.67,30,champion page
+26.23,16.23,MID,Galio,Taliyah,50.25,406,champion page
+26.23,16.23,SP,Braum,Nautilus,53.91,2931,champion page
+26.23,16.23,TOP,Ornn,K'Sante,50.6,498,champion page
+26.23,16.23,AD,Ezreal,Kai'Sa,46.12,17955,champion page
+26.23,16.23,JG,Wukong,Viego,50.67,1569,opponent page (100 - x)
+26.23,16.23,MID,Cassiopeia,Malzahar,52.21,136,champion page
+26.23,16.23,SP,Karma,Neeko,51.85,704,champion page
+26.23,16.23,TOP,Ornn,Sion,49.64,421,champion page
+26.23,16.23,AD,Kog'Maw,Ziggs,41.73,139,champion page
+26.23,16.23,JG,Cho'Gath,Wukong,52.02,1017,champion page
+26.23,16.23,MID,Katarina,Cassiopeia,54.87,226,champion page
+26.23,16.23,SP,Pyke,Leona,49.38,1282,champion page
+26.23,16.23,TOP,Garen,Ornn,48.71,657,champion page
+26.23,16.23,AD,Corki,Ziggs,50.75,333,champion page
+26.23,16.23,JG,Kayn,Nocturne,49.54,757,champion page
+26.23,16.23,MID,Katarina,Aurelion Sol,47.5,280,champion page
+26.23,16.23,SP,Nautilus,Braum,46.11,2930,champion page
+26.23,16.23,TOP,Garen,Darius,46.64,1651,champion page
+26.23,16.23,AD,Tristana,Caitlyn,49.16,1373,champion page
+26.23,16.23,JG,Aatrox,Kayn,46.63,163,champion page
+26.23,16.23,MID,Yone,Aurelion Sol,60.62,353,champion page
+26.23,16.23,SP,Nautilus,Lux,51.79,1755,champion page
+26.23,16.23,TOP,Gwen,Ornn,50.07,673,champion page

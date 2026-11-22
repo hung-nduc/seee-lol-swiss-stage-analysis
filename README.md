@@ -8,7 +8,7 @@ This repo analyses the Swiss Stage of the student League of Legends tournament (
 |---|---|
 | [`docs/index.html`](docs/index.html) | Overview, final standings, data files, method, data gaps |
 | [`docs/a-team-scouting.html`](docs/a-team-scouting.html) | **A. Team scouting**: each team's average Solo/Duo, Flex and Ranked 5s rank; ranked games in 2026; whether the team practises in Flex; rank spread; every roster |
-| [`docs/b-swiss-evaluation.html`](docs/b-swiss-evaluation.html) | **B. Swiss Stage evaluation**: standings, round by round, results against rank, the most surprising result, sides, game length, ban & pick by position, which position carries the damage |
+| [`docs/b-swiss-evaluation.html`](docs/b-swiss-evaluation.html) | **B. Swiss Stage evaluation**: standings, round by round, results against rank, the most surprising result, sides, game length, ban & pick by position, meta analysis (op.gg tier per patch 26.22/26.23, meta-forward index per team, counter-picks and matchup win rates), which position carries the damage |
 | [`docs/c-team-evaluation.html`](docs/c-team-evaluation.html) | **C. Team evaluation**: game time, total gold, gold per minute, gold difference, KDA and kill participation (KP) per game; radar profile of every team (KDA, gold/min, gold diff, KP, damage/min, speed) with a two-team compare; player leaderboards; every game per team |
 | [`docs/d-quarterfinalists.html`](docs/d-quarterfinalists.html) | **D. Quarterfinalists**: the 8 quarter-finalists by match: Swiss path, team profile, a six-stat radar for every player (KDA, KP, damage/min, damage share, gold/min, survival; percentile within the position), and lane-by-lane matchups |
 
@@ -22,6 +22,8 @@ data/
     screenshot_name_map.csv      original screenshot name -> match code
     schedule/swiss_schedule.xlsx Swiss & knockout schedule (final authority for teams/sides)
     opgg_ranks_2026-11-22.csv    op.gg VN snapshot of every player (season 2026)
+    opgg_tierlist_raw.txt        op.gg tier lists per position, patches 26.22 and 26.23 (op.gg calls them 16.22/16.23)
+    opgg_matchups_2026-11-22.csv op.gg lane matchup win rates for the 140 Swiss lanes
     remarks.txt                  organiser remarks
   interim/
     records.json                 parsed records (scripts/parse_records.py)
@@ -51,6 +53,8 @@ scripts/
 | `role_stats.csv` | position: damage and gold share, damage per minute, top-damage count |
 | `team_stats.csv` | team: averages over played games, incl. **team kill participation (KP)**, KP in wins/losses and KP by position |
 | `team_role_kp.csv` | team × position: kill participation |
+| `meta_tierlist.csv` | patch × position × champion: op.gg tier, rank, win rate, pick rate |
+| `meta_picks.csv` | pick: patch, op.gg tier, meta class, draft slot, blind/counter-pick, matchup win rate vs lane opponent |
 | `player_position_profile.csv` | player × position: the six radar stats and their percentile within the position |
 | `player_stats.csv`, `side_stats.csv` | aggregates |
 | `data_issues.csv` | every gap found in the data and how it was handled |
@@ -69,6 +73,7 @@ python scripts/build.py           # writes data/processed/*.csv and docs/*.html
 - **Game stats** were transcribed from the scoreboard screenshots. Each team's kills, deaths, assists and gold were checked against the scoreboard header totals.
 - **Ranks** were read from op.gg (VN) on 22 Nov 2026 for season 2026 (tier, LP, wins + losses per queue). This is a snapshot after the stage, not before it.
 - **Team rank** is the average of the players who actually played, weighted by Swiss games. Ladder values: Iron 4 = 0, Gold 4 = 12, Diamond 1 = 27, Master = 28 + LP/100.
+- **Patches**: Round 1 was played on 26.22 and rounds 2–5 on 26.23 (Riot's official names; op.gg shows them as 16.22/16.23). Meta = op.gg tier 1–2 in that position and patch.
 - **Upset** means a played game won by the lineup with the lower average Solo/Duo rank.
 - **Team KP** for one game is the sum of each player's kills + assists, divided by 5 × the team's kills. That is the average player's share of the team's kills. The report averages it over the team's games.
 

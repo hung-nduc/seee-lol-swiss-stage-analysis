@@ -1,0 +1,281 @@
+code,round,patch,team,opponent,side,won,role,riot_id,champion,lane_opponent,tier,rank_in_position,opgg_pick_rate,opgg_win_rate,meta_class,draft_slot,opponent_slot,pick_timing,matchup_win_rate,matchup_games,matchup,matchup_reliable
+LS11,1,26.22,DMX,MSD,blue,1,Bot (ADC),Flowern#Navi,Kai'Sa,Samira,1,4,23.48,49.62,Meta (tier 1-2),1,2,blind,47.36,8801,unfavourable,1
+LS11,1,26.22,MSD,DMX,red,0,Bot (ADC),Playmaker#17th,Samira,Kai'Sa,4,25,3.46,50.04,Off-meta (tier 4-5),2,1,counter-pick,52.64,8801,favourable,1
+LS11,1,26.22,DMX,MSD,blue,1,Jungle,lil moneytft#momly,Jarvan IV,Skarner,2,8,8.06,49.73,Meta (tier 1-2),5,6,blind,46.79,966,unfavourable,1
+LS11,1,26.22,MSD,DMX,red,0,Jungle,Astr4#17B2,Skarner,Jarvan IV,4,42,1.08,51.08,Off-meta (tier 4-5),6,5,counter-pick,53.21,966,favourable,1
+LS11,1,26.22,DMX,MSD,blue,1,Mid,vegito#cuh,Ahri,Galio,1,1,11.46,51.31,Meta (tier 1-2),8,10,blind,55.6,5020,favourable,1
+LS11,1,26.22,MSD,DMX,red,0,Mid,Remember Me#8567,Galio,Ahri,4,33,4.66,48.89,Off-meta (tier 4-5),10,8,counter-pick,44.4,5020,unfavourable,1
+LS11,1,26.22,DMX,MSD,blue,1,Support,mộngcầuchânv#bahoa,Alistar,Neeko,1,6,6.89,51.2,Meta (tier 1-2),4,3,counter-pick,53.36,1398,favourable,1
+LS11,1,26.22,MSD,DMX,red,0,Support,DangThinh#267,Neeko,Alistar,4,37,2.06,48.62,Off-meta (tier 4-5),3,4,blind,46.64,1398,unfavourable,1
+LS11,1,26.22,DMX,MSD,blue,1,Top,Le Sante#L26,K'Sante,Camille,5,54,4.37,46.25,Off-meta (tier 4-5),9,7,counter-pick,45.6,2033,unfavourable,1
+LS11,1,26.22,MSD,DMX,red,0,Top,10 điểm 3 môn#4444,Camille,K'Sante,2,9,4.52,50.78,Meta (tier 1-2),7,9,blind,54.4,2033,favourable,1
+LS12,1,26.22,CBK,GLT,red,0,Bot (ADC),anhbinhthulong#vn2,Jhin,Ashe,1,2,19.6,50.36,Meta (tier 1-2),2,5,blind,50.49,14257,even,1
+LS12,1,26.22,GLT,CBK,blue,1,Bot (ADC),Zendar#5696,Ashe,Jhin,3,15,6.38,49.96,Viable (tier 3),5,2,counter-pick,49.51,14257,even,1
+LS12,1,26.22,CBK,GLT,red,0,Jungle,marisaaa#2901,Lillia,Cho'Gath,1,2,4.91,51.91,Meta (tier 1-2),10,8,counter-pick,52.25,3118,favourable,1
+LS12,1,26.22,GLT,CBK,blue,1,Jungle,3Who#0802,Cho'Gath,Lillia,1,3,4.98,51.61,Meta (tier 1-2),8,10,blind,47.75,3118,unfavourable,1
+LS12,1,26.22,CBK,GLT,red,0,Mid,Ezz#31108,Viktor,Xerath,3,19,7.79,49.15,Viable (tier 3),7,9,blind,45.28,5353,unfavourable,1
+LS12,1,26.22,GLT,CBK,blue,1,Mid,VAC Ryoku Haru#1603,Xerath,Viktor,2,12,3.95,51.19,Meta (tier 1-2),9,7,counter-pick,54.72,5353,favourable,1
+LS12,1,26.22,CBK,GLT,red,0,Support,Choccbel Nhocoay#vn3,Seraphine,Leona,2,9,7.27,50.77,Meta (tier 1-2),3,4,blind,50.48,5137,even,1
+LS12,1,26.22,GLT,CBK,blue,1,Support,nhquan2121#6844,Leona,Seraphine,1,2,8.55,51.64,Meta (tier 1-2),4,3,counter-pick,49.52,5137,even,1
+LS12,1,26.22,CBK,GLT,red,0,Top,messihamburger#1610,Malphite,Jayce,1,1,6.84,51.65,Meta (tier 1-2),6,1,counter-pick,55.96,8636,favourable,1
+LS12,1,26.22,GLT,CBK,blue,1,Top,LSR Nhakanasi#TLA4,Jayce,Malphite,4,36,5.91,47.82,Off-meta (tier 4-5),1,6,blind,44.04,8636,unfavourable,1
+LS13,1,26.22,GOS,LXM,blue,0,Bot (ADC),MTHUUS#2608,Tristana,Jhin,3,18,5.8,49.94,Viable (tier 3),5,3,counter-pick,50.66,13085,even,1
+LS13,1,26.22,LXM,GOS,red,1,Bot (ADC),TheMaLaiHay#VNmub,Jhin,Tristana,1,2,19.6,50.36,Meta (tier 1-2),3,5,blind,49.34,13085,even,1
+LS13,1,26.22,GOS,LXM,blue,0,Jungle,taoapdaotuyetdoi#3643,Cho'Gath,Naafiri,1,3,4.98,51.61,Meta (tier 1-2),4,10,blind,51.28,2188,even,1
+LS13,1,26.22,LXM,GOS,red,1,Jungle,ShihoMiyanoo#4869,Naafiri,Cho'Gath,2,14,4.71,50.39,Meta (tier 1-2),10,4,counter-pick,48.72,2188,even,1
+LS13,1,26.22,GOS,LXM,blue,0,Mid,Lê Văn Vở#1105,LeBlanc,Taliyah,2,4,5.67,50.86,Meta (tier 1-2),8,6,counter-pick,53.89,1312,favourable,1
+LS13,1,26.22,LXM,GOS,red,1,Mid,黑天风 A Tức#2301,Taliyah,LeBlanc,4,29,2.56,50.11,Off-meta (tier 4-5),6,8,blind,46.11,1312,unfavourable,1
+LS13,1,26.22,GOS,LXM,blue,0,Support,Đạt Đạt Đạt#vn2,Thresh,Pyke,1,1,13.69,51.09,Meta (tier 1-2),1,2,blind,50.93,8570,even,1
+LS13,1,26.22,LXM,GOS,red,1,Support,Chocopyke#Rùa,Pyke,Thresh,2,19,5.69,49.44,Meta (tier 1-2),2,1,counter-pick,49.07,8570,even,1
+LS13,1,26.22,GOS,LXM,blue,0,Top,JappleG#66666,Zed,Mordekaiser,,,,,Off-role (not in op.gg list),9,7,counter-pick,,,,0
+LS13,1,26.22,LXM,GOS,red,1,Top,Toithangcap1minh#1409,Mordekaiser,Zed,2,14,5.05,50.32,Meta (tier 1-2),7,9,blind,,,,0
+LS14,1,26.22,HKG,VNT,blue,1,Bot (ADC),Kataddict#28708,Lucian,Kai'Sa,3,20,8.49,49.2,Viable (tier 3),4,2,counter-pick,49.51,24516,even,1
+LS14,1,26.22,VNT,HKG,red,0,Bot (ADC),bittersweet#prev,Kai'Sa,Lucian,1,4,23.48,49.62,Meta (tier 1-2),2,4,blind,50.49,24516,even,1
+LS14,1,26.22,HKG,VNT,blue,1,Jungle,HK3 XII#1268,Viego,Sejuani,2,7,8.0,49.71,Meta (tier 1-2),1,3,blind,45.92,1849,unfavourable,1
+LS14,1,26.22,VNT,HKG,red,0,Jungle,Dưa#LOL,Sejuani,Viego,3,22,2.21,51.57,Viable (tier 3),3,1,counter-pick,54.08,1849,favourable,1
+LS14,1,26.22,HKG,VNT,blue,1,Mid,Fizz Ziczac#vn2,Locke,Orianna,4,30,5.56,48.27,Off-meta (tier 4-5),5,7,blind,53.67,3447,favourable,1
+LS14,1,26.22,VNT,HKG,red,0,Mid,2I am Hải#vn2,Orianna,Locke,4,40,5.24,47.48,Off-meta (tier 4-5),7,5,counter-pick,46.33,3447,unfavourable,1
+LS14,1,26.22,HKG,VNT,blue,1,Support,HK4 Cragon#0608,Milio,Leona,2,16,6.39,50.18,Meta (tier 1-2),9,6,counter-pick,49.04,5298,even,1
+LS14,1,26.22,VNT,HKG,red,0,Support,KAugustzzz8#AUG,Leona,Milio,1,2,8.55,51.64,Meta (tier 1-2),6,9,blind,50.96,5298,even,1
+LS14,1,26.22,HKG,VNT,blue,1,Top,HK2 LSiong#2207,Mordekaiser,Malphite,2,14,5.05,50.32,Meta (tier 1-2),8,10,blind,53.12,4098,favourable,1
+LS14,1,26.22,VNT,HKG,red,0,Top,mỗi năm một già#bLa,Malphite,Mordekaiser,1,1,6.84,51.65,Meta (tier 1-2),10,8,counter-pick,46.88,4098,unfavourable,1
+LS15,1,26.22,LK,ZEN,red,0,Bot (ADC),clayern#HUST,Miss Fortune,Caitlyn,2,6,7.79,50.59,Meta (tier 1-2),7,8,blind,51.8,9547,even,1
+LS15,1,26.22,ZEN,LK,blue,1,Bot (ADC),MeiMei Cat#HUST,Caitlyn,Miss Fortune,3,21,11.6,48.32,Viable (tier 3),8,7,counter-pick,48.2,9547,even,1
+LS15,1,26.22,LK,ZEN,red,0,Jungle,ĐàoHải tuổi 18#1312,Nocturne,Xin Zhao,3,38,4.13,48.94,Viable (tier 3),3,4,blind,47.65,1171,unfavourable,1
+LS15,1,26.22,ZEN,LK,blue,1,Jungle,TAUNT#2706,Xin Zhao,Nocturne,3,27,3.07,50.61,Viable (tier 3),4,3,counter-pick,52.35,1171,favourable,1
+LS15,1,26.22,LK,ZEN,red,0,Mid,SSA Reaper#2907,Orianna,Anivia,4,40,5.24,47.48,Off-meta (tier 4-5),6,5,counter-pick,46.75,1324,unfavourable,1
+LS15,1,26.22,ZEN,LK,blue,1,Mid,GeminiJune5th#Tus,Anivia,Orianna,4,32,2.27,50.24,Off-meta (tier 4-5),5,6,blind,53.25,1324,favourable,1
+LS15,1,26.22,LK,ZEN,red,0,Support,kenzo2s#vn2,Leona,Lux,1,2,8.55,51.64,Meta (tier 1-2),10,9,counter-pick,52.52,4229,favourable,1
+LS15,1,26.22,ZEN,LK,blue,1,Support,marianne#ikeri,Lux,Leona,3,25,6.22,48.77,Viable (tier 3),9,10,blind,47.48,4229,unfavourable,1
+LS15,1,26.22,LK,ZEN,red,0,Top,Duc Duyy#2006,Akali,Gwen,3,27,3.77,49.29,Viable (tier 3),2,1,counter-pick,54.2,1035,favourable,1
+LS15,1,26.22,ZEN,LK,blue,1,Top,BLIND#DMH,Gwen,Akali,3,24,2.64,50.75,Viable (tier 3),1,2,blind,45.8,1035,unfavourable,1
+LS16,1,26.22,FTL,KGC,blue,0,Bot (ADC),Sheva#1209,Caitlyn,Jhin,3,21,11.6,48.32,Viable (tier 3),5,2,counter-pick,46.9,30710,unfavourable,1
+LS16,1,26.22,KGC,FTL,red,1,Bot (ADC),Sứ Giả Người Tày#5964,Jhin,Caitlyn,1,2,19.6,50.36,Meta (tier 1-2),2,5,blind,53.1,30710,favourable,1
+LS16,1,26.22,FTL,KGC,blue,0,Jungle,hugshe#3904,Shyvana,Pantheon,2,4,3.91,51.63,Meta (tier 1-2),8,6,counter-pick,50.25,404,even,1
+LS16,1,26.22,KGC,FTL,red,1,Jungle,Thịt dê cơm cháy#035,Pantheon,Shyvana,,,,,Off-role (not in op.gg list),6,8,blind,49.75,404,even,1
+LS16,1,26.22,FTL,KGC,blue,0,Mid,dang khoa#1701,Ahri,Taliyah,1,1,11.46,51.31,Meta (tier 1-2),9,10,blind,50.49,3941,even,1
+LS16,1,26.22,KGC,FTL,red,1,Mid,alle#imo,Taliyah,Ahri,4,29,2.56,50.11,Off-meta (tier 4-5),10,9,counter-pick,49.51,3941,even,1
+LS16,1,26.22,FTL,KGC,blue,0,Support,Postpone Atone#kdaat,Rell,Nautilus,2,10,4.02,51.88,Meta (tier 1-2),4,3,counter-pick,55.33,6967,favourable,1
+LS16,1,26.22,KGC,FTL,red,1,Support,MID Đại Cồ Việt#MLEM,Nautilus,Rell,2,13,11.65,49.32,Meta (tier 1-2),3,4,blind,44.67,6967,unfavourable,1
+LS16,1,26.22,FTL,KGC,blue,0,Top,mmmmmmmm1#mmm,Sion,Aatrox,2,13,3.93,50.96,Meta (tier 1-2),1,7,blind,48.81,2553,even,1
+LS16,1,26.22,KGC,FTL,red,1,Top,Deus ex machina#2202,Aatrox,Sion,2,12,6.31,49.91,Meta (tier 1-2),7,1,counter-pick,51.19,2553,even,1
+LS17,1,26.22,LN,TT,red,0,Bot (ADC),eD nhát gái#22402,Jhin,Yunara,1,2,19.6,50.36,Meta (tier 1-2),3,5,blind,50.98,24029,even,1
+LS17,1,26.22,TT,LN,blue,1,Bot (ADC),PT Đạo Hàm Riêng#FaMI,Yunara,Jhin,2,11,11.93,49.38,Meta (tier 1-2),5,3,counter-pick,49.02,24029,even,1
+LS17,1,26.22,LN,TT,red,0,Jungle,30FPS player#2007,Nocturne,Pantheon,3,38,4.13,48.94,Viable (tier 3),7,8,blind,51.06,517,even,1
+LS17,1,26.22,TT,LN,blue,1,Jungle,vasavi#shati,Pantheon,Nocturne,,,,,Off-role (not in op.gg list),8,7,counter-pick,48.94,517,even,1
+LS17,1,26.22,LN,TT,red,0,Mid,W1ndchaser#1845,Fizz,Syndra,2,5,4.72,51.34,Meta (tier 1-2),2,1,counter-pick,55.98,6263,favourable,1
+LS17,1,26.22,TT,LN,blue,1,Mid,oHałçÿon#20800,Syndra,Fizz,2,14,9.36,49.53,Meta (tier 1-2),1,2,blind,44.02,6263,unfavourable,1
+LS17,1,26.22,LN,TT,red,0,Support,Corn Cuang#ccc,Neeko,Lulu,4,37,2.06,48.62,Off-meta (tier 4-5),6,4,counter-pick,48.66,2834,even,1
+LS17,1,26.22,TT,LN,blue,1,Support,need u by myside#bunzz,Lulu,Neeko,1,5,12.98,49.83,Meta (tier 1-2),4,6,blind,51.34,2834,even,1
+LS17,1,26.22,LN,TT,red,0,Top,hadyu#9816,Ornn,Renekton,1,6,3.96,51.37,Meta (tier 1-2),10,9,counter-pick,56.31,2884,favourable,1
+LS17,1,26.22,TT,LN,blue,1,Top,freistil#27507,Renekton,Ornn,2,19,6.36,49.46,Meta (tier 1-2),9,10,blind,43.69,2884,unfavourable,1
+LS18,1,26.22,LHP,YSL,blue,1,Bot (ADC),繁荣而睿智#thinh,Yunara,Kai'Sa,2,11,11.93,49.38,Meta (tier 1-2),4,2,counter-pick,51.38,34225,even,1
+LS18,1,26.22,YSL,LHP,red,0,Bot (ADC),ZzMEOzZ#vn2,Kai'Sa,Yunara,1,4,23.48,49.62,Meta (tier 1-2),2,4,blind,48.62,34225,even,1
+LS18,1,26.22,LHP,YSL,blue,1,Jungle,허거덩#7474,Nocturne,Zed,3,38,4.13,48.94,Viable (tier 3),1,10,blind,54.34,1117,favourable,1
+LS18,1,26.22,YSL,LHP,red,0,Jungle,Lopptran0605#2005,Zed,Nocturne,4,51,2.65,47.28,Off-meta (tier 4-5),10,1,counter-pick,45.66,1117,unfavourable,1
+LS18,1,26.22,LHP,YSL,blue,1,Mid,neirt17#trien,Akali,Ahri,3,17,8.25,48.88,Viable (tier 3),8,3,counter-pick,46.01,9558,unfavourable,1
+LS18,1,26.22,YSL,LHP,red,0,Mid,Qiyanah#thich,Ahri,Akali,1,1,11.46,51.31,Meta (tier 1-2),3,8,blind,53.99,9558,favourable,1
+LS18,1,26.22,LHP,YSL,blue,1,Support,DPE Licotyn#mmb,Lulu,Nautilus,1,5,12.98,49.83,Meta (tier 1-2),5,6,blind,50.18,15519,even,1
+LS18,1,26.22,YSL,LHP,red,0,Support,wzHuywz#vn2,Nautilus,Lulu,2,13,11.65,49.32,Meta (tier 1-2),6,5,counter-pick,49.82,15519,even,1
+LS18,1,26.22,LHP,YSL,blue,1,Top,nờ pờ dờ#bruh,Pantheon,Mordekaiser,2,21,3.6,50.4,Meta (tier 1-2),9,7,counter-pick,51.33,1650,even,1
+LS18,1,26.22,YSL,LHP,red,0,Top,bimiuchiratnhieu#1005,Mordekaiser,Pantheon,2,14,5.05,50.32,Meta (tier 1-2),7,9,blind,48.67,1650,even,1
+LS22,2,26.23,LHP,TT,blue,0,Bot (ADC),繁荣而睿智#thinh,Viktor,Tristana,4,21,1.25,51.85,Off-meta (tier 4-5),1,10,blind,48.84,172,even,1
+LS22,2,26.23,TT,LHP,red,1,Bot (ADC),PT Đạo Hàm Riêng#FaMI,Tristana,Viktor,4,26,5.12,49.62,Off-meta (tier 4-5),10,1,counter-pick,51.16,172,even,1
+LS22,2,26.23,LHP,TT,blue,0,Jungle,허거덩#7474,Naafiri,Nidalee,2,13,5.07,50.07,Meta (tier 1-2),5,3,counter-pick,51.08,462,even,1
+LS22,2,26.23,TT,LHP,red,1,Jungle,vasavi#shati,Nidalee,Naafiri,3,29,2.52,50.85,Viable (tier 3),3,5,blind,48.92,462,even,1
+LS22,2,26.23,LHP,TT,blue,0,Mid,neirt17#trien,Akali,Locke,3,24,7.84,48.45,Viable (tier 3),9,2,counter-pick,54.78,1539,favourable,1
+LS22,2,26.23,TT,LHP,red,1,Mid,oHałçÿon#20800,Locke,Akali,3,23,5.65,49.09,Viable (tier 3),2,9,blind,45.22,1539,unfavourable,1
+LS22,2,26.23,LHP,TT,blue,0,Support,DPE Licotyn#mmb,Leona,Rell,1,2,8.28,51.55,Meta (tier 1-2),4,6,blind,49.01,961,even,1
+LS22,2,26.23,TT,LHP,red,1,Support,need u by myside#bunzz,Rell,Leona,2,11,3.95,51.65,Meta (tier 1-2),6,4,counter-pick,50.99,961,even,1
+LS22,2,26.23,LHP,TT,blue,0,Top,nờ pờ dờ#bruh,Jax,Ambessa,3,19,6.98,48.94,Viable (tier 3),8,7,counter-pick,50.28,891,even,1
+LS22,2,26.23,TT,LHP,red,1,Top,Mèo bơ#meobo,Ambessa,Jax,4,34,4.41,48.78,Off-meta (tier 4-5),7,8,blind,49.72,891,even,1
+LS23,2,26.23,DMX,ZEN,red,1,Bot (ADC),Flowern#Navi,Jhin,Aphelios,1,2,19.71,50.2,Meta (tier 1-2),6,5,counter-pick,50.09,3424,even,1
+LS23,2,26.23,ZEN,DMX,blue,0,Bot (ADC),MeiMei Cat#HUST,Aphelios,Jhin,4,23,5.8,49.62,Off-meta (tier 4-5),5,6,blind,49.91,3424,even,1
+LS23,2,26.23,DMX,ZEN,red,1,Jungle,lil moneytft#momly,Lillia,Pantheon,1,3,4.78,51.69,Meta (tier 1-2),3,9,blind,45.38,119,unfavourable,1
+LS23,2,26.23,ZEN,DMX,blue,0,Jungle,TAUNT#2706,Pantheon,Lillia,,,,,Off-role (not in op.gg list),9,3,counter-pick,54.62,119,favourable,1
+LS23,2,26.23,DMX,ZEN,red,1,Mid,vegito#cuh,Akshan,Hwei,4,33,2.28,49.84,Off-meta (tier 4-5),2,1,counter-pick,52.44,225,favourable,1
+LS23,2,26.23,ZEN,DMX,blue,0,Mid,GeminiJune5th#Tus,Hwei,Akshan,2,12,3.57,51.17,Meta (tier 1-2),1,2,blind,47.56,225,unfavourable,1
+LS23,2,26.23,DMX,ZEN,red,1,Support,mộngcầuchânv#bahoa,Alistar,Nami,2,5,7.07,51.12,Meta (tier 1-2),7,4,counter-pick,51.18,1606,even,1
+LS23,2,26.23,ZEN,DMX,blue,0,Support,marianne#ikeri,Nami,Alistar,1,3,9.96,51.13,Meta (tier 1-2),4,7,blind,48.82,1606,even,1
+LS23,2,26.23,DMX,ZEN,red,1,Top,Le Sante#L26,Aatrox,Ornn,2,13,6.31,49.77,Meta (tier 1-2),10,8,counter-pick,52.14,608,favourable,1
+LS23,2,26.23,ZEN,DMX,blue,0,Top,BLIND#DMH,Ornn,Aatrox,1,5,3.91,51.49,Meta (tier 1-2),8,10,blind,47.86,608,unfavourable,1
+LS24,2,26.23,GLT,LXM,blue,0,Bot (ADC),Zendar#5696,Caitlyn,Ziggs,4,22,10.63,48.46,Off-meta (tier 4-5),9,2,counter-pick,44.24,825,unfavourable,1
+LS24,2,26.23,LXM,GLT,red,1,Bot (ADC),TheMaLaiHay#VNmub,Ziggs,Caitlyn,4,24,2.28,51.05,Off-meta (tier 4-5),2,9,blind,55.76,825,favourable,1
+LS24,2,26.23,GLT,LXM,blue,0,Jungle,3Who#0802,Kayn,Sejuani,1,9,6.25,50.12,Meta (tier 1-2),1,10,blind,50.25,400,even,1
+LS24,2,26.23,LXM,GLT,red,1,Jungle,ShihoMiyanoo#4869,Sejuani,Kayn,3,28,2.21,51.18,Viable (tier 3),10,1,counter-pick,49.75,400,even,1
+LS24,2,26.23,GLT,LXM,blue,0,Mid,VAC Ryoku Haru#1603,Syndra,Akshan,3,26,7.88,48.41,Viable (tier 3),4,6,blind,46.67,540,unfavourable,1
+LS24,2,26.23,LXM,GLT,red,1,Mid,黑天风 A Tức#2301,Akshan,Syndra,4,33,2.28,49.84,Off-meta (tier 4-5),6,4,counter-pick,53.33,540,favourable,1
+LS24,2,26.23,GLT,LXM,blue,0,Support,nhquan2121#6844,Leona,Nautilus,1,2,8.28,51.55,Meta (tier 1-2),5,3,counter-pick,53.38,2992,favourable,1
+LS24,2,26.23,LXM,GLT,red,1,Support,Toithangcap1minh#1409,Nautilus,Leona,2,13,11.22,49.44,Meta (tier 1-2),3,5,blind,46.62,2992,unfavourable,1
+LS24,2,26.23,GLT,LXM,blue,0,Top,LSR Nhakanasi#TLA4,Yone,Gwen,2,15,7.25,49.17,Meta (tier 1-2),8,7,counter-pick,48.61,467,even,1
+LS24,2,26.23,LXM,GLT,red,1,Top,wu ren zhi dao#2110t,Gwen,Yone,4,30,3.08,49.98,Off-meta (tier 4-5),7,8,blind,51.39,467,even,1
+LS25,2,26.23,MSD,YSL,red,0,Bot (ADC),Playmaker#17th,Aphelios,Corki,4,23,5.8,49.62,Off-meta (tier 4-5),3,4,blind,48.98,884,even,1
+LS25,2,26.23,YSL,MSD,blue,1,Bot (ADC),ZzMEOzZ#vn2,Corki,Aphelios,3,16,5.66,50.3,Viable (tier 3),4,3,counter-pick,51.02,884,even,1
+LS25,2,26.23,MSD,YSL,red,0,Jungle,Astr4#17B2,Jarvan IV,Lee Sin,1,5,7.84,50.19,Meta (tier 1-2),2,1,counter-pick,52.0,3727,favourable,1
+LS25,2,26.23,YSL,MSD,blue,1,Jungle,Lopptran0605#2005,Lee Sin,Jarvan IV,1,7,13.4,48.5,Meta (tier 1-2),1,2,blind,48.0,3727,unfavourable,1
+LS25,2,26.23,MSD,YSL,red,0,Mid,Remember Me#8567,Ekko,Galio,1,2,5.16,52.49,Meta (tier 1-2),7,8,blind,51.72,785,even,1
+LS25,2,26.23,YSL,MSD,blue,1,Mid,Qiyanah#thich,Galio,Ekko,2,13,4.92,50.54,Meta (tier 1-2),8,7,counter-pick,48.28,785,even,1
+LS25,2,26.23,MSD,YSL,red,0,Support,DangThinh#267,Seraphine,Braum,2,12,7.01,50.54,Meta (tier 1-2),6,5,counter-pick,51.55,743,even,1
+LS25,2,26.23,YSL,MSD,blue,1,Support,ryuuuuuuuuuuuuu u#vnuuu,Braum,Seraphine,2,8,4.85,51.59,Meta (tier 1-2),5,6,blind,48.45,743,even,1
+LS25,2,26.23,MSD,YSL,red,0,Top,10 điểm 3 môn#4444,Malphite,Ornn,1,1,6.71,51.19,Meta (tier 1-2),10,9,counter-pick,47.91,647,unfavourable,1
+LS25,2,26.23,YSL,MSD,blue,1,Top,bimiuchiratnhieu#1005,Ornn,Malphite,1,5,3.91,51.49,Meta (tier 1-2),9,10,blind,52.09,647,favourable,1
+LS26,2,26.23,GOS,LN,red,1,Bot (ADC),MTHUUS#2608,Varus,Ezreal,5,35,3.06,49.51,Off-meta (tier 4-5),7,8,blind,50.34,1748,even,1
+LS26,2,26.23,LN,GOS,blue,0,Bot (ADC),eD nhát gái#22402,Ezreal,Varus,4,29,20.47,46.92,Off-meta (tier 4-5),8,7,counter-pick,49.66,1748,even,1
+LS26,2,26.23,GOS,LN,red,1,Jungle,taoapdaotuyetdoi#3643,Jarvan IV,Xin Zhao,1,5,7.84,50.19,Meta (tier 1-2),2,5,blind,50.97,722,even,1
+LS26,2,26.23,LN,GOS,blue,0,Jungle,30FPS player#2007,Xin Zhao,Jarvan IV,3,32,2.87,50.25,Viable (tier 3),5,2,counter-pick,49.03,722,even,1
+LS26,2,26.23,GOS,LN,red,1,Mid,Lê Văn Vở#1105,Syndra,Viktor,3,26,7.88,48.41,Viable (tier 3),6,1,counter-pick,50.12,2608,even,1
+LS26,2,26.23,LN,GOS,blue,0,Mid,W1ndchaser#1845,Viktor,Syndra,2,16,8.19,49.3,Meta (tier 1-2),1,6,blind,49.88,2608,even,1
+LS26,2,26.23,GOS,LN,red,1,Support,JappleG#66666,Alistar,Poppy,2,5,7.07,51.12,Meta (tier 1-2),3,4,blind,47.1,811,unfavourable,1
+LS26,2,26.23,LN,GOS,blue,0,Support,Corn Cuang#ccc,Poppy,Alistar,3,25,1.82,51.14,Viable (tier 3),4,3,counter-pick,52.9,811,favourable,1
+LS26,2,26.23,GOS,LN,red,1,Top,15gg1#15gg1,Renekton,Gnar,2,9,6.38,50.05,Meta (tier 1-2),10,9,counter-pick,45.57,1027,unfavourable,1
+LS26,2,26.23,LN,GOS,blue,0,Top,hadyu#9816,Gnar,Renekton,4,29,4.73,49.23,Off-meta (tier 4-5),9,10,blind,54.43,1027,favourable,1
+LS27,2,26.23,LK,VNT,blue,0,Bot (ADC),clayern#HUST,Corki,Kalista,3,16,5.66,50.3,Viable (tier 3),4,10,blind,51.93,751,even,1
+LS27,2,26.23,VNT,LK,red,1,Bot (ADC),bittersweet#prev,Kalista,Corki,5,33,3.82,49.39,Off-meta (tier 4-5),10,4,counter-pick,48.07,751,even,1
+LS27,2,26.23,LK,VNT,blue,0,Jungle,Trung Tâm Toxic#0411,Jarvan IV,Jayce,1,5,7.84,50.19,Meta (tier 1-2),1,3,blind,54.67,1123,favourable,1
+LS27,2,26.23,VNT,LK,red,1,Jungle,2I am Hải#vn2,Jayce,Jarvan IV,5,54,4.23,46.01,Off-meta (tier 4-5),3,1,counter-pick,45.33,1123,unfavourable,1
+LS27,2,26.23,LK,VNT,blue,0,Mid,SSA Reaper#2907,Sylas,Galio,3,27,6.5,48.5,Viable (tier 3),8,2,counter-pick,47.11,1057,unfavourable,1
+LS27,2,26.23,VNT,LK,red,1,Mid,Dưa#LOL,Galio,Sylas,2,13,4.92,50.54,Meta (tier 1-2),2,8,blind,52.89,1057,favourable,1
+LS27,2,26.23,LK,VNT,blue,0,Support,kenzo2s#vn2,Maokai,Taric,3,27,1.76,51.11,Viable (tier 3),5,7,blind,34.88,43,unfavourable,0
+LS27,2,26.23,VNT,LK,red,1,Support,KAugustzzz8#AUG,Taric,Maokai,3,22,1.1,52.38,Viable (tier 3),7,5,counter-pick,65.12,43,favourable,0
+LS27,2,26.23,LK,VNT,blue,0,Top,ĐàoHải tuổi 18#1312,Olaf,Malphite,3,24,3.57,50.36,Viable (tier 3),9,6,counter-pick,52.99,451,favourable,1
+LS27,2,26.23,VNT,LK,red,1,Top,mỗi năm một già#bLa,Malphite,Olaf,1,1,6.71,51.19,Meta (tier 1-2),6,9,blind,47.01,451,unfavourable,1
+LS28,2,26.23,CBK,FTL,blue,1,Bot (ADC),anhbinhthulong#vn2,Ezreal,Ziggs,4,29,20.47,46.92,Off-meta (tier 4-5),4,3,counter-pick,47.0,1432,unfavourable,1
+LS28,2,26.23,FTL,CBK,red,0,Bot (ADC),Tbbbbb#09876,Ziggs,Ezreal,4,24,2.28,51.05,Off-meta (tier 4-5),3,4,blind,53.0,1432,favourable,1
+LS28,2,26.23,CBK,FTL,blue,1,Jungle,marisaaa#2901,Kayn,Jarvan IV,1,9,6.25,50.12,Meta (tier 1-2),1,2,blind,48.15,1242,even,1
+LS28,2,26.23,FTL,CBK,red,0,Jungle,hugshe#3904,Jarvan IV,Kayn,1,5,7.84,50.19,Meta (tier 1-2),2,1,counter-pick,51.85,1242,even,1
+LS28,2,26.23,CBK,FTL,blue,1,Mid,Ezz#31108,Lissandra,Orianna,2,7,5.34,50.83,Meta (tier 1-2),9,10,blind,51.92,728,even,1
+LS28,2,26.23,FTL,CBK,red,0,Mid,dang khoa#1701,Orianna,Lissandra,4,39,5.01,47.58,Off-meta (tier 4-5),10,9,counter-pick,48.08,728,even,1
+LS28,2,26.23,CBK,FTL,blue,1,Support,Choccbel Nhocoay#vn3,Thresh,Camille,1,1,12.91,50.86,Meta (tier 1-2),5,6,blind,53.51,385,favourable,1
+LS28,2,26.23,FTL,CBK,red,0,Support,Postpone Atone#kdaat,Camille,Thresh,5,45,1.26,46.44,Off-meta (tier 4-5),6,5,counter-pick,46.49,385,unfavourable,1
+LS28,2,26.23,CBK,FTL,blue,1,Top,messihamburger#1610,Gwen,Sion,4,30,3.08,49.98,Off-meta (tier 4-5),8,7,counter-pick,52.95,644,favourable,1
+LS28,2,26.23,FTL,CBK,red,0,Top,mmmmmmmm1#mmm,Sion,Gwen,2,16,3.79,50.68,Meta (tier 1-2),7,8,blind,47.05,644,unfavourable,1
+LS31,3,26.23,HKG,LXM,red,0,Bot (ADC),Fizz Ziczac#vn2,Fizz,Jhin,,,,,Off-role (not in op.gg list),2,4,blind,,,,0
+LS31,3,26.23,LXM,HKG,blue,1,Bot (ADC),TheMaLaiHay#VNmub,Jhin,Fizz,1,2,19.71,50.2,Meta (tier 1-2),4,2,counter-pick,,,,0
+LS31,3,26.23,HKG,LXM,red,0,Jungle,HK3 XII#1268,Viego,Hecarim,1,4,8.12,50.3,Meta (tier 1-2),7,8,blind,48.1,1237,even,1
+LS31,3,26.23,LXM,HKG,blue,1,Jungle,黑天风 A Tức#2301,Hecarim,Viego,2,22,5.1,49.87,Meta (tier 1-2),8,7,counter-pick,51.9,1237,even,1
+LS31,3,26.23,HKG,LXM,red,0,Mid,Kataddict#28708,Xerath,Tristana,2,8,3.93,51.23,Meta (tier 1-2),6,5,counter-pick,54.24,59,favourable,0
+LS31,3,26.23,LXM,HKG,blue,1,Mid,wu ren zhi dao#2110t,Tristana,Xerath,5,51,0.57,48.01,Off-meta (tier 4-5),5,6,blind,45.76,59,unfavourable,0
+LS31,3,26.23,HKG,LXM,red,0,Support,HK4 Cragon#0608,Nautilus,Pyke,2,13,11.22,49.44,Meta (tier 1-2),3,1,counter-pick,53.07,1854,favourable,1
+LS31,3,26.23,LXM,HKG,blue,1,Support,Chocopyke#Rùa,Pyke,Nautilus,3,19,5.6,49.37,Viable (tier 3),1,3,blind,46.93,1854,unfavourable,1
+LS31,3,26.23,HKG,LXM,red,0,Top,HK2 LSiong#2207,K'Sante,Sylas,5,50,4.8,47.05,Off-meta (tier 4-5),10,9,counter-pick,48.84,86,even,0
+LS31,3,26.23,LXM,HKG,blue,1,Top,Toithangcap1minh#1409,Sylas,K'Sante,5,49,1.19,49.45,Off-meta (tier 4-5),9,10,blind,51.16,86,even,0
+LS32,3,26.23,DMX,TT,blue,0,Bot (ADC),Flowern#Navi,Kai'Sa,Yunara,1,3,21.81,49.62,Meta (tier 1-2),1,6,blind,48.05,7738,even,1
+LS32,3,26.23,TT,DMX,red,1,Bot (ADC),PT Đạo Hàm Riêng#FaMI,Yunara,Kai'Sa,3,13,10.76,49.53,Viable (tier 3),6,1,counter-pick,51.95,7738,even,1
+LS32,3,26.23,DMX,TT,blue,0,Jungle,lil moneytft#momly,Jarvan IV,Lee Sin,1,5,7.84,50.19,Meta (tier 1-2),4,2,counter-pick,52.0,3727,favourable,1
+LS32,3,26.23,TT,DMX,red,1,Jungle,vasavi#shati,Lee Sin,Jarvan IV,1,7,13.4,48.5,Meta (tier 1-2),2,4,blind,48.0,3727,unfavourable,1
+LS32,3,26.23,DMX,TT,blue,0,Mid,vegito#cuh,Anivia,Annie,4,34,2.11,49.6,Off-meta (tier 4-5),5,3,counter-pick,53.18,173,favourable,1
+LS32,3,26.23,TT,DMX,red,1,Mid,oHałçÿon#20800,Annie,Anivia,2,5,2.76,52.28,Meta (tier 1-2),3,5,blind,46.82,173,unfavourable,1
+LS32,3,26.23,DMX,TT,blue,0,Support,mộngcầuchânv#bahoa,Rell,Rakan,2,11,3.95,51.65,Meta (tier 1-2),9,7,counter-pick,50.24,629,even,1
+LS32,3,26.23,TT,DMX,red,1,Support,need u by myside#bunzz,Rakan,Rell,2,7,5.02,51.64,Meta (tier 1-2),7,9,blind,49.76,629,even,1
+LS32,3,26.23,DMX,TT,blue,0,Top,Le Sante#L26,Nasus,Gnar,4,31,3.04,49.94,Off-meta (tier 4-5),8,10,blind,53.35,388,favourable,1
+LS32,3,26.23,TT,DMX,red,1,Top,freistil#27507,Gnar,Nasus,4,29,4.73,49.23,Off-meta (tier 4-5),10,8,counter-pick,46.65,388,unfavourable,1
+LS33,3,26.23,GOS,ZEN,blue,1,Bot (ADC),MTHUUS#2608,Varus,Ezreal,5,35,3.06,49.51,Off-meta (tier 4-5),,,unknown,50.34,1748,even,1
+LS33,3,26.23,ZEN,GOS,red,0,Bot (ADC),TAUNT#2706,Ezreal,Varus,4,29,20.47,46.92,Off-meta (tier 4-5),,,unknown,49.66,1748,even,1
+LS33,3,26.23,GOS,ZEN,blue,1,Jungle,taoapdaotuyetdoi#3643,Jarvan IV,Kayn,1,5,7.84,50.19,Meta (tier 1-2),,,unknown,51.85,1242,even,1
+LS33,3,26.23,ZEN,GOS,red,0,Jungle,BLIND#DMH,Kayn,Jarvan IV,1,9,6.25,50.12,Meta (tier 1-2),,,unknown,48.15,1242,even,1
+LS33,3,26.23,GOS,ZEN,blue,1,Mid,Lê Văn Vở#1105,Aurelion Sol,Yone,4,30,1.75,50.94,Off-meta (tier 4-5),,,unknown,39.38,353,unfavourable,1
+LS33,3,26.23,ZEN,GOS,red,0,Mid,GeminiJune5th#Tus,Yone,Aurelion Sol,2,11,6.95,49.81,Meta (tier 1-2),,,unknown,60.62,353,favourable,1
+LS33,3,26.23,GOS,ZEN,blue,1,Support,Đạt Đạt Đạt#vn2,Leona,Soraka,1,2,8.28,51.55,Meta (tier 1-2),,,unknown,48.84,907,even,1
+LS33,3,26.23,ZEN,GOS,red,0,Support,marianne#ikeri,Soraka,Leona,2,17,4.33,50.75,Meta (tier 1-2),,,unknown,51.16,907,even,1
+LS33,3,26.23,GOS,ZEN,blue,1,Top,15gg1#15gg1,Renekton,Rumble,2,9,6.38,50.05,Meta (tier 1-2),,,unknown,51.35,296,even,1
+LS33,3,26.23,ZEN,GOS,red,0,Top,MeiMei Cat#HUST,Rumble,Renekton,,,,,Off-role (not in op.gg list),,,unknown,48.65,296,even,1
+LS34,3,26.23,GLT,VNT,red,1,Bot (ADC),Zendar#5696,Kai'Sa,Jinx,1,3,21.81,49.62,Meta (tier 1-2),3,9,blind,47.58,5881,unfavourable,1
+LS34,3,26.23,VNT,GLT,blue,0,Bot (ADC),bittersweet#prev,Jinx,Kai'Sa,1,4,9.48,50.92,Meta (tier 1-2),9,3,counter-pick,52.42,5881,favourable,1
+LS34,3,26.23,GLT,VNT,red,1,Jungle,3Who#0802,Cho'Gath,Viego,1,2,5.05,51.62,Meta (tier 1-2),6,5,counter-pick,49.91,1096,even,1
+LS34,3,26.23,VNT,GLT,blue,0,Jungle,2I am Hải#vn2,Viego,Cho'Gath,1,4,8.12,50.3,Meta (tier 1-2),5,6,blind,50.09,1096,even,1
+LS34,3,26.23,GLT,VNT,red,1,Mid,VAC Ryoku Haru#1603,Yasuo,Sylas,2,15,7.53,49.22,Meta (tier 1-2),10,8,counter-pick,52.29,1199,favourable,1
+LS34,3,26.23,VNT,GLT,blue,0,Mid,Dưa#LOL,Sylas,Yasuo,3,27,6.5,48.5,Viable (tier 3),8,10,blind,47.71,1199,unfavourable,1
+LS34,3,26.23,GLT,VNT,red,1,Support,phong (no Riot ID; on screen: Phomai),Pyke,Poppy,3,19,5.6,49.37,Viable (tier 3),2,4,blind,45.56,417,unfavourable,1
+LS34,3,26.23,VNT,GLT,blue,0,Support,KAugustzzz8#AUG,Poppy,Pyke,3,25,1.82,51.14,Viable (tier 3),4,2,counter-pick,54.44,417,favourable,1
+LS34,3,26.23,GLT,VNT,red,1,Top,LSR Nhakanasi#TLA4,Gangplank,Malphite,2,8,4.84,50.68,Meta (tier 1-2),7,1,counter-pick,46.27,791,unfavourable,1
+LS34,3,26.23,VNT,GLT,blue,0,Top,mỗi năm một già#bLa,Malphite,Gangplank,1,1,6.71,51.19,Meta (tier 1-2),1,7,blind,53.73,791,favourable,1
+LS35,3,26.23,KGC,LHP,red,1,Bot (ADC),Sứ Giả Người Tày#5964,Yunara,Kai'Sa,3,13,10.76,49.53,Viable (tier 3),6,4,counter-pick,51.95,7738,even,1
+LS35,3,26.23,LHP,KGC,blue,0,Bot (ADC),繁荣而睿智#thinh,Kai'Sa,Yunara,1,3,21.81,49.62,Meta (tier 1-2),4,6,blind,48.05,7738,even,1
+LS35,3,26.23,KGC,LHP,red,1,Jungle,Thịt dê cơm cháy#035,Diana,Naafiri,3,39,3.18,49.48,Viable (tier 3),2,1,counter-pick,50.0,404,even,1
+LS35,3,26.23,LHP,KGC,blue,0,Jungle,허거덩#7474,Naafiri,Diana,2,13,5.07,50.07,Meta (tier 1-2),1,2,blind,50.0,404,even,1
+LS35,3,26.23,KGC,LHP,red,1,Mid,alle#imo,Yasuo,Akali,2,15,7.53,49.22,Meta (tier 1-2),10,9,counter-pick,51.86,1859,even,1
+LS35,3,26.23,LHP,KGC,blue,0,Mid,neirt17#trien,Akali,Yasuo,3,24,7.84,48.45,Viable (tier 3),9,10,blind,48.14,1859,even,1
+LS35,3,26.23,KGC,LHP,red,1,Support,MID Đại Cồ Việt#MLEM,Braum,Nautilus,2,8,4.85,51.59,Meta (tier 1-2),7,5,counter-pick,53.91,2931,favourable,1
+LS35,3,26.23,LHP,KGC,blue,0,Support,DPE Licotyn#mmb,Nautilus,Braum,2,13,11.22,49.44,Meta (tier 1-2),5,7,blind,46.11,2930,unfavourable,1
+LS35,3,26.23,KGC,LHP,red,1,Top,Chickie#goat,Ornn,Ambessa,1,5,3.91,51.49,Meta (tier 1-2),3,8,blind,49.2,439,even,1
+LS35,3,26.23,LHP,KGC,blue,0,Top,nờ pờ dờ#bruh,Ambessa,Ornn,4,34,4.41,48.78,Off-meta (tier 4-5),8,3,counter-pick,50.8,439,even,1
+LS36,3,26.23,CBK,YSL,red,0,Bot (ADC),anhbinhthulong#vn2,Jhin,Tristana,1,2,19.71,50.2,Meta (tier 1-2),7,8,blind,49.48,3201,even,1
+LS36,3,26.23,YSL,CBK,blue,1,Bot (ADC),ZzMEOzZ#vn2,Tristana,Jhin,4,26,5.12,49.62,Off-meta (tier 4-5),8,7,counter-pick,50.52,3201,even,1
+LS36,3,26.23,CBK,YSL,red,0,Jungle,marisaaa#2901,Kayn,Rammus,1,9,6.25,50.12,Meta (tier 1-2),3,9,blind,44.98,229,unfavourable,1
+LS36,3,26.23,YSL,CBK,blue,1,Jungle,Lopptran0605#2005,Rammus,Kayn,3,35,1.31,51.73,Viable (tier 3),9,3,counter-pick,55.02,229,favourable,1
+LS36,3,26.23,CBK,YSL,red,0,Mid,Ezz#31108,Anivia,Vex,4,34,2.11,49.6,Off-meta (tier 4-5),10,4,counter-pick,50.0,136,even,1
+LS36,3,26.23,YSL,CBK,blue,1,Mid,Qiyanah#thich,Vex,Anivia,2,10,2.64,51.97,Meta (tier 1-2),4,10,blind,50.0,136,even,1
+LS36,3,26.23,CBK,YSL,red,0,Support,Choccbel Nhocoay#vn3,Taric,Nautilus,3,22,1.1,52.38,Viable (tier 3),6,5,counter-pick,59.47,454,favourable,1
+LS36,3,26.23,YSL,CBK,blue,1,Support,Plutonium#KrPu,Nautilus,Taric,2,13,11.22,49.44,Meta (tier 1-2),5,6,blind,40.53,454,unfavourable,1
+LS36,3,26.23,CBK,YSL,red,0,Top,messihamburger#1610,Fiora,Ornn,3,18,4.09,50.14,Viable (tier 3),2,1,counter-pick,51.32,567,even,1
+LS36,3,26.23,YSL,CBK,blue,1,Top,bimiuchiratnhieu#1005,Ornn,Fiora,1,5,3.91,51.49,Meta (tier 1-2),1,2,blind,48.68,567,even,1
+LS41,4,26.23,DMX,GOS,blue,1,Bot (ADC),Flowern#Navi,Corki,Ziggs,3,16,5.66,50.3,Viable (tier 3),8,7,counter-pick,50.75,333,even,1
+LS41,4,26.23,GOS,DMX,red,0,Bot (ADC),MTHUUS#2608,Ziggs,Corki,4,24,2.28,51.05,Off-meta (tier 4-5),7,8,blind,49.25,333,even,1
+LS41,4,26.23,DMX,GOS,blue,1,Jungle,lil moneytft#momly,Qiyana,Jarvan IV,4,48,6.04,46.4,Off-meta (tier 4-5),4,3,counter-pick,48.91,1464,even,1
+LS41,4,26.23,GOS,DMX,red,0,Jungle,taoapdaotuyetdoi#3643,Jarvan IV,Qiyana,1,5,7.84,50.19,Meta (tier 1-2),3,4,blind,51.09,1464,even,1
+LS41,4,26.23,DMX,GOS,blue,1,Mid,vegito#cuh,Locke,Viktor,3,23,5.65,49.09,Viable (tier 3),1,2,blind,50.94,1384,even,1
+LS41,4,26.23,GOS,DMX,red,0,Mid,Lê Văn Vở#1105,Viktor,Locke,2,16,8.19,49.3,Meta (tier 1-2),2,1,counter-pick,49.06,1384,even,1
+LS41,4,26.23,DMX,GOS,blue,1,Support,mộngcầuchânv#bahoa,Alistar,Nautilus,2,5,7.07,51.12,Meta (tier 1-2),9,10,blind,54.56,2960,favourable,1
+LS41,4,26.23,GOS,DMX,red,0,Support,Đạt Đạt Đạt#vn2,Nautilus,Alistar,2,13,11.22,49.44,Meta (tier 1-2),10,9,counter-pick,45.44,2960,unfavourable,1
+LS41,4,26.23,DMX,GOS,blue,1,Top,Le Sante#L26,Aatrox,Yone,2,13,6.31,49.77,Meta (tier 1-2),5,6,blind,49.31,1728,even,1
+LS41,4,26.23,GOS,DMX,red,0,Top,15gg1#15gg1,Yone,Aatrox,2,15,7.25,49.17,Meta (tier 1-2),6,5,counter-pick,50.69,1728,even,1
+LS42,4,26.23,GLT,HKG,red,1,Bot (ADC),Zendar#5696,Kai'Sa,Xerath,1,3,21.81,49.62,Meta (tier 1-2),2,4,blind,48.25,315,even,1
+LS42,4,26.23,HKG,GLT,blue,0,Bot (ADC),Fizz Ziczac#vn2,Xerath,Kai'Sa,4,30,0.6,52.5,Off-meta (tier 4-5),4,2,counter-pick,51.75,315,even,1
+LS42,4,26.23,GLT,HKG,red,1,Jungle,3Who#0802,Amumu,Kayn,4,41,1.79,50.42,Off-meta (tier 4-5),10,1,counter-pick,44.15,342,unfavourable,1
+LS42,4,26.23,HKG,GLT,blue,0,Jungle,HK3 XII#1268,Kayn,Amumu,1,9,6.25,50.12,Meta (tier 1-2),1,10,blind,55.85,342,favourable,1
+LS42,4,26.23,GLT,HKG,red,1,Mid,VAC Ryoku Haru#1603,Zed,Qiyana,2,14,7.64,49.25,Meta (tier 1-2),6,5,counter-pick,48.64,627,even,1
+LS42,4,26.23,HKG,GLT,blue,0,Mid,Kataddict#28708,Qiyana,Zed,4,45,2.12,48.22,Off-meta (tier 4-5),5,6,blind,51.36,627,even,1
+LS42,4,26.23,GLT,HKG,red,1,Support,nhquan2121#6844,Nautilus,Alistar,2,13,11.22,49.44,Meta (tier 1-2),3,9,blind,45.44,2960,unfavourable,1
+LS42,4,26.23,HKG,GLT,blue,0,Support,HK4 Cragon#0608,Alistar,Nautilus,2,5,7.07,51.12,Meta (tier 1-2),9,3,counter-pick,54.56,2960,favourable,1
+LS42,4,26.23,GLT,HKG,red,1,Top,LSR Nhakanasi#TLA4,Ambessa,Garen,4,34,4.41,48.78,Off-meta (tier 4-5),7,8,blind,46.29,674,unfavourable,1
+LS42,4,26.23,HKG,GLT,blue,0,Top,HK2 LSiong#2207,Garen,Ambessa,1,3,6.34,50.95,Meta (tier 1-2),8,7,counter-pick,53.71,674,favourable,1
+LS43,4,26.23,KGC,YSL,red,1,Bot (ADC),Chickie#goat,Zeri,Tristana,2,10,4.68,51.04,Meta (tier 1-2),6,8,blind,49.38,721,even,1
+LS43,4,26.23,YSL,KGC,blue,0,Bot (ADC),ZzMEOzZ#vn2,Tristana,Zeri,4,26,5.12,49.62,Off-meta (tier 4-5),8,6,counter-pick,50.62,721,even,1
+LS43,4,26.23,KGC,YSL,red,1,Jungle,Thịt dê cơm cháy#035,Pantheon,Rammus,,,,,Off-role (not in op.gg list),3,9,blind,63.33,30,favourable,0
+LS43,4,26.23,YSL,KGC,blue,0,Jungle,Lopptran0605#2005,Rammus,Pantheon,3,35,1.31,51.73,Viable (tier 3),9,3,counter-pick,36.67,30,unfavourable,0
+LS43,4,26.23,KGC,YSL,red,1,Mid,alle#imo,Taliyah,Galio,4,31,2.68,49.59,Off-meta (tier 4-5),10,5,counter-pick,49.75,406,even,1
+LS43,4,26.23,YSL,KGC,blue,0,Mid,Qiyanah#thich,Galio,Taliyah,2,13,4.92,50.54,Meta (tier 1-2),5,10,blind,50.25,406,even,1
+LS43,4,26.23,KGC,YSL,red,1,Support,Coolnopro#vn2,Nautilus,Braum,2,13,11.22,49.44,Meta (tier 1-2),7,4,counter-pick,46.11,2930,unfavourable,1
+LS43,4,26.23,YSL,KGC,blue,0,Support,ryuuuuuuuuuuuuu u#vnuuu,Braum,Nautilus,2,8,4.85,51.59,Meta (tier 1-2),4,7,blind,53.91,2931,favourable,1
+LS43,4,26.23,KGC,YSL,red,1,Top,Deus ex machina#2202,K'Sante,Ornn,5,50,4.8,47.05,Off-meta (tier 4-5),2,1,counter-pick,49.4,498,even,1
+LS43,4,26.23,YSL,KGC,blue,0,Top,bimiuchiratnhieu#1005,Ornn,K'Sante,1,5,3.91,51.49,Meta (tier 1-2),1,2,blind,50.6,498,even,1
+LS45,4,26.23,LN,MSD,blue,1,Bot (ADC),eD nhát gái#22402,Ezreal,Kai'Sa,4,29,20.47,46.92,Off-meta (tier 4-5),5,7,blind,46.12,17955,unfavourable,1
+LS45,4,26.23,MSD,LN,red,0,Bot (ADC),Playmaker#17th,Kai'Sa,Ezreal,1,3,21.81,49.62,Meta (tier 1-2),7,5,counter-pick,53.88,17955,favourable,1
+LS45,4,26.23,LN,MSD,blue,1,Jungle,30FPS player#2007,Wukong,Viego,1,1,6.98,51.8,Meta (tier 1-2),4,6,blind,50.67,1569,even,1
+LS45,4,26.23,MSD,LN,red,0,Jungle,Remember Me#8567,Viego,Wukong,1,4,8.12,50.3,Meta (tier 1-2),6,4,counter-pick,49.33,1569,even,1
+LS45,4,26.23,LN,MSD,blue,1,Mid,W1ndchaser#1845,Cassiopeia,Malzahar,5,49,1.5,47.67,Off-meta (tier 4-5),1,3,blind,52.21,136,favourable,1
+LS45,4,26.23,MSD,LN,red,0,Mid,Astr4#17B2,Malzahar,Cassiopeia,3,25,4.49,49.67,Viable (tier 3),3,1,counter-pick,47.79,136,unfavourable,1
+LS45,4,26.23,LN,MSD,blue,1,Support,Corn Cuang#ccc,Karma,Neeko,3,20,8.4,48.61,Viable (tier 3),8,2,counter-pick,51.85,704,even,1
+LS45,4,26.23,MSD,LN,red,0,Support,DangThinh#267,Neeko,Karma,4,32,2.39,49.43,Off-meta (tier 4-5),2,8,blind,48.15,704,even,1
+LS45,4,26.23,LN,MSD,blue,1,Top,hadyu#9816,Ornn,Sion,1,5,3.91,51.49,Meta (tier 1-2),9,10,blind,49.64,421,even,1
+LS45,4,26.23,MSD,LN,red,0,Top,10 điểm 3 môn#4444,Sion,Ornn,2,16,3.79,50.68,Meta (tier 1-2),10,9,counter-pick,50.36,421,even,1
+LS51,5,26.23,HKG,LN,blue,0,Bot (ADC),Fizz Ziczac#vn2,Kog'Maw,Ziggs,2,7,2.32,52.41,Meta (tier 1-2),8,7,counter-pick,41.73,139,unfavourable,1
+LS51,5,26.23,LN,HKG,red,1,Bot (ADC),eD nhát gái#22402,Ziggs,Kog'Maw,4,24,2.28,51.05,Off-meta (tier 4-5),7,8,blind,58.27,139,favourable,1
+LS51,5,26.23,HKG,LN,blue,0,Jungle,HK3 XII#1268,Cho'Gath,Wukong,1,2,5.05,51.62,Meta (tier 1-2),4,3,counter-pick,52.02,1017,favourable,1
+LS51,5,26.23,LN,HKG,red,1,Jungle,30FPS player#2007,Wukong,Cho'Gath,1,1,6.98,51.8,Meta (tier 1-2),3,4,blind,47.98,1017,unfavourable,1
+LS51,5,26.23,HKG,LN,blue,0,Mid,Kataddict#28708,Katarina,Cassiopeia,1,3,6.01,51.31,Meta (tier 1-2),1,2,blind,54.87,226,favourable,1
+LS51,5,26.23,LN,HKG,red,1,Mid,W1ndchaser#1845,Cassiopeia,Katarina,5,49,1.5,47.67,Off-meta (tier 4-5),2,1,counter-pick,45.13,226,unfavourable,1
+LS51,5,26.23,HKG,LN,blue,0,Support,HK4 Cragon#0608,Pyke,Leona,3,19,5.6,49.37,Viable (tier 3),9,10,blind,49.38,1282,even,1
+LS51,5,26.23,LN,HKG,red,1,Support,Corn Cuang#ccc,Leona,Pyke,1,2,8.28,51.55,Meta (tier 1-2),10,9,counter-pick,50.62,1282,even,1
+LS51,5,26.23,HKG,LN,blue,0,Top,HK2 LSiong#2207,Garen,Ornn,1,3,6.34,50.95,Meta (tier 1-2),5,6,blind,48.71,657,even,1
+LS51,5,26.23,LN,HKG,red,1,Top,hadyu#9816,Ornn,Garen,1,5,3.91,51.49,Meta (tier 1-2),6,5,counter-pick,51.29,657,even,1
+LS52,5,26.23,GOS,YSL,red,1,Bot (ADC),MTHUUS#2608,Ziggs,Corki,4,24,2.28,51.05,Off-meta (tier 4-5),7,4,counter-pick,49.25,333,even,1
+LS52,5,26.23,YSL,GOS,blue,0,Bot (ADC),ZzMEOzZ#vn2,Corki,Ziggs,3,16,5.66,50.3,Viable (tier 3),4,7,blind,50.75,333,even,1
+LS52,5,26.23,GOS,YSL,red,1,Jungle,taoapdaotuyetdoi#3643,Nocturne,Kayn,3,37,4.32,49.04,Viable (tier 3),3,8,blind,50.46,757,even,1
+LS52,5,26.23,YSL,GOS,blue,0,Jungle,Lopptran0605#2005,Kayn,Nocturne,1,9,6.25,50.12,Meta (tier 1-2),8,3,counter-pick,49.54,757,even,1
+LS52,5,26.23,GOS,YSL,red,1,Mid,Lê Văn Vở#1105,Aurelion Sol,Katarina,4,30,1.75,50.94,Off-meta (tier 4-5),6,5,counter-pick,52.5,280,favourable,1
+LS52,5,26.23,YSL,GOS,blue,0,Mid,Qiyanah#thich,Katarina,Aurelion Sol,1,3,6.01,51.31,Meta (tier 1-2),5,6,blind,47.5,280,unfavourable,1
+LS52,5,26.23,GOS,YSL,red,1,Support,JappleG#66666,Braum,Nautilus,2,8,4.85,51.59,Meta (tier 1-2),2,1,counter-pick,53.91,2931,favourable,1
+LS52,5,26.23,YSL,GOS,blue,0,Support,Plutonium#KrPu,Nautilus,Braum,2,13,11.22,49.44,Meta (tier 1-2),1,2,blind,46.11,2930,unfavourable,1
+LS52,5,26.23,GOS,YSL,red,1,Top,15gg1#15gg1,Darius,Garen,1,2,6.87,50.99,Meta (tier 1-2),10,9,counter-pick,53.36,1651,favourable,1
+LS52,5,26.23,YSL,GOS,blue,0,Top,bimiuchiratnhieu#1005,Garen,Darius,1,3,6.34,50.95,Meta (tier 1-2),9,10,blind,46.64,1651,unfavourable,1
+LS53,5,26.23,LHP,ZEN,blue,1,Bot (ADC),繁荣而睿智#thinh,Tristana,Caitlyn,4,26,5.12,49.62,Off-meta (tier 4-5),4,3,counter-pick,49.16,1373,even,1
+LS53,5,26.23,ZEN,LHP,red,0,Bot (ADC),TAUNT#2706,Caitlyn,Tristana,4,22,10.63,48.46,Off-meta (tier 4-5),3,4,blind,50.84,1373,even,1
+LS53,5,26.23,LHP,ZEN,blue,1,Jungle,허거덩#7474,Aatrox,Kayn,4,44,1.01,51.11,Off-meta (tier 4-5),1,7,blind,46.63,163,unfavourable,1
+LS53,5,26.23,ZEN,LHP,red,0,Jungle,BLIND#DMH,Kayn,Aatrox,1,9,6.25,50.12,Meta (tier 1-2),7,1,counter-pick,53.37,163,favourable,1
+LS53,5,26.23,LHP,ZEN,blue,1,Mid,neirt17#trien,Yone,Aurelion Sol,2,11,6.95,49.81,Meta (tier 1-2),9,10,blind,60.62,353,favourable,1
+LS53,5,26.23,ZEN,LHP,red,0,Mid,GeminiJune5th#Tus,Aurelion Sol,Yone,4,30,1.75,50.94,Off-meta (tier 4-5),10,9,counter-pick,39.38,353,unfavourable,1
+LS53,5,26.23,LHP,ZEN,blue,1,Support,DPE Licotyn#mmb,Nautilus,Lux,2,13,11.22,49.44,Meta (tier 1-2),5,2,counter-pick,51.79,1755,even,1
+LS53,5,26.23,ZEN,LHP,red,0,Support,marianne#ikeri,Lux,Nautilus,3,21,6.0,49.19,Viable (tier 3),2,5,blind,48.21,1755,even,1
+LS53,5,26.23,LHP,ZEN,blue,1,Top,nờ pờ dờ#bruh,Gwen,Ornn,4,30,3.08,49.98,Off-meta (tier 4-5),8,6,counter-pick,50.07,673,even,1
+LS53,5,26.23,ZEN,LHP,red,0,Top,MeiMei Cat#HUST,Ornn,Gwen,1,5,3.91,51.49,Meta (tier 1-2),6,8,blind,49.93,673,even,1
