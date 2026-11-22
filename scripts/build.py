@@ -288,10 +288,11 @@ def main():
 
     # ------------------------------------------------ champions
     G = len(boards)
-    cstat = defaultdict(lambda: dict(picks=0, wins=0, bans=0, roles=Counter(), teams=Counter(), k=0, d=0, a=0, dmg=[], blue=0))
+    cstat = defaultdict(lambda: dict(picks=0, wins=0, bans=0, roles=Counter(), teams=Counter(), k=0, d=0, a=0, dmg=[], blue=0, pick_games=set(), ban_games=set()))
     for pg in player_games:
         c = cstat[pg['champion']]
         c['picks'] += 1
+        c['pick_games'].add(pg['code'])
         c['wins'] += pg['won']
         c['roles'][pg['role']] += 1
         c['teams'][pg['team']] += 1
@@ -300,10 +301,14 @@ def main():
             c['dmg'].append(pg['damage_share'])
     for d in ban_rows:
         cstat[d['champion']]['bans'] += 1
+        cstat[d['champion']]['ban_games'].add(d['code'])
     champions = []
     for name, c in cstat.items():
         row = dict(champion=name, picks=c['picks'], bans=c['bans'], presence=c['picks'] + c['bans'],
                    presence_pct=round(100 * (c['picks'] + c['bans']) / G), wins=c['wins'],
+                   # per-match rates over the G played games: appearance = picked or banned in that game
+                   pick_rate=round(100 * len(c['pick_games']) / G, 1), ban_rate=round(100 * len(c['ban_games']) / G, 1),
+                   appearance_rate=round(100 * len(c['pick_games'] | c['ban_games']) / G, 1),
                    winrate=round(100 * c['wins'] / c['picks']) if c['picks'] else '',
                    main_role=ROLE_NAME[c['roles'].most_common(1)[0][0]] if c['picks'] else '',
                    kda=round((c['k'] + c['a']) / max(c['d'], 1), 2) if c['picks'] else '',

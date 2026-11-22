@@ -193,7 +193,8 @@ def hbar(rows, keys, colors=None, label_w=None, W=760, row_h=22, val_fmt=lambda 
             s.append(f'<rect x="{x0:.1f}" y="{y + 3}" width="{max(w, 0):.1f}" height="{row_h - 6}" rx="2" fill="{colors[j]}"/>')
             x0 += w
         if total:
-            s.append(f'<text x="{x0 + 5:.1f}" y="{y + row_h / 2}" dy=".35em">{E(val_fmt(sum(v for v in r["values"] if v)))}</text>')
+            lab = r.get('total_label') or val_fmt(sum(v for v in r['values'] if v))
+            s.append(f'<text x="{x0 + 5:.1f}" y="{y + row_h / 2}" dy=".35em">{E(lab)}</text>')
         s.append('</g>')
     s.append('</svg>')
     return ''.join(s)
@@ -626,7 +627,7 @@ def page_b(d):
         f"Side: blue won {sides['blue']['wins']} of {sides['blue']['games']} played games ({sides['blue']['winrate']}%), red {sides['red']['wins']} ({sides['red']['winrate']}%).",
         f"Games lasted {st.mean(gm):.1f} min on average (median {st.median(gm):.1f}); fastest {E(fast['code'])} {E(fast['game_time'])}, longest {E(slow['code'])} {E(slow['game_time'])}.",
         f"<b>{len(picked)}</b> different champions were picked and <b>{len(banned)}</b> banned across {G} games; {len(once)} champions were picked only once. "
-        f"Most contested: " + ', '.join(f"{E(c['champion'])} ({c['picks']}P/{c['bans']}B)" for c in champs[:5]) + '.',
+        f"Most contested (appearance = picked or banned): " + ', '.join(f"{E(c['champion'])} {c['appearance_rate']:.0f}%" for c in sorted(champs, key=lambda c: (-c['appearance_rate'], -c['pick_rate']))[:5]) + ' of games.',
         f"Damage is carried by <b>{E(rs[0]['role'])}</b> and <b>{E(rs[1]['role'])}</b> ({rs[0]['damage_share']}% and {rs[1]['damage_share']}% of team damage). "
         f"Top laners were the team's #1 damage dealer {[r for r in roles if r['role'] == 'Top'][0]['top_damage_count']} times, Mid {[r for r in roles if r['role'] == 'Mid'][0]['top_damage_count']} times. "
         f"The ADC takes the most gold ({[r for r in roles if r['role'].startswith('Bot')][0]['gold_share']}%) but deals {[r for r in roles if r['role'].startswith('Bot')][0]['damage_share']}% of damage.",
@@ -697,10 +698,21 @@ def page_b(d):
     body.append('<div class="tiles">' + ''.join(f'<div class="tile"><div class="v">{v}</div><div class="l">{l}</div></div>' for v, l in [
         (len(picked), 'different champions picked'), (len(banned), 'different champions banned'), (len(once), 'picked only once'),
         (len([c for c in picked if not c['bans']]), 'picked but never banned'), (G, 'games with picks'), (len({x['code'] for x in drafts if x['kind'] == 'ban'}), 'games with bans recorded')]) + '</div>')
-    body.append('<p class="sub">Picks and positions come from the scoreboards; bans from the match records (LS33 has no bans recorded, LS15 only 3, LS32 one missing). Presence = picks + bans over the 28 games.</p>')
-    body.append('<div class="card"><h4>Most contested champions</h4>' + legend([('Picked', C[0]), ('Banned', C[1])]) +
-                hbar([dict(label=c['champion'], icon=icon_url(c['champion']), values=[c['picks'], c['bans']], tip=f"{c['champion']}: picked {c['picks']} (won {c['wins']}), banned {c['bans']} — {c['presence_pct']}% presence") for c in champs[:20]],
-                     [0, 1], aria='Top 20 champions by presence') + '</div>')
+    body.append('<p class="sub">Picks and positions come from the scoreboards; bans from the match records (LS33 has no bans recorded, LS15 only 3, LS32 one missing).</p>')
+    body.append('<p class="sub"><b>Pick %</b> = share of the 28 played games in which the champion was picked, <b>Ban %</b> = banned, <b>Appearance %</b> = picked or banned '
+                '(a champion can\'t be both in one game, so Appearance = Pick + Ban). Bans are missing for LS33 and partly for LS15 and LS32, so ban rates are slightly understated.</p>')
+    top = sorted(champs, key=lambda c: (-c['appearance_rate'], -c['pick_rate'], c['champion']))[:20]
+    body.append('<div class="card"><h4>Most contested champions — appearance % per match</h4>' + legend([('Pick %', C[0]), ('Ban %', C[1])]) +
+                hbar([dict(label=c['champion'], icon=icon_url(c['champion']), values=[c['pick_rate'], c['ban_rate']], total_label=f"{c['appearance_rate']}%",
+                           tip=f"{c['champion']}: appeared in {c['appearance_rate']}% of games — picked {c['pick_rate']}% (won {c['wins']} of {c['picks']}), banned {c['ban_rate']}%") for c in top],
+                     [0, 1], xmax=100, val_fmt=lambda v: f'{v:.1f}%', aria='Top 20 champions by appearance rate') + '</div>')
+    rows = [dict(champion=(ci(c['champion']), c['champion']), ap=(f"{c['appearance_rate']}%", c['appearance_rate']), pr=(f"{c['pick_rate']}%", c['pick_rate']),
+                 br=(f"{c['ban_rate']}%", c['ban_rate']), picks=c['picks'], bans=c['bans'], wr=(f"{c['winrate']}%" if c['winrate'] != '' else '—', c['winrate'] if c['winrate'] != '' else -1),
+                 main=c['main_role']) for c in sorted(champs, key=lambda c: (-c['appearance_rate'], -c['pick_rate'], c['champion']))]
+    body.append('<h4>Pick, ban and appearance rate per champion</h4>' +
+                '<details class="card" open><summary>Top 30 (click a header to sort; full list below in “Every champion”)</summary>' +
+                table([('champion', 'Champion', ''), ('ap', 'Appearance %', 'n'), ('pr', 'Pick %', 'n'), ('br', 'Ban %', 'n'), ('picks', 'Picks', 'n'), ('bans', 'Bans', 'n'),
+                       ('wr', 'Win rate when picked', 'n'), ('main', 'Main position', '')], rows[:30]) + '</details>')
 
     body.append('<h3 id="by-position">Picks by position</h3><p class="sub">Each position\'s most-picked champions with their win rate in this stage.</p><div class="grid">')
     for code, name in d['role_name'].items():
@@ -725,7 +737,7 @@ def page_b(d):
     body.append(table([('team', 'Team', ''), ('bans', 'Bans recorded', 'n'), ('top', 'Most banned', 'wrap'), ('picks', 'Most picked', 'wrap')], rows))
 
     body.append('<h3 id="champ-table">Every champion</h3>')
-    cols = [('champion', 'Champion', ''), ('picks', 'Picks', 'n'), ('bans', 'Bans', 'n'), ('presence_pct', 'Presence %', 'n'), ('wins', 'Wins', 'n'), ('winrate', 'Win rate %', 'n'),
+    cols = [('champion', 'Champion', ''), ('appearance_rate', 'Appearance %', 'n'), ('pick_rate', 'Pick %', 'n'), ('ban_rate', 'Ban %', 'n'), ('picks', 'Picks', 'n'), ('bans', 'Bans', 'n'), ('wins', 'Wins', 'n'), ('winrate', 'Win rate %', 'n'),
             ('main_role', 'Main position', ''), ('picks_TOP', 'Top', 'n'), ('picks_JG', 'Jg', 'n'), ('picks_MID', 'Mid', 'n'), ('picks_AD', 'Bot', 'n'), ('picks_SP', 'Sup', 'n'),
             ('kda', 'KDA', 'n'), ('avg_damage_share', 'Dmg share %', 'n'), ('picked_by', 'Picked by', 'wrap')]
     body.append('<details class="card"><summary>Show all %d champions</summary>' % len(champs) +

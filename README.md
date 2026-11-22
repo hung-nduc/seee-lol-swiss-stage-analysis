@@ -49,7 +49,7 @@ scripts/
 | `drafts.csv` | ban or pick: raw name from the record and cleaned name |
 | `player_ranks.csv` | player: op.gg Solo/Duo, Flex and Ranked 5s for 2026, Swiss games, champions |
 | `team_scouting.csv` | team: average ranks, ranked activity, Flex share |
-| `champions.csv` | champion: picks, bans, presence, win rate, positions |
+| `champions.csv` | champion: picks, bans, **pick % / ban % / appearance %** per match (appearance = picked or banned, over the 28 played games), win rate, positions |
 | `role_stats.csv` | position: damage and gold share, damage per minute, top-damage count |
 | `team_stats.csv` | team: averages over played games, incl. **team kill participation (KP)**, KP in wins/losses and KP by position |
 | `team_role_kp.csv` | team × position: kill participation |
