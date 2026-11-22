@@ -1,0 +1,154 @@
+{
+ "code": "LS42",
+ "layout": "standard",
+ "game_time": "26:59",
+ "teams": [
+  {
+   "team": "HKG",
+   "won": false,
+   "kills": 14,
+   "deaths": 26,
+   "assists": 16,
+   "gold": 46290,
+   "players": [
+    {
+     "riot": "HK4 Cragon#0608",
+     "name_on_screen": "HK4 Cragon",
+     "role": "SP",
+     "champion": "Alistar",
+     "level": 12,
+     "k": 2,
+     "d": 4,
+     "a": 6,
+     "damage": 5164,
+     "gold": 7298,
+     "role_record": "TOP"
+    },
+    {
+     "riot": "HK2 LSiong#2207",
+     "name_on_screen": "HK2 LSiong",
+     "role": "TOP",
+     "champion": "Garen",
+     "level": 16,
+     "k": 4,
+     "d": 3,
+     "a": 0,
+     "damage": 14385,
+     "gold": 9465,
+     "role_record": "JG"
+    },
+    {
+     "riot": "Kataddict#28708",
+     "name_on_screen": "Kataddict",
+     "role": "MID",
+     "champion": "Qiyana",
+     "level": 14,
+     "k": 4,
+     "d": 6,
+     "a": 0,
+     "damage": 14890,
+     "gold": 9324,
+     "role_record": "MID"
+    },
+    {
+     "riot": "HK3 XII#1268",
+     "name_on_screen": "HK3 XII",
+     "role": "JG",
+     "champion": "Kayn",
+     "level": 14,
+     "k": 0,
+     "d": 8,
+     "a": 4,
+     "damage": 8377,
+     "gold": 8459,
+     "role_record": "AD"
+    },
+    {
+     "riot": "Fizz Ziczac#vn2",
+     "name_on_screen": "Fizz Ziczac",
+     "role": "AD",
+     "champion": "Xerath",
+     "level": 14,
+     "k": 4,
+     "d": 5,
+     "a": 6,
+     "damage": 18478,
+     "gold": 11744,
+     "role_record": "SP"
+    }
+   ]
+  },
+  {
+   "team": "GLT",
+   "won": true,
+   "kills": 26,
+   "deaths": 14,
+   "assists": 40,
+   "gold": 61703,
+   "players": [
+    {
+     "riot": "LSR Nhakanasi#TLA4",
+     "name_on_screen": "LSR Nhakanasi",
+     "role": "TOP",
+     "champion": "Ambessa",
+     "level": 18,
+     "k": 4,
+     "d": 2,
+     "a": 4,
+     "damage": 29304,
+     "gold": 12620
+    },
+    {
+     "riot": "3Who#0802",
+     "name_on_screen": "3Who",
+     "role": "JG",
+     "champion": "Amumu",
+     "level": 16,
+     "k": 5,
+     "d": 4,
+     "a": 15,
+     "damage": 19782,
+     "gold": 12332
+    },
+    {
+     "riot": "VAC Ryoku Haru#1603",
+     "name_on_screen": "VAC Ryoku Haru",
+     "role": "MID",
+     "champion": "Zed",
+     "level": 17,
+     "k": 7,
+     "d": 4,
+     "a": 5,
+     "damage": 27561,
+     "gold": 15529
+    },
+    {
+     "riot": "Zendar#5696",
+     "name_on_screen": "Zendar",
+     "role": "AD",
+     "champion": "Kai'Sa",
+     "level": 14,
+     "k": 8,
+     "d": 1,
+     "a": 5,
+     "damage": 14156,
+     "gold": 12546
+    },
+    {
+     "riot": "nhquan2121#6844",
+     "name_on_screen": "nhquan2121",
+     "role": "SP",
+     "champion": "Nautilus",
+     "level": 13,
+     "k": 2,
+     "d": 3,
+     "a": 11,
+     "damage": 8049,
+     "gold": 8676
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Screen ĐỘI 1 = GLT (red in record, winner), ĐỘI 2 = HKG (blue); teams listed blue first in JSON. HKG roles per record do NOT match screen row order/champions: record says HK4 Cragon=TOP, HK2 LSiong=JG, Kataddict=MID, HK3 XII=AD, Fizz Ziczac=SP, but screen shows Cragon=Alistar (support), LSiong=Garen, XII=Kayn, Kataddict=Qiyana, Fizz=Xerath. Record roles kept; real roles look like LSiong TOP, XII JG, Kataddict MID, Fizz AD(mage), Cragon SP. GLT matches record roles. Time and winner match. | role fix by champion/screen order for HKG"
+}

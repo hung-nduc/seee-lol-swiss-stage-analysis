@@ -1,0 +1,638 @@
+"""Static HTML reports (no external libraries, works offline and on GitHub Pages).
+
+Called by build.py. Every chart is inline SVG; every table is sortable by clicking its header.
+"""
+import html, statistics as st
+from collections import Counter, defaultdict
+from pathlib import Path
+
+E = html.escape
+C = ['#3b6fd8', '#e08a2c', '#2fa37a', '#c0504d', '#8064a2', '#7f8c8d']   # series colours
+MUTED = '#9aa3ad'
+PAGES = [('index.html', 'Overview'), ('a-team-scouting.html', 'A. Team scouting'),
+         ('b-swiss-evaluation.html', 'B. Swiss Stage evaluation'), ('c-team-evaluation.html', 'C. Team evaluation')]
+
+CSS = """
+:root{--bg:#fff;--fg:#1d2330;--muted:#5d6675;--line:#e3e6eb;--panel:#f7f8fa;--ok:#1f8a5b;--warn:#b7701c;--bad:#c0392b;--accent:#3b6fd8}
+@media (prefers-color-scheme:dark){:root{--bg:#14171c;--fg:#e6e8ec;--muted:#9aa3ad;--line:#2b313a;--panel:#1b1f26;--ok:#4cc38a;--warn:#e3a14f;--bad:#ef6b5e;--accent:#7aa2ff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 80px}
+nav.top{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.top .wrap{padding:10px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+nav.top a{color:var(--muted);text-decoration:none;font-size:14px}nav.top a.on{color:var(--fg);font-weight:600}
+nav.top .brand{font-weight:700;color:var(--fg);margin-right:auto}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:34px;margin:8px 0 6px}
+h2{font-size:22px;margin:44px 0 6px;padding-top:8px;border-top:1px solid var(--line)}
+h3{font-size:16px;margin:26px 0 6px}h4{font-size:14px;margin:14px 0 6px}
+p{margin:6px 0 10px;max-width:80ch}.muted,.sub{color:var(--muted)}.sub{font-size:13px}
+.toc{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;margin:10px 0 6px}.toc a{color:var(--accent);text-decoration:none}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px}.grid.wide{grid-template-columns:repeat(auto-fit,minmax(520px,1fr))}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:12px 0}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.tile .v{font-family:Georgia,serif;font-size:30px;line-height:1.15}.tile .l{font-size:12px;color:var(--muted)}
+ul.find{margin:8px 0;padding-left:20px}ul.find li{margin:4px 0;max-width:90ch}
+.tw{overflow-x:auto;margin:8px 0}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap;vertical-align:top}
+th{color:var(--muted);font-weight:600;cursor:pointer;user-select:none;position:sticky;top:0;background:var(--bg)}
+.card th{background:var(--panel)}th.sorted-asc::after{content:" ▲"}th.sorted-desc::after{content:" ▼"}
+td.n,th.n{text-align:right}td.wr{white-space:normal;min-width:220px}
+tr.hl td{background:rgba(59,111,216,.08)}
+.pill{display:inline-block;padding:0 8px;border-radius:99px;border:1px solid var(--line);font-size:12px}
+.pill.ok{color:var(--ok);border-color:var(--ok)}.pill.warn{color:var(--warn);border-color:var(--warn)}.pill.bad{color:var(--bad);border-color:var(--bad)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted);margin:4px 0 8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+svg{display:block;width:100%;height:auto}svg text{fill:var(--muted);font-size:11px}svg .strong{fill:var(--fg);font-weight:600}
+svg .grid line{stroke:var(--line)}svg .axis{stroke:var(--line)}
+.rounds{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.round h4{margin:0 0 6px}.m{border:1px solid var(--line);border-radius:8px;padding:6px 8px;margin:6px 0;font-size:12.5px;background:var(--bg)}
+.m .w{font-weight:700}.m .pool{color:var(--muted);font-size:11px}
+details>summary{cursor:pointer;font-weight:600;margin:6px 0}
+.teamcard h3{margin-top:4px}.kv{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;margin:4px 0 8px}.kv b{font-weight:600}
+footer{margin-top:60px;color:var(--muted);font-size:12px}
+a{color:var(--accent)}
+"""
+
+JS = """
+document.querySelectorAll('table.sortable').forEach(t=>{
+  t.querySelectorAll('th').forEach((th,i)=>th.addEventListener('click',()=>{
+    const tb=t.tBodies[0],rows=[...tb.rows],asc=!th.classList.contains('sorted-asc');
+    t.querySelectorAll('th').forEach(h=>h.classList.remove('sorted-asc','sorted-desc'));th.classList.add(asc?'sorted-asc':'sorted-desc');
+    const v=r=>{const c=r.cells[i];const s=c.dataset.v!==undefined?c.dataset.v:c.textContent.trim();const n=parseFloat(s.replace(/[,%+]/g,''));return isNaN(n)?s.toLowerCase():n};
+    rows.sort((a,b)=>{const x=v(a),y=v(b);return (x>y?1:x<y?-1:0)*(asc?1:-1)});rows.forEach(r=>tb.append(r));
+  }));
+});
+"""
+
+
+def fmt(v, d=0):
+    if v == '' or v is None:
+        return '—'
+    if isinstance(v, float):
+        if d == 0:
+            return f'{round(v):,}'
+        t = f'{v:,.{d}f}'.rstrip('0').rstrip('.')
+        return t
+    if isinstance(v, int):
+        return f'{v:,}'
+    return str(v)
+
+
+def table(cols, rows, sortable=True, hl=None, cls=''):
+    """cols: list of (key, header, kind) kind in '', 'n', 'wrap'. rows: list of dicts. Values may be (display, sortval)."""
+    h = ['<div class="tw"><table class="%s %s"><thead><tr>' % ('sortable' if sortable else '', cls)]
+    for k, head, kind in cols:
+        h.append(f'<th class="{"n" if kind == "n" else ""}">{E(head)}</th>')
+    h.append('</tr></thead><tbody>')
+    for r in rows:
+        h.append(f'<tr class="{"hl" if hl and hl(r) else ""}">')
+        for k, head, kind in cols:
+            kc = 'wr' if kind == 'wrap' else kind
+            v = r.get(k, '')
+            if isinstance(v, tuple):
+                disp, sv = v
+                h.append(f'<td class="{kc}" data-v="{E(str(sv))}">{disp}</td>')
+            else:
+                h.append(f'<td class="{kc}">{E(fmt(v, 2 if isinstance(v, float) else 0))}</td>')
+        h.append('</tr>')
+    h.append('</tbody></table></div>')
+    return ''.join(h)
+
+
+def pill(text, kind=''):
+    return f'<span class="pill {kind}">{E(text)}</span>'
+
+
+def legend(items):
+    return '<div class="legend">' + ''.join(f'<span><i style="background:{c}"></i>{E(t)}</span>' for t, c in items) + '</div>'
+
+
+def tw(s, px=6.6):
+    return len(str(s)) * px
+
+
+# ------------------------------------------------------------------ charts
+def hbar(rows, keys, colors=None, label_w=None, W=760, row_h=22, val_fmt=lambda v: fmt(v), xmax=None, ref=None, total=True, aria=''):
+    """rows: list of dict(label, values=[...], tip, strong=bool)."""
+    colors = colors or C
+    lw = label_w or max(60, max(tw(r['label']) for r in rows) + 12)
+    H = len(rows) * row_h + 8
+    mx = xmax or max(sum(v for v in r['values'] if v) for r in rows) or 1
+    x = lambda v: lw + (W - lw - 50) * v / mx
+    s = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="{E(aria)}">']
+    if ref is not None:
+        s.append(f'<line x1="{x(ref):.1f}" x2="{x(ref):.1f}" y1="0" y2="{H}" stroke="{MUTED}" stroke-dasharray="3 3"/>')
+    for i, r in enumerate(rows):
+        y = 4 + i * row_h
+        s.append(f'<g><title>{E(r.get("tip", ""))}</title>')
+        s.append(f'<text x="{lw - 8}" y="{y + row_h / 2}" dy=".35em" text-anchor="end" class="{"strong" if r.get("strong") else ""}">{E(r["label"])}</text>')
+        x0 = lw
+        for j, v in enumerate(r['values']):
+            if not v:
+                continue
+            w = x(v) - lw
+            s.append(f'<rect x="{x0:.1f}" y="{y + 3}" width="{max(w, 0):.1f}" height="{row_h - 6}" rx="2" fill="{colors[j]}"/>')
+            x0 += w
+        if total:
+            s.append(f'<text x="{x0 + 5:.1f}" y="{y + row_h / 2}" dy=".35em">{E(val_fmt(sum(v for v in r["values"] if v)))}</text>')
+        s.append('</g>')
+    s.append('</svg>')
+    return ''.join(s)
+
+
+def diverging(rows, W=760, row_h=22, aria='', fmtv=lambda v: f'{v:+,}'):
+    lw = max(60, max(tw(r['label'], 7.5) for r in rows) + 14)
+    H = len(rows) * row_h + 8
+    mx = max(abs(r['value']) for r in rows) or 1
+    mid = lw + (W - lw) / 2
+    x = lambda v: mid + (W - lw - 80) / 2 * v / mx
+    s = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="{E(aria)}"><line x1="{mid}" x2="{mid}" y1="0" y2="{H}" class="axis" stroke="{MUTED}"/>']
+    for i, r in enumerate(rows):
+        y = 4 + i * row_h
+        v = r['value']
+        x0, x1 = sorted([mid, x(v)])
+        col = C[2] if v >= 0 else C[3]
+        s.append(f'<g><title>{E(r.get("tip", ""))}</title><text x="{lw - 8}" y="{y + row_h / 2}" dy=".35em" text-anchor="end" class="{"strong" if r.get("strong") else ""}">{E(r["label"])}</text>')
+        s.append(f'<rect x="{x0:.1f}" y="{y + 3}" width="{max(x1 - x0, 1):.1f}" height="{row_h - 6}" rx="2" fill="{col}"/>')
+        tx = x(v) + 5 if v >= 0 else mid + 5
+        s.append(f'<text x="{tx:.1f}" y="{y + row_h / 2}" dy=".35em" text-anchor="start">{E(fmtv(v))}</text></g>')
+    s.append('</svg>')
+    return ''.join(s)
+
+
+def vgroup(cats, series, colors=None, W=760, H=260, ymax=None, suffix='', aria='', labels=True):
+    """cats: labels; series: list of (name, [values])."""
+    colors = colors or C
+    m = dict(t=20, b=30, l=10, r=10)
+    mx = ymax or max(max(v for v in vals) for _, vals in series) * 1.15
+    bw = (W - m['l'] - m['r']) / len(cats)
+    gw = bw * 0.75 / len(series)
+    y = lambda v: H - m['b'] - (H - m['b'] - m['t']) * v / mx
+    s = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="{E(aria)}">']
+    for i, c in enumerate(cats):
+        cx = m['l'] + bw * i + bw * 0.125
+        for j, (name, vals) in enumerate(series):
+            v = vals[i]
+            s.append(f'<g><title>{E(c)} — {E(name)}: {v}{suffix}</title><rect x="{cx + j * gw:.1f}" y="{y(v):.1f}" width="{gw - 2:.1f}" height="{y(0) - y(v):.1f}" rx="2" fill="{colors[j]}"/>'
+                     + (f'<text x="{cx + j * gw + gw / 2 - 1:.1f}" y="{y(v) - 4:.1f}" text-anchor="middle">{v}{suffix}</text>' if labels else '') + '</g>')
+        s.append(f'<text x="{m["l"] + bw * i + bw / 2:.1f}" y="{H - 10}" text-anchor="middle" class="strong">{E(c)}</text>')
+    s.append('</svg>')
+    return ''.join(s)
+
+
+def scatter(pts, xlab, ylab, W=760, H=400, xfmt=lambda v: f'{v:g}', yfmt=lambda v: f'{v:,.0f}', aria=''):
+    """pts: dict(x, y, label, color, tip)."""
+    m = dict(t=16, r=60, b=44, l=60)
+    xs = [p['x'] for p in pts]; ys = [p['y'] for p in pts]
+    import math
+    def nice(lo, hi):
+        pad = (hi - lo) * 0.08 or 1
+        lo, hi = lo - pad, hi + pad
+        raw = (hi - lo) / 5
+        mag = 10 ** math.floor(math.log10(raw))
+        step = min((m * mag for m in (1, 2, 2.5, 5, 10) if m * mag >= raw))
+        return math.floor(lo / step) * step, math.ceil(hi / step) * step, step
+    x0, x1, xs_ = nice(min(xs), max(xs)); y0, y1, ys_ = nice(min(ys), max(ys))
+    xt = [x0 + i * xs_ for i in range(int(round((x1 - x0) / xs_)) + 1)]
+    yt = [y0 + i * ys_ for i in range(int(round((y1 - y0) / ys_)) + 1)]
+    X = lambda v: m['l'] + (W - m['l'] - m['r']) * (v - x0) / (x1 - x0)
+    Y = lambda v: H - m['b'] - (H - m['b'] - m['t']) * (v - y0) / (y1 - y0)
+    s = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="{E(aria)}"><g class="grid">']
+    for xv in xt:
+        s.append(f'<line x1="{X(xv):.1f}" x2="{X(xv):.1f}" y1="{m["t"]}" y2="{H - m["b"]}"/>')
+    for yv in yt:
+        s.append(f'<line x1="{m["l"]}" x2="{W - m["r"]}" y1="{Y(yv):.1f}" y2="{Y(yv):.1f}"/>')
+    s.append('</g>')
+    for xv in xt:
+        s.append(f'<text x="{X(xv):.1f}" y="{H - m["b"] + 16}" text-anchor="middle">{E(xfmt(xv))}</text>')
+    for yv in yt:
+        s.append(f'<text x="{m["l"] - 6}" y="{Y(yv):.1f}" dy=".35em" text-anchor="end">{E(yfmt(yv))}</text>')
+    s.append(f'<text x="{(W) / 2}" y="{H - 6}" text-anchor="middle" class="strong">{E(xlab)}</text>')
+    s.append(f'<text transform="translate(14,{H / 2}) rotate(-90)" text-anchor="middle" class="strong">{E(ylab)}</text>')
+    placed = []
+    P = [(X(p['x']), Y(p['y']), p) for p in pts]
+    def hit(b):
+        return any(b[0] < q[2] and b[2] > q[0] and b[1] < q[3] and b[3] > q[1] for q in placed) or \
+               any(b[0] - 5 < px < b[2] + 5 and b[1] - 5 < py < b[3] + 5 for px, py, _ in P)
+    for px, py, p in sorted(P, key=lambda t: t[1]):
+        s.append(f'<g><title>{E(p.get("tip", ""))}</title><circle cx="{px:.1f}" cy="{py:.1f}" r="6" fill="{p.get("color", C[0])}"/></g>')
+    for px, py, p in sorted(P, key=lambda t: t[1]):
+        w = tw(p['label'], 7) + 2
+        for dx, dy in [(9, 0), (-9 - w, 0), (9, -13), (9, 13), (-9 - w, -13), (-9 - w, 13), (9, -26), (9, 26), (-9 - w, 26), (-9 - w, -26)]:
+            b = (px + dx, py + dy - 6, px + dx + w, py + dy + 6)
+            if not hit(b):
+                break
+        placed.append(b)
+        if dy:
+            s.append(f'<line x1="{px:.1f}" y1="{py:.1f}" x2="{(b[0] if dx > 0 else b[2]):.1f}" y2="{py + dy:.1f}" stroke="{MUTED}" stroke-width=".6"/>')
+        s.append(f'<text x="{b[0]:.1f}" y="{py + dy:.1f}" dy=".35em" class="strong">{E(p["label"])}</text>')
+    s.append('</svg>')
+    return ''.join(s)
+
+
+def rank_chart(teams, W=760, row_h=26, rank_label=None):
+    """Solo/Duo bar + Flex dot + 5s diamond on a ladder axis (Iron 4 = 0 … Master = 28)."""
+    lw = 70
+    H = len(teams) * row_h + 34
+    lo, hi = 4, 32
+    X = lambda v: lw + (W - lw - 16) * (min(max(v, lo), hi) - lo) / (hi - lo)
+    s = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Average Solo/Duo, Flex and Ranked 5s rank per team"><g class="grid">']
+    ticks = [(4, 'Bronze 4'), (8, 'Silver 4'), (12, 'Gold 4'), (16, 'Plat 4'), (20, 'Emerald 4'), (24, 'Diamond 4'), (28, 'Master')]
+    for v, l in ticks:
+        s.append(f'<line x1="{X(v):.1f}" x2="{X(v):.1f}" y1="0" y2="{H - 28}"/>')
+    s.append('</g>')
+    for v, l in ticks:
+        s.append(f'<text x="{X(v):.1f}" y="{H - 10}" text-anchor="middle">{l}</text>')
+    for i, t in enumerate(teams):
+        y = i * row_h
+        tip = f"{t['team']} ({t['swiss_record']}) — Solo/Duo {t['solo_avg']}, Flex {t['flex_avg']}, Ranked 5s {t['r5_avg']}"
+        s.append(f'<g><title>{E(tip)}</title><text x="{lw - 8}" y="{y + row_h / 2}" dy=".35em" text-anchor="end" class="{"strong" if t["qualified"] else ""}">{"✓ " if t["qualified"] else ""}{E(t["team"])}</text>')
+        if t['solo_score'] != '':
+            s.append(f'<rect x="{X(lo):.1f}" y="{y + 5}" width="{X(t["solo_score"]) - X(lo):.1f}" height="{row_h - 10}" rx="2" fill="{C[0]}"/>')
+            right = max(X(v) for v in (t['solo_score'], t['flex_score'], t['r5_score']) if v != '') + 9
+            lab = E(t['solo_avg'])
+            if right + tw(lab, 5.8) < W:
+                s.append(f'<text x="{right:.1f}" y="{y + row_h / 2}" dy=".35em" style="font-size:10px">{lab}</text>')
+            else:
+                s.append(f'<text x="{X(lo) + 6:.1f}" y="{y + row_h / 2}" dy=".35em" style="font-size:10px;fill:#fff">{lab}</text>')
+        if t['flex_score'] != '':
+            s.append(f'<circle cx="{X(t["flex_score"]):.1f}" cy="{y + row_h / 2}" r="5.5" fill="{C[1]}" stroke="var(--bg)" stroke-width="1.5"/>')
+        if t['r5_score'] != '':
+            cx, cy = X(t['r5_score']), y + row_h / 2
+            s.append(f'<path d="M{cx},{cy - 6} L{cx + 6},{cy} L{cx},{cy + 6} L{cx - 6},{cy} Z" fill="{C[2]}" stroke="var(--bg)"/>')
+        s.append('</g>')
+    s.append('</svg>')
+    return ''.join(s)
+
+
+def histogram(values, bins, W=760, H=200, label=lambda a, b: f'{a}–{b}', aria=''):
+    counts = [sum(1 for v in values if a <= v < b) for a, b in bins]
+    mx = max(counts) or 1
+    bw = (W - 20) / len(bins)
+    s = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="{E(aria)}">']
+    for i, ((a, b), c) in enumerate(zip(bins, counts)):
+        h = (H - 50) * c / mx
+        x = 10 + i * bw
+        s.append(f'<g><title>{label(a, b)}: {c}</title><rect x="{x + 3:.1f}" y="{H - 30 - h:.1f}" width="{bw - 6:.1f}" height="{h:.1f}" rx="2" fill="{C[0]}"/>'
+                 f'<text x="{x + bw / 2:.1f}" y="{H - 34 - h:.1f}" text-anchor="middle">{c}</text>'
+                 f'<text x="{x + bw / 2:.1f}" y="{H - 12}" text-anchor="middle">{E(label(a, b))}</text></g>')
+    s.append('</svg>')
+    return ''.join(s)
+
+
+# ------------------------------------------------------------------ page shell
+def page(fname, title, lede, body, toc=()):
+    nav = ''.join(f'<a href="{f}" class="{"on" if f == fname else ""}">{E(t)}</a>' for f, t in PAGES)
+    tocs = ('<div class="toc">' + ''.join(f'<a href="#{a}">{E(t)}</a>' for a, t in toc) + '</div>') if toc else ''
+    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{E(title)} — SEEE LoL Swiss Stage 2026</title><style>{CSS}</style></head><body>
+<nav class="top"><div class="wrap"><span class="brand">SEEE LoL 2026 · Swiss Stage</span>{nav}</div></nav>
+<div class="wrap"><h1>{E(title)}</h1><p class="muted">{lede}</p>{tocs}{body}
+<footer>Built by <code>scripts/build.py</code> from the match records, the post-game scoreboards and an op.gg (VN) snapshot taken 22 Nov 2026.
+Raw and processed data: <code>data/</code>. Hover any bar or dot for its value; click a table header to sort.</footer></div>
+<script>{JS}</script></body></html>"""
+
+
+# ------------------------------------------------------------------ A. scouting
+def page_a(d):
+    sc, players, rl = d['scouting'], d['players'], d['rank_label']
+    q = d['qualified']
+    top8 = {s['team'] for s in sc[:8]}
+    both = len(top8 & set(q))
+    heavy = [s for s in sc if s['flex_verdict'] == 'Heavy Flex']
+    r5p = [p for p in players if p['r5_score'] is not None]
+    mostly = sorted([s for s in sc if s['flex_verdict'] == 'Mostly Solo/Duo'], key=lambda s: s['flex_share'])
+    spread = sorted([s for s in sc if s['rank_spread'] != ''], key=lambda s: -s['rank_spread'])
+    unr = [s for s in sc if s['solo_unranked']]
+    finds = [
+        f"<b>{E(sc[0]['team'])}</b> fields the strongest Solo/Duo lineup ({E(sc[0]['solo_avg'])}), followed by "
+        + ', '.join(f"<b>{E(s['team'])}</b> ({E(s['solo_avg'])})" for s in sc[1:3]) + f". The gap from #3 to #4 ({E(sc[3]['team'])}, {E(sc[3]['solo_avg'])}) is about {sc[2]['solo_score'] - sc[3]['solo_score']:.0f} divisions.",
+        f"{both} of the 8 quarter-finalists were also among the 8 highest-ranked lineups.",
+        f"Ranked 5s (tournament mode) is barely used: only {len(r5p)} of {len(players)} players have a 5s rank (" + ', '.join(f"{E(p['riot_id'])} – {E(p['team'])}" for p in r5p) + ").",
+        f"Teams leaning on Flex: " + ', '.join(f"<b>{E(s['team'])}</b> ({s['flex_share']}% of ranked games)" for s in heavy) +
+        f". The top teams mostly grind Solo/Duo: " + ', '.join(f"{E(s['team'])} {s['flex_share']}%" for s in mostly[:4]) + '.',
+        f"Widest skill gaps inside a team: " + ', '.join(f"<b>{E(s['team'])}</b> ({s['rank_spread']:.0f} divisions, from {E(s['best_player'])} to {E(s['weakest_player'])})" for s in spread[:3]) + '.',
+        "Teams with players who have no 2026 Solo/Duo rank (their average leans on fewer players): " + ', '.join(f"{E(s['team'])} ({s['solo_unranked']})" for s in unr) + '.',
+    ]
+    body = ['<h2 id="findings">Key findings</h2><ul class="find">' + ''.join(f'<li>{f}</li>' for f in finds) + '</ul>']
+
+    body.append('<h2 id="ranks">Average rank by team</h2><p class="sub">Average over the players who actually played in the Swiss Stage, weighted by games played. Players with no 2026 rank in a queue are left out of that queue. ✓ = reached the quarter-finals.</p>')
+    body.append('<div class="card">' + legend([('Solo/Duo (bar)', C[0]), ('Flex (dot)', C[1]), ('Ranked 5s (diamond)', C[2])]) + rank_chart(sc) + '</div>')
+
+    cols = [('rank_seed', '#', 'n'), ('team', 'Team', ''), ('swiss_record', 'Swiss', ''), ('solo', 'Solo/Duo avg', ''), ('flex', 'Flex avg', ''),
+            ('r5', 'Ranked 5s avg', ''), ('r5_ranked_players', '5s-ranked players', 'n'), ('players_used', 'Players used', 'n'),
+            ('solo_unranked', 'Solo unranked', 'n'), ('best_player', 'Highest ranked', ''), ('weakest_player', 'Lowest ranked', ''), ('rank_spread', 'Spread (div.)', 'n')]
+    rows = [dict(s, solo=(E(s['solo_avg']), s['solo_score']), flex=(E(s['flex_avg']), s['flex_score']), r5=(E(s['r5_avg']), s['r5_score'] if s['r5_score'] != '' else -1),
+                 team=(('✓ ' if s['qualified'] else '') + E(s['team']), s['team'])) for s in sc]
+    body.append('<h3>Scouting table</h3>' + table(cols, rows))
+
+    body.append('<h2 id="activity">Ranked activity in 2026</h2><p class="sub">Season-2026 ranked games (wins + losses) per player, averaged over the players each team used. A large number of games means a more reliable rank.</p>')
+    act = sorted(sc, key=lambda s: -(s['solo_games_per_player'] + s['flex_games_per_player']))
+    body.append('<div class="card">' + legend([('Solo/Duo games per player', C[0]), ('Flex games per player', C[1]), ('Ranked 5s games per player', C[2])]) +
+                hbar([dict(label=s['team'], values=[s['solo_games_per_player'], s['flex_games_per_player'], round(s['r5_games_total'] / s['players_used'])],
+                           tip=f"{s['team']}: {s['solo_games_per_player']} Solo, {s['flex_games_per_player']} Flex, {s['r5_games_total']} Ranked 5s in total", strong=s['qualified']) for s in act],
+                     [0, 1, 2], aria='Ranked games per player by queue') + '</div>')
+
+    body.append('<h2 id="flex">Are teams practising in Ranked Flex?</h2><p>Flex share = a team\'s Flex games as a share of all its 2026 ranked games. Flex regulars = players with at least 50 Flex games this season. '
+                'op.gg only shows each player\'s own totals, not who they queued with, so a high share suggests the team practises together but doesn\'t prove it.</p>')
+    fl = sorted(sc, key=lambda s: -s['flex_share'])
+    body.append('<div class="card">' + legend([('Flex share of ranked games (%) — dashed line at 45% = heavy Flex; 25–44% = some Flex', C[1])]) +
+                hbar([dict(label=s['team'], values=[s['flex_share']], tip=f"{s['team']}: {s['flex_share']}% Flex, {s['flex_regulars']} Flex regulars — {s['flex_verdict']}", strong=s['qualified']) for s in fl],
+                     [0], colors=[C[1]], xmax=100, ref=45, val_fmt=lambda v: f'{v}%', aria='Flex share by team') + '</div>')
+    cols = [('team', 'Team', ''), ('flex_share', 'Flex share %', 'n'), ('flex_regulars', 'Flex regulars', 'n'), ('flex_games_total', 'Flex games (team total)', 'n'),
+            ('solo_games_total', 'Solo games (team total)', 'n'), ('r5_games_total', 'Ranked 5s games', 'n'), ('verdict', 'Verdict', '')]
+    body.append(table(cols, [dict(s, verdict=(pill(s['flex_verdict'], 'ok' if s['flex_verdict'] == 'Heavy Flex' else 'warn' if s['flex_verdict'] == 'Some Flex' else ''), s['flex_share'])) for s in fl]))
+
+    body.append('<h2 id="distribution">Rank distribution of all players</h2><p class="sub">Solo/Duo tier of every player who played at least one Swiss game.</p>')
+    tiers = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Emerald', 'Diamond', 'Master']
+    cnt = Counter((p['solo_label'].split()[0] if p['solo_score'] is not None else 'Unranked') for p in players if p['swiss_games'])
+    body.append('<div class="card">' + hbar([dict(label=t, values=[cnt.get(t, 0)], tip=f'{t}: {cnt.get(t, 0)} players') for t in tiers + ['Unranked']], [0], aria='Players per Solo/Duo tier') + '</div>')
+
+    body.append('<h2 id="teams">Team by team</h2><p class="sub">Every player who played, with Solo/Duo, Flex and Ranked 5s for season 2026 (tier · LP · games · win rate) and the champions they played in the Swiss Stage.</p>')
+    for s in sorted(sc, key=lambda s: s['team']):
+        ps = [p for p in players if p['team'] == s['team']]
+        ps.sort(key=lambda p: (['TOP', 'JG', 'MID', 'AD', 'SP', ''].index(p['swiss_role']), -p['swiss_games']))
+
+        def qcell(p, qn):
+            if p[f'{qn}_score'] is None:
+                return (E(p[f'{qn}_label']) + (f' · {p[f"{qn}_games"]} g' if p[f'{qn}_games'] else ''), -1)
+            return (f"{E(p[f'{qn}_label'])} · {p[f'{qn}_games']} g · {p[f'{qn}_winrate']}%", p[f'{qn}_score'])
+        rows = [dict(role=d['role_name'].get(p['swiss_role'], '—'), riot=p['riot_id'], g=p['swiss_games'], solo=qcell(p, 'solo'), flex=qcell(p, 'flex'), r5=qcell(p, 'r5'),
+                     champs=p['swiss_champions']) for p in ps]
+        cols = [('role', 'Role', ''), ('riot', 'Riot ID', ''), ('g', 'Swiss games', 'n'), ('solo', 'Solo/Duo', ''), ('flex', 'Flex', ''), ('r5', 'Ranked 5s', ''), ('champs', 'Champions in Swiss', 'wrap')]
+        qual = pill('Quarter-finalist', 'ok') if s['qualified'] else pill('Eliminated', '')
+        body.append(f'<div class="card teamcard" id="team-{E(s["team"])}"><h3>{E(s["team"])} <span class="muted">· Swiss {E(s["swiss_record"])} · rank #{s["rank_seed"]} of 16</span> {qual}</h3>'
+                    f'<div class="kv"><span>Solo/Duo <b>{E(s["solo_avg"])}</b></span><span>Flex <b>{E(s["flex_avg"])}</b></span><span>Ranked 5s <b>{E(s["r5_avg"])}</b></span>'
+                    f'<span>Flex share <b>{s["flex_share"]}%</b> ({E(s["flex_verdict"])})</span><span>Spread <b>{s["rank_spread"]} div.</b></span><span>Players used <b>{s["players_used"]}</b></span></div>'
+                    + table(cols, rows) + '</div>')
+    toc = [('findings', 'Key findings'), ('ranks', 'Average rank'), ('activity', 'Ranked activity'), ('flex', 'Flex practice'), ('distribution', 'Rank distribution'), ('teams', 'Team by team')]
+    return page('a-team-scouting.html', 'A. Team scouting',
+                'Each team\'s strength from season-2026 ranked data on op.gg (VN): average Solo/Duo, Flex and Ranked 5s rank, ranked games played, and whether teams practise in Flex.',
+                ''.join(body), toc)
+
+
+# ------------------------------------------------------------------ B. Swiss evaluation
+def page_b(d):
+    M, S, champs, roles, pg, drafts = d['matches'], d['standings'], d['champions'], d['role_stats'], d['player_games'], d['drafts']
+    G = d['n_games']
+    played = [m for m in M if m['result_type'] == 'played']
+    ups = sorted([m for m in played if m['upset']], key=lambda m: m['rank_gap'])
+    sides = {s['side']: s for s in d['side_stats']}
+    picked = [c for c in champs if c['picks']]
+    banned = [c for c in champs if c['bans']]
+    once = [c for c in picked if c['picks'] == 1]
+    rs = sorted(roles, key=lambda r: -r['damage_share'])
+    elim_hi = [s for s in S if not s['qualified'] and s['rank_seed'] <= 8]
+    in_lo = [s for s in S if s['qualified'] and s['rank_seed'] > 8]
+    gm = [m['game_minutes'] for m in played]
+    fast = min(played, key=lambda m: m['game_minutes']); slow = max(played, key=lambda m: m['game_minutes'])
+    finds = [
+        f"The higher-ranked lineup won <b>{len(played) - len(ups)} of {len(played)}</b> played games; only {len(ups)} went against rank. 5 matches were decided without a game (4 no-shows, 1 ruling).",
+        f"<b>Most surprising result: {E(ups[1]['code'])}</b> – the 2-2 elimination decider: {E(ups[1]['winner'])} ({E(ups[1]['winner_rank'])}) beat {E(ups[1]['loser'])} ({E(ups[1]['loser_rank'])}) in {E(ups[1]['game_time'])} "
+        f"and knocked out the {'%d' % [s for s in S if s['team'] == ups[1]['loser']][0]['rank_seed']}th-ranked team. "
+        f"The largest rank gap overcome was {E(ups[0]['code'])} ({E(ups[0]['winner'])} over {E(ups[0]['loser'])}, {abs(ups[0]['rank_gap']):.1f} divisions), but {E(ups[0]['winner'])}'s average rests on only 3 ranked players.",
+        f"Seeding by rank vs. result: " + ', '.join(f"{E(s['team'])} (rank #{s['rank_seed']}) missed the quarter-finals" for s in elim_hi) + '; ' +
+        ', '.join(f"{E(s['team'])} (rank #{s['rank_seed']}) made it" for s in in_lo) + '.',
+        f"Side: blue won {sides['blue']['wins']} of {sides['blue']['games']} played games ({sides['blue']['winrate']}%), red {sides['red']['wins']} ({sides['red']['winrate']}%).",
+        f"Games lasted {st.mean(gm):.1f} min on average (median {st.median(gm):.1f}); fastest {E(fast['code'])} {E(fast['game_time'])}, longest {E(slow['code'])} {E(slow['game_time'])}.",
+        f"<b>{len(picked)}</b> different champions were picked and <b>{len(banned)}</b> banned across {G} games; {len(once)} champions were picked only once. "
+        f"Most contested: " + ', '.join(f"{E(c['champion'])} ({c['picks']}P/{c['bans']}B)" for c in champs[:5]) + '.',
+        f"Damage is carried by <b>{E(rs[0]['role'])}</b> and <b>{E(rs[1]['role'])}</b> ({rs[0]['damage_share']}% and {rs[1]['damage_share']}% of team damage). "
+        f"Top laners were the team's #1 damage dealer {[r for r in roles if r['role'] == 'Top'][0]['top_damage_count']} times, Mid {[r for r in roles if r['role'] == 'Mid'][0]['top_damage_count']} times. "
+        f"The ADC takes the most gold ({[r for r in roles if r['role'].startswith('Bot')][0]['gold_share']}%) but deals {[r for r in roles if r['role'].startswith('Bot')][0]['damage_share']}% of damage.",
+    ]
+    body = ['<h2 id="findings">Key findings</h2><ul class="find">' + ''.join(f'<li>{f}</li>' for f in finds) + '</ul>']
+
+    # standings
+    body.append('<h2 id="standings">Final standings</h2><p class="sub">Ordered by record, then Buchholz (sum of opponents\' wins), then rank seed. "Seed vs finish" = rank seed minus finishing place (positive = did better than rank suggests).</p>')
+    cols = [('finish', '#', 'n'), ('team', 'Team', ''), ('record', 'Record', ''), ('buchholz', 'Buchholz', 'n'), ('forfeit_wins', 'Wins by forfeit/ruling', 'n'),
+            ('forfeit_losses', 'Losses by forfeit/ruling', 'n'), ('rank_seed', 'Rank seed', 'n'), ('solo_avg', 'Solo/Duo avg', ''), ('svf', 'Seed vs finish', 'n'), ('q', 'Result', '')]
+    body.append(table(cols, [dict(s, svf=(f"{s['seed_vs_finish']:+d}", s['seed_vs_finish']), q=(pill('Quarter-finals', 'ok') if s['qualified'] else pill('Eliminated'), s['qualified'])) for s in S],
+                      hl=lambda r: r['qualified']))
+    body.append('<div class="card"><h4>Seed vs finish</h4>' + diverging([dict(label=s['team'], value=s['seed_vs_finish'], strong=s['qualified'],
+                                                                                tip=f"{s['team']}: rank seed #{s['rank_seed']}, finished #{s['finish']}") for s in sorted(S, key=lambda s: -s['seed_vs_finish'])],
+                                                                         aria='Rank seed minus finishing place') + '</div>')
+
+    # rounds
+    body.append('<h2 id="rounds">Round by round</h2><p class="sub">Winner in bold. Pools show both teams\' record before the match. No pairing was repeated.</p><div class="rounds">')
+    for rd in range(1, 6):
+        body.append(f'<div class="round card"><h4>Round {rd}</h4>')
+        for m in [m for m in M if m['round'] == rd]:
+            b = '<span class="w">%s</span>' % E(m['blue']) if m['winner'] == m['blue'] else E(m['blue'])
+            r = '<span class="w">%s</span>' % E(m['red']) if m['winner'] == m['red'] else E(m['red'])
+            tag = pill('forfeit' if m['result_type'] == 'forfeit' else 'ruling', '') if m['result_type'] != 'played' else (pill('upset', 'warn') if m['upset'] else '')
+            body.append(f'<div class="m"><span class="pool">{E(m["code"])} · pool {E(m["pool"])} · {E(m["game_time"] or "no game")}</span><br>{b} <span class="muted">vs</span> {r} {tag}</div>')
+        body.append('</div>')
+    body.append('</div>')
+
+    # all results
+    body.append('<h2 id="results">All results with rank gap</h2><p class="sub">Rank gap = winner\'s average Solo/Duo rank minus loser\'s, in divisions, for the five players who played (team average for matches without a game). Negative = the lower-ranked side won.</p>')
+    cols = [('code', 'Match', ''), ('round', 'Rd', 'n'), ('pool', 'Pool', ''), ('blue', 'Blue', ''), ('red', 'Red', ''), ('winner', 'Winner', ''), ('winner_rank', 'Winner rank', ''),
+            ('loser_rank', 'Loser rank', ''), ('gap', 'Rank gap', 'n'), ('game_time', 'Time', ''), ('type', 'Note', ''), ('notes', 'Record notes', 'wrap')]
+    body.append(table(cols, [dict(m, gap=(f"{m['rank_gap']:+.1f}", m['rank_gap']), type=(pill('upset', 'warn') if m['upset'] else pill(m['result_type']) if m['result_type'] != 'played' else pill('as expected', 'ok'), m['upset']))
+                             for m in M], hl=lambda r: r['upset']))
+
+    body.append('<h2 id="surprise">The most surprising results</h2>')
+    for m in ups:
+        mpg = [x for x in pg if x['code'] == m['code']]
+        lines = []
+        for team in (m['winner'], m['loser']):
+            xs = [x for x in mpg if x['team'] == team]
+            k = sum(x['kills'] for x in xs); dd = sum(x['deaths'] for x in xs); g = sum(x['gold'] for x in xs)
+            star = max(xs, key=lambda x: (x['kills'] + x['assists']) / max(x['deaths'], 1))
+            lines.append(f"<b>{E(team)}</b>: {k} kills, {dd} deaths, {g:,} gold — best KDA {E(star['riot_id'])} on {E(star['champion'])} ({star['kills']}/{star['deaths']}/{star['assists']})")
+        body.append(f'<div class="card"><h3>{E(m["code"])} · Round {m["round"]} (pool {E(m["pool"])}) · {E(m["winner"])} beat {E(m["loser"])} in {E(m["game_time"])}</h3>'
+                    f'<p>{E(m["winner"])} lineup: {E(m["winner_rank"])} · {E(m["loser"])} lineup: {E(m["loser_rank"])} · gap {m["rank_gap"]:+.1f} divisions.</p><ul class="find">' + ''.join(f'<li>{l}</li>' for l in lines) + '</ul></div>')
+
+    # side & length
+    body.append('<h2 id="sides">Sides and game length</h2><div class="grid">')
+    body.append('<div class="card"><h4>Wins by side (played games)</h4>' + hbar([dict(label='Blue', values=[sides['blue']['wins']], tip=f"Blue {sides['blue']['wins']} wins"),
+                                                                                 dict(label='Red', values=[sides['red']['wins']], tip=f"Red {sides['red']['wins']} wins")], [0], colors=[C[0]], W=400) + '</div>')
+    bins = [(a, a + 3) for a in range(21, 42, 3)]
+    body.append('<div class="card"><h4>Game length (minutes)</h4>' + histogram(gm, bins, W=440, aria='Game length distribution') + '</div></div>')
+
+    # champions
+    body.append('<h2 id="champions">Ban & pick</h2>')
+    body.append('<div class="tiles">' + ''.join(f'<div class="tile"><div class="v">{v}</div><div class="l">{l}</div></div>' for v, l in [
+        (len(picked), 'different champions picked'), (len(banned), 'different champions banned'), (len(once), 'picked only once'),
+        (len([c for c in picked if not c['bans']]), 'picked but never banned'), (G, 'games with picks'), (len({x['code'] for x in drafts if x['kind'] == 'ban'}), 'games with bans recorded')]) + '</div>')
+    body.append('<p class="sub">Picks and positions come from the scoreboards; bans from the match records (LS33 has no bans recorded, LS15 only 3, LS32 one missing). Presence = picks + bans over the 28 games.</p>')
+    body.append('<div class="card"><h4>Most contested champions</h4>' + legend([('Picked', C[0]), ('Banned', C[1])]) +
+                hbar([dict(label=c['champion'], values=[c['picks'], c['bans']], tip=f"{c['champion']}: picked {c['picks']} (won {c['wins']}), banned {c['bans']} — {c['presence_pct']}% presence") for c in champs[:20]],
+                     [0, 1], aria='Top 20 champions by presence') + '</div>')
+
+    body.append('<h3 id="by-position">Picks by position</h3><p class="sub">Each position\'s most-picked champions with their win rate in this stage.</p><div class="grid">')
+    for code, name in d['role_name'].items():
+        cnt = Counter(x['champion'] for x in pg if x['role'] == code)
+        wins = Counter(x['champion'] for x in pg if x['role'] == code and x['won'])
+        rows = [dict(c=c, n=n, w=wins[c], wr=(f'{round(100 * wins[c] / n)}%', 100 * wins[c] / n)) for c, n in cnt.most_common()]
+        body.append(f'<div class="card"><h4>{E(name)} — {len(cnt)} different champions</h4>' +
+                    hbar([dict(label=r['c'], values=[r['n']], tip=f"{r['c']}: {r['n']} picks, {r['w']} wins") for r in rows[:10]], [0], W=420, row_h=20) +
+                    f'<details><summary>All {len(rows)} champions</summary>' + table([('c', 'Champion', ''), ('n', 'Picks', 'n'), ('w', 'Wins', 'n'), ('wr', 'Win rate', 'n')], rows) + '</details></div>')
+    body.append('</div>')
+
+    body.append('<h3 id="team-bans">What each team banned</h3><p class="sub">Most frequent bans per team (from the records) — useful for draft prep against them.</p>')
+    tb = defaultdict(Counter)
+    tp = defaultdict(Counter)
+    for x in drafts:
+        if x['kind'] == 'ban':
+            tb[x['team']][x['champion']] += 1
+    for x in pg:
+        tp[x['team']][x['champion']] += 1
+    rows = [dict(team=t, bans=sum(tb[t].values()), top=', '.join(f'{c} x{n}' if n > 1 else c for c, n in tb[t].most_common(6)),
+                 picks=', '.join(f'{c} x{n}' if n > 1 else c for c, n in tp[t].most_common(6))) for t in sorted(tp)]
+    body.append(table([('team', 'Team', ''), ('bans', 'Bans recorded', 'n'), ('top', 'Most banned', 'wrap'), ('picks', 'Most picked', 'wrap')], rows))
+
+    body.append('<h3 id="champ-table">Every champion</h3>')
+    cols = [('champion', 'Champion', ''), ('picks', 'Picks', 'n'), ('bans', 'Bans', 'n'), ('presence_pct', 'Presence %', 'n'), ('wins', 'Wins', 'n'), ('winrate', 'Win rate %', 'n'),
+            ('main_role', 'Main position', ''), ('picks_TOP', 'Top', 'n'), ('picks_JG', 'Jg', 'n'), ('picks_MID', 'Mid', 'n'), ('picks_AD', 'Bot', 'n'), ('picks_SP', 'Sup', 'n'),
+            ('kda', 'KDA', 'n'), ('avg_damage_share', 'Dmg share %', 'n'), ('picked_by', 'Picked by', 'wrap')]
+    body.append('<details class="card"><summary>Show all %d champions</summary>' % len(champs) + table(cols, champs) + '</details>')
+
+    # damage
+    body.append('<h2 id="damage">Which position carries the damage?</h2><p class="sub">Damage to champions from the scoreboards; 26 of the 28 games have a damage column (LS13 and LS33 do not), and one LS18 value was hidden by a tooltip.</p>')
+    order = [r['role'] for r in roles]
+    body.append('<div class="card">' + legend([('Share of team damage', C[0]), ('Share of team gold', C[1])]) +
+                vgroup(order, [('Damage share', [r['damage_share'] for r in roles]), ('Gold share', [r['gold_share'] for r in roles])], suffix='%', aria='Damage and gold share by position') + '</div>')
+    body.append('<div class="card"><h4>Damage share in wins vs losses</h4>' + legend([('In wins', C[2]), ('In losses', C[3])]) +
+                vgroup(order, [('Wins', [r['damage_share_in_wins'] for r in roles]), ('Losses', [r['damage_share_in_losses'] for r in roles])], colors=[C[2], C[3]], suffix='%', H=220) + '</div>')
+    cols = [('role', 'Position', ''), ('damage_share', 'Dmg share %', 'n'), ('damage_share_in_wins', 'in wins %', 'n'), ('damage_share_in_losses', 'in losses %', 'n'), ('damage_per_min', 'Dmg / min', 'n'),
+            ('gold_share', 'Gold share %', 'n'), ('gold_per_min', 'Gold / min', 'n'), ('damage_per_1k_gold', 'Dmg per 1k gold', 'n'), ('kda', 'KDA', 'n'),
+            ('top_damage_count', '#1 damage on team', 'n'), ('unique_champions', 'Different champions', 'n')]
+    body.append(table(cols, roles))
+    body.append('<h3>Top damage dealers by position</h3><p class="sub">Average damage per minute, players with at least 2 games with a damage column.</p><div class="grid wide">')
+    for code, name in d['role_name'].items():
+        agg = defaultdict(list)
+        for x in pg:
+            if x['role'] == code and x['damage_per_min'] != '':
+                agg[(x['riot_id'], x['team'])].append(x)
+        rows = sorted([dict(p=f'{k[0]} ({k[1]})', dpm=round(st.mean(v['damage_per_min'] for v in xs)), sh=round(st.mean(v['damage_share'] for v in xs if v['damage_share'] != ''), 1), g=len(xs))
+                       for k, xs in agg.items() if len(xs) >= 2], key=lambda r: -r['dpm'])[:5]
+        body.append(f'<div class="card"><h4>{E(name)}</h4>' + table([('p', 'Player', ''), ('g', 'Games', 'n'), ('dpm', 'Dmg/min', 'n'), ('sh', 'Dmg share %', 'n')], rows, sortable=False) + '</div>')
+    body.append('</div>')
+
+    toc = [('findings', 'Key findings'), ('standings', 'Standings'), ('rounds', 'Round by round'), ('results', 'All results'), ('surprise', 'Surprises'), ('sides', 'Sides & length'),
+           ('champions', 'Ban & pick'), ('by-position', 'Picks by position'), ('team-bans', 'Team bans'), ('champ-table', 'Every champion'), ('damage', 'Damage by position')]
+    return page('b-swiss-evaluation.html', 'B. Swiss Stage evaluation',
+                '33 matches over 5 rounds (16–22 Nov 2026): 28 played, 4 forfeits, 1 ruling. Results against rank, surprises, ban & pick, and which position carries the damage.',
+                ''.join(body), toc)
+
+
+# ------------------------------------------------------------------ C. team evaluation
+def page_c(d):
+    T, TG, PS, pg = d['team_stats'], d['team_games'], d['player_stats'], d['player_games']
+    q = set(d['qualified'])
+    byk = sorted(T, key=lambda t: -t['kda'])
+    byg = sorted(T, key=lambda t: -t['avg_gold_per_min'])
+    longest = max(T, key=lambda t: t['avg_game_minutes'])
+    shortest = min(T, key=lambda t: t['avg_game_minutes'])
+    bygd = sorted(T, key=lambda t: -t['avg_gold_diff'])
+    finds = [
+        f"Best team KDA: <b>{E(byk[0]['team'])}</b> ({byk[0]['kda']}), then {E(byk[1]['team'])} ({byk[1]['kda']}) and {E(byk[2]['team'])} ({byk[2]['kda']}). Worst: {E(byk[-1]['team'])} ({byk[-1]['kda']}).",
+        f"Highest gold per minute: <b>{E(byg[0]['team'])}</b> ({byg[0]['avg_gold_per_min']:,}), {E(byg[1]['team'])} ({byg[1]['avg_gold_per_min']:,}), {E(byg[2]['team'])} ({byg[2]['avg_gold_per_min']:,}); lowest {E(byg[-1]['team'])} ({byg[-1]['avg_gold_per_min']:,}).",
+        f"Biggest average gold lead at the end: <b>{E(bygd[0]['team'])}</b> ({bygd[0]['avg_gold_diff']:+,}); biggest deficit {E(bygd[-1]['team'])} ({bygd[-1]['avg_gold_diff']:+,}).",
+        f"Longest games on average: {E(longest['team'])} ({longest['avg_game_minutes']:.1f} min); shortest: {E(shortest['team'])} ({shortest['avg_game_minutes']:.1f} min).",
+        "Total gold mostly tracks game length, so gold per minute is the fairer comparison; both are shown.",
+    ]
+    body = ['<h2 id="findings">Key findings</h2><ul class="find">' + ''.join(f'<li>{f}</li>' for f in finds) + '</ul>']
+    body.append('<p class="sub">Played games only (forfeits and the LS21 ruling have no game). KDA = (kills + assists) ÷ deaths over all of a team\'s games. Gold diff = team gold minus opponent gold at the end.</p>')
+    cols = [('team', 'Team', ''), ('games', 'Games', 'n'), ('wins', 'W', 'n'), ('losses', 'L', 'n'), ('avg_game_minutes', 'Avg time (min)', 'n'), ('avg_win_minutes', 'Avg win time', 'n'),
+            ('avg_loss_minutes', 'Avg loss time', 'n'), ('avg_gold', 'Avg total gold', 'n'), ('avg_gold_per_min', 'Gold / min', 'n'), ('avg_gold_diff', 'Avg gold diff', 'n'),
+            ('avg_kills', 'Kills / g', 'n'), ('avg_deaths', 'Deaths / g', 'n'), ('avg_assists', 'Assists / g', 'n'), ('kda', 'KDA', 'n'), ('kills_per_min', 'Kills / min', 'n'), ('best_kda_player', 'Best KDA player', '')]
+    body.append('<h2 id="table">Team comparison</h2>' + table(cols, [dict(t, team=(('✓ ' if t['qualified'] else '') + E(t['team']), t['team'])) for t in T], hl=lambda r: r['qualified']))
+
+    body.append('<h2 id="time-gold">Game time and gold</h2><div class="card">' + legend([('Quarter-finalist', C[0]), ('Eliminated', MUTED)]) +
+                scatter([dict(x=t['avg_game_minutes'], y=t['avg_gold_per_min'], label=t['team'], color=C[0] if t['qualified'] else MUTED,
+                              tip=f"{t['team']}: {t['avg_game_minutes']:.1f} min, {t['avg_gold_per_min']:,} gold/min, {t['wins']}-{t['losses']}") for t in T],
+                        'Average game time (min)', 'Gold per minute', xfmt=lambda v: f'{v:.0f}', aria='Game time vs gold per minute') + '</div>')
+    body.append('<div class="grid"><div class="card"><h4>Average total gold per game</h4>' +
+                hbar([dict(label=t['team'], values=[t['avg_gold']], strong=t['qualified'], tip=f"{t['team']}: {t['avg_gold']:,} gold in {t['avg_game_minutes']:.1f} min") for t in sorted(T, key=lambda t: -t['avg_gold'])], [0], W=460) + '</div>')
+    body.append('<div class="card"><h4>Average game time (min)</h4>' +
+                hbar([dict(label=t['team'], values=[t['avg_game_minutes']], strong=t['qualified'], tip=f"{t['team']}: wins {t['avg_win_minutes']} / losses {t['avg_loss_minutes']} min") for t in sorted(T, key=lambda t: -t['avg_game_minutes'])],
+                     [0], colors=[C[4]], W=460, val_fmt=lambda v: f'{v:.1f}') + '</div></div>')
+
+    body.append('<h2 id="kda">KDA and gold difference per game</h2><div class="grid"><div class="card"><h4>Team KDA</h4>' +
+                hbar([dict(label=t['team'], values=[t['kda']], strong=t['qualified'], tip=f"{t['team']}: {t['avg_kills']}/{t['avg_deaths']}/{t['avg_assists']} per game") for t in byk], [0], colors=[C[2]], W=460, val_fmt=lambda v: f'{v:.2f}') + '</div>')
+    body.append('<div class="card"><h4>Average end-of-game gold difference</h4>' +
+                diverging([dict(label=t['team'], value=t['avg_gold_diff'], strong=t['qualified'], tip=f"{t['team']}: {t['avg_gold_diff']:+,}") for t in bygd], W=460) + '</div></div>')
+    body.append('<div class="card"><h4>Kills, deaths and assists per game</h4>' + legend([('Kills', C[0]), ('Deaths', C[3]), ('Assists', C[1])]) +
+                vgroup([t['team'] for t in byk], [('Kills', [t['avg_kills'] for t in byk]), ('Deaths', [t['avg_deaths'] for t in byk]), ('Assists', [t['avg_assists'] for t in byk])],
+                       colors=[C[0], C[3], C[1]], H=280, W=900, aria='Kills deaths assists per game', labels=False) + '</div>')
+
+    # leaderboards
+    body.append('<h2 id="players">Player leaderboards</h2><p class="sub">Players with at least 2 games. Damage figures exclude LS13 and LS33. A game with 0 deaths counts KDA as kills + assists.</p><div class="grid wide">')
+    elig = [p for p in PS if p['games'] >= 2]
+    for key, title, f in [('kda', 'KDA', lambda v: f'{v:.2f}'), ('damage_per_min', 'Damage per minute', lambda v: f'{v:,}'), ('damage_share', 'Share of team damage %', lambda v: f'{v}'),
+                          ('gold_per_min', 'Gold per minute', lambda v: f'{v:,}'), ('avg_kill_participation', 'Kill participation %', lambda v: f'{v}')]:
+        rows = sorted([p for p in elig if p[key] != ''], key=lambda p: -p[key])[:10]
+        body.append(f'<div class="card"><h4>{E(title)}</h4>' + table([('riot_id', 'Player', ''), ('team', 'Team', ''), ('role', 'Pos.', ''), ('games', 'G', 'n'), ('v', title, 'n')],
+                                                                     [dict(p, v=(f(p[key]), p[key])) for p in rows], sortable=False) + '</div>')
+    body.append('</div>')
+    cols = [('team', 'Team', ''), ('role', 'Pos.', ''), ('riot_id', 'Player', ''), ('solo_rank', 'Solo/Duo', ''), ('games', 'G', 'n'), ('wins', 'W', 'n'), ('kills', 'K', 'n'), ('deaths', 'D', 'n'),
+            ('assists', 'A', 'n'), ('kda', 'KDA', 'n'), ('avg_kill_participation', 'KP %', 'n'), ('damage_per_min', 'Dmg/min', 'n'), ('damage_share', 'Dmg %', 'n'), ('gold_per_min', 'Gold/min', 'n'), ('champions', 'Champions', 'wrap')]
+    body.append('<details class="card"><summary>All %d players</summary>' % len(PS) + table(cols, PS) + '</details>')
+
+    # per-team logs
+    body.append('<h2 id="logs">Team by team: every game</h2>')
+    for t in sorted(T, key=lambda t: t['team']):
+        gs = [g for g in TG if g['team'] == t['team']]
+        rows = [dict(g, res=(pill('Win', 'ok') if g['won'] else pill('Loss', 'bad'), g['won']), gd=(f"{g['gold_diff']:+,}", g['gold_diff']), kda_s=f"{g['kills']}/{g['deaths']}/{g['assists']}") for g in gs]
+        cols = [('code', 'Match', ''), ('round', 'Rd', 'n'), ('opponent', 'Opponent', ''), ('side', 'Side', ''), ('res', 'Result', ''), ('game_time', 'Time', ''), ('gold', 'Gold', 'n'),
+                ('gold_per_min', 'Gold/min', 'n'), ('gd', 'Gold diff', 'n'), ('kda_s', 'K/D/A', ''), ('kda', 'KDA', 'n')]
+        ps = [p for p in PS if p['team'] == t['team']]
+        pcols = [('role', 'Pos.', ''), ('riot_id', 'Player', ''), ('games', 'G', 'n'), ('kda', 'KDA', 'n'), ('damage_per_min', 'Dmg/min', 'n'), ('damage_share', 'Dmg %', 'n'),
+                 ('gold_per_min', 'Gold/min', 'n'), ('champions', 'Champions', 'wrap')]
+        body.append(f'<div class="card teamcard" id="team-{E(t["team"])}"><h3>{E(t["team"])} <span class="muted">· {t["wins"]}-{t["losses"]} in played games · KDA {t["kda"]} · {t["avg_gold_per_min"]:,} gold/min</span></h3>'
+                    + table(cols, rows) + '<h4>Players</h4>' + table(pcols, ps) + '</div>')
+    toc = [('findings', 'Key findings'), ('table', 'Comparison'), ('time-gold', 'Time & gold'), ('kda', 'KDA & gold diff'), ('players', 'Player leaderboards'), ('logs', 'Every game')]
+    return page('c-team-evaluation.html', 'C. Team evaluation',
+                'How each team played: game time, total gold, gold per minute, gold difference and KDA per game, plus player leaderboards and a log of every game.',
+                ''.join(body), toc)
+
+
+# ------------------------------------------------------------------ index
+def page_index(d):
+    M, S = d['matches'], d['standings']
+    played = [m for m in M if m['result_type'] == 'played']
+    ups = [m for m in played if m['upset']]
+    files = [('matches.csv', 'One row per match: teams, sides, winner, result type, time, rank gap, upset flag'),
+             ('standings.csv', 'Final Swiss standings with Buchholz and rank seed'),
+             ('team_games.csv', 'One row per team per played game: K/D/A, gold, gold diff, time'),
+             ('player_games.csv', 'One row per player per played game: champion, position, K/D/A, damage, gold, shares'),
+             ('drafts.csv', 'Every ban and pick (bans from records, picks from records + scoreboards), raw and cleaned names'),
+             ('player_ranks.csv', 'op.gg season-2026 Solo/Duo, Flex, Ranked 5s per player, plus Swiss games and champions'),
+             ('team_scouting.csv', 'Team average ranks, ranked activity and Flex practice'),
+             ('champions.csv', 'Picks, bans, presence, win rate, positions per champion'),
+             ('role_stats.csv', 'Damage and gold share per position'),
+             ('team_stats.csv', 'Per-team averages over played games'),
+             ('player_stats.csv', 'Per-player totals and averages'),
+             ('side_stats.csv', 'Blue vs red wins'),
+             ('data_issues.csv', 'Every gap found in the data and how it was handled')]
+    body = [f'<div class="tiles">' + ''.join(f'<div class="tile"><div class="v">{v}</div><div class="l">{l}</div></div>' for v, l in [
+        (16, 'teams'), (33, 'matches'), (len(played), 'games played'), (len(M) - len(played), 'forfeits / rulings'), (len(ups), 'upsets vs rank'), (90, 'players looked up on op.gg')]) + '</div>']
+    body.append('<div class="grid">' + ''.join(f'<a class="card" style="text-decoration:none;color:inherit" href="{f}"><h3>{E(t)}</h3><p class="muted">{E(x)}</p></a>' for f, t, x in [
+        ('a-team-scouting.html', 'A. Team scouting', 'Average Solo/Duo, Flex and Ranked 5s rank per team, ranked games in 2026, Flex practice, rank spread, and every roster in detail.'),
+        ('b-swiss-evaluation.html', 'B. Swiss Stage evaluation', 'Standings, round by round, results against rank, the most surprising result, ban & pick by position, and which position carries the damage.'),
+        ('c-team-evaluation.html', 'C. Team evaluation', 'Game time, total gold, gold per minute, gold difference and KDA per game for every team, player leaderboards and full game logs.')]) + '</div>')
+    body.append('<h2 id="standings">Final standings</h2>' + table([('finish', '#', 'n'), ('team', 'Team', ''), ('record', 'Record', ''), ('buchholz', 'Buchholz', 'n'), ('rank_seed', 'Rank seed', 'n'),
+                                                                   ('q', 'Result', '')], [dict(s, q=(pill('Quarter-finals', 'ok') if s['qualified'] else pill('Eliminated'), s['qualified'])) for s in S], hl=lambda r: r['qualified']))
+    body.append('<h2 id="data">Data</h2><p>All tables are in <code>data/processed/</code> as CSV (UTF-8). Raw sources are in <code>data/raw/</code>; scoreboard transcriptions in <code>data/interim/scoreboards/</code>.</p>')
+    body.append(table([('f', 'File', ''), ('x', 'Contents', 'wrap')], [dict(f=(f'<a href="../data/processed/{f}">{f}</a>', f), x=x) for f, x in files], sortable=False))
+    body.append('<h2 id="method">Method</h2><ul class="find">'
+                '<li><b>Results</b> come from the 33 match records (PDF). The Excel schedule is the final authority for teams and sides.</li>'
+                '<li><b>Game stats</b> were transcribed from the 28 post-game scoreboards. Each team\'s kills, deaths, assists and gold were checked against the totals in the scoreboard header.</li>'
+                '<li><b>Ranks</b> are an op.gg (VN) snapshot from 22 Nov 2026 for season 2026: current tier, LP, and wins + losses per queue. They are not pre-tournament ranks.</li>'
+                '<li><b>Team rank</b> = average of the players who actually played, weighted by Swiss games. Ladder: Iron 4 = 0 … Gold 4 = 12 … Diamond 1 = 27, Master = 28 + LP/100.</li>'
+                '<li><b>Upset</b> = a played game won by the lineup with the lower average Solo/Duo rank.</li></ul>')
+    body.append('<h2 id="gaps">Data gaps and how they were handled</h2>' + table([('area', 'Area', ''), ('matches', 'Matches', 'wrap'), ('issue', 'Issue', 'wrap'), ('handling', 'Handling', 'wrap')], d['issues'], sortable=False))
+    return page('index.html', 'SEEE LoL Championship 2026 — Swiss Stage review',
+                'Scouting, Swiss Stage evaluation and team evaluation for the 16-team student Swiss Stage (16–22 Nov 2026).', ''.join(body),
+                [('standings', 'Standings'), ('data', 'Data files'), ('method', 'Method'), ('gaps', 'Data gaps')])
+
+
+def build(out: Path, d):
+    out.mkdir(parents=True, exist_ok=True)
+    for name, fn in [('index.html', page_index), ('a-team-scouting.html', page_a), ('b-swiss-evaluation.html', page_b), ('c-team-evaluation.html', page_c)]:
+        (out / name).write_text(fn(d), encoding='utf-8')
+        print(f'  docs/{name}')

@@ -1,0 +1,149 @@
+{
+ "code": "LS28",
+ "layout": "standard",
+ "game_time": "32:16",
+ "teams": [
+  {
+   "team": "CBK",
+   "won": true,
+   "kills": 30,
+   "deaths": 17,
+   "assists": 67,
+   "gold": 66424,
+   "players": [
+    {
+     "riot": "messihamburger#1610",
+     "name_on_screen": "messihamburger",
+     "role": "TOP",
+     "champion": "Gwen",
+     "level": 20,
+     "k": 7,
+     "d": 0,
+     "a": 8,
+     "damage": 47112,
+     "gold": 14344
+    },
+    {
+     "riot": "marisaaa#2901",
+     "name_on_screen": "marisaaa",
+     "role": "JG",
+     "champion": "Kayn",
+     "level": 17,
+     "k": 7,
+     "d": 6,
+     "a": 14,
+     "damage": 24202,
+     "gold": 14556
+    },
+    {
+     "riot": "Ezz#31108",
+     "name_on_screen": "Ezz",
+     "role": "MID",
+     "champion": "Lissandra",
+     "level": 17,
+     "k": 6,
+     "d": 5,
+     "a": 14,
+     "damage": 23345,
+     "gold": 12675
+    },
+    {
+     "riot": "anhbinhthulong#vn2",
+     "name_on_screen": "anhbinhthulong",
+     "role": "AD",
+     "champion": "Ezreal",
+     "level": 16,
+     "k": 9,
+     "d": 1,
+     "a": 10,
+     "damage": 26927,
+     "gold": 15773
+    },
+    {
+     "riot": "Choccbel Nhocoay#vn3",
+     "name_on_screen": "Choccbel Nhocoay",
+     "role": "SP",
+     "champion": "Thresh",
+     "level": 13,
+     "k": 1,
+     "d": 5,
+     "a": 21,
+     "damage": 6598,
+     "gold": 9076
+    }
+   ]
+  },
+  {
+   "team": "FTL",
+   "won": false,
+   "kills": 17,
+   "deaths": 31,
+   "assists": 37,
+   "gold": 55882,
+   "players": [
+    {
+     "riot": "mmmmmmmm1#mmm",
+     "name_on_screen": "mmmmmmmm1",
+     "role": "TOP",
+     "champion": "Sion",
+     "level": 17,
+     "k": 1,
+     "d": 8,
+     "a": 1,
+     "damage": 24502,
+     "gold": 11536
+    },
+    {
+     "riot": "hugshe#3904",
+     "name_on_screen": "hugshe",
+     "role": "JG",
+     "champion": "Jarvan IV",
+     "level": 15,
+     "k": 5,
+     "d": 7,
+     "a": 10,
+     "damage": 14059,
+     "gold": 12449
+    },
+    {
+     "riot": "dang khoa#1701",
+     "name_on_screen": "dang khoa",
+     "role": "MID",
+     "champion": "Orianna",
+     "level": 15,
+     "k": 5,
+     "d": 5,
+     "a": 9,
+     "damage": 24716,
+     "gold": 11657
+    },
+    {
+     "riot": "Tbbbbb#09876",
+     "name_on_screen": "Tbbbbb",
+     "role": "AD",
+     "champion": "Ziggs",
+     "level": 16,
+     "k": 1,
+     "d": 3,
+     "a": 8,
+     "damage": 22596,
+     "gold": 11010
+    },
+    {
+     "riot": "Postpone Atone#kdaat",
+     "name_on_screen": "Postpone Atone",
+     "role": "SP",
+     "champion": "Camille",
+     "level": 10,
+     "k": 5,
+     "d": 8,
+     "a": 9,
+     "damage": 10052,
+     "gold": 9230
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Winner CBK matches record. Time matches. Red AD plays Ziggs and SP plays Camille (record roles kept; scoreboard row order TOP,JG,MID,AD,SP)."
+}

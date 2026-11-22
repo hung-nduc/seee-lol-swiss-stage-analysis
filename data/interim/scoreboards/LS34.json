@@ -1,0 +1,149 @@
+{
+ "code": "LS34",
+ "layout": "standard",
+ "game_time": "28:24",
+ "teams": [
+  {
+   "team": "VNT",
+   "won": false,
+   "kills": 17,
+   "deaths": 33,
+   "assists": 20,
+   "gold": 45495,
+   "players": [
+    {
+     "riot": "mỗi năm một già#bLa",
+     "name_on_screen": "mỗi năm một già",
+     "role": "TOP",
+     "champion": "Malphite",
+     "level": 16,
+     "k": 2,
+     "d": 4,
+     "a": 2,
+     "damage": 17329,
+     "gold": 8451
+    },
+    {
+     "riot": "2I am Hải#vn2",
+     "name_on_screen": "2I am Hải",
+     "role": "JG",
+     "champion": "Viego",
+     "level": 13,
+     "k": 1,
+     "d": 10,
+     "a": 2,
+     "damage": 9162,
+     "gold": 8349
+    },
+    {
+     "riot": "Dưa#LOL",
+     "name_on_screen": "Dưa",
+     "role": "MID",
+     "champion": "Sylas",
+     "level": 14,
+     "k": 1,
+     "d": 7,
+     "a": 2,
+     "damage": 8887,
+     "gold": 6494
+    },
+    {
+     "riot": "bittersweet#prev",
+     "name_on_screen": "bittersweet",
+     "role": "AD",
+     "champion": "Jinx",
+     "level": 14,
+     "k": 11,
+     "d": 6,
+     "a": 2,
+     "damage": 33958,
+     "gold": 14371
+    },
+    {
+     "riot": "UNKNOWN (not in record)",
+     "name_on_screen": "KAugustzzz8",
+     "role": "SP",
+     "champion": "Poppy",
+     "level": 13,
+     "k": 2,
+     "d": 6,
+     "a": 12,
+     "damage": 14302,
+     "gold": 7830
+    }
+   ]
+  },
+  {
+   "team": "GLT",
+   "won": true,
+   "kills": 33,
+   "deaths": 17,
+   "assists": 39,
+   "gold": 65309,
+   "players": [
+    {
+     "riot": "LSR Nhakanasi#TLA4",
+     "name_on_screen": "LSR Nhakanasi",
+     "role": "TOP",
+     "champion": "Gangplank",
+     "level": 19,
+     "k": 11,
+     "d": 2,
+     "a": 11,
+     "damage": 38734,
+     "gold": 18266
+    },
+    {
+     "riot": "3Who#0802",
+     "name_on_screen": "3Who",
+     "role": "JG",
+     "champion": "Cho'Gath",
+     "level": 17,
+     "k": 9,
+     "d": 0,
+     "a": 7,
+     "damage": 29296,
+     "gold": 14190
+    },
+    {
+     "riot": "VAC Ryoku Haru#1603",
+     "name_on_screen": "VAC Ryoku Haru",
+     "role": "MID",
+     "champion": "Yasuo",
+     "level": 18,
+     "k": 9,
+     "d": 3,
+     "a": 8,
+     "damage": 32682,
+     "gold": 14423
+    },
+    {
+     "riot": "Zendar#5696",
+     "name_on_screen": "Zendar",
+     "role": "AD",
+     "champion": "Kai'Sa",
+     "level": 14,
+     "k": 3,
+     "d": 4,
+     "a": 5,
+     "damage": 18010,
+     "gold": 10962
+    },
+    {
+     "riot": "UNKNOWN (not in record)",
+     "name_on_screen": "Phomai",
+     "role": "SP",
+     "champion": "Pyke",
+     "level": 12,
+     "k": 1,
+     "d": 8,
+     "a": 8,
+     "damage": 5858,
+     "gold": 7468
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Scoreboard lists GLT as ĐỘI 1 and VNT as ĐỘI 2 (record has VNT blue). Winner GLT matches; time matches. Record lists only 4 players per team; 5th rows (GLT SP Phomai/Pyke, VNT SP KAugustzzz8/Poppy; roster has KAugustzzz8 for VNT) have riot=UNKNOWN. VNT JG Viego KDA partly hidden by tooltip; 1/10/2 derived from team totals and consistent with visible 0,3 KDA."
+}

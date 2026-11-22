@@ -1,0 +1,149 @@
+{
+ "code": "LS36",
+ "layout": "standard",
+ "game_time": "30:17",
+ "teams": [
+  {
+   "team": "YSL",
+   "won": true,
+   "kills": 32,
+   "deaths": 19,
+   "assists": 75,
+   "gold": 62024,
+   "players": [
+    {
+     "riot": "bimiuchiratnhieu#1808",
+     "name_on_screen": "bimiuchiratnhieu",
+     "role": "TOP",
+     "champion": "Ornn",
+     "level": 17,
+     "k": 2,
+     "d": 4,
+     "a": 11,
+     "damage": 14378,
+     "gold": 9521
+    },
+    {
+     "riot": "Lopptran0605#2005",
+     "name_on_screen": "Lopptran0605",
+     "role": "JG",
+     "champion": "Rammus",
+     "level": 17,
+     "k": 6,
+     "d": 2,
+     "a": 23,
+     "damage": 17016,
+     "gold": 13648
+    },
+    {
+     "riot": "Qiyanah#thich",
+     "name_on_screen": "Qiyanah",
+     "role": "MID",
+     "champion": "Vex",
+     "level": 16,
+     "k": 2,
+     "d": 5,
+     "a": 20,
+     "damage": 31145,
+     "gold": 10735
+    },
+    {
+     "riot": "ZzMEOzZ#vn2",
+     "name_on_screen": "ZzMEOzZ",
+     "role": "AD",
+     "champion": "Tristana",
+     "level": 16,
+     "k": 21,
+     "d": 3,
+     "a": 3,
+     "damage": 38272,
+     "gold": 19380
+    },
+    {
+     "riot": "Plutonium#KrPu",
+     "name_on_screen": "Plutonium",
+     "role": "SP",
+     "champion": "Nautilus",
+     "level": 14,
+     "k": 1,
+     "d": 5,
+     "a": 18,
+     "damage": 7102,
+     "gold": 8740
+    }
+   ]
+  },
+  {
+   "team": "CBK",
+   "won": false,
+   "kills": 19,
+   "deaths": 32,
+   "assists": 26,
+   "gold": 53099,
+   "players": [
+    {
+     "riot": "messihamburger#1610",
+     "name_on_screen": "messihamburger",
+     "role": "TOP",
+     "champion": "Fiora",
+     "level": 17,
+     "k": 5,
+     "d": 7,
+     "a": 2,
+     "damage": 21505,
+     "gold": 12031
+    },
+    {
+     "riot": "marisaaa#2901",
+     "name_on_screen": "marisaaa",
+     "role": "JG",
+     "champion": "Kayn",
+     "level": 15,
+     "k": 6,
+     "d": 8,
+     "a": 6,
+     "damage": 20384,
+     "gold": 12174
+    },
+    {
+     "riot": "Ezz#31108",
+     "name_on_screen": "Ezz",
+     "role": "MID",
+     "champion": "Anivia",
+     "level": 16,
+     "k": 3,
+     "d": 4,
+     "a": 8,
+     "damage": 25109,
+     "gold": 9959
+    },
+    {
+     "riot": "anhbinhthulong#vn2",
+     "name_on_screen": "anhbinhthulong",
+     "role": "AD",
+     "champion": "Jhin",
+     "level": 14,
+     "k": 3,
+     "d": 5,
+     "a": 5,
+     "damage": 15612,
+     "gold": 11324
+    },
+    {
+     "riot": "Choccbel Nhocoay#vn3",
+     "name_on_screen": "Choccbel Nhocoay",
+     "role": "SP",
+     "champion": "Taric",
+     "level": 12,
+     "k": 2,
+     "d": 8,
+     "a": 5,
+     "damage": 8897,
+     "gold": 7611
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "English client. Winner YSL matches; time 30:17 matches. Record draft misspells (Qiana=Qiyana? scoreboard shows Vex for MID, Rammus JG, Tristana AD, Nautilus SP); scoreboard used."
+}

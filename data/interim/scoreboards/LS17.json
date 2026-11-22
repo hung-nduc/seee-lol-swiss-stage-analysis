@@ -1,0 +1,149 @@
+{
+ "code": "LS17",
+ "layout": "standard",
+ "game_time": "27:20",
+ "teams": [
+  {
+   "team": "TT",
+   "won": true,
+   "kills": 23,
+   "deaths": 11,
+   "assists": 28,
+   "gold": 60732,
+   "players": [
+    {
+     "riot": "freistil#27507",
+     "name_on_screen": "freistil",
+     "role": "TOP",
+     "champion": "Renekton",
+     "level": 17,
+     "k": 5,
+     "d": 3,
+     "a": 2,
+     "damage": 30677,
+     "gold": 12022
+    },
+    {
+     "riot": "vasavi#shati",
+     "name_on_screen": "vasavi",
+     "role": "JG",
+     "champion": "Pantheon",
+     "level": 16,
+     "k": 7,
+     "d": 1,
+     "a": 7,
+     "damage": 19464,
+     "gold": 13109
+    },
+    {
+     "riot": "oHałçÿon#20800",
+     "name_on_screen": "oHałçÿon",
+     "role": "MID",
+     "champion": "Syndra",
+     "level": 16,
+     "k": 3,
+     "d": 0,
+     "a": 7,
+     "damage": 21775,
+     "gold": 12130
+    },
+    {
+     "riot": "PT Đạo Hàm Riêng#FaMI",
+     "name_on_screen": "PT Đạo Hàm Riêng",
+     "role": "AD",
+     "champion": "Yunara",
+     "level": 15,
+     "k": 8,
+     "d": 4,
+     "a": 3,
+     "damage": 24960,
+     "gold": 15778
+    },
+    {
+     "riot": "need u by myside#bunzz",
+     "name_on_screen": "need u by myside",
+     "role": "SP",
+     "champion": "Lulu",
+     "level": 12,
+     "k": 0,
+     "d": 3,
+     "a": 9,
+     "damage": 3269,
+     "gold": 7693
+    }
+   ]
+  },
+  {
+   "team": "LN",
+   "won": false,
+   "kills": 11,
+   "deaths": 23,
+   "assists": 22,
+   "gold": 46269,
+   "players": [
+    {
+     "riot": "hadyu#9816",
+     "name_on_screen": "hadyu",
+     "role": "TOP",
+     "champion": "Ornn",
+     "level": 16,
+     "k": 2,
+     "d": 2,
+     "a": 5,
+     "damage": 24750,
+     "gold": 9600
+    },
+    {
+     "riot": "30FPS player#2007",
+     "name_on_screen": "30FPS player",
+     "role": "JG",
+     "champion": "Nocturne",
+     "level": 14,
+     "k": 2,
+     "d": 5,
+     "a": 4,
+     "damage": 8273,
+     "gold": 9690
+    },
+    {
+     "riot": "W1ndchaser#1845",
+     "name_on_screen": "W1ndchaser",
+     "role": "MID",
+     "champion": "Fizz",
+     "level": 14,
+     "k": 2,
+     "d": 4,
+     "a": 1,
+     "damage": 10960,
+     "gold": 8696
+    },
+    {
+     "riot": "eD nhát gái#22402",
+     "name_on_screen": "eD nhát gái",
+     "role": "AD",
+     "champion": "Jhin",
+     "level": 13,
+     "k": 0,
+     "d": 7,
+     "a": 7,
+     "damage": 6977,
+     "gold": 9473
+    },
+    {
+     "riot": "Corn Cuang#ccc",
+     "name_on_screen": "Corn Cuang",
+     "role": "SP",
+     "champion": "Neeko",
+     "level": 12,
+     "k": 5,
+     "d": 5,
+     "a": 5,
+     "damage": 15211,
+     "gold": 8810
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Winner and time match record. All checks pass."
+}

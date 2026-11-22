@@ -1,0 +1,149 @@
+{
+ "code": "LS43",
+ "layout": "standard",
+ "game_time": "22:17",
+ "teams": [
+  {
+   "team": "YSL",
+   "won": false,
+   "kills": 6,
+   "deaths": 31,
+   "assists": 11,
+   "gold": 34348,
+   "players": [
+    {
+     "riot": "bimiuchiratnhieu#1808",
+     "name_on_screen": "bimiuchiratnhieu",
+     "role": "TOP",
+     "champion": "Ornn",
+     "level": 14,
+     "k": 1,
+     "d": 7,
+     "a": 3,
+     "damage": 7131,
+     "gold": 6614
+    },
+    {
+     "riot": "Lopptran0605#2005",
+     "name_on_screen": "Lopptran0605",
+     "role": "JG",
+     "champion": "Rammus",
+     "level": 13,
+     "k": 2,
+     "d": 4,
+     "a": 3,
+     "damage": 5018,
+     "gold": 8206
+    },
+    {
+     "riot": "Qiyanah#thich",
+     "name_on_screen": "Qiyanah",
+     "role": "MID",
+     "champion": "Galio",
+     "level": 11,
+     "k": 1,
+     "d": 10,
+     "a": 2,
+     "damage": 8165,
+     "gold": 5718
+    },
+    {
+     "riot": "ZzMEOzZ#vn2",
+     "name_on_screen": "ZzMEOzZ",
+     "role": "AD",
+     "champion": "Tristana",
+     "level": 11,
+     "k": 2,
+     "d": 3,
+     "a": 1,
+     "damage": 6761,
+     "gold": 8817
+    },
+    {
+     "riot": "ryuuuuuuuuuuuuu u#vnuuu",
+     "name_on_screen": "ryuuuuuuuuuuuuu u",
+     "role": "SP",
+     "champion": "Braum",
+     "level": 10,
+     "k": 0,
+     "d": 7,
+     "a": 2,
+     "damage": 2846,
+     "gold": 4993
+    }
+   ]
+  },
+  {
+   "team": "KGC",
+   "won": true,
+   "kills": 31,
+   "deaths": 6,
+   "assists": 41,
+   "gold": 49454,
+   "players": [
+    {
+     "riot": "Deus ex machina#2202",
+     "name_on_screen": "Deus ex machina",
+     "role": "TOP",
+     "champion": "K'Sante",
+     "level": 15,
+     "k": 8,
+     "d": 2,
+     "a": 8,
+     "damage": 18940,
+     "gold": 10032
+    },
+    {
+     "riot": "Thịt dê cơm cháy#035",
+     "name_on_screen": "Thịt dê cơm cháy",
+     "role": "JG",
+     "champion": "Pantheon",
+     "level": 12,
+     "k": 5,
+     "d": 1,
+     "a": 7,
+     "damage": 9756,
+     "gold": 9128
+    },
+    {
+     "riot": "alle#imo",
+     "name_on_screen": "alle",
+     "role": "MID",
+     "champion": "Taliyah",
+     "level": 14,
+     "k": 8,
+     "d": 1,
+     "a": 12,
+     "damage": 21624,
+     "gold": 10484
+    },
+    {
+     "riot": "Chickie#goat",
+     "name_on_screen": "Chickie",
+     "role": "AD",
+     "champion": "Zeri",
+     "level": 13,
+     "k": 9,
+     "d": 2,
+     "a": 4,
+     "damage": 19870,
+     "gold": 12543
+    },
+    {
+     "riot": "Coolnopro#vn2",
+     "name_on_screen": "Coolnopro",
+     "role": "SP",
+     "champion": "Nautilus",
+     "level": 10,
+     "k": 1,
+     "d": 0,
+     "a": 10,
+     "damage": 4061,
+     "gold": 7267
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Screen ĐỘI 1 = KGC (red, winner), ĐỘI 2 = YSL (blue). Sums all match. Time and winner match. Screen name 'ryuuuuuuuuuuuuu u' approximate."
+}

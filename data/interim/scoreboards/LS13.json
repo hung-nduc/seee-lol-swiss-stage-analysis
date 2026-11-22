@@ -1,0 +1,165 @@
+{
+ "code": "LS13",
+ "layout": "detailed",
+ "game_time": "33:06",
+ "teams": [
+  {
+   "team": "GOS",
+   "won": false,
+   "kills": 22,
+   "deaths": 32,
+   "assists": 30,
+   "gold": 63604,
+   "players": [
+    {
+     "riot": "JappleG#66666",
+     "name_on_screen": "15gg1",
+     "role": "TOP",
+     "champion": "Zed",
+     "level": 18,
+     "k": 2,
+     "d": 6,
+     "a": 3,
+     "damage": null,
+     "gold": 12386
+    },
+    {
+     "riot": "taoapdaotuyetdoi#3643",
+     "name_on_screen": "taoapdaotuyetdoi",
+     "role": "JG",
+     "champion": "Cho'Gath",
+     "level": 16,
+     "k": 5,
+     "d": 5,
+     "a": 3,
+     "damage": null,
+     "gold": 12314
+    },
+    {
+     "riot": "Lê Văn Vở#1105",
+     "name_on_screen": "Lê Văn Vở",
+     "role": "MID",
+     "champion": "LeBlanc",
+     "level": 16,
+     "k": 11,
+     "d": 7,
+     "a": 7,
+     "damage": null,
+     "gold": 15185
+    },
+    {
+     "riot": "MTHUUS#2608",
+     "name_on_screen": "MTHUUS",
+     "role": "AD",
+     "champion": "Tristana",
+     "level": 16,
+     "k": 3,
+     "d": 5,
+     "a": 4,
+     "damage": null,
+     "gold": 13800
+    },
+    {
+     "riot": "Đạt Đạt Đạt#vn2",
+     "name_on_screen": "Đạt Đạt Đạt",
+     "role": "SP",
+     "champion": "Thresh",
+     "level": 13,
+     "k": 1,
+     "d": 9,
+     "a": 13,
+     "damage": null,
+     "gold": 9919
+    }
+   ]
+  },
+  {
+   "team": "LXM",
+   "won": true,
+   "kills": 32,
+   "deaths": 22,
+   "assists": 50,
+   "gold": 70396,
+   "players": [
+    {
+     "riot": "ShihoMiyanoo#4869",
+     "name_on_screen": "ShihoMiyanoo",
+     "role": "JG",
+     "champion": "Naafiri",
+     "level": 17,
+     "k": 8,
+     "d": 4,
+     "a": 7,
+     "damage": null,
+     "gold": 14581
+    },
+    {
+     "riot": "Toithangcap1minh#1409",
+     "name_on_screen": "Toithangcap1minh",
+     "role": "TOP",
+     "champion": "Mordekaiser",
+     "level": 19,
+     "k": 3,
+     "d": 2,
+     "a": 6,
+     "damage": null,
+     "gold": 13151
+    },
+    {
+     "riot": "黑天风 A Tức#2301",
+     "name_on_screen": "黑天风 A Tức",
+     "role": "MID",
+     "champion": "Taliyah",
+     "level": 17,
+     "k": 14,
+     "d": 7,
+     "a": 13,
+     "damage": null,
+     "gold": 16792
+    },
+    {
+     "riot": "TheMaLaiHay#VNmub",
+     "name_on_screen": "TheMaLaiHay",
+     "role": "AD",
+     "champion": "Jhin",
+     "level": 17,
+     "k": 7,
+     "d": 1,
+     "a": 13,
+     "damage": null,
+     "gold": 16519
+    },
+    {
+     "riot": "Chocopyke#Rùa",
+     "name_on_screen": "Chocopyke",
+     "role": "SP",
+     "champion": "Pyke",
+     "level": 13,
+     "k": 0,
+     "d": 8,
+     "a": 11,
+     "damage": null,
+     "gold": 9353
+    }
+   ]
+  }
+ ],
+ "bans": {
+  "LXM": [
+   "Renekton",
+   "Fizz",
+   "Aurelion Sol",
+   "Aatrox",
+   "Orianna"
+  ],
+  "GOS": [
+   "Sylas",
+   "Rell",
+   "Qiyana",
+   "Fiora",
+   "Akshan"
+  ]
+ },
+ "checks_passed": true,
+ "notes": "Detailed layout (no damage). Screen shows LXM as DOI 1 (winner), GOS as DOI 2; winner matches record, time matches. LXM rows are in order JG,TOP,MID,AD,SP; roles assigned by name. Champions identified from icons cross-checked with record draft: LXM = Naafiri, Mordekaiser, Taliyah, Jhin, Pyke (draft column 5); GOS = Zed, Cho'Gath, LeBlanc, Tristana, Thresh (draft column 3). Icons for Taliyah (red-haired) and Tristana are the least certain, but they are the only draft remainders. GOS top shows on-screen name '15gg1' not matching record riot JappleG#66666 (assumed same player, TOP slot). Bans: LXM icons identified = Renekton, Fizz, Aurelion Sol, Aatrox, Orianna (clear). GOS bans (Sylas, Rell, Qiyana, Fiora, Akshan) are from record draft; icons are blurry and not individually confirmed, order uncertain."
+}

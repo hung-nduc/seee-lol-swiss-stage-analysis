@@ -1,0 +1,149 @@
+{
+ "code": "LS12",
+ "layout": "standard",
+ "game_time": "26:13",
+ "teams": [
+  {
+   "team": "GLT",
+   "won": true,
+   "kills": 31,
+   "deaths": 15,
+   "assists": 36,
+   "gold": 57070,
+   "players": [
+    {
+     "riot": "LSR Nhakanasi#TLA4",
+     "name_on_screen": "LSR Nhakanasi",
+     "role": "TOP",
+     "champion": "Jayce",
+     "level": 17,
+     "k": 9,
+     "d": 6,
+     "a": 7,
+     "damage": 32868,
+     "gold": 11695
+    },
+    {
+     "riot": "3Who#0802",
+     "name_on_screen": "3Who",
+     "role": "JG",
+     "champion": "Cho'Gath",
+     "level": 16,
+     "k": 10,
+     "d": 2,
+     "a": 3,
+     "damage": 16400,
+     "gold": 14087
+    },
+    {
+     "riot": "VAC Ryoku Haru#1603",
+     "name_on_screen": "VAC Ryoku Haru",
+     "role": "MID",
+     "champion": "Xerath",
+     "level": 17,
+     "k": 10,
+     "d": 1,
+     "a": 9,
+     "damage": 42314,
+     "gold": 13369
+    },
+    {
+     "riot": "Zendar#5696",
+     "name_on_screen": "Zendar",
+     "role": "AD",
+     "champion": "Ashe",
+     "level": 13,
+     "k": 1,
+     "d": 2,
+     "a": 9,
+     "damage": 7831,
+     "gold": 10885
+    },
+    {
+     "riot": "nhquan2121#6844",
+     "name_on_screen": "nhquan2121",
+     "role": "SP",
+     "champion": "Leona",
+     "level": 13,
+     "k": 1,
+     "d": 4,
+     "a": 8,
+     "damage": 3797,
+     "gold": 7034
+    }
+   ]
+  },
+  {
+   "team": "CBK",
+   "won": false,
+   "kills": 15,
+   "deaths": 31,
+   "assists": 25,
+   "gold": 43604,
+   "players": [
+    {
+     "riot": "messihamburger#1610",
+     "name_on_screen": "messihamburger",
+     "role": "TOP",
+     "champion": "Malphite",
+     "level": 15,
+     "k": 6,
+     "d": 5,
+     "a": 4,
+     "damage": 15325,
+     "gold": 9742
+    },
+    {
+     "riot": "marisaaa#2901",
+     "name_on_screen": "marisaaa",
+     "role": "JG",
+     "champion": "Lillia",
+     "level": 14,
+     "k": 4,
+     "d": 6,
+     "a": 6,
+     "damage": 12282,
+     "gold": 9978
+    },
+    {
+     "riot": "Ezz#31108",
+     "name_on_screen": "Ezz",
+     "role": "MID",
+     "champion": "Viktor",
+     "level": 14,
+     "k": 2,
+     "d": 8,
+     "a": 4,
+     "damage": 11407,
+     "gold": 7952
+    },
+    {
+     "riot": "anhbinhthulong#vn2",
+     "name_on_screen": "anhbinhthulong",
+     "role": "AD",
+     "champion": "Jhin",
+     "level": 12,
+     "k": 3,
+     "d": 6,
+     "a": 3,
+     "damage": 10624,
+     "gold": 9494
+    },
+    {
+     "riot": "Choccbel Nhocoay#vn3",
+     "name_on_screen": "Choccbel Nhocoay",
+     "role": "SP",
+     "champion": "Seraphine",
+     "level": 12,
+     "k": 0,
+     "d": 6,
+     "a": 8,
+     "damage": 8754,
+     "gold": 6438
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Winner and time match record. All checks pass."
+}

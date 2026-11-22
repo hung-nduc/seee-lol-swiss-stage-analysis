@@ -1,0 +1,149 @@
+{
+ "code": "LS35",
+ "layout": "standard",
+ "game_time": "22:39",
+ "teams": [
+  {
+   "team": "LHP",
+   "won": false,
+   "kills": 6,
+   "deaths": 31,
+   "assists": 13,
+   "gold": 34996,
+   "players": [
+    {
+     "riot": "nờ pờ dờ#bruh",
+     "name_on_screen": "nờ pờ dờ",
+     "role": "TOP",
+     "champion": "Ambessa",
+     "level": 13,
+     "k": 2,
+     "d": 5,
+     "a": 0,
+     "damage": 12250,
+     "gold": 7227
+    },
+    {
+     "riot": "허거덩#7474",
+     "name_on_screen": "허거덩",
+     "role": "JG",
+     "champion": "Naafiri",
+     "level": 12,
+     "k": 2,
+     "d": 6,
+     "a": 2,
+     "damage": 7369,
+     "gold": 7897
+    },
+    {
+     "riot": "neirt17#trien",
+     "name_on_screen": "Neirt17",
+     "role": "MID",
+     "champion": "Akali",
+     "level": 13,
+     "k": 1,
+     "d": 7,
+     "a": 4,
+     "damage": 11683,
+     "gold": 6890
+    },
+    {
+     "riot": "繁荣而睿智#thinh",
+     "name_on_screen": "繁荣而睿智",
+     "role": "AD",
+     "champion": "Kai'Sa",
+     "level": 11,
+     "k": 1,
+     "d": 7,
+     "a": 1,
+     "damage": 6259,
+     "gold": 7470
+    },
+    {
+     "riot": "DPE Licotyn#mmb",
+     "name_on_screen": "DPE Licotyn",
+     "role": "SP",
+     "champion": "Nautilus",
+     "level": 10,
+     "k": 0,
+     "d": 6,
+     "a": 6,
+     "damage": 3057,
+     "gold": 5512
+    }
+   ]
+  },
+  {
+   "team": "KGC",
+   "won": true,
+   "kills": 31,
+   "deaths": 6,
+   "assists": 60,
+   "gold": 53599,
+   "players": [
+    {
+     "riot": "Chickie#goat",
+     "name_on_screen": "Chickie",
+     "role": "TOP",
+     "champion": "Ornn",
+     "level": 16,
+     "k": 3,
+     "d": 1,
+     "a": 10,
+     "damage": 13315,
+     "gold": 9856
+    },
+    {
+     "riot": "Thịt dê cơm cháy#035",
+     "name_on_screen": "Thịt dê cơm cháy",
+     "role": "JG",
+     "champion": "Diana",
+     "level": 14,
+     "k": 11,
+     "d": 2,
+     "a": 13,
+     "damage": 22607,
+     "gold": 12728
+    },
+    {
+     "riot": "alle#imo",
+     "name_on_screen": "alle",
+     "role": "MID",
+     "champion": "Yasuo",
+     "level": 14,
+     "k": 8,
+     "d": 3,
+     "a": 12,
+     "damage": 23868,
+     "gold": 11063
+    },
+    {
+     "riot": "Sứ Giả Người Tày#5964",
+     "name_on_screen": "Sứ Giả Người Tày",
+     "role": "AD",
+     "champion": "Yunara",
+     "level": 13,
+     "k": 8,
+     "d": 0,
+     "a": 6,
+     "damage": 13633,
+     "gold": 12679
+    },
+    {
+     "riot": "MID Đại Cồ Việt#MLEM",
+     "name_on_screen": "MID Đại Cồ Việt",
+     "role": "SP",
+     "champion": "Braum",
+     "level": 12,
+     "k": 1,
+     "d": 0,
+     "a": 19,
+     "damage": 3414,
+     "gold": 7273
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Scoreboard lists KGC as ĐỘI 1 (record has LHP blue). Winner KGC matches; time 22:39 matches record. Note on-screen names: KGC MID shows Yasuo (alle), SP Braum."
+}

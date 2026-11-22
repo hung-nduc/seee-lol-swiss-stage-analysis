@@ -1,0 +1,149 @@
+{
+ "code": "LS27",
+ "layout": "standard",
+ "game_time": "27:01",
+ "teams": [
+  {
+   "team": "VNT",
+   "won": true,
+   "kills": 27,
+   "deaths": 19,
+   "assists": 69,
+   "gold": 57431,
+   "players": [
+    {
+     "riot": "mỗi năm một già#bLa",
+     "name_on_screen": "mỗi năm một già",
+     "role": "TOP",
+     "champion": "Malphite",
+     "level": 17,
+     "k": 5,
+     "d": 3,
+     "a": 9,
+     "damage": 24852,
+     "gold": 10302
+    },
+    {
+     "riot": "2I am Hải#vn2",
+     "name_on_screen": "2I am Hải",
+     "role": "JG",
+     "champion": "Jayce",
+     "level": 15,
+     "k": 9,
+     "d": 5,
+     "a": 12,
+     "damage": 24935,
+     "gold": 14522
+    },
+    {
+     "riot": "Dưa#LOL",
+     "name_on_screen": "Dưa",
+     "role": "MID",
+     "champion": "Galio",
+     "level": 15,
+     "k": 2,
+     "d": 4,
+     "a": 16,
+     "damage": 18084,
+     "gold": 9680
+    },
+    {
+     "riot": "bittersweet#prev",
+     "name_on_screen": "bittersweet",
+     "role": "AD",
+     "champion": "Kalista",
+     "level": 15,
+     "k": 9,
+     "d": 4,
+     "a": 12,
+     "damage": 26822,
+     "gold": 14838
+    },
+    {
+     "riot": "KAugustzzz8#AUG",
+     "name_on_screen": "KAugustzzz8",
+     "role": "SP",
+     "champion": "Taric",
+     "level": 13,
+     "k": 2,
+     "d": 3,
+     "a": 20,
+     "damage": 6822,
+     "gold": 8089
+    }
+   ]
+  },
+  {
+   "team": "LK",
+   "won": false,
+   "kills": 18,
+   "deaths": 27,
+   "assists": 26,
+   "gold": 49857,
+   "players": [
+    {
+     "riot": "ĐàoHải tuổi 18#1312",
+     "name_on_screen": "ĐàoHải tuổi 18",
+     "role": "TOP",
+     "champion": "Olaf",
+     "level": 15,
+     "k": 6,
+     "d": 8,
+     "a": 3,
+     "damage": 24336,
+     "gold": 10839
+    },
+    {
+     "riot": "Trung Tâm Toxic#0411",
+     "name_on_screen": "Trung Tâm Toxic",
+     "role": "JG",
+     "champion": "Jarvan IV",
+     "level": 14,
+     "k": 4,
+     "d": 4,
+     "a": 6,
+     "damage": 7084,
+     "gold": 11036
+    },
+    {
+     "riot": "SSA Reaper#2907",
+     "name_on_screen": "SSA Reaper",
+     "role": "MID",
+     "champion": "Sylas",
+     "level": 14,
+     "k": 4,
+     "d": 3,
+     "a": 6,
+     "damage": 18428,
+     "gold": 9473
+    },
+    {
+     "riot": "clayern#HUST",
+     "name_on_screen": "clayern",
+     "role": "AD",
+     "champion": "Corki",
+     "level": 13,
+     "k": 4,
+     "d": 6,
+     "a": 4,
+     "damage": 18037,
+     "gold": 11927
+    },
+    {
+     "riot": "kenzo2s#vn2",
+     "name_on_screen": "kenzo2s",
+     "role": "SP",
+     "champion": "Maokai",
+     "level": 12,
+     "k": 0,
+     "d": 6,
+     "a": 7,
+     "damage": 4735,
+     "gold": 6582
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Screen ĐỘI 1 = VNT (red in record, winner), ĐỘI 2 = LK. Winner and time match. All checks pass. VNT roles: record JG is Jayce on screen (Jayce row 2) and MID Galio, TOP Malphite; row order matched record roles."
+}

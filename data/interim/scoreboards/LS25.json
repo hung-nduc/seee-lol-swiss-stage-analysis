@@ -1,0 +1,149 @@
+{
+ "code": "LS25",
+ "layout": "standard",
+ "game_time": "30:26",
+ "teams": [
+  {
+   "team": "YSL",
+   "won": true,
+   "kills": 22,
+   "deaths": 10,
+   "assists": 52,
+   "gold": 62571,
+   "players": [
+    {
+     "riot": "bimiuchiratnhieu#1808",
+     "name_on_screen": "bimiuchiratnhieu",
+     "role": "TOP",
+     "champion": "Ornn",
+     "level": 18,
+     "k": 2,
+     "d": 2,
+     "a": 7,
+     "damage": 17222,
+     "gold": 11638
+    },
+    {
+     "riot": "Lopptran0605#2005",
+     "name_on_screen": "Lopptran0605",
+     "role": "JG",
+     "champion": "Lee Sin",
+     "level": 17,
+     "k": 11,
+     "d": 1,
+     "a": 6,
+     "damage": 17740,
+     "gold": 15340
+    },
+    {
+     "riot": "Qiyanah#thich",
+     "name_on_screen": "Qiyanah",
+     "role": "MID",
+     "champion": "Galio",
+     "level": 17,
+     "k": 3,
+     "d": 3,
+     "a": 11,
+     "damage": 20401,
+     "gold": 11632
+    },
+    {
+     "riot": "ZzMEOzZ#vn2",
+     "name_on_screen": "ZzMEOzZ",
+     "role": "AD",
+     "champion": "Corki",
+     "level": 15,
+     "k": 6,
+     "d": 1,
+     "a": 12,
+     "damage": 20784,
+     "gold": 15040
+    },
+    {
+     "riot": "ryuuuuuuuuuuuuu u#vnuuu",
+     "name_on_screen": "ryuuuuuuuuuuuuu u",
+     "role": "SP",
+     "champion": "Braum",
+     "level": 13,
+     "k": 0,
+     "d": 3,
+     "a": 16,
+     "damage": 4828,
+     "gold": 8921
+    }
+   ]
+  },
+  {
+   "team": "MSD",
+   "won": false,
+   "kills": 10,
+   "deaths": 22,
+   "assists": 22,
+   "gold": 48785,
+   "players": [
+    {
+     "riot": "10 điểm 3 môn#4444",
+     "name_on_screen": "10 điểm 3 môn",
+     "role": "TOP",
+     "champion": "Malphite",
+     "level": 16,
+     "k": 3,
+     "d": 3,
+     "a": 3,
+     "damage": 17340,
+     "gold": 10549
+    },
+    {
+     "riot": "Astr4#17B2",
+     "name_on_screen": "Astr4",
+     "role": "JG",
+     "champion": "Jarvan IV",
+     "level": 14,
+     "k": 2,
+     "d": 3,
+     "a": 3,
+     "damage": 4857,
+     "gold": 10409
+    },
+    {
+     "riot": "Remember Me#8567",
+     "name_on_screen": "Remember Me",
+     "role": "MID",
+     "champion": "Ekko",
+     "level": 14,
+     "k": 1,
+     "d": 5,
+     "a": 6,
+     "damage": 11817,
+     "gold": 8547
+    },
+    {
+     "riot": "Playmaker#17th",
+     "name_on_screen": "Playmaker",
+     "role": "AD",
+     "champion": "Aphelios",
+     "level": 14,
+     "k": 4,
+     "d": 6,
+     "a": 2,
+     "damage": 18588,
+     "gold": 12159
+    },
+    {
+     "riot": "DangThinh#267",
+     "name_on_screen": "DangThinh",
+     "role": "SP",
+     "champion": "Seraphine",
+     "level": 13,
+     "k": 0,
+     "d": 5,
+     "a": 8,
+     "damage": 7444,
+     "gold": 7121
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Winner and time match. All checks pass. Names ryuuuuuuuuuuuuu u shown truncated as 'ryuuuuuuuuuuuuuu' on screen."
+}

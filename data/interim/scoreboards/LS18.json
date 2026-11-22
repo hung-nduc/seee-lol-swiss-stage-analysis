@@ -1,0 +1,149 @@
+{
+ "code": "LS18",
+ "layout": "standard",
+ "game_time": "34:34",
+ "teams": [
+  {
+   "team": "LHP",
+   "won": true,
+   "kills": 29,
+   "deaths": 9,
+   "assists": 46,
+   "gold": 69784,
+   "players": [
+    {
+     "riot": "nờ pờ dờ#bruh",
+     "name_on_screen": "nờ pờ dờ",
+     "role": "TOP",
+     "champion": "Pantheon",
+     "level": 18,
+     "k": 4,
+     "d": 1,
+     "a": 7,
+     "damage": 14628,
+     "gold": 11980
+    },
+    {
+     "riot": "허거덩#7474",
+     "name_on_screen": "허거덩",
+     "role": "JG",
+     "champion": "Nocturne",
+     "level": 18,
+     "k": 2,
+     "d": 2,
+     "a": 9,
+     "damage": 7670,
+     "gold": 14102
+    },
+    {
+     "riot": "neirt1bach7#trien",
+     "name_on_screen": "Neirt17",
+     "role": "MID",
+     "champion": "Akali",
+     "level": 18,
+     "k": 16,
+     "d": 1,
+     "a": 7,
+     "damage": null,
+     "gold": 18672
+    },
+    {
+     "riot": "繁荣而睿智#thinh",
+     "name_on_screen": "繁荣而睿智",
+     "role": "AD",
+     "champion": "Yunara",
+     "level": 17,
+     "k": 5,
+     "d": 2,
+     "a": 6,
+     "damage": 12551,
+     "gold": 14931
+    },
+    {
+     "riot": "DPE Licotyn#mmb",
+     "name_on_screen": "DPE Licotyn",
+     "role": "SP",
+     "champion": "Lulu",
+     "level": 14,
+     "k": 2,
+     "d": 3,
+     "a": 17,
+     "damage": 3845,
+     "gold": 10099
+    }
+   ]
+  },
+  {
+   "team": "YSL",
+   "won": false,
+   "kills": 9,
+   "deaths": 29,
+   "assists": 11,
+   "gold": 59279,
+   "players": [
+    {
+     "riot": "bimiuchiratnhieu#1808",
+     "name_on_screen": "bimiuchiratnhieu",
+     "role": "TOP",
+     "champion": "Mordekaiser",
+     "level": 18,
+     "k": 2,
+     "d": 3,
+     "a": 0,
+     "damage": 3876,
+     "gold": 11166
+    },
+    {
+     "riot": "Lopptran0605#2005",
+     "name_on_screen": "Lopptran0605",
+     "role": "JG",
+     "champion": "Zed",
+     "level": 15,
+     "k": 3,
+     "d": 7,
+     "a": 3,
+     "damage": 17778,
+     "gold": 13711
+    },
+    {
+     "riot": "Qiyanah#thich",
+     "name_on_screen": "Qiyanah",
+     "role": "MID",
+     "champion": "Ahri",
+     "level": 17,
+     "k": 3,
+     "d": 8,
+     "a": 0,
+     "damage": 13173,
+     "gold": 12893
+    },
+    {
+     "riot": "ZzMEOzZ#vn2",
+     "name_on_screen": "ZzMEOzZ",
+     "role": "AD",
+     "champion": "Kai'Sa",
+     "level": 15,
+     "k": 1,
+     "d": 5,
+     "a": 5,
+     "damage": 10950,
+     "gold": 13574
+    },
+    {
+     "riot": "wzHuywz#vn2",
+     "name_on_screen": "wzHuywz",
+     "role": "SP",
+     "champion": "Nautilus",
+     "level": 13,
+     "k": 0,
+     "d": 6,
+     "a": 3,
+     "damage": 4406,
+     "gold": 7935
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Winner LHP matches record; time matches. A hover tooltip covers Neirt17 (Akali) row: damage unreadable (null). His K/A/gold derived: K 16 (confirmed by '16' and 23,0 KDA), D=1, A=7 from team totals; gold 18672 = team gold minus others (screen shows ending '72'). Level 18 visible. Champions consistent with record roles."
+}

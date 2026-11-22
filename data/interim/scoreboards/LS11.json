@@ -1,0 +1,149 @@
+{
+ "code": "LS11",
+ "layout": "standard",
+ "game_time": "21:30",
+ "teams": [
+  {
+   "team": "DMX",
+   "won": true,
+   "kills": 36,
+   "deaths": 0,
+   "assists": 70,
+   "gold": 49675,
+   "players": [
+    {
+     "riot": "Le Sante#L26",
+     "name_on_screen": "Le Sante",
+     "role": "TOP",
+     "champion": "K'Sante",
+     "level": 16,
+     "k": 8,
+     "d": 0,
+     "a": 9,
+     "damage": 24186,
+     "gold": 9813
+    },
+    {
+     "riot": "lil moneytft#momly",
+     "name_on_screen": "lil moneytft",
+     "role": "JG",
+     "champion": "Jarvan IV",
+     "level": 13,
+     "k": 9,
+     "d": 0,
+     "a": 14,
+     "damage": 18048,
+     "gold": 10305
+    },
+    {
+     "riot": "vegito#cuh",
+     "name_on_screen": "vegito",
+     "role": "MID",
+     "champion": "Ahri",
+     "level": 13,
+     "k": 4,
+     "d": 0,
+     "a": 17,
+     "damage": 19279,
+     "gold": 8660
+    },
+    {
+     "riot": "Flowern#Navi",
+     "name_on_screen": "Flowern",
+     "role": "AD",
+     "champion": "Kai'Sa",
+     "level": 14,
+     "k": 11,
+     "d": 0,
+     "a": 10,
+     "damage": 19802,
+     "gold": 13359
+    },
+    {
+     "riot": "mộngcầuchânv#bahoa",
+     "name_on_screen": "mộngcầuchânv",
+     "role": "SP",
+     "champion": "Alistar",
+     "level": 11,
+     "k": 4,
+     "d": 0,
+     "a": 20,
+     "damage": 6124,
+     "gold": 7538
+    }
+   ]
+  },
+  {
+   "team": "MSD",
+   "won": false,
+   "kills": 0,
+   "deaths": 36,
+   "assists": 0,
+   "gold": 27841,
+   "players": [
+    {
+     "riot": "10 điểm 3 môn#4444",
+     "name_on_screen": "10 điểm 3 môn",
+     "role": "TOP",
+     "champion": "Camille",
+     "level": 12,
+     "k": 0,
+     "d": 6,
+     "a": 0,
+     "damage": 6820,
+     "gold": 4815
+    },
+    {
+     "riot": "Astr4#17B2",
+     "name_on_screen": "Astr4",
+     "role": "JG",
+     "champion": "Skarner",
+     "level": 10,
+     "k": 0,
+     "d": 9,
+     "a": 0,
+     "damage": 5389,
+     "gold": 5551
+    },
+    {
+     "riot": "Remember Me#8567",
+     "name_on_screen": "Remember Me",
+     "role": "MID",
+     "champion": "Galio",
+     "level": 12,
+     "k": 0,
+     "d": 7,
+     "a": 0,
+     "damage": 11174,
+     "gold": 5563
+    },
+    {
+     "riot": "Playmaker#17th",
+     "name_on_screen": "Playmaker",
+     "role": "AD",
+     "champion": "Samira",
+     "level": 11,
+     "k": 0,
+     "d": 6,
+     "a": 0,
+     "damage": 5735,
+     "gold": 6868
+    },
+    {
+     "riot": "DangThinh#267",
+     "name_on_screen": "DangThinh",
+     "role": "SP",
+     "champion": "Neeko",
+     "level": 10,
+     "k": 0,
+     "d": 8,
+     "a": 0,
+     "damage": 7050,
+     "gold": 5044
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Winner DMX matches record. Time matches. Red team got 0 kills (36 deaths) - likely surrender/early-end stomp. All header checks pass."
+}

@@ -1,0 +1,149 @@
+{
+ "code": "LS22",
+ "layout": "standard",
+ "game_time": "29:56",
+ "teams": [
+  {
+   "team": "TT",
+   "won": true,
+   "kills": 17,
+   "deaths": 15,
+   "assists": 36,
+   "gold": 60558,
+   "players": [
+    {
+     "riot": "Mèo bơ#meobo",
+     "name_on_screen": "Mèo bơ",
+     "role": "TOP",
+     "champion": "Ambessa",
+     "level": 17,
+     "k": 2,
+     "d": 3,
+     "a": 6,
+     "damage": 14547,
+     "gold": 10324
+    },
+    {
+     "riot": "vasavi#shati",
+     "name_on_screen": "vasavi",
+     "role": "JG",
+     "champion": "Nidalee",
+     "level": 15,
+     "k": 4,
+     "d": 3,
+     "a": 7,
+     "damage": 12569,
+     "gold": 12037
+    },
+    {
+     "riot": "oHałçÿon#20800",
+     "name_on_screen": "°Halçÿon",
+     "role": "MID",
+     "champion": "Locke",
+     "level": 15,
+     "k": 3,
+     "d": 3,
+     "a": 6,
+     "damage": 15483,
+     "gold": 10777
+    },
+    {
+     "riot": "PT Đạo Hàm Riêng#FaMI",
+     "name_on_screen": "PT Đạo Hàm Riêng",
+     "role": "AD",
+     "champion": "Tristana",
+     "level": 16,
+     "k": 7,
+     "d": 4,
+     "a": 4,
+     "damage": 23987,
+     "gold": 18484
+    },
+    {
+     "riot": "need u by myside#bunzz",
+     "name_on_screen": "need u by myside",
+     "role": "SP",
+     "champion": "Rell",
+     "level": 13,
+     "k": 1,
+     "d": 2,
+     "a": 13,
+     "damage": 5594,
+     "gold": 8936
+    }
+   ]
+  },
+  {
+   "team": "LHP",
+   "won": false,
+   "kills": 15,
+   "deaths": 17,
+   "assists": 27,
+   "gold": 49625,
+   "players": [
+    {
+     "riot": "nờ pờ dờ#bruh",
+     "name_on_screen": "nờ pờ dờ",
+     "role": "TOP",
+     "champion": "Jax",
+     "level": 16,
+     "k": 1,
+     "d": 3,
+     "a": 5,
+     "damage": 13822,
+     "gold": 8384
+    },
+    {
+     "riot": "허거덩#7474",
+     "name_on_screen": "허거덩",
+     "role": "JG",
+     "champion": "Naafiri",
+     "level": 15,
+     "k": 4,
+     "d": 2,
+     "a": 7,
+     "damage": 16581,
+     "gold": 12513
+    },
+    {
+     "riot": "neirt17#trien",
+     "name_on_screen": "Neirt17",
+     "role": "MID",
+     "champion": "Akali",
+     "level": 15,
+     "k": 5,
+     "d": 3,
+     "a": 3,
+     "damage": 13779,
+     "gold": 9705
+    },
+    {
+     "riot": "繁荣而睿智#thinh",
+     "name_on_screen": "繁荣而睿智",
+     "role": "AD",
+     "champion": "Viktor",
+     "level": 15,
+     "k": 4,
+     "d": 5,
+     "a": 6,
+     "damage": 16399,
+     "gold": 11822
+    },
+    {
+     "riot": "DPE Licotyn#mmb",
+     "name_on_screen": "DPE Licotyn",
+     "role": "SP",
+     "champion": "Leona",
+     "level": 11,
+     "k": 1,
+     "d": 4,
+     "a": 6,
+     "damage": 2457,
+     "gold": 7201
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Screen ĐỘI 1 = TT (red side in record, winner), ĐỘI 2 = LHP. Winner matches record. Time matches. All checks pass."
+}

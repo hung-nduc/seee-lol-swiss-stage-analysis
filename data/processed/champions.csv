@@ -1,0 +1,116 @@
+champion,picks,bans,presence,presence_pct,wins,winrate,main_role,kda,avg_damage_share,picked_by,picks_TOP,picks_JG,picks_MID,picks_AD,picks_SP
+Kai'Sa,8,11,19,68,3,38,Bot (ADC),2.61,20.4,"DMX x2, GLT x2, VNT, YSL, LHP, MSD",0,0,0,8,0
+Jarvan IV,8,10,18,64,3,38,Jungle,3.19,13.1,"GOS x3, DMX x2, MSD, LK, FTL",0,8,0,0,0
+Nocturne,4,11,15,54,2,50,Jungle,2.47,13.0,"LK, LN, LHP, GOS",0,4,0,0,0
+Nautilus,11,3,14,50,6,55,Support,2.16,6.8,"YSL x3, KGC x2, LHP x2, LXM, HKG, GOS, GLT",0,0,0,0,11
+Ornn,9,3,12,43,5,56,Top,2.2,21.0,"LN x3, YSL x3, ZEN x2, KGC",9,0,0,0,0
+Aatrox,4,8,12,43,4,100,Top,5.92,29.1,"DMX x2, KGC, LHP",3,1,0,0,0
+Qiyana,2,10,12,43,1,50,Jungle,3.86,26.0,"DMX, HKG",0,1,1,0,0
+Jhin,7,4,11,39,4,57,Bot (ADC),4.18,17.9,"CBK x2, LXM x2, KGC, LN, DMX",0,0,0,7,0
+Kayn,7,4,11,39,1,14,Jungle,1.67,21.7,"CBK x2, ZEN x2, GLT, HKG, YSL",0,7,0,0,0
+Caitlyn,4,7,11,39,1,25,Bot (ADC),1.7,21.0,"ZEN x2, FTL, GLT",0,0,0,4,0
+Gwen,4,7,11,39,4,100,Top,6.89,28.9,"ZEN, LXM, CBK, LHP",4,0,0,0,0
+Yone,4,7,11,39,1,25,Top,1.36,19.8,"GLT, ZEN, GOS, LHP",2,0,2,0,0
+Sylas,3,8,11,39,1,33,Mid,1.64,17.6,"LK, LXM, VNT",1,0,2,0,0
+Leona,7,2,9,32,3,43,Support,1.82,5.8,"GLT x2, VNT, LK, LHP, GOS, LN",0,0,0,0,7
+Malphite,5,4,9,32,1,20,Top,2.11,24.9,"VNT x3, CBK, MSD",5,0,0,0,0
+Lulu,2,7,9,32,2,100,Support,4.67,3.3,"TT, LHP",0,0,0,0,2
+Ezreal,4,4,8,29,2,50,Bot (ADC),6.67,23.7,"LN x2, CBK, ZEN",0,0,0,4,0
+Renekton,3,5,8,29,3,100,Top,3.62,22.8,"GOS x2, TT",3,0,0,0,0
+Syndra,3,5,8,29,2,67,Mid,3.64,30.3,"TT, GLT, GOS",0,0,3,0,0
+Jayce,2,6,8,29,2,100,Top,3.36,28.2,"GLT, VNT",1,1,0,0,0
+Thresh,2,6,8,29,1,50,Support,2.57,5.1,"GOS, CBK",0,0,0,0,2
+Alistar,5,2,7,25,4,80,Support,10.5,6.2,"DMX x3, GOS, HKG",0,0,0,0,5
+Pantheon,5,2,7,25,4,80,Jungle,4.43,15.2,"KGC x2, TT, LHP, ZEN",1,4,0,0,0
+Cho'Gath,4,3,7,25,2,50,Jungle,3.64,19.7,"GLT x2, GOS, HKG",0,4,0,0,0
+Pyke,4,3,7,25,3,75,Support,1.38,8.9,"LXM x2, GLT, HKG",0,0,0,0,4
+Viego,4,3,7,25,1,25,Jungle,1.65,15.9,"HKG x2, VNT, MSD",0,4,0,0,0
+Anivia,3,4,7,25,1,33,Mid,3.82,23.1,"ZEN, DMX, CBK",0,0,3,0,0
+Neeko,3,4,7,25,0,0,Support,0.93,19.0,"MSD x2, LN",0,0,0,0,3
+Tristana,6,0,6,21,4,67,Bot (ADC),4.18,27.1,"YSL x2, GOS, TT, LXM, LHP",0,0,1,5,0
+Ziggs,5,1,6,21,3,60,Bot (ADC),4.69,25.3,"GOS x2, LXM, FTL, LN",0,0,0,5,0
+Akali,4,2,6,21,1,25,Mid,2.94,29.0,"LHP x3, LK",1,0,3,0,0
+Braum,4,2,6,21,3,75,Support,4.91,6.4,"YSL x2, KGC, GOS",0,0,0,0,4
+Galio,4,2,6,21,2,50,Mid,1.46,25.3,"YSL x2, MSD, VNT",0,0,4,0,0
+Viktor,4,2,6,21,0,0,Mid,1.18,28.8,"CBK, LHP, LN, GOS",0,0,3,1,0
+Aurelion Sol,3,3,6,21,2,67,Mid,4.17,23.4,"GOS x2, ZEN",0,0,3,0,0
+Rell,3,3,6,21,1,33,Support,2.33,8.3,"FTL, TT, DMX",0,0,0,0,3
+Xerath,3,3,6,21,1,33,Mid,2.75,32.8,"HKG x2, GLT",0,0,2,1,0
+Zed,3,3,6,21,1,33,Top,1.35,31.6,"GOS, YSL, GLT",1,1,1,0,0
+Fizz,2,4,6,21,0,0,Mid,1.09,19.1,"LN, HKG",0,0,1,1,0
+Lee Sin,2,4,6,21,2,100,Jungle,8.5,18.4,"YSL, TT",0,2,0,0,0
+Xin Zhao,2,4,6,21,1,50,Jungle,3.12,12.2,"ZEN, LN",0,2,0,0,0
+Garen,3,2,5,18,0,0,Top,0.28,19.2,"HKG x2, YSL",3,0,0,0,0
+Mordekaiser,3,2,5,18,2,67,Top,5.17,23.7,"LXM, HKG, YSL",3,0,0,0,0
+Naafiri,3,2,5,18,1,33,Jungle,2.5,22.2,"LHP x2, LXM",0,3,0,0,0
+Taliyah,3,2,5,18,3,100,Mid,7.33,27.1,"KGC x2, LXM",0,0,3,0,0
+Gnar,2,3,5,18,1,50,Top,2.57,28.2,"LN, TT",2,0,0,0,0
+Poppy,2,3,5,18,0,0,Support,2.11,12.0,"LN, VNT",0,0,0,0,2
+Corki,4,0,4,14,2,50,Bot (ADC),2.73,22.6,"YSL x2, LK, DMX",0,0,0,4,0
+Yunara,4,0,4,14,4,100,Bot (ADC),5.2,23.8,"TT x2, LHP, KGC",0,0,0,4,0
+Ahri,3,1,4,14,1,33,Mid,3.0,25.0,"DMX, FTL, YSL",0,0,3,0,0
+Ambessa,3,1,4,14,2,67,Top,1.8,26.7,"TT, LHP, GLT",3,0,0,0,0
+K'Sante,3,1,4,14,2,67,Top,6.6,27.0,"DMX, HKG, KGC",3,0,0,0,0
+Locke,3,1,4,14,3,100,Mid,5.0,23.4,"HKG, TT, DMX",0,0,3,0,0
+Orianna,3,1,4,14,0,0,Mid,1.56,24.5,"VNT, LK, FTL",0,0,3,0,0
+Sion,3,1,4,14,0,0,Top,0.57,24.4,"FTL x2, MSD",3,0,0,0,0
+Katarina,2,2,4,14,0,0,Mid,0.55,25.4,"HKG, YSL",0,0,2,0,0
+Seraphine,2,2,4,14,0,0,Support,1.45,13.7,"CBK, MSD",0,0,0,0,2
+Yasuo,2,2,4,14,2,100,Mid,6.17,28.6,"GLT, KGC",0,0,2,0,0
+Darius,1,3,4,14,1,100,Top,22.0,32.1,GOS,1,0,0,0,0
+Kalista,1,3,4,14,1,100,Bot (ADC),5.25,26.4,VNT,0,0,0,1,0
+Akshan,2,1,3,11,2,100,Mid,4.67,19.9,"DMX, LXM",0,0,2,0,0
+Aphelios,2,1,3,11,0,0,Bot (ADC),1.11,28.3,"ZEN, MSD",0,0,0,2,0
+Camille,2,1,3,11,0,0,Top,1.0,14.7,"MSD, FTL",1,0,0,0,1
+Cassiopeia,2,1,3,11,2,100,Mid,3.83,29.4,LN x2,0,0,2,0,0
+Rammus,2,1,3,11,1,50,Jungle,5.67,16.3,YSL x2,0,2,0,0,0
+Taric,2,1,3,11,1,50,Support,2.64,8.2,"VNT, CBK",0,0,0,0,2
+Varus,2,1,3,11,2,100,Bot (ADC),8.33,22.7,GOS x2,0,0,0,2,0
+Wukong,2,1,3,11,2,100,Jungle,30.0,16.2,LN x2,0,2,0,0,0
+Fiora,1,2,3,11,0,0,Top,1.0,23.5,CBK,1,0,0,0,0
+Jax,1,2,3,11,0,0,Top,2.0,21.9,LHP,1,0,0,0,0
+Miss Fortune,1,2,3,11,0,0,Bot (ADC),1.0,18.1,LK,0,0,0,1,0
+Nami,1,2,3,11,0,0,Support,1.25,8.4,ZEN,0,0,0,0,1
+Nasus,1,2,3,11,0,0,Top,3.33,35.7,DMX,1,0,0,0,0
+Graves,0,3,3,11,0,,,,,,0,0,0,0,0
+Tahm Kench,0,3,3,11,0,,,,,,0,0,0,0,0
+Lillia,2,0,2,7,1,50,Jungle,4.29,24.1,"CBK, DMX",0,2,0,0,0
+Lux,2,0,2,7,1,50,Support,4.67,22.2,ZEN x2,0,0,0,0,2
+Sejuani,2,0,2,7,1,50,Jungle,3.33,15.1,"VNT, LXM",0,2,0,0,0
+Ashe,1,1,2,7,1,100,Bot (ADC),5.0,7.6,GLT,0,0,0,1,0
+Hwei,1,1,2,7,0,0,Mid,1.0,40.8,ZEN,0,0,1,0,0
+LeBlanc,1,1,2,7,0,0,Mid,2.57,,GOS,0,0,1,0,0
+Lissandra,1,1,2,7,1,100,Mid,4.0,18.2,CBK,0,0,1,0,0
+Malzahar,1,1,2,7,0,0,Mid,1.0,15.1,MSD,0,0,1,0,0
+Rumble,1,1,2,7,0,0,Top,1.67,,ZEN,1,0,0,0,0
+Soraka,1,1,2,7,0,0,Support,3.8,,ZEN,0,0,0,0,1
+Dr. Mundo,0,2,2,7,0,,,,,,0,0,0,0,0
+Twisted Fate,0,2,2,7,0,,,,,,0,0,0,0,0
+Volibear,0,2,2,7,0,,,,,,0,0,0,0,0
+Amumu,1,0,1,4,1,100,Jungle,5.0,20.0,GLT,0,1,0,0,0
+Annie,1,0,1,4,1,100,Mid,6.33,23.2,TT,0,0,1,0,0
+Diana,1,0,1,4,1,100,Jungle,12.0,29.4,KGC,0,1,0,0,0
+Ekko,1,0,1,4,0,0,Mid,1.4,19.7,MSD,0,0,1,0,0
+Gangplank,1,0,1,4,1,100,Top,11.0,31.1,GLT,1,0,0,0,0
+Hecarim,1,0,1,4,1,100,Jungle,9.5,21.1,LXM,0,1,0,0,0
+Jinx,1,0,1,4,0,0,Bot (ADC),2.17,40.6,VNT,0,0,0,1,0
+Karma,1,0,1,4,1,100,Support,5.0,9.0,LN,0,0,0,0,1
+Kog'Maw,1,0,1,4,0,0,Bot (ADC),1.0,23.7,HKG,0,0,0,1,0
+Lucian,1,0,1,4,1,100,Bot (ADC),4.25,18.6,HKG,0,0,0,1,0
+Maokai,1,0,1,4,0,0,Support,1.17,6.5,LK,0,0,0,0,1
+Milio,1,0,1,4,1,100,Support,5.0,3.6,HKG,0,0,0,0,1
+Nidalee,1,0,1,4,1,100,Jungle,3.67,17.4,TT,0,1,0,0,0
+Olaf,1,0,1,4,0,0,Top,1.12,33.5,LK,1,0,0,0,0
+Rakan,1,0,1,4,1,100,Support,4.4,5.7,TT,0,0,0,0,1
+Samira,1,0,1,4,0,0,Bot (ADC),0.0,15.9,MSD,0,0,0,1,0
+Shyvana,1,0,1,4,0,0,Jungle,0.88,18.5,FTL,0,1,0,0,0
+Skarner,1,0,1,4,0,0,Jungle,0.0,14.9,MSD,0,1,0,0,0
+Vex,1,0,1,4,1,100,Mid,4.4,28.9,YSL,0,0,1,0,0
+Zeri,1,0,1,4,1,100,Bot (ADC),6.5,26.8,KGC,0,0,0,1,0
+Brand,0,1,1,4,0,,,,,,0,0,0,0,0
+Kassadin,0,1,1,4,0,,,,,,0,0,0,0,0
+Mel,0,1,1,4,0,,,,,,0,0,0,0,0
+Sett,0,1,1,4,0,,,,,,0,0,0,0,0
+Shen,0,1,1,4,0,,,,,,0,0,0,0,0
+Veigar,0,1,1,4,0,,,,,,0,0,0,0,0
+Vi,0,1,1,4,0,,,,,,0,0,0,0,0

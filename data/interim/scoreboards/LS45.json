@@ -1,0 +1,149 @@
+{
+ "code": "LS45",
+ "layout": "standard",
+ "game_time": "29:08",
+ "teams": [
+  {
+   "team": "LN",
+   "won": true,
+   "kills": 13,
+   "deaths": 5,
+   "assists": 29,
+   "gold": 59329,
+   "players": [
+    {
+     "riot": "hadyu#9816",
+     "name_on_screen": "hadyu",
+     "role": "TOP",
+     "champion": "Ornn",
+     "level": 18,
+     "k": 3,
+     "d": 2,
+     "a": 7,
+     "damage": 17296,
+     "gold": 11512
+    },
+    {
+     "riot": "30FPS player#2007",
+     "name_on_screen": "30FPS player",
+     "role": "JG",
+     "champion": "Wukong",
+     "level": 17,
+     "k": 4,
+     "d": 1,
+     "a": 8,
+     "damage": 9464,
+     "gold": 13677
+    },
+    {
+     "riot": "W1ndchaser#1845",
+     "name_on_screen": "W1ndchaser",
+     "role": "MID",
+     "champion": "Cassiopeia",
+     "level": 17,
+     "k": 4,
+     "d": 2,
+     "a": 6,
+     "damage": 21263,
+     "gold": 13278
+    },
+    {
+     "riot": "eD nhát gái#22402",
+     "name_on_screen": "eD nhát gái",
+     "role": "AD",
+     "champion": "Ezreal",
+     "level": 15,
+     "k": 2,
+     "d": 0,
+     "a": 3,
+     "damage": 18737,
+     "gold": 13575
+    },
+    {
+     "riot": "Corn Cuang#ccc",
+     "name_on_screen": "Corn Cuang",
+     "role": "SP",
+     "champion": "Karma",
+     "level": 12,
+     "k": 0,
+     "d": 0,
+     "a": 5,
+     "damage": 6604,
+     "gold": 7287
+    }
+   ]
+  },
+  {
+   "team": "MSD",
+   "won": false,
+   "kills": 5,
+   "deaths": 13,
+   "assists": 15,
+   "gold": 47523,
+   "players": [
+    {
+     "riot": "10 điểm 3 môn#4444",
+     "name_on_screen": "10 điểm 3 môn",
+     "role": "TOP",
+     "champion": "Sion",
+     "level": 17,
+     "k": 0,
+     "d": 4,
+     "a": 4,
+     "damage": 14886,
+     "gold": 9643
+    },
+    {
+     "riot": "Remember Me#8567",
+     "name_on_screen": "Remember Me",
+     "role": "JG",
+     "champion": "Viego",
+     "level": 15,
+     "k": 1,
+     "d": 2,
+     "a": 4,
+     "damage": 11416,
+     "gold": 9956
+    },
+    {
+     "riot": "Astr4#17B2",
+     "name_on_screen": "Astr4",
+     "role": "MID",
+     "champion": "Malzahar",
+     "level": 15,
+     "k": 1,
+     "d": 3,
+     "a": 2,
+     "damage": 8313,
+     "gold": 9442
+    },
+    {
+     "riot": "Playmaker#17th",
+     "name_on_screen": "Playmaker",
+     "role": "AD",
+     "champion": "Kai'Sa",
+     "level": 14,
+     "k": 3,
+     "d": 2,
+     "a": 1,
+     "damage": 12559,
+     "gold": 11941
+    },
+    {
+     "riot": "DangThinh#267",
+     "name_on_screen": "DangThinh",
+     "role": "SP",
+     "champion": "Neeko",
+     "level": 13,
+     "k": 0,
+     "d": 2,
+     "a": 4,
+     "damage": 7963,
+     "gold": 6541
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Screen ĐỘI 1 = LN (blue, winner). All sums match. Time and winner match. Karma played by SP slot (support-ish), Neeko SP for MSD."
+}

@@ -1,0 +1,149 @@
+{
+ "code": "LS32",
+ "layout": "standard",
+ "game_time": "33:06",
+ "teams": [
+  {
+   "team": "DMX",
+   "won": false,
+   "kills": 17,
+   "deaths": 23,
+   "assists": 41,
+   "gold": 59906,
+   "players": [
+    {
+     "riot": "Le Sante#L26",
+     "name_on_screen": "Le Sante",
+     "role": "TOP",
+     "champion": "Nasus",
+     "level": 18,
+     "k": 4,
+     "d": 3,
+     "a": 6,
+     "damage": 26211,
+     "gold": 13765
+    },
+    {
+     "riot": "lil moneytft#momly",
+     "name_on_screen": "lil moneytft",
+     "role": "JG",
+     "champion": "Jarvan IV",
+     "level": 16,
+     "k": 4,
+     "d": 6,
+     "a": 13,
+     "damage": 12312,
+     "gold": 12233
+    },
+    {
+     "riot": "vegito#cuh",
+     "name_on_screen": "vegito",
+     "role": "MID",
+     "champion": "Anivia",
+     "level": 16,
+     "k": 2,
+     "d": 5,
+     "a": 6,
+     "damage": 9653,
+     "gold": 10551
+    },
+    {
+     "riot": "Flowern#Navi",
+     "name_on_screen": "Flowern",
+     "role": "AD",
+     "champion": "Kai'Sa",
+     "level": 15,
+     "k": 6,
+     "d": 3,
+     "a": 4,
+     "damage": 17771,
+     "gold": 15359
+    },
+    {
+     "riot": "mộngcầuchânv#bahoa",
+     "name_on_screen": "mộngcầuchânv",
+     "role": "SP",
+     "champion": "Rell",
+     "level": 13,
+     "k": 1,
+     "d": 6,
+     "a": 12,
+     "damage": 7375,
+     "gold": 7998
+    }
+   ]
+  },
+  {
+   "team": "TT",
+   "won": true,
+   "kills": 23,
+   "deaths": 17,
+   "assists": 66,
+   "gold": 68498,
+   "players": [
+    {
+     "riot": "freistil#27507",
+     "name_on_screen": "freistil",
+     "role": "TOP",
+     "champion": "Gnar",
+     "level": 19,
+     "k": 5,
+     "d": 2,
+     "a": 10,
+     "damage": 31260,
+     "gold": 13645
+    },
+    {
+     "riot": "vasavi#shati",
+     "name_on_screen": "vasavi",
+     "role": "JG",
+     "champion": "Lee Sin",
+     "level": 17,
+     "k": 3,
+     "d": 3,
+     "a": 14,
+     "damage": 17123,
+     "gold": 13515
+    },
+    {
+     "riot": "oHałçÿon#20800",
+     "name_on_screen": "oHałçÿon",
+     "role": "MID",
+     "champion": "Annie",
+     "level": 16,
+     "k": 7,
+     "d": 3,
+     "a": 12,
+     "damage": 26467,
+     "gold": 12977
+    },
+    {
+     "riot": "PT Đạo Hàm Riêng#FaMI",
+     "name_on_screen": "PT Đạo Hàm Riêng",
+     "role": "AD",
+     "champion": "Yunara",
+     "level": 16,
+     "k": 8,
+     "d": 4,
+     "a": 8,
+     "damage": 32726,
+     "gold": 18896
+    },
+    {
+     "riot": "need u by myside#bunzz",
+     "name_on_screen": "need u by myside",
+     "role": "SP",
+     "champion": "Rakan",
+     "level": 14,
+     "k": 0,
+     "d": 5,
+     "a": 22,
+     "damage": 6445,
+     "gold": 9465
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Scoreboard lists TT as ĐỘI 1 (top) and DMX as ĐỘI 2 though record has DMX blue. Winner TT matches. Time 33:06 vs record 33:05. Gnar TOP, Lee Sin JG, Annie MID, Yunara AD, Rakan SP."
+}

@@ -1,0 +1,149 @@
+{
+ "code": "LS23",
+ "layout": "standard",
+ "game_time": "29:46",
+ "teams": [
+  {
+   "team": "DMX",
+   "won": true,
+   "kills": 32,
+   "deaths": 7,
+   "assists": 56,
+   "gold": 64658,
+   "players": [
+    {
+     "riot": "Le Sante#L26",
+     "name_on_screen": "Le Sante",
+     "role": "TOP",
+     "champion": "Aatrox",
+     "level": 19,
+     "k": 14,
+     "d": 3,
+     "a": 8,
+     "damage": 40636,
+     "gold": 16354
+    },
+    {
+     "riot": "lil moneytft#momly",
+     "name_on_screen": "lil moneytft",
+     "role": "JG",
+     "champion": "Lillia",
+     "level": 18,
+     "k": 10,
+     "d": 1,
+     "a": 10,
+     "damage": 28787,
+     "gold": 15261
+    },
+    {
+     "riot": "vegito#cuh",
+     "name_on_screen": "vegito",
+     "role": "MID",
+     "champion": "Akshan",
+     "level": 16,
+     "k": 4,
+     "d": 2,
+     "a": 10,
+     "damage": 13858,
+     "gold": 11651
+    },
+    {
+     "riot": "Flowern#Navi",
+     "name_on_screen": "Flowern",
+     "role": "AD",
+     "champion": "Jhin",
+     "level": 15,
+     "k": 4,
+     "d": 0,
+     "a": 8,
+     "damage": 16287,
+     "gold": 12712
+    },
+    {
+     "riot": "mộngcầuchânv#bahoa",
+     "name_on_screen": "mộngcầuchânv",
+     "role": "SP",
+     "champion": "Alistar",
+     "level": 14,
+     "k": 0,
+     "d": 1,
+     "a": 20,
+     "damage": 5930,
+     "gold": 8680
+    }
+   ]
+  },
+  {
+   "team": "ZEN",
+   "won": false,
+   "kills": 7,
+   "deaths": 32,
+   "assists": 18,
+   "gold": 45920,
+   "players": [
+    {
+     "riot": "BLIND#DMH",
+     "name_on_screen": "BLIND",
+     "role": "TOP",
+     "champion": "Ornn",
+     "level": 14,
+     "k": 0,
+     "d": 12,
+     "a": 5,
+     "damage": 11130,
+     "gold": 7002
+    },
+    {
+     "riot": "TAUNT#2706",
+     "name_on_screen": "TAUNT",
+     "role": "JG",
+     "champion": "Pantheon",
+     "level": 14,
+     "k": 2,
+     "d": 7,
+     "a": 3,
+     "damage": 10039,
+     "gold": 10316
+    },
+    {
+     "riot": "GeminiJune5th#Tus",
+     "name_on_screen": "GeminiJune5th",
+     "role": "MID",
+     "champion": "Hwei",
+     "level": 15,
+     "k": 5,
+     "d": 6,
+     "a": 1,
+     "damage": 34122,
+     "gold": 11766
+    },
+    {
+     "riot": "MeiMei Cat#HUST",
+     "name_on_screen": "MeiMei Cat",
+     "role": "AD",
+     "champion": "Aphelios",
+     "level": 14,
+     "k": 0,
+     "d": 3,
+     "a": 4,
+     "damage": 21395,
+     "gold": 10132
+    },
+    {
+     "riot": "marianne#ikeri",
+     "name_on_screen": "marianne",
+     "role": "SP",
+     "champion": "Nami",
+     "level": 13,
+     "k": 0,
+     "d": 4,
+     "a": 5,
+     "damage": 6996,
+     "gold": 6704
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Screen ĐỘI 1 = DMX (red in record, winner), ĐỘI 2 = ZEN. Winner and time match. All checks pass."
+}

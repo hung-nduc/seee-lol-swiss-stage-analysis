@@ -1,0 +1,3211 @@
+[
+ {
+  "code": "LS11",
+  "round": 1,
+  "blue": "DMX",
+  "red": "MSD",
+  "scheduled": "18h30, T2, 16/11",
+  "date": "16/11/2026",
+  "bracket_raw": "0-0",
+  "duration_raw": "21:30",
+  "winner_raw": "DMX",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "DMX",
+  "result_type": "played",
+  "loser": "MSD",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "Le Sante#L26"
+    },
+    {
+     "role": "JG",
+     "riot": "lil moneytft#momly"
+    },
+    {
+     "role": "MID",
+     "riot": "vegito#cuh"
+    },
+    {
+     "role": "AD",
+     "riot": "Flowern#Navi"
+    },
+    {
+     "role": "SP",
+     "riot": "mộngcầuchânv#bahoa"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "10 điểm 3 môn#4444"
+    },
+    {
+     "role": "JG",
+     "riot": "Astr4#17B2"
+    },
+    {
+     "role": "MID",
+     "riot": "Remember Me#8567"
+    },
+    {
+     "role": "AD",
+     "riot": "Playmaker#17th"
+    },
+    {
+     "role": "SP",
+     "riot": "DangThinh#267"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Nocturne",
+    "blue_pick": "Kai’sa",
+    "red_ban": "Ezreal",
+    "red_pick": "Samira"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Thresh",
+    "blue_pick": "Alistar",
+    "red_ban": "Pyke",
+    "red_pick": "Nekko"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Graves",
+    "blue_pick": "Jarvan IV",
+    "red_ban": "Zed",
+    "red_pick": "Skarner"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Gwen",
+    "blue_pick": "Ahri",
+    "red_ban": "Darius",
+    "red_pick": "Camille"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Malphite",
+    "blue_pick": "K’sante",
+    "red_ban": "Sylas",
+    "red_pick": "Gallio"
+   }
+  ]
+ },
+ {
+  "code": "LS12",
+  "round": 1,
+  "blue": "GLT",
+  "red": "CBK",
+  "scheduled": "18h30, T2, 16/11",
+  "date": "16/11/2026",
+  "bracket_raw": "0-0",
+  "duration_raw": "26:13",
+  "winner_raw": "GLT",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "GLT",
+  "result_type": "played",
+  "loser": "CBK",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "LSR Nhakanasi#TLA4"
+    },
+    {
+     "role": "JG",
+     "riot": "3Who#0802"
+    },
+    {
+     "role": "MID",
+     "riot": "VAC Ryoku Haru#1603"
+    },
+    {
+     "role": "AD",
+     "riot": "Zendar#5696"
+    },
+    {
+     "role": "SP",
+     "riot": "nhquan2121#6844"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "messihamburger#1610"
+    },
+    {
+     "role": "JG",
+     "riot": "marisaaa#2901"
+    },
+    {
+     "role": "MID",
+     "riot": "Ezz#31108"
+    },
+    {
+     "role": "AD",
+     "riot": "anhbinhthulong#vn2"
+    },
+    {
+     "role": "SP",
+     "riot": "Choccbel Nhocoay#vn3"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Nocturne",
+    "blue_pick": "Jayce",
+    "red_ban": "Aatrox",
+    "red_pick": "Jhin"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Kayn",
+    "blue_pick": "Leona",
+    "red_ban": "Yone",
+    "red_pick": "Seraphine"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Ezreal",
+    "blue_pick": "Ashe",
+    "red_ban": "Kaisa",
+    "red_pick": "Malphite"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Jarvan IV",
+    "blue_pick": "Cho’gath",
+    "red_ban": "Yasuo",
+    "red_pick": "Viktor"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Graves",
+    "blue_pick": "Xerath",
+    "red_ban": "Sylas",
+    "red_pick": "Lillia"
+   }
+  ]
+ },
+ {
+  "code": "LS13",
+  "round": 1,
+  "blue": "GOS",
+  "red": "LXM",
+  "scheduled": "20h00, T2, 16/11",
+  "date": "16/11/2026",
+  "bracket_raw": "0-0",
+  "duration_raw": "33:06",
+  "winner_raw": "LXM",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "LXM",
+  "result_type": "played",
+  "loser": "GOS",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "JappleG#66666"
+    },
+    {
+     "role": "JG",
+     "riot": "taoapdaotuyetdoi#3643"
+    },
+    {
+     "role": "MID",
+     "riot": "Lê Văn Vở#1105"
+    },
+    {
+     "role": "AD",
+     "riot": "MTHUUS#2608"
+    },
+    {
+     "role": "SP",
+     "riot": "Đạt Đạt Đạt#vn2"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "Toithangcap1minh#1409"
+    },
+    {
+     "role": "JG",
+     "riot": "ShihoMiyanoo#4869"
+    },
+    {
+     "role": "MID",
+     "riot": "黑天风 A Tức#2301"
+    },
+    {
+     "role": "AD",
+     "riot": "TheMaLaiHay#VNmub"
+    },
+    {
+     "role": "SP",
+     "riot": "Chocopyke#Rùa"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Sylas",
+    "blue_pick": "Thresh",
+    "red_ban": "Renekton",
+    "red_pick": "Pyke"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Rell",
+    "blue_pick": "Cho’Gath",
+    "red_ban": "Fizz",
+    "red_pick": "Jhin"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Qiyana",
+    "blue_pick": "Tristana",
+    "red_ban": "Aurelion Sol",
+    "red_pick": "Taliyah"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Fiora",
+    "blue_pick": "Leblanc",
+    "red_ban": "Aatrox",
+    "red_pick": "Mordekaiser"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Akshan",
+    "blue_pick": "Zed",
+    "red_ban": "Orianna",
+    "red_pick": "Naafiri"
+   }
+  ]
+ },
+ {
+  "code": "LS14",
+  "round": 1,
+  "blue": "HKG",
+  "red": "VNT",
+  "scheduled": "21h00, T2, 16/11",
+  "date": "16/11/2026",
+  "bracket_raw": "0",
+  "duration_raw": "30:56",
+  "winner_raw": "HKG",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "HKG",
+  "result_type": "played",
+  "loser": "VNT",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "HK2 LSiong#2207"
+    },
+    {
+     "role": "JG",
+     "riot": "HK3 XII#1268"
+    },
+    {
+     "role": "MID",
+     "riot": "Fizz Ziczac#vn2"
+    },
+    {
+     "role": "AD",
+     "riot": "Kataddict#28708"
+    },
+    {
+     "role": "SP",
+     "riot": "HK4 Cragon#0608"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "mỗi năm một già#bLa"
+    },
+    {
+     "role": "JG",
+     "riot": "Dưa#LOL"
+    },
+    {
+     "role": "MID",
+     "riot": "2I am Hải#vn2"
+    },
+    {
+     "role": "AD",
+     "riot": "bittersweet#prev"
+    },
+    {
+     "role": "SP",
+     "riot": "KAugustzzz8#AUG"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Caitlyn",
+    "blue_pick": "Viego",
+    "red_ban": "Fizz",
+    "red_pick": "Kai’Sa"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Taric",
+    "blue_pick": "Lucian",
+    "red_ban": "Tahm Kench",
+    "red_pick": "Sejuani"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Jayce",
+    "blue_pick": "Locke",
+    "red_ban": "Kayn",
+    "red_pick": "Leona"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Syndra",
+    "blue_pick": "Mordekaiser",
+    "red_ban": "Mel",
+    "red_pick": "Orianna"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Viktor",
+    "blue_pick": "Milio",
+    "red_ban": "Nami",
+    "red_pick": "Malphite"
+   }
+  ]
+ },
+ {
+  "code": "LS15",
+  "round": 1,
+  "blue": "ZEN",
+  "red": "LK",
+  "scheduled": "18h30, T3, 17/11",
+  "date": "17/11/2026",
+  "bracket_raw": "0-0",
+  "duration_raw": "29:47",
+  "winner_raw": "NGU",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "ZEN",
+  "result_type": "played",
+  "loser": "LK",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "BLIND#DMH"
+    },
+    {
+     "role": "JG",
+     "riot": "TAUNT#2706"
+    },
+    {
+     "role": "MID",
+     "riot": "GeminiJune5th#Tus"
+    },
+    {
+     "role": "AD",
+     "riot": "MeiMei Cat#HUST"
+    },
+    {
+     "role": "SP",
+     "riot": "marianne#ikeri"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "Duc Duyy#2006"
+    },
+    {
+     "role": "JG",
+     "riot": "ĐàoHải tuổi 18#1312"
+    },
+    {
+     "role": "MID",
+     "riot": "SSA Reaper#2907"
+    },
+    {
+     "role": "AD",
+     "riot": "clayern#HUST"
+    },
+    {
+     "role": "SP",
+     "riot": "kenzo2s#vn2"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Thresh",
+    "blue_pick": "Gwen",
+    "red_ban": "Nami",
+    "red_pick": "Akali"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Rell",
+    "blue_pick": "Xin Zhao",
+    "red_ban": "",
+    "red_pick": "Nocturne"
+   },
+   {
+    "order": 3,
+    "blue_ban": "",
+    "blue_pick": "Anivia",
+    "red_ban": "",
+    "red_pick": "Orianna"
+   },
+   {
+    "order": 4,
+    "blue_ban": "",
+    "blue_pick": "Caitlyn",
+    "red_ban": "",
+    "red_pick": "Miss Fortune"
+   },
+   {
+    "order": 5,
+    "blue_ban": "",
+    "blue_pick": "Lux",
+    "red_ban": "",
+    "red_pick": "Leona"
+   }
+  ]
+ },
+ {
+  "code": "LS16",
+  "round": 1,
+  "blue": "FTL",
+  "red": "KGC",
+  "scheduled": "18h30, T3, 17/11",
+  "date": "17/11/2026",
+  "bracket_raw": "0-0",
+  "duration_raw": "37:0",
+  "winner_raw": "KGC",
+  "penalties": [],
+  "pauses": [
+   [
+    "1",
+    "VDV [player] bị out do vấn đề máy.",
+    "Tạm dừng trận đấu (7:34)"
+   ],
+   [
+    "2",
+    "VDV [player] bị out do vấn đề máy",
+    "Tạm dừng trận đấu"
+   ]
+  ],
+  "notes": [],
+  "winner": "KGC",
+  "result_type": "played",
+  "loser": "FTL",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "Postpone Atone#kdaat"
+    },
+    {
+     "role": "JG",
+     "riot": "hugshe#3904"
+    },
+    {
+     "role": "MID",
+     "riot": "mmmmmmmm1#mmm"
+    },
+    {
+     "role": "AD",
+     "riot": "dang khoa#1701"
+    },
+    {
+     "role": "SP",
+     "riot": "Sheva#1209"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "Deus ex machina#2202"
+    },
+    {
+     "role": "JG",
+     "riot": "Thịt dê cơm cháy#035"
+    },
+    {
+     "role": "MID",
+     "riot": "alle#imo"
+    },
+    {
+     "role": "AD",
+     "riot": "Sứ Giả Người Tày#5964"
+    },
+    {
+     "role": "SP",
+     "riot": "MID Đại Cồ Việt#MLEM"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "noctune",
+    "blue_pick": "sion",
+    "red_ban": "poppy",
+    "red_pick": "jhin"
+   },
+   {
+    "order": 2,
+    "blue_ban": "quiyana",
+    "blue_pick": "rell",
+    "red_ban": "zed",
+    "red_pick": "nautilus"
+   },
+   {
+    "order": 3,
+    "blue_ban": "galio",
+    "blue_pick": "caitlyn",
+    "red_ban": "anivia",
+    "red_pick": "pantheon"
+   },
+   {
+    "order": 4,
+    "blue_ban": "malphite",
+    "blue_pick": "shyvana",
+    "red_ban": "sylas",
+    "red_pick": "aatrox"
+   },
+   {
+    "order": 5,
+    "blue_ban": "viego",
+    "blue_pick": "ahri",
+    "red_ban": "jarvan",
+    "red_pick": "taliyah"
+   }
+  ]
+ },
+ {
+  "code": "LS17",
+  "round": 1,
+  "blue": "TT",
+  "red": "LN",
+  "scheduled": "18h30, T3, 17/11",
+  "date": "17/11/2026",
+  "bracket_raw": "0",
+  "duration_raw": "27:20",
+  "winner_raw": "TT",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "TT",
+  "result_type": "played",
+  "loser": "LN",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "freistil#27507"
+    },
+    {
+     "role": "JG",
+     "riot": "vasavi#shati"
+    },
+    {
+     "role": "MID",
+     "riot": "oHałçÿon#20800"
+    },
+    {
+     "role": "AD",
+     "riot": "PT Đạo Hàm Riêng#FaMI"
+    },
+    {
+     "role": "SP",
+     "riot": "need u by myside#bunzz"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "hadyu#9816"
+    },
+    {
+     "role": "JG",
+     "riot": "30FPS player#2007"
+    },
+    {
+     "role": "MID",
+     "riot": "W1ndchaser#1845"
+    },
+    {
+     "role": "AD",
+     "riot": "eD nhát gái#22402"
+    },
+    {
+     "role": "SP",
+     "riot": "Corn Cuang#ccc"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Gnar",
+    "blue_pick": "Syndra",
+    "red_ban": "Jayce",
+    "red_pick": "Fizz"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Gwen",
+    "blue_pick": "Lulu",
+    "red_ban": "Qiyana",
+    "red_pick": "Jhin"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Caitlyn",
+    "blue_pick": "Yunara",
+    "red_ban": "Viktor",
+    "red_pick": "Neeko"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Wukong",
+    "blue_pick": "Pantheon",
+    "red_ban": "Xin Zhao",
+    "red_pick": "Nocturne"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Jarvan IV",
+    "blue_pick": "Renekton",
+    "red_ban": "Aatrox",
+    "red_pick": "Ornn"
+   }
+  ]
+ },
+ {
+  "code": "LS18",
+  "round": 1,
+  "blue": "LHP",
+  "red": "YSL",
+  "scheduled": "20h00, T3, 17/11",
+  "date": "17/11/2026",
+  "bracket_raw": "0-0",
+  "duration_raw": "34:34",
+  "winner_raw": "LHP",
+  "penalties": [],
+  "pauses": [
+   [
+    "1",
+    "Vị trí TOP team YSL mất kết nối mạng.",
+    "Team tạm dừng trận đấu đợi tuyển thủ kết nối lại."
+   ]
+  ],
+  "notes": [],
+  "winner": "LHP",
+  "result_type": "played",
+  "loser": "YSL",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "nờ pờ dờ#bruh"
+    },
+    {
+     "role": "JG",
+     "riot": "허거덩#7474"
+    },
+    {
+     "role": "MID",
+     "riot": "neirt1bach7#trien"
+    },
+    {
+     "role": "AD",
+     "riot": "繁荣而睿智#thinh"
+    },
+    {
+     "role": "SP",
+     "riot": "DPE Licotyn#mmb"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "bimiuchiratnhieu#1808"
+    },
+    {
+     "role": "JG",
+     "riot": "Lopptran0605#2005"
+    },
+    {
+     "role": "MID",
+     "riot": "Qiyanah#thich"
+    },
+    {
+     "role": "AD",
+     "riot": "ZzMEOzZ#vn2"
+    },
+    {
+     "role": "SP",
+     "riot": "wzHuywz#vn2"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Ornn",
+    "blue_pick": "Nocturne",
+    "red_ban": "Yone",
+    "red_pick": "Kai’Sa"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Thresh",
+    "blue_pick": "Yunara",
+    "red_ban": "Xin Zhao",
+    "red_pick": "Ahri"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Lee Sin",
+    "blue_pick": "Lulu",
+    "red_ban": "Brand",
+    "red_pick": "Nautilus"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Dr. Mundo",
+    "blue_pick": "Akali",
+    "red_ban": "Ambessa",
+    "red_pick": "Mordekaiser"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Malphite",
+    "blue_pick": "Pantheon",
+    "red_ban": "Darius",
+    "red_pick": "Zed"
+   }
+  ]
+ },
+ {
+  "code": "LS21",
+  "round": 2,
+  "blue": "HKG",
+  "red": "KGC",
+  "scheduled": "19h00, T6, 20/11",
+  "date": "20/11/2026",
+  "bracket_raw": "1-0",
+  "duration_raw": "NULL",
+  "winner_raw": "HKG (xử thắng)",
+  "penalties": [
+   [
+    "1",
+    "KGC",
+    "",
+    "Tạm dừng kĩ thuật không hợp lệ",
+    "Cảnh cáo"
+   ],
+   [
+    "2",
+    "CBK",
+    "",
+    "Có hành vi trong trận không phù hợp (chat all)",
+    "Xử thua"
+   ]
+  ],
+  "pauses": [
+   [
+    "1",
+    "KGC có thành viên mất kết nối mạng",
+    "Tạm dừng 2 phút"
+   ],
+   [
+    "2",
+    "HKG có thành viên mất kết nối camera",
+    "Tạm dừng 3 phút"
+   ]
+  ],
+  "notes": [
+   "HKG awarded the win by ruling; record still lists a draft"
+  ],
+  "winner": "HKG",
+  "result_type": "ruling",
+  "loser": "KGC",
+  "roster": {
+   "blue": [],
+   "red": []
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Aatrox",
+    "blue_pick": "Vex",
+    "red_ban": "Poppy",
+    "red_pick": "Anivia"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Yunara",
+    "blue_pick": "Kayn",
+    "red_ban": "Lulu",
+    "red_pick": "Naafiri"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Pantheon",
+    "blue_pick": "Kog’maw",
+    "red_ban": "Fizz",
+    "red_pick": "Nautilus"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Sett",
+    "blue_pick": "Leona",
+    "red_ban": "Milio",
+    "red_pick": "Jhin"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Mordekaiser",
+    "blue_pick": "Sion",
+    "red_ban": "Alistar",
+    "red_pick": "K’Sante"
+   }
+  ]
+ },
+ {
+  "code": "LS22",
+  "round": 2,
+  "blue": "LHP",
+  "red": "TT",
+  "scheduled": "18h30, T5, 19/11",
+  "date": "19/11/2026",
+  "bracket_raw": "1-0",
+  "duration_raw": "29:56",
+  "winner_raw": "TT",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "TT",
+  "result_type": "played",
+  "loser": "LHP",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "nờ pờ dờ#bruh"
+    },
+    {
+     "role": "JG",
+     "riot": "허거덩#7474"
+    },
+    {
+     "role": "MID",
+     "riot": "neirt17#trien"
+    },
+    {
+     "role": "AD",
+     "riot": "繁荣而睿智#thinh"
+    },
+    {
+     "role": "SP",
+     "riot": "DPE Licotyn#mmb"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "Mèo bơ#meobo"
+    },
+    {
+     "role": "JG",
+     "riot": "vasavi#shati"
+    },
+    {
+     "role": "MID",
+     "riot": "oHałçÿon#20800"
+    },
+    {
+     "role": "AD",
+     "riot": "PT Đạo Hàm Riêng#FaMI"
+    },
+    {
+     "role": "SP",
+     "riot": "need u by myside#bunzz"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Qiyana",
+    "blue_pick": "Viktor",
+    "red_ban": "Lulu",
+    "red_pick": "Locke"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Cassiopeia",
+    "blue_pick": "Leona",
+    "red_ban": "Nocturne",
+    "red_pick": "Nidalee"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Kai’sa",
+    "blue_pick": "Naafiri",
+    "red_ban": "Thresh",
+    "red_pick": "Rell"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Miss Fortune",
+    "blue_pick": "Jax",
+    "red_ban": "Caitlyn",
+    "red_pick": "Ambessa"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Renekton",
+    "blue_pick": "Akali",
+    "red_ban": "Jayce",
+    "red_pick": "Tristana"
+   }
+  ]
+ },
+ {
+  "code": "LS23",
+  "round": 2,
+  "blue": "ZEN",
+  "red": "DMX",
+  "scheduled": "20h30, T5, 19/11",
+  "date": "19/11/2026",
+  "bracket_raw": "1",
+  "duration_raw": "29:46",
+  "winner_raw": "DMX",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "DMX",
+  "result_type": "played",
+  "loser": "ZEN",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "BLIND#DMH"
+    },
+    {
+     "role": "JG",
+     "riot": "TAUNT#2706"
+    },
+    {
+     "role": "MID",
+     "riot": "GeminiJune5th#Tus"
+    },
+    {
+     "role": "AD",
+     "riot": "MeiMei Cat#HUST"
+    },
+    {
+     "role": "SP",
+     "riot": "marianne#ikeri"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "Le Sante#L26"
+    },
+    {
+     "role": "JG",
+     "riot": "lil moneytft#momly"
+    },
+    {
+     "role": "MID",
+     "riot": "vegito#cuh"
+    },
+    {
+     "role": "AD",
+     "riot": "Flowern#Navi"
+    },
+    {
+     "role": "SP",
+     "riot": "mộngcầuchânv#bahoa"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Thresh",
+    "blue_pick": "Hwei",
+    "red_ban": "Gwen",
+    "red_pick": "Akshan"
+   },
+   {
+    "order": 2,
+    "blue_ban": "K’Sante",
+    "blue_pick": "Nami",
+    "red_ban": "Anivia",
+    "red_pick": "Lillia"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Nautilus",
+    "blue_pick": "Aphelios",
+    "red_ban": "Graves",
+    "red_pick": "Jhin"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Leona",
+    "blue_pick": "Ornn",
+    "red_ban": "Xin Zhao",
+    "red_pick": "Alistar"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Malphite",
+    "blue_pick": "Pantheon",
+    "red_ban": "Jarvan IV",
+    "red_pick": "Aatrox"
+   }
+  ]
+ },
+ {
+  "code": "LS24",
+  "round": 2,
+  "blue": "GLT",
+  "red": "LXM",
+  "scheduled": "19h30, T6, 20/11",
+  "date": "20/11/2026",
+  "bracket_raw": "0",
+  "duration_raw": "32:42",
+  "winner_raw": "LXM",
+  "penalties": [],
+  "pauses": [
+   [
+    "1",
+    "Thành viên bên đội LXM máy tính không có cam, điện thoại bị hết pin không quay được mặt",
+    "Mượn điện thoại thành viên trong đội quay mặt chung"
+   ]
+  ],
+  "notes": [],
+  "winner": "LXM",
+  "result_type": "played",
+  "loser": "GLT",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "LSR Nhakanasi#TLA4"
+    },
+    {
+     "role": "JG",
+     "riot": "3Who#0802"
+    },
+    {
+     "role": "MID",
+     "riot": "VAC Ryoku Haru#1603"
+    },
+    {
+     "role": "AD",
+     "riot": "Zendar#5696"
+    },
+    {
+     "role": "SP",
+     "riot": "nhquan2121#6844"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "wu ren zhi dao#2110t"
+    },
+    {
+     "role": "JG",
+     "riot": "ShihoMiyanoo#4869"
+    },
+    {
+     "role": "MID",
+     "riot": "黑天风 A Tức#2301"
+    },
+    {
+     "role": "AD",
+     "riot": "TheMaLaiHay#VNmub"
+    },
+    {
+     "role": "SP",
+     "riot": "Toithangcap1minh#1409"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Jhin",
+    "blue_pick": "Kayn",
+    "red_ban": "Kai’Sa",
+    "red_pick": "Ziggs"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Pyke",
+    "blue_pick": "Syndra",
+    "red_ban": "Xerath",
+    "red_pick": "Nautilus"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Nocturne",
+    "blue_pick": "Leona",
+    "red_ban": "Cho’Gath",
+    "red_pick": "Akshan"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Sylas",
+    "blue_pick": "Yone",
+    "red_ban": "Jax",
+    "red_pick": "Gwen"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Fiora",
+    "blue_pick": "Caitlyn",
+    "red_ban": "Jayce",
+    "red_pick": "Sejuani"
+   }
+  ]
+ },
+ {
+  "code": "LS25",
+  "round": 2,
+  "blue": "YSL",
+  "red": "MSD",
+  "scheduled": "18h30, T6, 20/11",
+  "date": "20/11/2026",
+  "bracket_raw": "0",
+  "duration_raw": "30:26",
+  "winner_raw": "YSL",
+  "penalties": [],
+  "pauses": [
+   [
+    "1",
+    "Jung team MSD mất kết nối",
+    ""
+   ]
+  ],
+  "notes": [],
+  "winner": "YSL",
+  "result_type": "played",
+  "loser": "MSD",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "bimiuchiratnhieu#1808"
+    },
+    {
+     "role": "JG",
+     "riot": "Lopptran0605#2005"
+    },
+    {
+     "role": "MID",
+     "riot": "Qiyanah#thich"
+    },
+    {
+     "role": "AD",
+     "riot": "ZzMEOzZ#vn2"
+    },
+    {
+     "role": "SP",
+     "riot": "ryuuuuuuuuuuuuu u#vnuuu"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "10 điểm 3 môn#4444"
+    },
+    {
+     "role": "JG",
+     "riot": "Astr4#17B2"
+    },
+    {
+     "role": "MID",
+     "riot": "Remember Me#8567"
+    },
+    {
+     "role": "AD",
+     "riot": "Playmaker#17th"
+    },
+    {
+     "role": "SP",
+     "riot": "DangThinh#267"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Neeko",
+    "blue_pick": "Lee Sin",
+    "red_ban": "Qiyana",
+    "red_pick": "Jarvan IV"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Caitlyn",
+    "blue_pick": "Corki",
+    "red_ban": "Volibear",
+    "red_pick": "Aphelios"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Nocturne",
+    "blue_pick": "Braum",
+    "red_ban": "Kaisa",
+    "red_pick": "Seraphine"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Zed",
+    "blue_pick": "Galio",
+    "red_ban": "Veigar",
+    "red_pick": "Ekko"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Yone",
+    "blue_pick": "Ornn",
+    "red_ban": "Garen",
+    "red_pick": "Malphite"
+   }
+  ]
+ },
+ {
+  "code": "LS26",
+  "round": 2,
+  "blue": "LN",
+  "red": "GOS",
+  "scheduled": "19h30, T6, 20/11",
+  "date": "20/11/2026",
+  "bracket_raw": "0-1",
+  "duration_raw": "32:56",
+  "winner_raw": "GOS",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "GOS",
+  "result_type": "played",
+  "loser": "LN",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "hadyu#9816"
+    },
+    {
+     "role": "JG",
+     "riot": "30FPS player#2007"
+    },
+    {
+     "role": "MID",
+     "riot": "W1ndchaser#1845"
+    },
+    {
+     "role": "AD",
+     "riot": "eD nhát gái#22402"
+    },
+    {
+     "role": "SP",
+     "riot": "Corn Cuang#ccc"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "15gg1#15gg1"
+    },
+    {
+     "role": "JG",
+     "riot": "taoapdaotuyetdoi#3643"
+    },
+    {
+     "role": "MID",
+     "riot": "Lê Văn Vở#1105"
+    },
+    {
+     "role": "AD",
+     "riot": "MTHUUS#2608"
+    },
+    {
+     "role": "SP",
+     "riot": "JappleG#66666"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Aurelion Sol",
+    "blue_pick": "Viktor",
+    "red_ban": "Nortune",
+    "red_pick": "Jarvan IV"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Taliyah",
+    "blue_pick": "Poppy",
+    "red_ban": "Neko",
+    "red_pick": "Alistar"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Lulu",
+    "blue_pick": "Xin zhao",
+    "red_ban": "Sylas",
+    "red_pick": "Syndra"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Kaisa",
+    "blue_pick": "Ezreal",
+    "red_ban": "Jihn",
+    "red_pick": "Varus"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Gwen",
+    "blue_pick": "Gnar",
+    "red_ban": "Ornn",
+    "red_pick": "renekton"
+   }
+  ]
+ },
+ {
+  "code": "LS27",
+  "round": 2,
+  "blue": "LK",
+  "red": "VNT",
+  "scheduled": "21h00, T6, 20/11",
+  "date": "…………20/11/2026……………",
+  "bracket_raw": "0-1",
+  "duration_raw": "27:01",
+  "winner_raw": "…………VNT…………",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "VNT",
+  "result_type": "played",
+  "loser": "LK",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "ĐàoHải tuổi 18#1312"
+    },
+    {
+     "role": "JG",
+     "riot": "Trung Tâm Toxic#0411"
+    },
+    {
+     "role": "MID",
+     "riot": "SSA Reaper#2907"
+    },
+    {
+     "role": "AD",
+     "riot": "clayern#HUST"
+    },
+    {
+     "role": "SP",
+     "riot": "kenzo2s#vn2"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "mỗi năm một già#bLa"
+    },
+    {
+     "role": "JG",
+     "riot": "2I am Hải#vn2"
+    },
+    {
+     "role": "MID",
+     "riot": "Dưa#LOL"
+    },
+    {
+     "role": "AD",
+     "riot": "bittersweet#prev"
+    },
+    {
+     "role": "SP",
+     "riot": "KAugustzzz8#AUG"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Caitlyn",
+    "blue_pick": "Jarvan IV",
+    "red_ban": "Yasuo",
+    "red_pick": "Galio"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Kai’sa",
+    "blue_pick": "Corki",
+    "red_ban": "Mordekaiser",
+    "red_pick": "Jayce"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Tahm Kench",
+    "blue_pick": "Maokai",
+    "red_ban": "Pyke",
+    "red_pick": "Malphite"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Seraphine",
+    "blue_pick": "Sylas",
+    "red_ban": "Darius",
+    "red_pick": "Taric"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Leona",
+    "blue_pick": "Olaf",
+    "red_ban": "Yone",
+    "red_pick": "Kalista"
+   }
+  ]
+ },
+ {
+  "code": "LS28",
+  "round": 2,
+  "blue": "CBK",
+  "red": "FTL",
+  "scheduled": "20h00, T6, 20/11",
+  "date": "20/11/2026",
+  "bracket_raw": "0-1",
+  "duration_raw": "32:16",
+  "winner_raw": "CBK",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "CBK",
+  "result_type": "played",
+  "loser": "FTL",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "messihamburger#1610"
+    },
+    {
+     "role": "JG",
+     "riot": "marisaaa#2901"
+    },
+    {
+     "role": "MID",
+     "riot": "Ezz#31108"
+    },
+    {
+     "role": "AD",
+     "riot": "anhbinhthulong#vn2"
+    },
+    {
+     "role": "SP",
+     "riot": "Choccbel Nhocoay#vn3"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "mmmmmmmm1#mmm"
+    },
+    {
+     "role": "JG",
+     "riot": "hugshe#3904"
+    },
+    {
+     "role": "MID",
+     "riot": "dang khoa#1701"
+    },
+    {
+     "role": "AD",
+     "riot": "Tbbbbb#09876"
+    },
+    {
+     "role": "SP",
+     "riot": "Postpone Atone#kdaat"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Kassadin",
+    "blue_pick": "Kayn",
+    "red_ban": "Twisted Fate",
+    "red_pick": "Jarvan IV"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Sett",
+    "blue_pick": "Ezreal",
+    "red_ban": "Nocturne",
+    "red_pick": "Ziggs"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Viego",
+    "blue_pick": "Thresh",
+    "red_ban": "Aatrox",
+    "red_pick": "Camille"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Kaisa",
+    "blue_pick": "Gwen",
+    "red_ban": "Pantheon",
+    "red_pick": "Sion"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Xerath",
+    "blue_pick": "Lissandra",
+    "red_ban": "Shen",
+    "red_pick": "Oriana"
+   }
+  ]
+ },
+ {
+  "code": "LS31",
+  "round": 3,
+  "blue": "LXM",
+  "red": "HKG",
+  "scheduled": "18h30, T7, 21/11",
+  "date": "21/11/2026",
+  "bracket_raw": "2-0",
+  "duration_raw": "28:48",
+  "winner_raw": "LXM",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "LXM",
+  "result_type": "played",
+  "loser": "HKG",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "Toithangcap1minh#1409"
+    },
+    {
+     "role": "JG",
+     "riot": "黑天风 A Tức#2301"
+    },
+    {
+     "role": "MID",
+     "riot": "wu ren zhi dao#2110t"
+    },
+    {
+     "role": "AD",
+     "riot": "TheMaLaiHay#VNmub"
+    },
+    {
+     "role": "SP",
+     "riot": "Chocopyke#Rùa"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "HK2 LSiong#2207"
+    },
+    {
+     "role": "JG",
+     "riot": "HK3 XII#1268"
+    },
+    {
+     "role": "MID",
+     "riot": "Kataddict#28708"
+    },
+    {
+     "role": "AD",
+     "riot": "Fizz Ziczac#vn2"
+    },
+    {
+     "role": "SP",
+     "riot": "HK4 Cragon#0608"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Katarina",
+    "blue_pick": "Pyke",
+    "red_ban": "Gwen",
+    "red_pick": "Fizz"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Kayn",
+    "blue_pick": "Jhin",
+    "red_ban": "Qiyana",
+    "red_pick": "Nautilus"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Garen",
+    "blue_pick": "Tristana",
+    "red_ban": "Lee Sin",
+    "red_pick": "Xerath"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Tahm Kench",
+    "blue_pick": "Hecarim",
+    "red_ban": "Jarvan IV",
+    "red_pick": "Viego"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Sion",
+    "blue_pick": "Sylas",
+    "red_ban": "Mordekaiser",
+    "red_pick": "K’Sante"
+   }
+  ]
+ },
+ {
+  "code": "LS32",
+  "round": 3,
+  "blue": "DMX",
+  "red": "TT",
+  "scheduled": "18h30, T7, 21/11",
+  "date": "21/11/2026",
+  "bracket_raw": "2-0",
+  "duration_raw": "33:05",
+  "winner_raw": "TT",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "TT",
+  "result_type": "played",
+  "loser": "DMX",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "Le Sante#L26"
+    },
+    {
+     "role": "JG",
+     "riot": "lil moneytft#momly"
+    },
+    {
+     "role": "MID",
+     "riot": "vegito#cuh"
+    },
+    {
+     "role": "AD",
+     "riot": "Flowern#Navi"
+    },
+    {
+     "role": "SP",
+     "riot": "mộngcầuchânv#bahoa"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "freistil#27507"
+    },
+    {
+     "role": "JG",
+     "riot": "vasavi#shati"
+    },
+    {
+     "role": "MID",
+     "riot": "oHałçÿon#20800"
+    },
+    {
+     "role": "AD",
+     "riot": "PT Đạo Hàm Riêng#FaMI"
+    },
+    {
+     "role": "SP",
+     "riot": "need u by myside#bunzz"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "lulu",
+    "blue_pick": "kaisa",
+    "red_ban": "locke",
+    "red_pick": "lee sin"
+   },
+   {
+    "order": 2,
+    "blue_ban": "quiyana",
+    "blue_pick": "jarvan",
+    "red_ban": "jayce",
+    "red_pick": "annie"
+   },
+   {
+    "order": 3,
+    "blue_ban": "camile",
+    "blue_pick": "anivia",
+    "red_ban": "kalista",
+    "red_pick": "yunara"
+   },
+   {
+    "order": 4,
+    "blue_ban": "braum",
+    "blue_pick": "nasus",
+    "red_ban": "nautilus",
+    "red_pick": "rakkan"
+   },
+   {
+    "order": 5,
+    "blue_ban": "",
+    "blue_pick": "rell",
+    "red_ban": "alista",
+    "red_pick": "gnar"
+   }
+  ]
+ },
+ {
+  "code": "LS33",
+  "round": 3,
+  "blue": "GOS",
+  "red": "ZEN",
+  "scheduled": "20h00, T7, 21/11",
+  "date": "21/11/2026",
+  "bracket_raw": "1-1",
+  "duration_raw": "40:44",
+  "winner_raw": "GOS",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "GOS",
+  "result_type": "played",
+  "loser": "ZEN",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "15gg1#15gg1"
+    },
+    {
+     "role": "JG",
+     "riot": "taoapdaotuyetdoi#3643"
+    },
+    {
+     "role": "MID",
+     "riot": "Lê Văn Vở#1105"
+    },
+    {
+     "role": "AD",
+     "riot": "MTHUUS#2608"
+    },
+    {
+     "role": "SP",
+     "riot": "Đạt Đạt Đạt#vn2"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "MeiMei Cat#HUST"
+    },
+    {
+     "role": "JG",
+     "riot": "BLIND#DMH"
+    },
+    {
+     "role": "MID",
+     "riot": "GeminiJune5th#Tus"
+    },
+    {
+     "role": "AD",
+     "riot": "TAUNT#2706"
+    },
+    {
+     "role": "SP",
+     "riot": "marianne#ikeri"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "",
+    "blue_pick": "",
+    "red_ban": "",
+    "red_pick": ""
+   },
+   {
+    "order": 2,
+    "blue_ban": "",
+    "blue_pick": "",
+    "red_ban": "",
+    "red_pick": ""
+   },
+   {
+    "order": 3,
+    "blue_ban": "",
+    "blue_pick": "",
+    "red_ban": "",
+    "red_pick": ""
+   },
+   {
+    "order": 4,
+    "blue_ban": "",
+    "blue_pick": "",
+    "red_ban": "",
+    "red_pick": ""
+   },
+   {
+    "order": 5,
+    "blue_ban": "",
+    "blue_pick": "",
+    "red_ban": "",
+    "red_pick": ""
+   }
+  ]
+ },
+ {
+  "code": "LS34",
+  "round": 3,
+  "blue": "VNT",
+  "red": "GLT",
+  "scheduled": "21h00, T7, 21/11",
+  "date": "21/11/2026",
+  "bracket_raw": "Nhánh",
+  "duration_raw": "28:24",
+  "winner_raw": "GLT",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "GLT",
+  "result_type": "played",
+  "loser": "VNT",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "mỗi năm một già#bLa"
+    },
+    {
+     "role": "JG",
+     "riot": "2I am Hải#vn2"
+    },
+    {
+     "role": "MID",
+     "riot": "Dưa#LOL"
+    },
+    {
+     "role": "AD",
+     "riot": "bittersweet#prev"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "LSR Nhakanasi#TLA4"
+    },
+    {
+     "role": "JG",
+     "riot": "3Who#0802"
+    },
+    {
+     "role": "MID",
+     "riot": "VAC Ryoku Haru#1603"
+    },
+    {
+     "role": "AD",
+     "riot": "Zendar#5696"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Aatrox",
+    "blue_pick": "Malphite",
+    "red_ban": "Caitlyn",
+    "red_pick": "Pyke"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Yone",
+    "blue_pick": "Poppy",
+    "red_ban": "Kalista",
+    "red_pick": "Kai’sa"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Kayn",
+    "blue_pick": "Viego",
+    "red_ban": "Nocturne",
+    "red_pick": "Cho’Gath"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Syndra",
+    "blue_pick": "Sylas",
+    "red_ban": "Galio",
+    "red_pick": "Gangplank"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Malzahar",
+    "blue_pick": "Jinx",
+    "red_ban": "Ashe",
+    "red_pick": "Yasuo"
+   }
+  ]
+ },
+ {
+  "code": "LS35",
+  "round": 3,
+  "blue": "LHP",
+  "red": "KGC",
+  "scheduled": "18h30, T7, 21/11",
+  "date": "21/11/2026",
+  "bracket_raw": "1-1",
+  "duration_raw": "22m39s",
+  "winner_raw": "KGC",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "KGC",
+  "result_type": "played",
+  "loser": "LHP",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "nờ pờ dờ#bruh"
+    },
+    {
+     "role": "JG",
+     "riot": "허거덩#7474"
+    },
+    {
+     "role": "MID",
+     "riot": "neirt17#trien"
+    },
+    {
+     "role": "AD",
+     "riot": "繁荣而睿智#thinh"
+    },
+    {
+     "role": "SP",
+     "riot": "DPE Licotyn#mmb"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "Chickie#goat"
+    },
+    {
+     "role": "JG",
+     "riot": "Thịt dê cơm cháy#035"
+    },
+    {
+     "role": "MID",
+     "riot": "alle#imo"
+    },
+    {
+     "role": "AD",
+     "riot": "Sứ Giả Người Tày#5964"
+    },
+    {
+     "role": "SP",
+     "riot": "MID Đại Cồ Việt#MLEM"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Jarvan IV",
+    "blue_pick": "Naafiri",
+    "red_ban": "Poppy",
+    "red_pick": "Diana"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Jhin",
+    "blue_pick": "Kai’Sa",
+    "red_ban": "Nasus",
+    "red_pick": "Ornn"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Renekton",
+    "blue_pick": "Nautilus",
+    "red_ban": "Lulu",
+    "red_pick": "Yunara"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Anivia",
+    "blue_pick": "Ambessa",
+    "red_ban": "Syndra",
+    "red_pick": "Braum"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Taliyah",
+    "blue_pick": "Akali",
+    "red_ban": "Sylas",
+    "red_pick": "Yasuo"
+   }
+  ]
+ },
+ {
+  "code": "LS36",
+  "round": 3,
+  "blue": "YSL",
+  "red": "CBK",
+  "scheduled": "18h30, T7, 21/11",
+  "date": "21/11/2026",
+  "bracket_raw": "1-1",
+  "duration_raw": "30:17",
+  "winner_raw": "YSL",
+  "penalties": [
+   [
+    "1",
+    "YSL",
+    "",
+    "Tạm dừng kỹ thuật không hợp lệ",
+    "Cảnh cáo"
+   ]
+  ],
+  "pauses": [],
+  "notes": [],
+  "winner": "YSL",
+  "result_type": "played",
+  "loser": "CBK",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "bimiuchiratnhieu#1808"
+    },
+    {
+     "role": "JG",
+     "riot": "Lopptran0605#2005"
+    },
+    {
+     "role": "MID",
+     "riot": "Qiyanah#thich"
+    },
+    {
+     "role": "AD",
+     "riot": "ZzMEOzZ#vn2"
+    },
+    {
+     "role": "SP",
+     "riot": "Plutonium#KrPu"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "messihamburger#1610"
+    },
+    {
+     "role": "JG",
+     "riot": "marisaaa#2901"
+    },
+    {
+     "role": "MID",
+     "riot": "Ezz#31108"
+    },
+    {
+     "role": "AD",
+     "riot": "anhbinhthulong#vn2"
+    },
+    {
+     "role": "SP",
+     "riot": "Choccbel Nhocoay#vn3"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Gwen",
+    "blue_pick": "Ornn",
+    "red_ban": "Volibear",
+    "red_pick": "Fiora"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Ezreal",
+    "blue_pick": "Vex",
+    "red_ban": "Leesin",
+    "red_pick": "Kayn"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Lissandra",
+    "blue_pick": "Nautilus",
+    "red_ban": "Qiana",
+    "red_pick": "Taric"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Sylas",
+    "blue_pick": "Tristana",
+    "red_ban": "Javan IV",
+    "red_pick": "Jhin"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Kaisa",
+    "blue_pick": "ramus",
+    "red_ban": "Pantheon",
+    "red_pick": "anivia"
+   }
+  ]
+ },
+ {
+  "code": "LS37",
+  "round": 3,
+  "blue": "LK",
+  "red": "MSD",
+  "scheduled": "22h00, T7, 21/11",
+  "date": "21/11/2026",
+  "bracket_raw": "0-2",
+  "duration_raw": "……………………",
+  "winner_raw": "MSD ( Xử thắng)",
+  "penalties": [
+   [
+    "1",
+    "LK",
+    "",
+    "KHÔNG THAM GIA THI ĐẤU THEO LỊCH",
+    "XỬ THUA"
+   ]
+  ],
+  "pauses": [],
+  "notes": [
+   "LK did not show up"
+  ],
+  "winner": "MSD",
+  "result_type": "forfeit",
+  "loser": "LK",
+  "roster": {
+   "blue": [],
+   "red": []
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": ""
+   },
+   {
+    "order": 2,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": ""
+   },
+   {
+    "order": 3,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": ""
+   },
+   {
+    "order": 4,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": ""
+   },
+   {
+    "order": 5,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": ""
+   }
+  ]
+ },
+ {
+  "code": "LS38",
+  "round": 3,
+  "blue": "FTL",
+  "red": "LN",
+  "scheduled": "20h00, T7, 21/11",
+  "date": "21/11/2026",
+  "bracket_raw": "0-2",
+  "duration_raw": "……………………",
+  "winner_raw": "LN (Xử thắng)",
+  "penalties": [
+   [
+    "1",
+    "FTL",
+    "",
+    "Không tham gia thi đấu theo lịch",
+    "Xử thua"
+   ]
+  ],
+  "pauses": [],
+  "notes": [
+   "FTL did not show up"
+  ],
+  "winner": "LN",
+  "result_type": "forfeit",
+  "loser": "FTL",
+  "roster": {
+   "blue": [],
+   "red": []
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": "NULL"
+   },
+   {
+    "order": 2,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": "NULL"
+   },
+   {
+    "order": 3,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": "NULL"
+   },
+   {
+    "order": 4,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": "NULL"
+   },
+   {
+    "order": 5,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": "NULL"
+   }
+  ]
+ },
+ {
+  "code": "LS41",
+  "round": 4,
+  "blue": "DMX",
+  "red": "GOS",
+  "scheduled": "08h00, CN, 22/11",
+  "date": "22/11/2026",
+  "bracket_raw": "2-1",
+  "duration_raw": "29:33",
+  "winner_raw": "……DMX…………",
+  "penalties": [],
+  "pauses": [],
+  "notes": [
+   "time missing in record; taken from screenshot"
+  ],
+  "winner": "DMX",
+  "result_type": "played",
+  "loser": "GOS",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "Le Sante#L26"
+    },
+    {
+     "role": "JG",
+     "riot": "lil moneytft#momly"
+    },
+    {
+     "role": "MID",
+     "riot": "vegito#cuh"
+    },
+    {
+     "role": "AD",
+     "riot": "Flowern#Navi"
+    },
+    {
+     "role": "SP",
+     "riot": "mộngcầuchânv#bahoa"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "15gg1#15gg1"
+    },
+    {
+     "role": "JG",
+     "riot": "taoapdaotuyetdoi#3643"
+    },
+    {
+     "role": "MID",
+     "riot": "Lê Văn Vở#1105"
+    },
+    {
+     "role": "AD",
+     "riot": "MTHUUS#2608"
+    },
+    {
+     "role": "SP",
+     "riot": "Đạt Đạt Đạt#vn2"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Aurelion Sol",
+    "blue_pick": "Locke",
+    "red_ban": "Rell",
+    "red_pick": "Viktor"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Varus",
+    "blue_pick": "Qiyana",
+    "red_ban": "Cho’Gath",
+    "red_pick": "Jarvan IV"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Renekton",
+    "blue_pick": "Aatrox",
+    "red_ban": "Kai’Sa",
+    "red_pick": "Yone"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Caitlyn",
+    "blue_pick": "Corki",
+    "red_ban": "Kalista",
+    "red_pick": "Ziggs"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Thresh",
+    "blue_pick": "Alistar",
+    "red_ban": "Seraphine",
+    "red_pick": "Nautilus"
+   }
+  ]
+ },
+ {
+  "code": "LS42",
+  "round": 4,
+  "blue": "HKG",
+  "red": "GLT",
+  "scheduled": "08h30, CN, 22/11",
+  "date": "22/11/2026",
+  "bracket_raw": "…………………….",
+  "duration_raw": "26:59",
+  "winner_raw": "GLT",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "GLT",
+  "result_type": "played",
+  "loser": "HKG",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "HK4 Cragon#0608"
+    },
+    {
+     "role": "JG",
+     "riot": "HK2 LSiong#2207"
+    },
+    {
+     "role": "MID",
+     "riot": "Kataddict#28708"
+    },
+    {
+     "role": "AD",
+     "riot": "HK3 XII#1268"
+    },
+    {
+     "role": "SP",
+     "riot": "Fizz Ziczac#vn2"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "LSR Nhakanasi"
+    },
+    {
+     "role": "JG",
+     "riot": "3Who"
+    },
+    {
+     "role": "MID",
+     "riot": "VAC Ryoku Haru"
+    },
+    {
+     "role": "AD",
+     "riot": "Zendar"
+    },
+    {
+     "role": "SP",
+     "riot": "nhquan2121"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Aatrox",
+    "blue_pick": "Kayn",
+    "red_ban": "Fizz",
+    "red_pick": "Kai’sa"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Jayce",
+    "blue_pick": "Xerath",
+    "red_ban": "Viego",
+    "red_pick": "Nautilus"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Cho’gath",
+    "blue_pick": "Qiyana",
+    "red_ban": "Katarina",
+    "red_pick": "Zed"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Nasus",
+    "blue_pick": "Garen",
+    "red_ban": "Neeko",
+    "red_pick": "Ambessa"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Yone",
+    "blue_pick": "Alistar",
+    "red_ban": "Mundo",
+    "red_pick": "Amumu"
+   }
+  ]
+ },
+ {
+  "code": "LS43",
+  "round": 4,
+  "blue": "YSL",
+  "red": "KGC",
+  "scheduled": "09h30, CN, 22/11",
+  "date": "22/11/2026",
+  "bracket_raw": "2-1",
+  "duration_raw": "22:17",
+  "winner_raw": "KGC",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "KGC",
+  "result_type": "played",
+  "loser": "YSL",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "bimiuchiratnhieu#1808"
+    },
+    {
+     "role": "JG",
+     "riot": "Lopptran0605#2005"
+    },
+    {
+     "role": "MID",
+     "riot": "Qiyanah#thich"
+    },
+    {
+     "role": "AD",
+     "riot": "ZzMEOzZ#vn2"
+    },
+    {
+     "role": "SP",
+     "riot": "ryuuuuuuuuuuuuu u#vnuuu"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "Deus ex machina#2202"
+    },
+    {
+     "role": "JG",
+     "riot": "Thịt dê cơm cháy#035"
+    },
+    {
+     "role": "MID",
+     "riot": "alle#imo"
+    },
+    {
+     "role": "AD",
+     "riot": "Chickie#goat"
+    },
+    {
+     "role": "SP",
+     "riot": "Coolnopro#vn2"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Aatrox",
+    "blue_pick": "Ornn",
+    "red_ban": "Poppy",
+    "red_pick": "K’Sante"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Naafiri",
+    "blue_pick": "Braum",
+    "red_ban": "Lulu",
+    "red_pick": "Pantheon"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Leblanc",
+    "blue_pick": "Galio",
+    "red_ban": "Qiyana",
+    "red_pick": "Zeri"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Jarvan IV",
+    "blue_pick": "Tristana",
+    "red_ban": "Nocturne",
+    "red_pick": "Nautilus"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Yone",
+    "blue_pick": "Rammus",
+    "red_ban": "Kai’Sa",
+    "red_pick": "Taliyah"
+   }
+  ]
+ },
+ {
+  "code": "LS44",
+  "round": 4,
+  "blue": "CBK",
+  "red": "LHP",
+  "scheduled": "10h00, CN, 22/11",
+  "date": "22/11/2026",
+  "bracket_raw": "1-2",
+  "duration_raw": "00:00 đội CBK không có mặt",
+  "winner_raw": "LHP",
+  "penalties": [
+   [
+    "1",
+    "CBK",
+    "",
+    "Không tham gia thi đấu",
+    "Xử thua"
+   ]
+  ],
+  "pauses": [],
+  "notes": [
+   "CBK did not show up (record lists LHP roster on both sides)"
+  ],
+  "winner": "LHP",
+  "result_type": "forfeit",
+  "loser": "CBK",
+  "roster": {
+   "blue": [],
+   "red": []
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "",
+    "blue_pick": "",
+    "red_ban": "",
+    "red_pick": ""
+   },
+   {
+    "order": 2,
+    "blue_ban": "",
+    "blue_pick": "",
+    "red_ban": "",
+    "red_pick": ""
+   },
+   {
+    "order": 3,
+    "blue_ban": "",
+    "blue_pick": "",
+    "red_ban": "",
+    "red_pick": ""
+   },
+   {
+    "order": 4,
+    "blue_ban": "",
+    "blue_pick": "",
+    "red_ban": "",
+    "red_pick": ""
+   },
+   {
+    "order": 5,
+    "blue_ban": "",
+    "blue_pick": "",
+    "red_ban": "",
+    "red_pick": ""
+   }
+  ]
+ },
+ {
+  "code": "LS45",
+  "round": 4,
+  "blue": "LN",
+  "red": "MSD",
+  "scheduled": "10h00, CN, 22/11",
+  "date": "22/11/2026",
+  "bracket_raw": "1-2",
+  "duration_raw": "29:08",
+  "winner_raw": "…………………………",
+  "penalties": [],
+  "pauses": [
+   [
+    "1",
+    "Vấn đề sức khỏe đột xuất",
+    "Tạm dừng 5 phút"
+   ]
+  ],
+  "notes": [
+   "winner and time missing in record; taken from screenshot"
+  ],
+  "winner": "LN",
+  "result_type": "played",
+  "loser": "MSD",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "hadyu#9816"
+    },
+    {
+     "role": "JG",
+     "riot": "30FPS player#2007"
+    },
+    {
+     "role": "MID",
+     "riot": "W1ndchaser#1845"
+    },
+    {
+     "role": "AD",
+     "riot": "eD nhát gái#22402"
+    },
+    {
+     "role": "SP",
+     "riot": "Corn Cuang#ccc"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "10 điểm 3 môn#4444"
+    },
+    {
+     "role": "JG",
+     "riot": "Remember Me#8567"
+    },
+    {
+     "role": "MID",
+     "riot": "Astr4#17B2"
+    },
+    {
+     "role": "AD",
+     "riot": "Playmaker#17th"
+    },
+    {
+     "role": "SP",
+     "riot": "DangThinh#267"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Gwen",
+    "blue_pick": "Cassiopeia",
+    "red_ban": "Jax",
+    "red_pick": "Neeko"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Syndra",
+    "blue_pick": "Wukong",
+    "red_ban": "Ziggs",
+    "red_pick": "Malzahar"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Lulu",
+    "blue_pick": "Ezreal",
+    "red_ban": "Twisted Fate",
+    "red_pick": "Viego"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Jhin",
+    "blue_pick": "Karma",
+    "red_ban": "Gnar",
+    "red_pick": "Kai’sa"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Miss Fortune",
+    "blue_pick": "Ornn",
+    "red_ban": "Braum",
+    "red_pick": "Sion"
+   }
+  ]
+ },
+ {
+  "code": "LS46",
+  "round": 4,
+  "blue": "VNT",
+  "red": "ZEN",
+  "scheduled": "10h00, CN, 22/11",
+  "date": "22/11",
+  "bracket_raw": "1-2",
+  "duration_raw": "NULL",
+  "winner_raw": "ZEN (Xử thắng)",
+  "penalties": [
+   [
+    "1",
+    "VNT",
+    "",
+    "Không tham gia thi đấu",
+    "Xử thua"
+   ]
+  ],
+  "pauses": [],
+  "notes": [
+   "VNT did not show up"
+  ],
+  "winner": "ZEN",
+  "result_type": "forfeit",
+  "loser": "VNT",
+  "roster": {
+   "blue": [],
+   "red": []
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": "NULL"
+   },
+   {
+    "order": 2,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": "NULL"
+   },
+   {
+    "order": 3,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": "NULL"
+   },
+   {
+    "order": 4,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": "NULL"
+   },
+   {
+    "order": 5,
+    "blue_ban": "NULL",
+    "blue_pick": "NULL",
+    "red_ban": "NULL",
+    "red_pick": "NULL"
+   }
+  ]
+ },
+ {
+  "code": "LS51",
+  "round": 5,
+  "blue": "HKG",
+  "red": "LN",
+  "scheduled": "14h30, CN, 22/11",
+  "date": "22/11/2026",
+  "bracket_raw": "2-2",
+  "duration_raw": "29:48",
+  "winner_raw": "LN",
+  "penalties": [],
+  "pauses": [],
+  "notes": [],
+  "winner": "LN",
+  "result_type": "played",
+  "loser": "HKG",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "HK2 LSiong#2207"
+    },
+    {
+     "role": "JG",
+     "riot": "HK3 XII#1268"
+    },
+    {
+     "role": "MID",
+     "riot": "Kataddict#28708"
+    },
+    {
+     "role": "AD",
+     "riot": "Fizz Ziczac#vn2"
+    },
+    {
+     "role": "SP",
+     "riot": "HK4 Cragon#0608"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "hadyu#9816"
+    },
+    {
+     "role": "JG",
+     "riot": "30FPS player#2007"
+    },
+    {
+     "role": "MID",
+     "riot": "W1ndchaser#1845"
+    },
+    {
+     "role": "AD",
+     "riot": "eD nhát gái#22402"
+    },
+    {
+     "role": "SP",
+     "riot": "Corn Cuang#ccc"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Rumble",
+    "blue_pick": "Katarina",
+    "red_ban": "Fizz",
+    "red_pick": "Cassiopeia"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Akali",
+    "blue_pick": "Cho’gath",
+    "red_ban": "Xerath",
+    "red_pick": "Ngộ Không"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Gnar",
+    "blue_pick": "Garen",
+    "red_ban": "Lulu",
+    "red_pick": "Ornn"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Ezreal",
+    "blue_pick": "Kog’Maw",
+    "red_ban": "Neeko",
+    "red_pick": "Ziggs"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Kai’Sa",
+    "blue_pick": "Pyke",
+    "red_ban": "Naultilus",
+    "red_pick": "Leona"
+   }
+  ]
+ },
+ {
+  "code": "LS52",
+  "round": 5,
+  "blue": "YSL",
+  "red": "GOS",
+  "scheduled": "14h30, CN, 22/11",
+  "date": "22/11/2026",
+  "bracket_raw": "2-2",
+  "duration_raw": "22:39",
+  "winner_raw": "GOS",
+  "penalties": [],
+  "pauses": [
+   [
+    "1",
+    "Thành viên JG của GOS lỗi màn hình trận đấu",
+    "Tạm dừng trận đấu"
+   ]
+  ],
+  "notes": [],
+  "winner": "GOS",
+  "result_type": "played",
+  "loser": "YSL",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "bimiuchiratnhieu#1808"
+    },
+    {
+     "role": "JG",
+     "riot": "Lopptran0605#2005"
+    },
+    {
+     "role": "MID",
+     "riot": "Qiyanah#thich"
+    },
+    {
+     "role": "AD",
+     "riot": "ZzMEOzZ#vn2"
+    },
+    {
+     "role": "SP",
+     "riot": "Plutonium#KrPu"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "15gg1#15gg1"
+    },
+    {
+     "role": "JG",
+     "riot": "taoapdaotuyetdoi#3643"
+    },
+    {
+     "role": "MID",
+     "riot": "Lê Văn Vở#1105"
+    },
+    {
+     "role": "AD",
+     "riot": "MTHUUS#2608"
+    },
+    {
+     "role": "SP",
+     "riot": "JappleG#66666"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Alistar",
+    "blue_pick": "Nautilus",
+    "red_ban": "Ornn",
+    "red_pick": "Braum"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Jarvan IV",
+    "blue_pick": "Corki",
+    "red_ban": "Qiyana",
+    "red_pick": "Nocturne"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Syndra",
+    "blue_pick": "Katarina",
+    "red_ban": "Lee Sin",
+    "red_pick": "Aurelion Sol"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Aatrox",
+    "blue_pick": "Kayn",
+    "red_ban": "Rammus",
+    "red_pick": "Ziggs"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Renekton",
+    "blue_pick": "Garen",
+    "red_ban": "Xin Zhao",
+    "red_pick": "Darius"
+   }
+  ]
+ },
+ {
+  "code": "LS53",
+  "round": 5,
+  "blue": "LHP",
+  "red": "ZEN",
+  "scheduled": "14h30, CN, 22/11",
+  "date": "22/11/2026",
+  "bracket_raw": "2-2",
+  "duration_raw": "37:42",
+  "winner_raw": "LHP",
+  "penalties": [],
+  "pauses": [
+   [
+    "1",
+    "Thành viên team LHP disconnect",
+    "Tiếp tục đánh sau khi khắc phục"
+   ]
+  ],
+  "notes": [],
+  "winner": "LHP",
+  "result_type": "played",
+  "loser": "ZEN",
+  "roster": {
+   "blue": [
+    {
+     "role": "TOP",
+     "riot": "nờ pờ dờ#bruh"
+    },
+    {
+     "role": "JG",
+     "riot": "허거덩#7474"
+    },
+    {
+     "role": "MID",
+     "riot": "neirt17#trien"
+    },
+    {
+     "role": "AD",
+     "riot": "繁荣而睿智#thinh"
+    },
+    {
+     "role": "SP",
+     "riot": "DPE Licotyn#mmb"
+    }
+   ],
+   "red": [
+    {
+     "role": "TOP",
+     "riot": "MeiMei Cat#HUST"
+    },
+    {
+     "role": "JG",
+     "riot": "BLIND#DMH"
+    },
+    {
+     "role": "MID",
+     "riot": "GeminiJune5th#Tus"
+    },
+    {
+     "role": "AD",
+     "riot": "TAUNT#2706"
+    },
+    {
+     "role": "SP",
+     "riot": "marianne#ikeri"
+    }
+   ]
+  },
+  "draft": [
+   {
+    "order": 1,
+    "blue_ban": "Hwei",
+    "blue_pick": "Aatrox",
+    "red_ban": "Akali",
+    "red_pick": "Lux"
+   },
+   {
+    "order": 2,
+    "blue_ban": "Soraka",
+    "blue_pick": "Tristana",
+    "red_ban": "Jarvan IV",
+    "red_pick": "Caitlyn"
+   },
+   {
+    "order": 3,
+    "blue_ban": "Aphelios",
+    "blue_pick": "Nautilus",
+    "red_ban": "Naafiri",
+    "red_pick": "Ornn"
+   },
+   {
+    "order": 4,
+    "blue_ban": "Nocturne",
+    "blue_pick": "Gwen",
+    "red_ban": "Vi",
+    "red_pick": "Kayn"
+   },
+   {
+    "order": 5,
+    "blue_ban": "Anivia",
+    "blue_pick": "Yone",
+    "red_ban": "Ahri",
+    "red_pick": "Aurelion Sol"
+   }
+  ]
+ }
+]

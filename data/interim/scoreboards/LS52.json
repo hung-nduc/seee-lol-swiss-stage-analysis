@@ -1,0 +1,149 @@
+{
+ "code": "LS52",
+ "layout": "standard",
+ "game_time": "22:39",
+ "teams": [
+  {
+   "team": "YSL",
+   "won": false,
+   "kills": 7,
+   "deaths": 34,
+   "assists": 6,
+   "gold": 36800,
+   "players": [
+    {
+     "riot": "bimiuchiratnhieu#1808",
+     "name_on_screen": "bimiuchiratnhieu",
+     "role": "TOP",
+     "champion": "Garen",
+     "level": 13,
+     "k": 0,
+     "d": 8,
+     "a": 0,
+     "damage": 4315,
+     "gold": 6050
+    },
+    {
+     "riot": "Lopptran0605#2005",
+     "name_on_screen": "Lopptran0605",
+     "role": "JG",
+     "champion": "Kayn",
+     "level": 13,
+     "k": 3,
+     "d": 5,
+     "a": 1,
+     "damage": 11460,
+     "gold": 9722
+    },
+    {
+     "riot": "Qiyanah#thich",
+     "name_on_screen": "Qiyanah",
+     "role": "MID",
+     "champion": "Katarina",
+     "level": 12,
+     "k": 2,
+     "d": 6,
+     "a": 2,
+     "damage": 11793,
+     "gold": 7205
+    },
+    {
+     "riot": "ZzMEOzZ#vn2",
+     "name_on_screen": "ZzMEOzZ",
+     "role": "AD",
+     "champion": "Corki",
+     "level": 11,
+     "k": 1,
+     "d": 7,
+     "a": 2,
+     "damage": 8948,
+     "gold": 7989
+    },
+    {
+     "riot": "Plutonium#KrPu",
+     "name_on_screen": "Plutonium",
+     "role": "SP",
+     "champion": "Nautilus",
+     "level": 11,
+     "k": 1,
+     "d": 8,
+     "a": 1,
+     "damage": 2233,
+     "gold": 5834
+    }
+   ]
+  },
+  {
+   "team": "GOS",
+   "won": true,
+   "kills": 34,
+   "deaths": 7,
+   "assists": 57,
+   "gold": 53061,
+   "players": [
+    {
+     "riot": "15gg1#15gg1",
+     "name_on_screen": "15gg1",
+     "role": "TOP",
+     "champion": "Darius",
+     "level": 16,
+     "k": 15,
+     "d": 1,
+     "a": 7,
+     "damage": 28297,
+     "gold": 12817
+    },
+    {
+     "riot": "taoapdaotuyetdoi#3643",
+     "name_on_screen": "taoapdaotuyetdoi",
+     "role": "JG",
+     "champion": "Nocturne",
+     "level": 14,
+     "k": 6,
+     "d": 1,
+     "a": 8,
+     "damage": 6762,
+     "gold": 10403
+    },
+    {
+     "riot": "Lê Văn Vở#1105",
+     "name_on_screen": "Lê Văn Vở",
+     "role": "MID",
+     "champion": "Aurelion Sol",
+     "level": 15,
+     "k": 7,
+     "d": 3,
+     "a": 15,
+     "damage": 23509,
+     "gold": 10588
+    },
+    {
+     "riot": "MTHUUS#2608",
+     "name_on_screen": "MTHUUS",
+     "role": "AD",
+     "champion": "Ziggs",
+     "level": 14,
+     "k": 6,
+     "d": 1,
+     "a": 11,
+     "damage": 24581,
+     "gold": 12082
+    },
+    {
+     "riot": "JappleG#66666",
+     "name_on_screen": "JappleG",
+     "role": "SP",
+     "champion": "Braum",
+     "level": 11,
+     "k": 0,
+     "d": 1,
+     "a": 16,
+     "damage": 5019,
+     "gold": 7171
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Screen ĐỘI 1 = GOS (red, winner), ĐỘI 2 = YSL (blue). Sums all match. Time and winner match. Image is 1605 wide; read directly. Champion Garen/Kayn/Katarina/Corki/Nautilus for YSL (Katarina on MID, Corki AD)."
+}

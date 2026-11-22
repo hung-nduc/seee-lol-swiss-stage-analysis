@@ -1,0 +1,149 @@
+{
+ "code": "LS53",
+ "layout": "standard",
+ "game_time": "37:40",
+ "teams": [
+  {
+   "team": "LHP",
+   "won": true,
+   "kills": 23,
+   "deaths": 9,
+   "assists": 43,
+   "gold": 74186,
+   "players": [
+    {
+     "riot": "nờ pờ dờ#bruh",
+     "name_on_screen": "nờ pờ dờ",
+     "role": "TOP",
+     "champion": "Gwen",
+     "level": 20,
+     "k": 8,
+     "d": 2,
+     "a": 9,
+     "damage": 35409,
+     "gold": 16426
+    },
+    {
+     "riot": "허거덩#7474",
+     "name_on_screen": "허거덩",
+     "role": "JG",
+     "champion": "Aatrox",
+     "level": 18,
+     "k": 9,
+     "d": 2,
+     "a": 7,
+     "damage": 20687,
+     "gold": 17281
+    },
+    {
+     "riot": "neirt17#trien",
+     "name_on_screen": "Neirt17",
+     "role": "MID",
+     "champion": "Yone",
+     "level": 18,
+     "k": 2,
+     "d": 2,
+     "a": 8,
+     "damage": 13811,
+     "gold": 15612
+    },
+    {
+     "riot": "繁荣而睿智#thinh",
+     "name_on_screen": "繁荣而睿智",
+     "role": "AD",
+     "champion": "Tristana",
+     "level": 17,
+     "k": 4,
+     "d": 1,
+     "a": 6,
+     "damage": 13862,
+     "gold": 15057
+    },
+    {
+     "riot": "DPE Licotyn#mmb",
+     "name_on_screen": "DPE Licotyn",
+     "role": "SP",
+     "champion": "Nautilus",
+     "level": 14,
+     "k": 0,
+     "d": 2,
+     "a": 13,
+     "damage": 3617,
+     "gold": 9810
+    }
+   ]
+  },
+  {
+   "team": "ZEN",
+   "won": false,
+   "kills": 9,
+   "deaths": 23,
+   "assists": 21,
+   "gold": 65095,
+   "players": [
+    {
+     "riot": "MeiMei Cat#HUST",
+     "name_on_screen": "MeiMei Cat",
+     "role": "TOP",
+     "champion": "Ornn",
+     "level": 18,
+     "k": 0,
+     "d": 5,
+     "a": 5,
+     "damage": 21965,
+     "gold": 11014
+    },
+    {
+     "riot": "BLIND#DMH",
+     "name_on_screen": "BLIND",
+     "role": "JG",
+     "champion": "Kayn",
+     "level": 17,
+     "k": 1,
+     "d": 4,
+     "a": 3,
+     "damage": 8106,
+     "gold": 12072
+    },
+    {
+     "riot": "GeminiJune5th#Tus",
+     "name_on_screen": "GeminiJune5th",
+     "role": "MID",
+     "champion": "Aurelion Sol",
+     "level": 17,
+     "k": 1,
+     "d": 4,
+     "a": 4,
+     "damage": 20488,
+     "gold": 12429
+    },
+    {
+     "riot": "TAUNT#2706",
+     "name_on_screen": "TAUNT",
+     "role": "AD",
+     "champion": "Caitlyn",
+     "level": 17,
+     "k": 6,
+     "d": 5,
+     "a": 3,
+     "damage": 29656,
+     "gold": 19758
+    },
+    {
+     "riot": "marianne#ikeri",
+     "name_on_screen": "marianne",
+     "role": "SP",
+     "champion": "Lux",
+     "level": 14,
+     "k": 1,
+     "d": 5,
+     "a": 6,
+     "damage": 21856,
+     "gold": 9822
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Screen ĐỘI 1 = LHP (blue, winner), ĐỘI 2 = ZEN (=NGU, red). TOP Gwen gold hidden by tooltip; derived as team gold 74186 minus others = 16426 (set below). Game time on screen 37:40 vs record 37:42. Winner matches. Gwen damage 35,409 (last digit partly visible)."
+}

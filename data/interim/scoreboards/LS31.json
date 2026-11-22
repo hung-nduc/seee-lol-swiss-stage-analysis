@@ -1,0 +1,149 @@
+{
+ "code": "LS31",
+ "layout": "standard",
+ "game_time": "28:48",
+ "teams": [
+  {
+   "team": "LXM",
+   "won": true,
+   "kills": 29,
+   "deaths": 10,
+   "assists": 41,
+   "gold": 64703,
+   "players": [
+    {
+     "riot": "Toithangcap1minh#1409",
+     "name_on_screen": "Toithangcap1minh",
+     "role": "TOP",
+     "champion": "Sylas",
+     "level": 17,
+     "k": 3,
+     "d": 1,
+     "a": 2,
+     "damage": 14587,
+     "gold": 10295
+    },
+    {
+     "riot": "黑天风 A Tức#2301",
+     "name_on_screen": "黑天风 A Tức",
+     "role": "JG",
+     "champion": "Hecarim",
+     "level": 18,
+     "k": 6,
+     "d": 2,
+     "a": 13,
+     "damage": 18457,
+     "gold": 15229
+    },
+    {
+     "riot": "wu ren zhi dao#2110t",
+     "name_on_screen": "wu ren zhi dao",
+     "role": "MID",
+     "champion": "Tristana",
+     "level": 16,
+     "k": 9,
+     "d": 1,
+     "a": 7,
+     "damage": 24840,
+     "gold": 15931
+    },
+    {
+     "riot": "TheMaLaiHay#VNmub",
+     "name_on_screen": "TheMaLaiHay",
+     "role": "AD",
+     "champion": "Jhin",
+     "level": 15,
+     "k": 9,
+     "d": 3,
+     "a": 9,
+     "damage": 21697,
+     "gold": 14621
+    },
+    {
+     "riot": "Chocopyke#Rùa",
+     "name_on_screen": "Chocopyke",
+     "role": "SP",
+     "champion": "Pyke",
+     "level": 12,
+     "k": 2,
+     "d": 3,
+     "a": 10,
+     "damage": 7911,
+     "gold": 8627
+    }
+   ]
+  },
+  {
+   "team": "HKG",
+   "won": false,
+   "kills": 10,
+   "deaths": 29,
+   "assists": 15,
+   "gold": 47617,
+   "players": [
+    {
+     "riot": "HK2 LSiong#2207",
+     "name_on_screen": "HK2 LSiong",
+     "role": "TOP",
+     "champion": "K'Sante",
+     "level": 16,
+     "k": 0,
+     "d": 3,
+     "a": 0,
+     "damage": 18404,
+     "gold": 8699
+    },
+    {
+     "riot": "HK3 XII#1268",
+     "name_on_screen": "HK3 XII",
+     "role": "JG",
+     "champion": "Viego",
+     "level": 14,
+     "k": 3,
+     "d": 7,
+     "a": 2,
+     "damage": 10339,
+     "gold": 11039
+    },
+    {
+     "riot": "Kataddict#28708",
+     "name_on_screen": "Kataddict",
+     "role": "MID",
+     "champion": "Xerath",
+     "level": 14,
+     "k": 0,
+     "d": 6,
+     "a": 4,
+     "damage": 17933,
+     "gold": 8767
+    },
+    {
+     "riot": "Fizz Ziczac#vn2",
+     "name_on_screen": "Fizz Ziczac",
+     "role": "AD",
+     "champion": "Fizz",
+     "level": 13,
+     "k": 6,
+     "d": 7,
+     "a": 3,
+     "damage": 14223,
+     "gold": 11996
+    },
+    {
+     "riot": "HK4 Cragon#0608",
+     "name_on_screen": "HK4 Cragon",
+     "role": "SP",
+     "champion": "Nautilus",
+     "level": 12,
+     "k": 1,
+     "d": 6,
+     "a": 6,
+     "damage": 5102,
+     "gold": 7116
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Winner LXM and time match record. Tristana on MID-listed player is row 3; roles by row order. All checks pass."
+}

@@ -1,0 +1,149 @@
+{
+ "code": "LS41",
+ "layout": "standard",
+ "game_time": "29:33",
+ "teams": [
+  {
+   "team": "DMX",
+   "won": true,
+   "kills": 34,
+   "deaths": 8,
+   "assists": 56,
+   "gold": 67425,
+   "players": [
+    {
+     "riot": "Le Sante#L26",
+     "name_on_screen": "Le Sante",
+     "role": "TOP",
+     "champion": "Aatrox",
+     "level": 18,
+     "k": 5,
+     "d": 4,
+     "a": 11,
+     "damage": 19605,
+     "gold": 13097
+    },
+    {
+     "riot": "lil moneytft#momly",
+     "name_on_screen": "lil moneytft",
+     "role": "JG",
+     "champion": "Qiyana",
+     "level": 17,
+     "k": 9,
+     "d": 1,
+     "a": 14,
+     "damage": 23328,
+     "gold": 16556
+    },
+    {
+     "riot": "vegito#cuh",
+     "name_on_screen": "vegito",
+     "role": "MID",
+     "champion": "Locke",
+     "level": 17,
+     "k": 16,
+     "d": 1,
+     "a": 7,
+     "damage": 22550,
+     "gold": 15565
+    },
+    {
+     "riot": "Flowern#Navi",
+     "name_on_screen": "Flowern",
+     "role": "AD",
+     "champion": "Corki",
+     "level": 16,
+     "k": 4,
+     "d": 1,
+     "a": 8,
+     "damage": 14046,
+     "gold": 14479
+    },
+    {
+     "riot": "mộngcầuchânv#bahoa",
+     "name_on_screen": "mộngcầuchânv",
+     "role": "SP",
+     "champion": "Alistar",
+     "level": 12,
+     "k": 0,
+     "d": 1,
+     "a": 16,
+     "damage": 4588,
+     "gold": 7728
+    }
+   ]
+  },
+  {
+   "team": "GOS",
+   "won": false,
+   "kills": 8,
+   "deaths": 34,
+   "assists": 13,
+   "gold": 49106,
+   "players": [
+    {
+     "riot": "15gg1#15gg1",
+     "name_on_screen": "15gg1",
+     "role": "TOP",
+     "champion": "Yone",
+     "level": 16,
+     "k": 2,
+     "d": 7,
+     "a": 1,
+     "damage": 14905,
+     "gold": 10220
+    },
+    {
+     "riot": "taoapdaotuyetdoi#3643",
+     "name_on_screen": "taoapdaotuyetdoi",
+     "role": "JG",
+     "champion": "Jarvan IV",
+     "level": 14,
+     "k": 3,
+     "d": 9,
+     "a": 3,
+     "damage": 10304,
+     "gold": 9625
+    },
+    {
+     "riot": "Lê Văn Vở#1105",
+     "name_on_screen": "Lê Văn Vở",
+     "role": "MID",
+     "champion": "Viktor",
+     "level": 16,
+     "k": 2,
+     "d": 6,
+     "a": 3,
+     "damage": 28335,
+     "gold": 11593
+    },
+    {
+     "riot": "MTHUUS#2608",
+     "name_on_screen": "MTHUUS",
+     "role": "AD",
+     "champion": "Ziggs",
+     "level": 15,
+     "k": 0,
+     "d": 4,
+     "a": 4,
+     "damage": 18677,
+     "gold": 10476
+    },
+    {
+     "riot": "Đạt Đạt Đạt#vn2",
+     "name_on_screen": "Đạt Đạt Đạt",
+     "role": "SP",
+     "champion": "Nautilus",
+     "level": 12,
+     "k": 1,
+     "d": 8,
+     "a": 2,
+     "damage": 5214,
+     "gold": 7192
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Team1=DMX (blue), Team2=GOS. All sums match. Time and winner match record. Row order matches record roles."
+}

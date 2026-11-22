@@ -1,0 +1,13 @@
+# kept private (contain students' real names / screenshots of other players)
+data/raw/records/
+data/raw/screenshots/
+# local-only
+_archive/
+Match_Screenshots_LS/
+Records/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*.xlsx

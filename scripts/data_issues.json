@@ -1,0 +1,86 @@
+[
+ {
+  "area": "Forfeits",
+  "matches": "LS21, LS37, LS38, LS44, LS46",
+  "issue": "No game played: LK (LS37), FTL (LS38), CBK (LS44), VNT (LS46) did not show up; LS21 HKG awarded the win by ruling (record still lists a draft). LS21 also lists a CBK all-chat penalty that belongs to another match.",
+  "handling": "Counted in standings; excluded from every game stat."
+ },
+ {
+  "area": "Missing result",
+  "matches": "LS45",
+  "issue": "Record has no winner or game time.",
+  "handling": "Filled from the LNvsMSD screenshot: LN won in 29:08."
+ },
+ {
+  "area": "Missing time",
+  "matches": "LS41",
+  "issue": "Record has no game time.",
+  "handling": "Filled from screenshot: 29:33."
+ },
+ {
+  "area": "Missing draft",
+  "matches": "LS33, LS15, LS32",
+  "issue": "LS33 draft empty; LS15 only 7 of 20 slots; LS32 one DMX ban empty.",
+  "handling": "Picks taken from screenshots (LS33 champions supplied by you); LS33 bans unknown; LS15 bans partial."
+ },
+ {
+  "area": "No damage",
+  "matches": "LS13, LS33",
+  "issue": "Screenshots use the detailed view: no damage column, champions shown as icons.",
+  "handling": "Damage stats use the other 26 games; champions identified from icons + record draft."
+ },
+ {
+  "area": "Team names",
+  "matches": "LS17, LS26, LS33, LS44, LS46, LS15",
+  "issue": "Blank team names in record headers; LS15 says NGU (= ZEN); LS44 lists LHP roster on both sides.",
+  "handling": "Teams and sides taken from the Excel schedule."
+ },
+ {
+  "area": "Roles",
+  "matches": "LS16 FTL, LS42 HKG",
+  "issue": "Record roles contradict champions played (e.g. HK4 Cragon listed TOP but on Alistar).",
+  "handling": "Roles set from champion and scoreboard order."
+ },
+ {
+  "area": "Time mismatch",
+  "matches": "LS53, LS32",
+  "issue": "Record 37:42 vs screen 37:40; record 33:05 vs screen 33:06.",
+  "handling": "Screenshot time used."
+ },
+ {
+  "area": "Riot IDs",
+  "matches": "YSL top, GLT sub",
+  "issue": "bimiuchiratnhieu#1808 does not exist (real tag #1005). GLT support in LS34 recorded only as \"phong\"; screen shows \"Phomai\" and several op.gg accounts share that name.",
+  "handling": "#1005 used; Phomai left unranked (1 game)."
+ },
+ {
+  "area": "Unranked players",
+  "matches": "YSL, LN",
+  "issue": "4 YSL players and LN support Corn Cuang have no 2026 Solo/Duo rank.",
+  "handling": "Left out of Solo/Duo averages — YSL average rests on 3 players."
+ },
+ {
+  "area": "Champion spellings",
+  "matches": "many",
+  "issue": "Typos in records: noctune/Nortune, quiyana/Qiana, Neko/Nekko, Jihn, camile, rakkan, alista, Javan IV, ramus, Leesin, Oriana, Naultilus, Gallio, Mundo, Ngộ Không (=Wukong), Kaisa/Kai’sa.",
+  "handling": "Normalised to official names."
+ },
+ {
+  "area": "op.gg freshness",
+  "matches": "all players",
+  "issue": "op.gg shows what it last refreshed (some profiles a few days old). Ranks are a 22 Nov snapshot, not pre-tournament.",
+  "handling": "Read as current-season strength."
+ },
+ {
+  "area": "Screenshot names",
+  "matches": "all",
+  "issue": "Original screenshot files had mixed names (e.g. image.png, psca.png, DMXwin.png) and no LS45 at first.",
+  "handling": "Matched by player names and game time; copied as data/raw/screenshots/LSxx.png (mapping in data/raw/screenshot_name_map.csv)."
+ },
+ {
+  "area": "Pick order",
+  "matches": "all",
+  "issue": "Record draft rows are pick/ban order, not positions.",
+  "handling": "Positions come from the scoreboard rows and the record rosters."
+ }
+]

@@ -1,0 +1,154 @@
+{
+ "code": "LS16",
+ "layout": "standard",
+ "game_time": "37:00",
+ "teams": [
+  {
+   "team": "FTL",
+   "won": false,
+   "kills": 13,
+   "deaths": 35,
+   "assists": 25,
+   "gold": 70744,
+   "players": [
+    {
+     "riot": "mmmmmmmm1#mmm",
+     "name_on_screen": "mmmmmmmm1",
+     "role": "TOP",
+     "champion": "Sion",
+     "level": 19,
+     "k": 1,
+     "d": 9,
+     "a": 5,
+     "damage": 15280,
+     "gold": 16988,
+     "role_record": "MID"
+    },
+    {
+     "riot": "hugshe#3904",
+     "name_on_screen": "hugshe",
+     "role": "JG",
+     "champion": "Shyvana",
+     "level": 16,
+     "k": 4,
+     "d": 8,
+     "a": 3,
+     "damage": 13685,
+     "gold": 13614,
+     "role_record": "JG"
+    },
+    {
+     "riot": "dang khoa#1701",
+     "name_on_screen": "dang khoa",
+     "role": "MID",
+     "champion": "Ahri",
+     "level": 18,
+     "k": 4,
+     "d": 3,
+     "a": 5,
+     "damage": 19866,
+     "gold": 15664,
+     "role_record": "AD"
+    },
+    {
+     "riot": "Sheva#1209",
+     "name_on_screen": "Sheva",
+     "role": "AD",
+     "champion": "Caitlyn",
+     "level": 16,
+     "k": 4,
+     "d": 8,
+     "a": 4,
+     "damage": 20130,
+     "gold": 15294,
+     "role_record": "SP"
+    },
+    {
+     "riot": "Postpone Atone#kdaat",
+     "name_on_screen": "Postpone Atone",
+     "role": "SP",
+     "champion": "Rell",
+     "level": 15,
+     "k": 0,
+     "d": 7,
+     "a": 8,
+     "damage": 5203,
+     "gold": 9184,
+     "role_record": "TOP"
+    }
+   ]
+  },
+  {
+   "team": "KGC",
+   "won": true,
+   "kills": 35,
+   "deaths": 13,
+   "assists": 56,
+   "gold": 73836,
+   "players": [
+    {
+     "riot": "Deus ex machina#2202",
+     "name_on_screen": "Deus ex machina",
+     "role": "TOP",
+     "champion": "Aatrox",
+     "level": 20,
+     "k": 9,
+     "d": 3,
+     "a": 8,
+     "damage": 39242,
+     "gold": 16714
+    },
+    {
+     "riot": "Thịt dê cơm cháy#035",
+     "name_on_screen": "Thịt dê cơm cháy",
+     "role": "JG",
+     "champion": "Pantheon",
+     "level": 17,
+     "k": 7,
+     "d": 4,
+     "a": 13,
+     "damage": 21074,
+     "gold": 14637
+    },
+    {
+     "riot": "alle#imo",
+     "name_on_screen": "alle",
+     "role": "MID",
+     "champion": "Taliyah",
+     "level": 17,
+     "k": 12,
+     "d": 1,
+     "a": 7,
+     "damage": 32005,
+     "gold": 14552
+    },
+    {
+     "riot": "Sứ Giả Người Tày#5964",
+     "name_on_screen": "Sứ Giả Người Tày",
+     "role": "AD",
+     "champion": "Jhin",
+     "level": 17,
+     "k": 6,
+     "d": 0,
+     "a": 15,
+     "damage": 27246,
+     "gold": 17884
+    },
+    {
+     "riot": "MID Đại Cồ Việt#MLEM",
+     "name_on_screen": "MID Đại Cồ Việt",
+     "role": "SP",
+     "champion": "Nautilus",
+     "level": 15,
+     "k": 1,
+     "d": 5,
+     "a": 13,
+     "damage": 8105,
+     "gold": 10049
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "On screen DOI 1 = KGC (winner, matches record), DOI 2 = FTL. Time 37:00 matches record (37:0). FTL roles assigned by riot name per record, but champions imply role swaps (Sion on the record MID, Ahri on record AD, Caitlyn on record SP, Rell on record TOP); record roles kept. Screen row order for FTL is MID,JG,AD,SP,TOP by name. All checks pass. | role fix by champion/screen order for FTL"
+}

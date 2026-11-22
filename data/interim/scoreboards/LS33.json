@@ -1,0 +1,149 @@
+{
+ "code": "LS33",
+ "layout": "detailed",
+ "game_time": "40:44",
+ "teams": [
+  {
+   "team": "GOS",
+   "won": true,
+   "kills": 29,
+   "deaths": 23,
+   "assists": 67,
+   "gold": 80860,
+   "players": [
+    {
+     "riot": "15gg1#15gg1",
+     "name_on_screen": "15gg1",
+     "role": "TOP",
+     "champion": "Renekton",
+     "level": 20,
+     "k": 9,
+     "d": 4,
+     "a": 7,
+     "damage": null,
+     "gold": 17195
+    },
+    {
+     "riot": "taoapdaotuyetdoi#3643",
+     "name_on_screen": "taoapdaotuyetdoi",
+     "role": "JG",
+     "champion": "Jarvan IV",
+     "level": 18,
+     "k": 3,
+     "d": 6,
+     "a": 22,
+     "damage": null,
+     "gold": 16019
+    },
+    {
+     "riot": "Lê Văn Vở#1105",
+     "name_on_screen": "Lê Văn Vở",
+     "role": "MID",
+     "champion": "Aurelion Sol",
+     "level": 18,
+     "k": 13,
+     "d": 5,
+     "a": 10,
+     "damage": null,
+     "gold": 19708
+    },
+    {
+     "riot": "MTHUUS#2608",
+     "name_on_screen": "MTHUUS",
+     "role": "AD",
+     "champion": "Varus",
+     "level": 18,
+     "k": 3,
+     "d": 2,
+     "a": 9,
+     "damage": null,
+     "gold": 16957
+    },
+    {
+     "riot": "Đạt Đạt Đạt#vn2",
+     "name_on_screen": "Đạt Đạt Đạt",
+     "role": "SP",
+     "champion": "Leona",
+     "level": 16,
+     "k": 1,
+     "d": 6,
+     "a": 19,
+     "damage": null,
+     "gold": 10981
+    }
+   ]
+  },
+  {
+   "team": "ZEN",
+   "won": false,
+   "kills": 23,
+   "deaths": 29,
+   "assists": 47,
+   "gold": 73436,
+   "players": [
+    {
+     "riot": "MeiMei Cat#HUST",
+     "name_on_screen": "MeiMei Cat",
+     "role": "TOP",
+     "champion": "Rumble",
+     "level": 19,
+     "k": 3,
+     "d": 6,
+     "a": 7,
+     "damage": null,
+     "gold": 12657
+    },
+    {
+     "riot": "BLIND#DMH",
+     "name_on_screen": "BLIND",
+     "role": "JG",
+     "champion": "Kayn",
+     "level": 18,
+     "k": 2,
+     "d": 6,
+     "a": 11,
+     "damage": null,
+     "gold": 14499
+    },
+    {
+     "riot": "GeminiJune5th#Tus",
+     "name_on_screen": "GeminiJune5th",
+     "role": "MID",
+     "champion": "Yone",
+     "level": 18,
+     "k": 12,
+     "d": 11,
+     "a": 6,
+     "damage": null,
+     "gold": 16900
+    },
+    {
+     "riot": "TAUNT#2706",
+     "name_on_screen": "TAUNT",
+     "role": "AD",
+     "champion": "Ezreal",
+     "level": 18,
+     "k": 6,
+     "d": 1,
+     "a": 4,
+     "damage": null,
+     "gold": 19269
+    },
+    {
+     "riot": "marianne#ikeri",
+     "name_on_screen": "marianne",
+     "role": "SP",
+     "champion": "Soraka",
+     "level": 16,
+     "k": 0,
+     "d": 5,
+     "a": 19,
+     "damage": null,
+     "gold": 10111
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Detailed layout, no damage column (null). Champions per user-supplied lists matched to portraits: GOS Renekton(15gg1), Jarvan IV(taoap), Aurelion Sol(Le Van Vo), Varus(MTHUUS, listed first row on screen), Leona; ZEN Rumble, Kayn, Yone, Ezreal, Soraka. Scoreboard row order differs for GOS (AD first); roles assigned from record. Winner GOS and time 40:44 match. Bans: icons too small/crossed out to identify reliably, so omitted (blue bans look like 5 icons incl. a teal-haired champion and an ice dragon-like icon, red incl. Thresh-like green icon; unsure)."
+}

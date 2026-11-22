@@ -1,0 +1,149 @@
+{
+ "code": "LS14",
+ "layout": "standard",
+ "game_time": "30:56",
+ "teams": [
+  {
+   "team": "HKG",
+   "won": true,
+   "kills": 34,
+   "deaths": 16,
+   "assists": 61,
+   "gold": 65497,
+   "players": [
+    {
+     "riot": "HK2 LSiong#2207",
+     "name_on_screen": "HK2 LSiong",
+     "role": "TOP",
+     "champion": "Mordekaiser",
+     "level": 18,
+     "k": 7,
+     "d": 1,
+     "a": 13,
+     "damage": 42934,
+     "gold": 15708
+    },
+    {
+     "riot": "HK3 XII#1268",
+     "name_on_screen": "HK3 XII",
+     "role": "JG",
+     "champion": "Viego",
+     "level": 17,
+     "k": 11,
+     "d": 1,
+     "a": 9,
+     "damage": 17575,
+     "gold": 15486
+    },
+    {
+     "riot": "Fizz Ziczac#vn2",
+     "name_on_screen": "Fizz Ziczac",
+     "role": "MID",
+     "champion": "Locke",
+     "level": 16,
+     "k": 12,
+     "d": 6,
+     "a": 6,
+     "damage": 23744,
+     "gold": 12142
+    },
+    {
+     "riot": "Kataddict#28708",
+     "name_on_screen": "Kataddict",
+     "role": "AD",
+     "champion": "Lucian",
+     "level": 15,
+     "k": 4,
+     "d": 4,
+     "a": 13,
+     "damage": 20126,
+     "gold": 13082
+    },
+    {
+     "riot": "HK4 Cragon#0608",
+     "name_on_screen": "HK4 Cragon",
+     "role": "SP",
+     "champion": "Milio",
+     "level": 13,
+     "k": 0,
+     "d": 4,
+     "a": 20,
+     "damage": 3880,
+     "gold": 9079
+    }
+   ]
+  },
+  {
+   "team": "VNT",
+   "won": false,
+   "kills": 16,
+   "deaths": 34,
+   "assists": 27,
+   "gold": 51918,
+   "players": [
+    {
+     "riot": "mỗi năm một già#bLa",
+     "name_on_screen": "mỗi năm một già",
+     "role": "TOP",
+     "champion": "Malphite",
+     "level": 16,
+     "k": 2,
+     "d": 4,
+     "a": 4,
+     "damage": 21244,
+     "gold": 9321
+    },
+    {
+     "riot": "Dưa#LOL",
+     "name_on_screen": "Dưa",
+     "role": "JG",
+     "champion": "Sejuani",
+     "level": 14,
+     "k": 3,
+     "d": 8,
+     "a": 6,
+     "damage": 10518,
+     "gold": 9638
+    },
+    {
+     "riot": "2I am Hải#vn2",
+     "name_on_screen": "2I am Hải",
+     "role": "MID",
+     "champion": "Orianna",
+     "level": 15,
+     "k": 2,
+     "d": 8,
+     "a": 6,
+     "damage": 22511,
+     "gold": 10051
+    },
+    {
+     "riot": "bittersweet#prev",
+     "name_on_screen": "bittersweet",
+     "role": "AD",
+     "champion": "Kai'Sa",
+     "level": 14,
+     "k": 8,
+     "d": 6,
+     "a": 1,
+     "damage": 24675,
+     "gold": 15103
+    },
+    {
+     "riot": "KAugustzzz8#AUG",
+     "name_on_screen": "KAugustzzz8",
+     "role": "SP",
+     "champion": "Leona",
+     "level": 13,
+     "k": 1,
+     "d": 8,
+     "a": 10,
+     "damage": 9079,
+     "gold": 7805
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Winner and time match record. All checks pass. Mid player (Fizz Ziczac) plays Locke; fine."
+}

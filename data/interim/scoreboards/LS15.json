@@ -1,0 +1,149 @@
+{
+ "code": "LS15",
+ "layout": "standard",
+ "game_time": "29:47",
+ "teams": [
+  {
+   "team": "ZEN",
+   "won": true,
+   "kills": 30,
+   "deaths": 11,
+   "assists": 59,
+   "gold": 62368,
+   "players": [
+    {
+     "riot": "BLIND#DMH",
+     "name_on_screen": "BLIND",
+     "role": "TOP",
+     "champion": "Gwen",
+     "level": 17,
+     "k": 4,
+     "d": 4,
+     "a": 5,
+     "damage": 11451,
+     "gold": 10704
+    },
+    {
+     "riot": "TAUNT#2706",
+     "name_on_screen": "TAUNT",
+     "role": "JG",
+     "champion": "Xin Zhao",
+     "level": 16,
+     "k": 7,
+     "d": 2,
+     "a": 15,
+     "damage": 17189,
+     "gold": 13920
+    },
+    {
+     "riot": "GeminiJune5th#Tus",
+     "name_on_screen": "GeminiJune5th",
+     "role": "MID",
+     "champion": "Anivia",
+     "level": 17,
+     "k": 7,
+     "d": 2,
+     "a": 16,
+     "damage": 26879,
+     "gold": 12218
+    },
+    {
+     "riot": "MeiMei Cat#HUST",
+     "name_on_screen": "MeiMei Cat",
+     "role": "AD",
+     "champion": "Caitlyn",
+     "level": 15,
+     "k": 6,
+     "d": 2,
+     "a": 8,
+     "damage": 16936,
+     "gold": 14584
+    },
+    {
+     "riot": "marianne#ikeri",
+     "name_on_screen": "marianne",
+     "role": "SP",
+     "champion": "Lux",
+     "level": 14,
+     "k": 6,
+     "d": 1,
+     "a": 15,
+     "damage": 21619,
+     "gold": 10942
+    }
+   ]
+  },
+  {
+   "team": "LK",
+   "won": false,
+   "kills": 11,
+   "deaths": 30,
+   "assists": 23,
+   "gold": 52757,
+   "players": [
+    {
+     "riot": "Duc Duyy#2006",
+     "name_on_screen": "Duc Duyy",
+     "role": "TOP",
+     "champion": "Akali",
+     "level": 17,
+     "k": 8,
+     "d": 5,
+     "a": 3,
+     "damage": 22382,
+     "gold": 13021
+    },
+    {
+     "riot": "ĐàoHải tuổi 18#1312",
+     "name_on_screen": "ĐàoHải tuổi 18",
+     "role": "JG",
+     "champion": "Nocturne",
+     "level": 16,
+     "k": 1,
+     "d": 7,
+     "a": 5,
+     "damage": 11566,
+     "gold": 11442
+    },
+    {
+     "riot": "SSA Reaper#2907",
+     "name_on_screen": "SSA Reaper",
+     "role": "MID",
+     "champion": "Orianna",
+     "level": 16,
+     "k": 0,
+     "d": 5,
+     "a": 6,
+     "damage": 13596,
+     "gold": 9569
+    },
+    {
+     "riot": "clayern#HUST",
+     "name_on_screen": "clayern",
+     "role": "AD",
+     "champion": "Miss Fortune",
+     "level": 14,
+     "k": 2,
+     "d": 6,
+     "a": 4,
+     "damage": 11155,
+     "gold": 12012
+    },
+    {
+     "riot": "kenzo2s#vn2",
+     "name_on_screen": "kenzo2s",
+     "role": "SP",
+     "champion": "Leona",
+     "level": 12,
+     "k": 0,
+     "d": 7,
+     "a": 5,
+     "damage": 2800,
+     "gold": 6713
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Winner and time match record. ZEN=NGU not involved; blue is ZEN. All checks pass."
+}

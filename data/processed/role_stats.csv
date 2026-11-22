@@ -1,0 +1,6 @@
+role,damage_share,damage_share_in_wins,damage_share_in_losses,damage_per_min,gold_share,gold_per_min,damage_per_1k_gold,kda,top_damage_count,team_games_with_damage,unique_champions
+Top,25.3,26.1,24.4,727,20.0,385,1880,2.4,18,51,25
+Jungle,18.2,18.9,17.4,513,21.7,417,1223,3.09,4,51,23
+Mid,25.3,26.2,24.4,718,20.4,393,1855,2.85,17,51,28
+Bot (ADC),22.7,22.3,23.1,636,23.5,449,1421,3.08,12,51,21
+Support,8.6,6.5,10.6,231,14.4,273,855,2.56,0,51,20

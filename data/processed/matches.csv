@@ -1,0 +1,34 @@
+code,round,pool,date,scheduled,blue,red,winner,loser,winner_side,result_type,game_time,game_minutes,record_time,winner_rank,loser_rank,rank_gap,rank_basis,upset,screenshot,notes
+LS11,1,0-0,16/11/2026,"18h30, T2, 16/11",DMX,MSD,DMX,MSD,blue,played,21:30,21.5,21:30,Master 43 LP,Silver 1,17.02,lineup that played,0,data/raw/screenshots/LS11.png,
+LS12,1,0-0,16/11/2026,"18h30, T2, 16/11",GLT,CBK,GLT,CBK,blue,played,26:13,26.22,26:13,Platinum 3,Gold 1,2.25,lineup that played,0,data/raw/screenshots/LS12.png,
+LS13,1,0-0,16/11/2026,"20h00, T2, 16/11",GOS,LXM,LXM,GOS,red,played,33:06,33.1,33:06,Master 4 LP,Emerald 3,6.96,lineup that played,0,data/raw/screenshots/LS13.png,
+LS14,1,0-0,16/11/2026,"21h00, T2, 16/11",HKG,VNT,HKG,VNT,blue,played,30:56,30.93,30:56,Gold 2,Silver 2,3.63,lineup that played,0,data/raw/screenshots/LS14.png,
+LS15,1,0-0,17/11/2026,"18h30, T3, 17/11",ZEN,LK,ZEN,LK,blue,played,29:47,29.78,29:47,Emerald 4,Gold 4,7.79,lineup that played,0,data/raw/screenshots/LS15.png,
+LS16,1,0-0,17/11/2026,"18h30, T3, 17/11",FTL,KGC,KGC,FTL,red,played,37:00,37.0,37:0,Platinum 2,Platinum 4,1.82,lineup that played,0,data/raw/screenshots/LS16.png,
+LS17,1,0-0,17/11/2026,"18h30, T3, 17/11",TT,LN,TT,LN,blue,played,27:20,27.33,27:20,Master 223 LP,Platinum 1,10.66,lineup that played,0,data/raw/screenshots/LS17.png,
+LS18,1,0-0,17/11/2026,"20h00, T3, 17/11",LHP,YSL,LHP,YSL,blue,played,34:34,34.57,34:34,Platinum 3,Gold 4,4.79,lineup that played,0,data/raw/screenshots/LS18.png,
+LS21,2,1-0,20/11/2026,"19h00, T6, 20/11",HKG,KGC,HKG,KGC,blue,ruling,,,,Gold 2,Platinum 1,-4.6,team average (no game),0,,HKG awarded the win by ruling; record still lists a draft
+LS22,2,1-0,19/11/2026,"18h30, T5, 19/11",LHP,TT,TT,LHP,red,played,29:56,29.93,29:56,Master 248 LP,Platinum 3,12.78,lineup that played,0,data/raw/screenshots/LS22.png,
+LS23,2,1-0,19/11/2026,"20h30, T5, 19/11",ZEN,DMX,DMX,ZEN,red,played,29:46,29.77,29:46,Master 43 LP,Emerald 4,8.16,lineup that played,0,data/raw/screenshots/LS23.png,
+LS24,2,1-0,20/11/2026,"19h30, T6, 20/11",GLT,LXM,LXM,GLT,red,played,32:42,32.7,32:42,Master 43 LP,Platinum 3,10.98,lineup that played,0,data/raw/screenshots/LS24.png,
+LS25,2,0-1,20/11/2026,"18h30, T6, 20/11",YSL,MSD,YSL,MSD,blue,played,30:26,30.43,30:26,Gold 4,Silver 1,1.5,lineup that played,0,data/raw/screenshots/LS25.png,
+LS26,2,0-1,20/11/2026,"19h30, T6, 20/11",LN,GOS,GOS,LN,red,played,32:56,32.93,32:56,Emerald 4,Platinum 1,0.94,lineup that played,0,data/raw/screenshots/LS26.png,
+LS27,2,0-1,…………20/11/2026……………,"21h00, T6, 20/11",LK,VNT,VNT,LK,red,played,27:01,27.02,27:01,Silver 2,Silver 2,0.06,lineup that played,0,data/raw/screenshots/LS27.png,
+LS28,2,0-1,20/11/2026,"20h00, T6, 20/11",CBK,FTL,CBK,FTL,blue,played,32:16,32.27,32:16,Gold 1,Gold 2,0.68,lineup that played,0,data/raw/screenshots/LS28.png,
+LS31,3,2-0,21/11/2026,"18h30, T7, 21/11",LXM,HKG,LXM,HKG,blue,played,28:48,28.8,28:48,Master 52 LP,Gold 2,14.08,lineup that played,0,data/raw/screenshots/LS31.png,
+LS32,3,2-0,21/11/2026,"18h30, T7, 21/11",DMX,TT,TT,DMX,red,played,33:06,33.1,33:05,Master 223 LP,Master 43 LP,1.8,lineup that played,0,data/raw/screenshots/LS32.png,
+LS33,3,1-1,21/11/2026,"20h00, T7, 21/11",GOS,ZEN,GOS,ZEN,blue,played,40:44,40.73,40:44,Emerald 2,Emerald 4,2.05,lineup that played,0,data/raw/screenshots/LS33.png,
+LS34,3,1-1,21/11/2026,"21h00, T7, 21/11",VNT,GLT,GLT,VNT,red,played,28:24,28.4,28:24,Emerald 4,Silver 2,9.36,lineup that played,0,data/raw/screenshots/LS34.png,
+LS35,3,1-1,21/11/2026,"18h30, T7, 21/11",LHP,KGC,KGC,LHP,red,played,22:39,22.65,,Platinum 2,Platinum 3,1.12,lineup that played,0,data/raw/screenshots/LS35.png,
+LS36,3,1-1,21/11/2026,"18h30, T7, 21/11",YSL,CBK,YSL,CBK,blue,played,30:17,30.28,30:17,Silver 2,Gold 1,-4.56,lineup that played,1,data/raw/screenshots/LS36.png,
+LS37,3,0-2,21/11/2026,"22h00, T7, 21/11",LK,MSD,MSD,LK,red,forfeit,,,,Silver 1,Silver 1,-0.22,team average (no game),0,,LK did not show up
+LS38,3,0-2,21/11/2026,"20h00, T7, 21/11",FTL,LN,LN,FTL,red,forfeit,,,,Platinum 1,Gold 1,4.05,team average (no game),0,,FTL did not show up
+LS41,4,2-1,22/11/2026,"08h00, CN, 22/11",DMX,GOS,DMX,GOS,blue,played,29:33,29.55,29:33,Master 43 LP,Emerald 2,6.11,lineup that played,0,data/raw/screenshots/LS41.png,time missing in record; taken from screenshot
+LS42,4,2-1,22/11/2026,"08h30, CN, 22/11",HKG,GLT,GLT,HKG,red,played,26:59,26.98,26:59,Platinum 3,Gold 2,3.01,lineup that played,0,data/raw/screenshots/LS42.png,
+LS43,4,2-1,22/11/2026,"09h30, CN, 22/11",YSL,KGC,KGC,YSL,red,played,22:17,22.28,22:17,Platinum 1,Gold 4,7.04,lineup that played,0,data/raw/screenshots/LS43.png,
+LS44,4,1-2,22/11/2026,"10h00, CN, 22/11",CBK,LHP,LHP,CBK,red,forfeit,,,00:00 đội CBK không có mặt,Platinum 3,Gold 1,2.5,team average (no game),0,,CBK did not show up (record lists LHP roster on both sides)
+LS45,4,1-2,22/11/2026,"10h00, CN, 22/11",LN,MSD,LN,MSD,blue,played,29:08,29.13,29:08,Platinum 1,Silver 1,8.17,lineup that played,0,data/raw/screenshots/LS45.png,winner and time missing in record; taken from screenshot
+LS46,4,1-2,22/11,"10h00, CN, 22/11",VNT,ZEN,ZEN,VNT,red,forfeit,,,,Emerald 4,Silver 2,9.46,team average (no game),0,,VNT did not show up
+LS51,5,2-2,22/11/2026,"14h30, CN, 22/11",HKG,LN,LN,HKG,red,played,29:48,29.8,29:48,Platinum 1,Gold 2,5.13,lineup that played,0,data/raw/screenshots/LS51.png,
+LS52,5,2-2,22/11/2026,"14h30, CN, 22/11",YSL,GOS,GOS,YSL,red,played,22:39,22.65,22:39,Emerald 4,Silver 2,9.87,lineup that played,0,data/raw/screenshots/LS52.png,
+LS53,5,2-2,22/11/2026,"14h30, CN, 22/11",LHP,ZEN,LHP,ZEN,blue,played,37:40,37.67,37:42,Platinum 3,Emerald 4,-2.57,lineup that played,1,data/raw/screenshots/LS53.png,

@@ -1,0 +1,149 @@
+{
+ "code": "LS26",
+ "layout": "standard",
+ "game_time": "32:56",
+ "teams": [
+  {
+   "team": "GOS",
+   "won": true,
+   "kills": 21,
+   "deaths": 7,
+   "assists": 51,
+   "gold": 66427,
+   "players": [
+    {
+     "riot": "15gg1#15gg1",
+     "name_on_screen": "15gg1",
+     "role": "TOP",
+     "champion": "Renekton",
+     "level": 19,
+     "k": 3,
+     "d": 1,
+     "a": 3,
+     "damage": 14103,
+     "gold": 12650
+    },
+    {
+     "riot": "taoapdaotuyetdoi#3643",
+     "name_on_screen": "taoapdaotuyetdoi",
+     "role": "JG",
+     "champion": "Jarvan IV",
+     "level": 17,
+     "k": 1,
+     "d": 2,
+     "a": 16,
+     "damage": 7820,
+     "gold": 12358
+    },
+    {
+     "riot": "Lê Văn Vở#1105",
+     "name_on_screen": "Lê Văn Vở",
+     "role": "MID",
+     "champion": "Syndra",
+     "level": 18,
+     "k": 12,
+     "d": 1,
+     "a": 8,
+     "damage": 46747,
+     "gold": 17406
+    },
+    {
+     "riot": "MTHUUS#2608",
+     "name_on_screen": "MTHUUS",
+     "role": "AD",
+     "champion": "Varus",
+     "level": 16,
+     "k": 3,
+     "d": 1,
+     "a": 10,
+     "damage": 21440,
+     "gold": 15043
+    },
+    {
+     "riot": "JappleG#66666",
+     "name_on_screen": "JappleG",
+     "role": "SP",
+     "champion": "Alistar",
+     "level": 13,
+     "k": 2,
+     "d": 2,
+     "a": 14,
+     "damage": 4418,
+     "gold": 8970
+    }
+   ]
+  },
+  {
+   "team": "LN",
+   "won": false,
+   "kills": 7,
+   "deaths": 21,
+   "assists": 15,
+   "gold": 55959,
+   "players": [
+    {
+     "riot": "hadyu#9816",
+     "name_on_screen": "hadyu",
+     "role": "TOP",
+     "champion": "Gnar",
+     "level": 17,
+     "k": 0,
+     "d": 5,
+     "a": 3,
+     "damage": 21524,
+     "gold": 10633
+    },
+    {
+     "riot": "30FPS player#2007",
+     "name_on_screen": "30FPS player",
+     "role": "JG",
+     "champion": "Xin Zhao",
+     "level": 15,
+     "k": 0,
+     "d": 6,
+     "a": 3,
+     "damage": 4522,
+     "gold": 10161
+    },
+    {
+     "riot": "W1ndchaser#1845",
+     "name_on_screen": "W1ndchaser",
+     "role": "MID",
+     "champion": "Viktor",
+     "level": 16,
+     "k": 3,
+     "d": 3,
+     "a": 2,
+     "damage": 24571,
+     "gold": 11548
+    },
+    {
+     "riot": "eD nhát gái#22402",
+     "name_on_screen": "eD nhát gái",
+     "role": "AD",
+     "champion": "Ezreal",
+     "level": 15,
+     "k": 2,
+     "d": 4,
+     "a": 4,
+     "damage": 18248,
+     "gold": 14321
+    },
+    {
+     "riot": "Corn Cuang#ccc",
+     "name_on_screen": "Corn Cuang",
+     "role": "SP",
+     "champion": "Poppy",
+     "level": 13,
+     "k": 2,
+     "d": 3,
+     "a": 3,
+     "damage": 5135,
+     "gold": 9296
+    }
+   ]
+  }
+ ],
+ "checks_passed": true,
+ "notes": "Screen ĐỘI 1 = GOS (red in record, winner), ĐỘI 2 = LN. Winner and time match. All checks pass. LN SP played Poppy (kept as SP per record)."
+}
