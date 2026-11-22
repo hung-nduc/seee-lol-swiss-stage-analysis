@@ -9,7 +9,7 @@ This repo analyses the Swiss Stage of the student League of Legends tournament (
 | [`docs/index.html`](docs/index.html) | Overview, final standings, data files, method, data gaps |
 | [`docs/a-team-scouting.html`](docs/a-team-scouting.html) | **A. Team scouting**: each team's average Solo/Duo, Flex and Ranked 5s rank; ranked games in 2026; whether the team practises in Flex; rank spread; every roster |
 | [`docs/b-swiss-evaluation.html`](docs/b-swiss-evaluation.html) | **B. Swiss Stage evaluation**: standings, round by round, results against rank, the most surprising result, sides, game length, ban & pick by position, which position carries the damage |
-| [`docs/c-team-evaluation.html`](docs/c-team-evaluation.html) | **C. Team evaluation**: game time, total gold, gold per minute, gold difference and KDA per game; player leaderboards; every game per team |
+| [`docs/c-team-evaluation.html`](docs/c-team-evaluation.html) | **C. Team evaluation**: game time, total gold, gold per minute, gold difference, KDA and kill participation (KP) per game; player leaderboards; every game per team |
 
 ## Repository layout
 
@@ -47,7 +47,9 @@ scripts/
 | `team_scouting.csv` | team: average ranks, ranked activity, Flex share |
 | `champions.csv` | champion: picks, bans, presence, win rate, positions |
 | `role_stats.csv` | position: damage and gold share, damage per minute, top-damage count |
-| `team_stats.csv`, `player_stats.csv`, `side_stats.csv` | aggregates |
+| `team_stats.csv` | team: averages over played games, incl. **team kill participation (KP)**, KP in wins/losses and KP by position |
+| `team_role_kp.csv` | team × position: kill participation |
+| `player_stats.csv`, `side_stats.csv` | aggregates |
 | `data_issues.csv` | every gap found in the data and how it was handled |
 
 ## Rebuild
@@ -65,6 +67,7 @@ python scripts/build.py           # writes data/processed/*.csv and docs/*.html
 - **Ranks** were read from op.gg (VN) on 22 Nov 2026 for season 2026 (tier, LP, wins + losses per queue). This is a snapshot after the stage, not before it.
 - **Team rank** is the average of the players who actually played, weighted by Swiss games. Ladder values: Iron 4 = 0, Gold 4 = 12, Diamond 1 = 27, Master = 28 + LP/100.
 - **Upset** means a played game won by the lineup with the lower average Solo/Duo rank.
+- **Team KP** for one game is the sum of each player's kills + assists, divided by 5 × the team's kills. That is the average player's share of the team's kills. The report averages it over the team's games.
 
 ## Known data gaps
 

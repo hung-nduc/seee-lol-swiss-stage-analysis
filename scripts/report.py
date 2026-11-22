@@ -528,18 +528,23 @@ def page_c(d):
     longest = max(T, key=lambda t: t['avg_game_minutes'])
     shortest = min(T, key=lambda t: t['avg_game_minutes'])
     bygd = sorted(T, key=lambda t: -t['avg_gold_diff'])
+    bykp = sorted(T, key=lambda t: -t['kill_participation'])
+    kp_win = round(st.mean(g['kill_participation'] for g in TG if g['won'] and g['kill_participation'] != ''), 1)
+    kp_loss = round(st.mean(g['kill_participation'] for g in TG if not g['won'] and g['kill_participation'] != ''), 1)
     finds = [
         f"Best team KDA: <b>{E(byk[0]['team'])}</b> ({byk[0]['kda']}), then {E(byk[1]['team'])} ({byk[1]['kda']}) and {E(byk[2]['team'])} ({byk[2]['kda']}). Worst: {E(byk[-1]['team'])} ({byk[-1]['kda']}).",
         f"Highest gold per minute: <b>{E(byg[0]['team'])}</b> ({byg[0]['avg_gold_per_min']:,}), {E(byg[1]['team'])} ({byg[1]['avg_gold_per_min']:,}), {E(byg[2]['team'])} ({byg[2]['avg_gold_per_min']:,}); lowest {E(byg[-1]['team'])} ({byg[-1]['avg_gold_per_min']:,}).",
         f"Biggest average gold lead at the end: <b>{E(bygd[0]['team'])}</b> ({bygd[0]['avg_gold_diff']:+,}); biggest deficit {E(bygd[-1]['team'])} ({bygd[-1]['avg_gold_diff']:+,}).",
         f"Longest games on average: {E(longest['team'])} ({longest['avg_game_minutes']:.1f} min); shortest: {E(shortest['team'])} ({shortest['avg_game_minutes']:.1f} min).",
         "Total gold mostly tracks game length, so gold per minute is the fairer comparison; both are shown.",
+        f"Highest team kill participation (KP): <b>{E(bykp[0]['team'])}</b> ({bykp[0]['kill_participation']}%), {E(bykp[1]['team'])} ({bykp[1]['kill_participation']}%) and {E(bykp[2]['team'])} ({bykp[2]['kill_participation']}%) — their kills involve most of the team. "
+        f"Lowest: {E(bykp[-1]['team'])} ({bykp[-1]['kill_participation']}%). Across all teams KP averaged {kp_win}% in wins and {kp_loss}% in losses.",
     ]
     body = ['<h2 id="findings">Key findings</h2><ul class="find">' + ''.join(f'<li>{f}</li>' for f in finds) + '</ul>']
     body.append('<p class="sub">Played games only (forfeits and the LS21 ruling have no game). KDA = (kills + assists) ÷ deaths over all of a team\'s games. Gold diff = team gold minus opponent gold at the end.</p>')
     cols = [('team', 'Team', ''), ('games', 'Games', 'n'), ('wins', 'W', 'n'), ('losses', 'L', 'n'), ('avg_game_minutes', 'Avg time (min)', 'n'), ('avg_win_minutes', 'Avg win time', 'n'),
             ('avg_loss_minutes', 'Avg loss time', 'n'), ('avg_gold', 'Avg total gold', 'n'), ('avg_gold_per_min', 'Gold / min', 'n'), ('avg_gold_diff', 'Avg gold diff', 'n'),
-            ('avg_kills', 'Kills / g', 'n'), ('avg_deaths', 'Deaths / g', 'n'), ('avg_assists', 'Assists / g', 'n'), ('kda', 'KDA', 'n'), ('kills_per_min', 'Kills / min', 'n'), ('best_kda_player', 'Best KDA player', '')]
+            ('avg_kills', 'Kills / g', 'n'), ('avg_deaths', 'Deaths / g', 'n'), ('avg_assists', 'Assists / g', 'n'), ('kda', 'KDA', 'n'), ('kill_participation', 'KP %', 'n'), ('kills_per_min', 'Kills / min', 'n'), ('best_kda_player', 'Best KDA player', '')]
     body.append('<h2 id="table">Team comparison</h2>' + table(cols, [dict(t, team=(('✓ ' if t['qualified'] else '') + E(t['team']), t['team'])) for t in T], hl=lambda r: r['qualified']))
 
     body.append('<h2 id="time-gold">Game time and gold</h2><div class="card">' + legend([('Quarter-finalist', C[0]), ('Eliminated', MUTED)]) +
@@ -560,6 +565,63 @@ def page_c(d):
                 vgroup([t['team'] for t in byk], [('Kills', [t['avg_kills'] for t in byk]), ('Deaths', [t['avg_deaths'] for t in byk]), ('Assists', [t['avg_assists'] for t in byk])],
                        colors=[C[0], C[3], C[1]], H=280, W=900, aria='Kills deaths assists per game', labels=False) + '</div>')
 
+    # kill participation
+    body.append('<h2 id="kp">Kill participation (KP)</h2><p>KP is the share of a team\'s kills that a player took part in (kills + assists ÷ team kills). '
+                '<b>Team KP</b> is the average of its five players\' KP in a game, averaged over the team\'s games. A high value means fights are played together, '
+                'with kills shared across the map. A low value means kills come from isolated plays, or that one or two players do most of the killing. '
+                '<b>Read it next to kills per game</b>: a team that gets very few kills (MSD, 5 per game) shows a high KP simply because every kill is a group effort.</p>')
+    body.append('<div class="grid"><div class="card"><h4>Team KP (average per game)</h4>' +
+                hbar([dict(label=t['team'], values=[t['kill_participation']], strong=t['qualified'],
+                           tip=f"{t['team']}: {t['kill_participation']}% (wins {t['kp_in_wins'] or '—'}%, losses {t['kp_in_losses'] or '—'}%)") for t in bykp],
+                     [0], colors=[C[4]], W=460, xmax=100, val_fmt=lambda v: f'{v}%', aria='Team kill participation') + '</div>')
+    both = [t for t in T if t['kp_in_wins'] != '' and t['kp_in_losses'] != '']
+    body.append('<div class="card"><h4>KP in wins vs losses</h4><p class="sub">Only teams with both a win and a loss in played games.</p>' + legend([('In wins', C[2]), ('In losses', C[3])]) +
+                vgroup([t['team'] for t in both], [('Wins', [t['kp_in_wins'] for t in both]), ('Losses', [t['kp_in_losses'] for t in both])],
+                       colors=[C[2], C[3]], W=460, H=240, ymax=100, aria='KP in wins and losses', labels=False) + '</div></div>')
+    # heat table team x position
+    def heat(v):
+        if v == '' or v is None:
+            return ('—', -1)
+        a = max(0, min(1, (v - 40) / 50))
+        return (f'<span style="display:inline-block;min-width:46px;padding:1px 6px;border-radius:4px;background:rgba(128,100,162,{0.12 + 0.6 * a:.2f})">{v}%</span>', v)
+    rows = [dict(team=(('✓ ' if t['qualified'] else '') + E(t['team']), t['team']), kp=(f"{t['kill_participation']}%", t['kill_participation']),
+                 top=heat(t['kp_TOP']), jg=heat(t['kp_JG']), mid=heat(t['kp_MID']), ad=heat(t['kp_AD']), sp=heat(t['kp_SP']),
+                 most=t['kp_most_involved'], least=t['kp_least_involved'], spread=t['kp_spread']) for t in bykp]
+    body.append('<div class="card"><h4>KP by position inside each team</h4><p class="sub">Share of the team\'s kills each position took part in, over all played games. '
+                'Spread = most involved minus least involved position; a big spread means one position is cut off from the team\'s fights (often a side-laning top).</p>' +
+                table([('team', 'Team', ''), ('kp', 'Team KP', 'n'), ('top', 'Top', 'n'), ('jg', 'Jungle', 'n'), ('mid', 'Mid', 'n'), ('ad', 'Bot', 'n'), ('sp', 'Support', 'n'),
+                       ('most', 'Most involved', ''), ('least', 'Least involved', ''), ('spread', 'Spread (pts)', 'n')], rows) + '</div>')
+    # top KP per position (players with >= 2 games): (kills + assists) / team kills, summed over their games
+    tkills = {(g['code'], g['team']): g['kills'] for g in TG}
+    body.append('<h3 id="kp-top">Highest KP by position</h3><p class="sub">Players with at least 2 played games. KP = (kills + assists) ÷ team kills, summed over all their games. '
+                'Kills per game shows how many kills there were to take part in.</p><div class="grid wide">')
+    for code, name in d['role_name'].items():
+        agg = defaultdict(lambda: [0, 0, 0, set()])
+        for x in pg:
+            if x['role'] == code:
+                a = agg[(x['riot_id'], x['team'])]
+                a[0] += x['kills'] + x['assists']; a[1] += tkills[(x['code'], x['team'])]; a[2] += 1; a[3].add(x['champion'])
+        rows = sorted([dict(p=f'{k[0]}', t=k[1], g=v[2], kp=(f'{100 * v[0] / v[1]:.1f}%', 100 * v[0] / v[1]), tk=round(v[1] / v[2], 1))
+                       for k, v in agg.items() if v[2] >= 2 and v[1]], key=lambda r: -r['kp'][1])[:5]
+        body.append(f'<div class="card"><h4>{E(name)}</h4>' + table([('p', 'Player', ''), ('t', 'Team', ''), ('g', 'G', 'n'), ('kp', 'KP', 'n'), ('tk', 'Team kills / game', 'n')], rows, sortable=False) + '</div>')
+    body.append('</div>')
+    body.append('<h3 id="kp-best-game">Best single-game KP by position</h3><p class="sub">Highest KP in one game, among games where the team got at least 10 kills.</p><div class="grid wide">')
+    for code, name in d['role_name'].items():
+        xs = [(100 * (x['kills'] + x['assists']) / tkills[(x['code'], x['team'])], x) for x in pg if x['role'] == code and tkills[(x['code'], x['team'])] >= 10]
+        xs.sort(key=lambda r: (-r[0], -tkills[(r[1]['code'], r[1]['team'])]))
+        rows = [dict(p=x['riot_id'], t=x['team'], m=x['code'], c=x['champion'], kda=f"{x['kills']}/{x['deaths']}/{x['assists']}",
+                     tk=tkills[(x['code'], x['team'])], kp=(f'{v:.1f}%', v)) for v, x in xs[:5]]
+        body.append(f'<div class="card"><h4>{E(name)}</h4>' + table([('p', 'Player', ''), ('t', 'Team', ''), ('m', 'Match', ''), ('c', 'Champion', ''), ('kda', 'K/D/A', ''),
+                                                                     ('tk', 'Team kills', 'n'), ('kp', 'KP', 'n')], rows, sortable=False) + '</div>')
+    body.append('</div>')
+    rk = defaultdict(list)
+    for r in d['team_role_kp']:
+        if r['kill_participation'] != '':
+            rk[r['role']].append(r['kill_participation'])
+    body.append('<div class="card"><h4>Average KP by position (all teams)</h4>' +
+                hbar([dict(label=r, values=[round(st.mean(v), 1)], tip=f'{r}: {round(st.mean(v), 1)}% across 16 teams') for r, v in rk.items()],
+                     [0], colors=[C[4]], xmax=100, val_fmt=lambda v: f'{v}%', aria='Average KP by position') + '</div>')
+
     # leaderboards
     body.append('<h2 id="players">Player leaderboards</h2><p class="sub">Players with at least 2 games. Damage figures exclude LS13 and LS33. A game with 0 deaths counts KDA as kills + assists.</p><div class="grid wide">')
     elig = [p for p in PS if p['games'] >= 2]
@@ -579,15 +641,15 @@ def page_c(d):
         gs = [g for g in TG if g['team'] == t['team']]
         rows = [dict(g, res=(pill('Win', 'ok') if g['won'] else pill('Loss', 'bad'), g['won']), gd=(f"{g['gold_diff']:+,}", g['gold_diff']), kda_s=f"{g['kills']}/{g['deaths']}/{g['assists']}") for g in gs]
         cols = [('code', 'Match', ''), ('round', 'Rd', 'n'), ('opponent', 'Opponent', ''), ('side', 'Side', ''), ('res', 'Result', ''), ('game_time', 'Time', ''), ('gold', 'Gold', 'n'),
-                ('gold_per_min', 'Gold/min', 'n'), ('gd', 'Gold diff', 'n'), ('kda_s', 'K/D/A', ''), ('kda', 'KDA', 'n')]
+                ('gold_per_min', 'Gold/min', 'n'), ('gd', 'Gold diff', 'n'), ('kda_s', 'K/D/A', ''), ('kda', 'KDA', 'n'), ('kill_participation', 'KP %', 'n')]
         ps = [p for p in PS if p['team'] == t['team']]
-        pcols = [('role', 'Pos.', ''), ('riot_id', 'Player', ''), ('games', 'G', 'n'), ('kda', 'KDA', 'n'), ('damage_per_min', 'Dmg/min', 'n'), ('damage_share', 'Dmg %', 'n'),
+        pcols = [('role', 'Pos.', ''), ('riot_id', 'Player', ''), ('games', 'G', 'n'), ('kda', 'KDA', 'n'), ('avg_kill_participation', 'KP %', 'n'), ('damage_per_min', 'Dmg/min', 'n'), ('damage_share', 'Dmg %', 'n'),
                  ('gold_per_min', 'Gold/min', 'n'), ('champions', 'Champions', 'wrap')]
-        body.append(f'<div class="card teamcard" id="team-{E(t["team"])}"><h3>{E(t["team"])} <span class="muted">· {t["wins"]}-{t["losses"]} in played games · KDA {t["kda"]} · {t["avg_gold_per_min"]:,} gold/min</span></h3>'
+        body.append(f'<div class="card teamcard" id="team-{E(t["team"])}"><h3>{E(t["team"])} <span class="muted">· {t["wins"]}-{t["losses"]} in played games · KDA {t["kda"]} · KP {t["kill_participation"]}% · {t["avg_gold_per_min"]:,} gold/min</span></h3>'
                     + table(cols, rows) + '<h4>Players</h4>' + table(pcols, ps) + '</div>')
-    toc = [('findings', 'Key findings'), ('table', 'Comparison'), ('time-gold', 'Time & gold'), ('kda', 'KDA & gold diff'), ('players', 'Player leaderboards'), ('logs', 'Every game')]
+    toc = [('findings', 'Key findings'), ('table', 'Comparison'), ('time-gold', 'Time & gold'), ('kda', 'KDA & gold diff'), ('kp', 'Kill participation'), ('kp-top', 'Top KP by position'), ('kp-best-game', 'Best KP game'), ('players', 'Player leaderboards'), ('logs', 'Every game')]
     return page('c-team-evaluation.html', 'C. Team evaluation',
-                'How each team played: game time, total gold, gold per minute, gold difference and KDA per game, plus player leaderboards and a log of every game.',
+                'How each team played: game time, total gold, gold per minute, gold difference, KDA and kill participation per game, plus player leaderboards and a log of every game.',
                 ''.join(body), toc)
 
 
@@ -605,7 +667,8 @@ def page_index(d):
              ('team_scouting.csv', 'Team average ranks, ranked activity and Flex practice'),
              ('champions.csv', 'Picks, bans, presence, win rate, positions per champion'),
              ('role_stats.csv', 'Damage and gold share per position'),
-             ('team_stats.csv', 'Per-team averages over played games'),
+             ('team_stats.csv', 'Per-team averages over played games, incl. team kill participation (KP) and KP by position'),
+             ('team_role_kp.csv', 'Kill participation per team and position'),
              ('player_stats.csv', 'Per-player totals and averages'),
              ('side_stats.csv', 'Blue vs red wins'),
              ('data_issues.csv', 'Every gap found in the data and how it was handled')]
@@ -614,7 +677,7 @@ def page_index(d):
     body.append('<div class="grid">' + ''.join(f'<a class="card" style="text-decoration:none;color:inherit" href="{f}"><h3>{E(t)}</h3><p class="muted">{E(x)}</p></a>' for f, t, x in [
         ('a-team-scouting.html', 'A. Team scouting', 'Average Solo/Duo, Flex and Ranked 5s rank per team, ranked games in 2026, Flex practice, rank spread, and every roster in detail.'),
         ('b-swiss-evaluation.html', 'B. Swiss Stage evaluation', 'Standings, round by round, results against rank, the most surprising result, ban & pick by position, and which position carries the damage.'),
-        ('c-team-evaluation.html', 'C. Team evaluation', 'Game time, total gold, gold per minute, gold difference and KDA per game for every team, player leaderboards and full game logs.')]) + '</div>')
+        ('c-team-evaluation.html', 'C. Team evaluation', 'Game time, total gold, gold per minute, gold difference, KDA and kill participation per game for every team, player leaderboards and full game logs.')]) + '</div>')
     body.append('<h2 id="standings">Final standings</h2>' + table([('finish', '#', 'n'), ('team', 'Team', ''), ('record', 'Record', ''), ('buchholz', 'Buchholz', 'n'), ('rank_seed', 'Rank seed', 'n'),
                                                                    ('q', 'Result', '')], [dict(s, q=(pill('Quarter-finals', 'ok') if s['qualified'] else pill('Eliminated'), s['qualified'])) for s in S], hl=lambda r: r['qualified']))
     body.append('<h2 id="data">Data</h2><p>All tables are in <code>data/processed/</code> as CSV (UTF-8). Raw sources are in <code>data/raw/</code>; scoreboard transcriptions in <code>data/interim/scoreboards/</code>.</p>')

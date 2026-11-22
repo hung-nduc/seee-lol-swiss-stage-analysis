@@ -336,6 +336,37 @@ def main():
             top_damage_count=topd[r], team_games_with_damage=len(full),
             unique_champions=len({x['champion'] for x in allr})))
 
+    # ------------------------------------------------ kill participation (team index)
+    # Team KP of one game = sum over the 5 players of (kills + assists) / (5 x team kills)
+    #                     = the average player's share of the team's kills they took part in.
+    def game_kp(code, team):
+        xs = [pg for pg in player_games if pg['code'] == code and pg['team'] == team]
+        tk = sum(x['kills'] for x in xs)
+        return sum(x['kills'] + x['assists'] for x in xs) / (5 * tk) * 100 if tk else None
+    for g in team_games:
+        v = game_kp(g['code'], g['team'])
+        g['kill_participation'] = round(v, 1) if v is not None else ''
+    team_role_kp = []
+
+    def team_kp(t):
+        gs = [g for g in team_games if g['team'] == t and g['kill_participation'] != '']
+        w = [g['kill_participation'] for g in gs if g['won']]
+        l = [g['kill_participation'] for g in gs if not g['won']]
+        pgs = [pg for pg in player_games if pg['team'] == t]
+        tk = {g['code']: g['kills'] for g in team_games if g['team'] == t}
+        role_kp = {}
+        for r in ROLES:
+            xs = [x for x in pgs if x['role'] == r and tk[x['code']]]
+            role_kp[r] = round(100 * sum(x['kills'] + x['assists'] for x in xs) / sum(tk[x['code']] for x in xs), 1) if xs else None
+            team_role_kp.append(dict(team=t, role=ROLE_NAME[r], games=len(xs), kill_participation=role_kp[r] if role_kp[r] is not None else '',
+                                     kills=sum(x['kills'] for x in xs), assists=sum(x['assists'] for x in xs), team_kills=sum(tk[x['code']] for x in xs)))
+        vals = {r: v for r, v in role_kp.items() if v is not None}
+        hi = max(vals, key=vals.get); lo = min(vals, key=vals.get)
+        return dict(kill_participation=round(st.mean(g['kill_participation'] for g in gs), 1),
+                    kp_in_wins=round(st.mean(w), 1) if w else '', kp_in_losses=round(st.mean(l), 1) if l else '',
+                    kp_most_involved=f'{ROLE_NAME[hi]} ({vals[hi]}%)', kp_least_involved=f'{ROLE_NAME[lo]} ({vals[lo]}%)',
+                    kp_spread=round(vals[hi] - vals[lo], 1), **{f'kp_{r}': role_kp[r] if role_kp[r] is not None else '' for r in ROLES})
+
     # ------------------------------------------------ team stats
     team_stats = []
     for t in sorted({g['team'] for g in team_games}):
@@ -355,7 +386,7 @@ def main():
             avg_kills=round(K / len(gs), 1), avg_deaths=round(D / len(gs), 1), avg_assists=round(A / len(gs), 1),
             kda=round((K + A) / max(D, 1), 2), kills_per_min=round(st.mean(g['kills_per_min'] for g in gs), 2),
             blue_games=sum(1 for g in gs if g['side'] == 'blue'), red_games=sum(1 for g in gs if g['side'] == 'red'),
-            best_kda_player=mvp))
+            best_kda_player=mvp, **team_kp(t)))
     team_stats.sort(key=lambda r: -r['avg_gold_per_min'])
 
     # ------------------------------------------------ player stats
@@ -398,6 +429,7 @@ def main():
     write_csv('champions', champions)
     write_csv('role_stats', role_stats)
     write_csv('team_stats', team_stats)
+    write_csv('team_role_kp', team_role_kp)
     write_csv('player_stats', player_stats)
     write_csv('side_stats', side_stats)
     issues = json.loads((Path(__file__).with_name('data_issues.json')).read_text(encoding='utf-8'))
@@ -408,7 +440,7 @@ def main():
     report.build(ROOT / 'docs', dict(matches=matches, standings=standings, team_games=team_games, player_games=player_games,
                                      drafts=drafts, players=pr, scouting=sorted(scouting, key=lambda s: s['rank_seed']),
                                      champions=champions, role_stats=role_stats, team_stats=team_stats, player_stats=player_stats,
-                                     side_stats=side_stats, issues=issues, rank_label=rank_label, qualified=QUALIFIED,
+                                     side_stats=side_stats, issues=issues, team_role_kp=team_role_kp, rank_label=rank_label, qualified=QUALIFIED,
                                      role_name=ROLE_NAME, n_games=G))
 
 
